@@ -1,0 +1,103 @@
+# Copyright (C) 2008, Bertrand Mesot <http://www.objectif-securite.ch>
+#	 	2008, Cedric Tissieres <http://www.objectif-securite.ch>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-13, USA
+
+# General variables
+SHELL = /bin/sh
+
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+bindir = $(exec_prefix)/bin
+
+CC = @CC@
+CFLAGS = @CFLAGS@
+LDFLAGS = @LDFLAGS@
+LIBS = @LIBS@
+INSTALL = @INSTALL@
+
+PACKAGE = @PACKAGE_NAME@
+VERSION = @PACKAGE_VERSION@
+distdir = $(PACKAGE)-$(VERSION)
+
+DISTFILES = \
+	aclocal.m4 \
+	AUTHORS \
+	ChangeLog \
+	config \
+	config.h.in \
+	configure \
+	configure.in \
+	COPYING \
+	INSTALL \
+	install-sh \
+	LICENSE \
+	LICENSE.OpenSSL \
+	Makefile.in \
+	NEWS \
+	README.md \
+	config.sub \
+	config.guess \
+	src
+
+all:
+	$(MAKE) -C src
+
+install: all
+	@echo "Creating directories..."
+	$(INSTALL) -d $(DESTDIR)$(bindir)
+	@echo "Copying binary..."
+	$(INSTALL) src/ophcrack $(DESTDIR)$(bindir)
+
+uninstall:
+	@echo "Deleting binary and manpages..."
+	rm -f $(DESTDIR)$(bindir)/ophcrack
+
+clean:
+	rm -f *~
+	$(MAKE) -C src clean
+
+distclean: clean
+	$(MAKE) -C src distclean
+	rm -f config.h config.status config.log
+	rm -rf autom4te.cache
+	rm -f src/gui/ophcrack_win32.rc src/gui/gui.pro src/gui/Info.plist
+	rm -f src/gui/Makefile
+
+dist: distclean
+	rm -rf $(distdir)
+	mkdir $(distdir)
+	cp -r $(DISTFILES) $(distdir)
+	for dir in `find ${distdir} -name .svn -type d`; do rm -rf $$dir; done
+	tar cfj $(distdir).tar.bz2 $(distdir)
+	rm -rf $(distdir)
+
+# automatic re-running of configure if the configure.in file has changed
+configure: configure.in aclocal.m4
+	autoconf
+
+# autoheader might not change config.h.in, so touch a stamp file
+config.h.in: stamp-h.in
+stamp-h.in: configure.in aclocal.m4
+	autoheader
+	echo timestamp > stamp-h.in
+
+config.h: stamp-h
+stamp-h: config.h.in config.status
+	./config.status
+Makefile: Makefile.in $(wildcard src/*.in) $(wildcard src/*/*.in) config.status
+	./config.status
+config.status: configure
+	./config.status --recheck

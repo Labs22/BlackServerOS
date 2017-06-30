@@ -1,0 +1,19 @@
+documentation coming soon.
+
+this will only work on linux (it uses ptrace). feel free to port to other platforms.
+
+to install please see INSTALL
+
+
+quirks:
+
+some apps like Acrobat and RealPlayer are really shell scripts that set special environment variables before launching the
+actual binary. be aware of this, it's easy to get around.
+
+RealPlayer:
+HELIX_PATH must be set, and realplay.bin must be used as the binary.
+
+Adobe Acrobat:
+first invoke the shell script with -DEBUG, then run from there. the actual binary
+is usually in Adobe/Acrobat7.0/Reader/intellinux/bin/acroread
+

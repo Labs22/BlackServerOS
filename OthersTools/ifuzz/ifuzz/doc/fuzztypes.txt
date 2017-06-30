@@ -1,0 +1,18 @@
+0 - argv[0] fuzzing
+ Fuzzes each binary in the specified path once by giving a fuzz string as argv[0] and some bad values
+ as arguments, meant to trigger a basic usage message or error message.
+
+                
+1 - argv[1] fuzzing
+ Fuzzes each binary in the specified path once by giving a fuzz string as argv[1].                
+
+2 - incremental single option fuzzing
+ Fuzzes each binary in the specified path multiple times, running each time with a different '-' option 
+ accompanied by a fuzz string.  Results in about 60 executions per binary.                
+
+3 - incremental multiple option fuzzing
+ Fuzzes each binary in the specified path multiple times.  Accepts as a fuzz specific option the getopt() 
+ optstring to base the fuzzing on.  Can result in a very large amount of fuzz attempts per binary.  Current
+ implementation will do more than N*N! executions where N is the number of options in the optstring.  Note this
+ isn't even a "complete" fuzz, but it is fairly thorough.  Doesn't try to use the same option twice in one exec,
+ but this would be a trivial addition as a flag.

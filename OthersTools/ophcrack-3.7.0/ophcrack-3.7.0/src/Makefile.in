@@ -1,0 +1,66 @@
+# Copyright (C) 2008, Bertrand Mesot <http://www.objectif-securite.ch>
+#	 	2008, Cedric Tissieres <http://www.objectif-securite.ch>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-13, USA
+
+# General variables
+SHELL = /bin/sh
+
+CC = @CC@
+
+CFLAGS  = @CFLAGS@ -Icore -Intproba
+LDFLAGS = @LDFLAGS@ @LIBS@
+
+SUBDIRS = core ntproba samdump2 test
+@HAVE_GUI_TRUE@SUBDIRS += gui
+
+CLEAN_SUBDIRS=$(addprefix clean_,$(SUBDIRS))
+DISTCLEAN_SUBDIRS=$(addprefix distclean_,$(SUBDIRS))
+
+.PHONY: all $(SUBDIRS) clean $(CLEAN_SUBDIRS) distclean $(DISTCLEAN_SUBDIRS)
+
+TARGETS = $(SUBDIRS)
+@HAVE_GUI_FALSE@TARGETS += ophcrack
+
+ARCHIVES = \
+	core/libophcrack.a \
+	samdump2/libsamdump2.a \
+	ntproba/libntproba.a
+
+all: $(TARGETS)
+
+$(SUBDIRS):
+	$(MAKE) -C $@
+
+ophcrack: gui/main.cpp core ntproba samdump2
+	cp $< main.c
+	$(CC) $(CFLAGS) -c main.c -o main.o
+	$(CC) main.o $(ARCHIVES) -o $@ $(LDFLAGS)
+	rm main.c main.o
+
+gui: core ntproba samdump2
+test: core ntproba samdump2
+
+clean: $(CLEAN_SUBDIRS)
+
+$(CLEAN_SUBDIRS):
+	$(MAKE) -C $(patsubst clean_%,%,$@) clean
+
+distclean: $(CLEAN_SUBDIRS) $(DISTCLEAN_SUBDIRS)
+	rm -f Makefile
+	rm -f ophcrack
+
+$(DISTCLEAN_SUBDIRS):
+	$(MAKE) -C $(patsubst distclean_%,%,$@) distclean

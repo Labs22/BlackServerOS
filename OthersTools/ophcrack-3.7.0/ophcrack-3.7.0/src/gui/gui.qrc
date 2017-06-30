@@ -1,0 +1,27 @@
+<RCC>
+    <qresource prefix="/docs" >
+        <file>help/help.html</file>
+        <file>help/howto.html</file>
+    </qresource>
+    <qresource prefix="/icons" >
+        <file>pixmaps/crack.png</file>
+        <file>pixmaps/delete.png</file>
+        <file>pixmaps/disabled.png</file>
+        <file>pixmaps/down.png</file>
+        <file>pixmaps/enabled.png</file>
+        <file>pixmaps/exit.png</file>
+        <file>pixmaps/greenled.png</file>
+        <file>pixmaps/help.png</file>
+        <file>pixmaps/load.png</file>
+        <file>pixmaps/logo_os.png</file>
+        <file>pixmaps/notinstalled.png</file>
+        <file>pixmaps/os_icon.png</file>
+        <file>pixmaps/os_small.png</file>
+        <file>pixmaps/redled.png</file>
+        <file>pixmaps/save.png</file>
+        <file>pixmaps/stop.png</file>
+        <file>pixmaps/tables.png</file>
+        <file>pixmaps/up.png</file>
+        <file>pixmaps/yellowled.png</file>
+    </qresource>
+</RCC>

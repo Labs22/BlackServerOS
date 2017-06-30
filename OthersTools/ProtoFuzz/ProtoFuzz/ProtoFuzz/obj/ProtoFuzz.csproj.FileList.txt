@@ -1,0 +1,11 @@
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\ProtoFuzz.Main.resources
+obj\Debug\ProtoFuzz.Properties.Resources.resources
+obj\Debug\ProtoFuzz.csproj.GenerateResource.Cache
+bin\Debug\Metro.dll
+bin\Debug\ProtoFuzz.exe
+bin\Debug\ProtoFuzz.pdb
+obj\Debug\ProtoFuzz.exe
+obj\Debug\ProtoFuzz.pdb
+bin\Debug\Strings.txt
+bin\Debug\HexEncoding.cs

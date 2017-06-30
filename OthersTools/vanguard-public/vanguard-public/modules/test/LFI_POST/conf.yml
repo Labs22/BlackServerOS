@@ -1,0 +1,6 @@
+---
+lfi_test: '%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd'
+lfi_match: "root\:.\:0\:0"
+lfi_exits:
+  - '%00'
+  -

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="vega.model">
+   <implementation class="com.subgraph.vega.internal.model.Model"/>
+   <service>
+      <provide interface="com.subgraph.vega.api.model.IModel"/>
+   </service>
+   <reference bind="setConsole" cardinality="1..1" interface="com.subgraph.vega.api.console.IConsole" name="IConsole" policy="static" unbind="unsetConsole"/>
+   <reference bind="setHTMLParser" cardinality="1..1" interface="com.subgraph.vega.api.html.IHTMLParser" name="IHTMLParser" policy="static" unbind="unsetHTMLParser"/>
+   <reference bind="setXmlRepository" cardinality="1..1" interface="com.subgraph.vega.api.xml.IXmlRepository" name="IXmlRepository" policy="static" unbind="unsetXmlRepository"/>
+   <reference bind="setPathFinder" cardinality="1..1" interface="com.subgraph.vega.api.paths.IPathFinder" name="IPathFinder" policy="static" unbind="unsetPathFinder"/>
+</scr:component>

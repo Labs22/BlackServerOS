@@ -1,0 +1,13 @@
+bin\Debug\sqlinjection.txt
+bin\Debug\xssinjection.txt
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\WebFuzz.csproj.GenerateResource.Cache
+bin\Debug\methods.txt
+bin\Debug\WebFuzz.exe
+bin\Debug\WebFuzz.pdb
+obj\Debug\WebFuzz.Properties.Resources.resources
+obj\Debug\WebFuzz.exe
+obj\Debug\WebFuzz.pdb
+obj\Debug\WebFuzz.frmWebFuzz.resources
+obj\Debug\WebFuzz.BasicAuthentication.resources
+obj\Debug\WebFuzz.BufferOverflow.resources

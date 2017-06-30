@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="vega.request-engine-factory">
+   <implementation class="com.subgraph.vega.internal.http.requests.HttpRequestEngineFactory"/>
+   <service>
+      <provide interface="com.subgraph.vega.api.http.requests.IHttpRequestEngineFactory"/>
+   </service>
+   <reference bind="setHTMLParser" cardinality="1..1" interface="com.subgraph.vega.api.html.IHTMLParser" name="IHTMLParser" policy="static" unbind="unsetHTMLParser"/>
+</scr:component>

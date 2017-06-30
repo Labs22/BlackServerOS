@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="com.subgraph.vega.ui.web.views.WebsiteView"
+            icon="icons/websites.png"
+            id="com.subgraph.vega.views.website"
+            name="Website View"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="com.subgraph.vega.ui.command.hideUnvisited"
+            name="Hide Unvisited Sites">
+      </command>
+      <command
+            id="com.subgraph.vega.ui.command.filterByScope"
+            name="Filter By Scope">
+      </command>
+      <command
+            id="com.subgraph.vega.ui.web.expandAll"
+            name="Expand All Web Tree">
+      </command>
+      <command
+            id="com.subgraph.vega.ui.web.collapseAll"
+            name="Collapse All Web Tree">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:com.subgraph.vega.views.website">
+         <command
+               commandId="com.subgraph.vega.ui.command.hideUnvisited"
+               icon="icons/hide_unvisited.png"
+               label="Hide Unvisited Sites"
+               style="toggle"
+               tooltip="Hide unvisited websites and paths">
+         </command>
+         <command
+               commandId="com.subgraph.vega.ui.command.filterByScope"
+               icon="icons/scope.png"
+               label="Filter By Scope"
+               style="toggle">
+         </command>
+         <command
+               commandId="com.subgraph.vega.ui.web.expandAll"
+               icon="icons/expandall.png"
+               label="Expand All"
+               style="push">
+         </command>
+         <command
+               commandId="com.subgraph.vega.ui.web.collapseAll"
+               icon="icons/collapseall.png"
+               label="Collapse All"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="oneElementSelected">
+         <with
+               variable="selection">
+            <count
+                  value="1">
+            </count>
+         </with>
+      </definition>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="com.subgraph.vega.ui.web.commands.HideUnvisitedHandler"
+            commandId="com.subgraph.vega.ui.command.hideUnvisited">
+      </handler>
+      <handler
+            class="com.subgraph.vega.ui.web.commands.FilterByScopeHandler"
+            commandId="com.subgraph.vega.ui.command.filterByScope">
+      </handler>
+      <handler
+            class="com.subgraph.vega.ui.web.commands.ExpandAllHandler"
+            commandId="com.subgraph.vega.ui.web.expandAll">
+      </handler>
+      <handler
+            class="com.subgraph.vega.ui.web.commands.CollapseAllHandler"
+            commandId="com.subgraph.vega.ui.web.collapseAll">
+      </handler>
+   </extension>
+
+</plugin>

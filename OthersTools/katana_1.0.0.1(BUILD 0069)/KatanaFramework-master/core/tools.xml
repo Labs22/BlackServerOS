@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<tools>
+    <tool name="macchange">
+        <filename>change_mac</filename>
+        <description>Changemac - change mac for interface.</description>
+    </tool>
+  <tool name="updatesystem">
+        <filename>update_system</filename>
+        <description>updatesystem - Update completly your system.</description>
+    </tool>
+</tools>

@@ -1,0 +1,648 @@
+<!-- DO NOT MODIFY!!!COPY IT... -->
+<!-- DO NOT MODIFY!!!COPY IT... -->
+
+<!-- SIP protocol states specification  -->
+
+<protocol-states>
+	<state id="1">
+		<name>CANCEL</name>
+		<!-- Provisional 1xx Responses -->
+		<response-ok name="Trying" last="no">100</response-ok>
+		<response-ok name="Ringing" last="no">180</response-ok>
+		<response-ok name="Call Is Being Forwarded" last="no">181</response-ok>
+		<response-ok name="Queued" last="no">182</response-ok>
+		<response-ok name="Session Progress" last="no">183</response-ok>
+		<!-- Successful 2xx Responses -->
+		<response-ok name="Ok" last="no">200</response-ok>
+		<!-- Redirection 3xx Responses -->
+		<response-err name="Multiple Choices" last="yes">300</response-err>
+		<response-err name="Moved Permanently" last="yes">301</response-err>
+		<response-err name="Moved Temporarily" last="yes">302</response-err>
+		<response-err name="Use Proxy" last="yes">305</response-err>
+		<response-err name="Alternative Service" last="yes">380</response-err>
+		<!-- Request Failure 4xx Responses -->
+		<response-err name="Bad Request" last="yes">400</response-err>
+		<response-err name="Unauthorized" last="yes">401</response-err>
+		<response-err name="Payment Required" last="yes">402</response-err>
+		<response-err name="Forbidden" last="yes">403</response-err>
+		<response-err name="Not found" last="yes">404</response-err>
+		<response-err name="Method Not Allowed" last="yes">405</response-err>
+		<response-err name="Not Acceptable" last="yes">406</response-err>
+		<response-err name="Proxy Authentication Required" last="yes">407</response-err>
+		<response-err name="Request Timeout" last="yes">408</response-err>
+		<response-err name="Gone" last="yes">410</response-err>
+		<response-err name="Request Entity Too Large" last="yes">413</response-err>
+		<response-err name="Request-URI Too Long" last="yes">414</response-err>
+		<response-err name="Unsupported Media Type" last="yes">415</response-err>
+		<response-err name="Unsupported URI Scheme" last="yes">416</response-err>
+		<response-err name="Bad Extension" last="yes">420</response-err>
+		<response-err name="Extension Required" last="yes">421</response-err>
+		<response-err name="Interval Too Brief" last="yes">423</response-err>
+		<response-err name="Temporarily Unavailable" last="yes">480</response-err>
+		<response-err name="Call/Transaction Does Not Exist" last="yes" next="INVITE">481</response-err>
+		<response-err name="Loop Detected" last="yes">482</response-err>
+		<response-err name="Too Many Hops" last="yes">483</response-err>
+		<response-err name="Address Incomplete" last="yes">484</response-err>
+		<response-err name="Ambiguous" last="yes">485</response-err>
+		<response-err name="Busy Here" last="yes" action="wait">486</response-err>
+		<response-err name="Request Terminated" last="yes" next="INVITE">487</response-err>
+		<response-err name="Not Acceptable Here" last="yes">488</response-err>
+		<response-err name="Request Pending" last="yes">491</response-err>
+		<response-err name="Undecipherable" last="yes">493</response-err>
+		<!-- Server Failure 5xx Responses -->
+		<response-err name="Not Implemented" last="yes">501</response-err>
+		<response-err name="Bad Gateway" last="yes" next="CANCEL">502</response-err>
+		<response-err name="Service Unavailable" last="yes">503</response-err>
+		<response-err name="Server Time-out" last="yes">504</response-err>
+		<response-err name="Version Not Supported" last="yes">505</response-err>
+		<response-err name="Message Too Large" last="yes">513</response-err>
+		<!-- Global Failures 6xx Responses -->
+		<response-err name="Busy Everywhere" last="yes">600</response-err>
+		<response-err name="Decline" last="yes">603</response-err>
+		<response-err name="Does Not Exist Anywhere" last="yes">604</response-err>
+		<response-err name="Not Acceptable" last="yes">606</response-err>
+	</state>
+	<state id="2">
+		<name>ACK</name>
+	</state>
+	<state id="3">
+		<name>INVITE</name>
+		<!-- Provisional 1xx Responses -->
+		<response-ok name="Trying" last="no">100</response-ok>
+		<response-ok name="Ringing" last="yes" next="CANCEL">180</response-ok>
+		<response-ok name="Call Is Being Forwarded" last="no">181</response-ok>
+		<response-ok name="Queued" last="no">182</response-ok>
+		<response-ok name="Session Progress" last="no">183</response-ok>
+		<!-- Successful 2xx Responses -->
+		<response-ok name="Ok" last="yes">200</response-ok>
+		<!-- Redirection 3xx Responses -->
+		<response-err name="Multiple Choices" last="yes">300</response-err>
+		<response-err name="Moved Permanently" last="yes">301</response-err>
+		<response-err name="Moved Temporarily" last="yes">302</response-err>
+		<response-err name="Use Proxy" last="yes">305</response-err>
+		<response-err name="Alternative Service" last="yes">380</response-err>
+		<!-- Request Failure 4xx Responses -->
+		<response-err name="Bad Request" last="yes">400</response-err>
+		<response-err name="Unauthorized" last="yes">401</response-err>
+		<response-err name="Payment Required" last="yes">402</response-err>
+		<response-err name="Forbidden" last="yes">403</response-err>
+		<response-err name="Not found" last="yes">404</response-err>
+		<response-err name="Method Not Allowed" last="yes">405</response-err>
+		<response-err name="Not Acceptable" last="yes">406</response-err>
+		<response-err name="Proxy Authentication Required" last="yes">407</response-err>
+		<response-err name="Request Timeout" last="yes">408</response-err>
+		<response-err name="Gone" last="yes">410</response-err>
+		<response-err name="Request Entity Too Large" last="yes">413</response-err>
+		<response-err name="Request-URI Too Long" last="yes">414</response-err>
+		<response-err name="Unsupported Media Type" last="yes">415</response-err>
+		<response-err name="Unsupported URI Scheme" last="yes">416</response-err>
+		<response-err name="Bad Extension" last="yes">420</response-err>
+		<response-err name="Extension Required" last="yes">421</response-err>
+		<response-err name="Interval Too Brief" last="yes">423</response-err>
+		<response-err name="Temporarily Unavailable" last="yes">480</response-err>
+		<response-err name="Call/Transaction Does Not Exist" last="yes">481</response-err>
+		<response-err name="Loop Detected" last="yes">482</response-err>
+		<response-err name="Too Many Hops" last="yes">483</response-err>
+		<response-err name="Address Incomplete" last="yes">484</response-err>
+		<response-err name="Ambiguous" last="yes">485</response-err>
+		<response-err name="Busy Here" last="yes" action="wait">486</response-err>
+		<response-err name="Request Terminated" last="yes">487</response-err>
+		<response-err name="Not Acceptable Here" last="yes">488</response-err>
+		<response-err name="Request Pending" last="yes">491</response-err>
+		<response-err name="Undecipherable" last="yes">493</response-err>
+		<!-- Server Failure 5xx Responses -->
+		<response-err name="Not Implemented" last="yes">501</response-err>
+		<response-err name="Bad Gateway" last="yes" next="INVITE">502</response-err>
+		<response-err name="Service Unavailable" last="yes">503</response-err>
+		<response-err name="Server Time-out" last="yes">504</response-err>
+		<response-err name="Version Not Supported" last="yes">505</response-err>
+		<response-err name="Message Too Large" last="yes">513</response-err>
+		<!-- Global Failures 6xx Responses -->
+		<response-err name="Busy Everywhere" last="yes">600</response-err>
+		<response-err name="Decline" last="yes">603</response-err>
+		<response-err name="Does Not Exist Anywhere" last="yes">604</response-err>
+		<response-err name="Not Acceptable" last="yes">606</response-err>
+	</state>
+	<state id="4">
+		<name>REGISTER</name>
+		<!-- Provisional 1xx Responses -->
+		<response-ok name="Trying" last="no">100</response-ok>
+		<response-ok name="Ringing" last="no">180</response-ok>
+		<response-ok name="Call Is Being Forwarded" last="no">181</response-ok>
+		<response-ok name="Queued" last="no">182</response-ok>
+		<response-ok name="Session Progress" last="no">183</response-ok>
+		<!-- Successful 2xx Responses -->
+		<response-ok name="Ok" last="yes">200</response-ok>
+		<!-- Redirection 3xx Responses -->
+		<response-err name="Multiple Choices" last="yes">300</response-err>
+		<response-err name="Moved Permanently" last="yes">301</response-err>
+		<response-err name="Moved Temporarily" last="yes">302</response-err>
+		<response-err name="Use Proxy" last="yes">305</response-err>
+		<response-err name="Alternative Service" last="yes">380</response-err>
+		<!-- Request Failure 4xx Responses -->
+		<response-err name="Bad Request" last="yes">400</response-err>
+		<response-err name="Unauthorized" last="yes">401</response-err>
+		<response-err name="Payment Required" last="yes">402</response-err>
+		<response-err name="Forbidden" last="yes">403</response-err>
+		<response-err name="Not found" last="yes">404</response-err>
+		<response-err name="Method Not Allowed" last="yes">405</response-err>
+		<response-err name="Not Acceptable" last="yes">406</response-err>
+		<response-err name="Proxy Authentication Required" last="yes">407</response-err>
+		<response-err name="Request Timeout" last="yes">408</response-err>
+		<response-err name="Gone" last="yes">410</response-err>
+		<response-err name="Request Entity Too Large" last="yes">413</response-err>
+		<response-err name="Request-URI Too Long" last="yes">414</response-err>
+		<response-err name="Unsupported Media Type" last="yes">415</response-err>
+		<response-err name="Unsupported URI Scheme" last="yes">416</response-err>
+		<response-err name="Bad Extension" last="yes">420</response-err>
+		<response-err name="Extension Required" last="yes">421</response-err>
+		<response-err name="Interval Too Brief" last="yes">423</response-err>
+		<response-err name="Temporarily Unavailable" last="yes">480</response-err>
+		<response-err name="Call/Transaction Does Not Exist" last="yes">481</response-err>
+		<response-err name="Loop Detected" last="yes">482</response-err>
+		<response-err name="Too Many Hops" last="yes">483</response-err>
+		<response-err name="Address Incomplete" last="yes">484</response-err>
+		<response-err name="Ambiguous" last="yes">485</response-err>
+		<response-err name="Busy Here" last="yes">486</response-err>
+		<response-err name="Request Terminated" last="yes">487</response-err>
+		<response-err name="Not Acceptable Here" last="yes">488</response-err>
+		<response-err name="Request Pending" last="yes">491</response-err>
+		<response-err name="Undecipherable" last="yes">493</response-err>
+		<!-- Server Failure 5xx Responses -->
+		<response-err name="Not Implemented" last="yes">501</response-err>
+		<response-err name="Bad Gateway" last="yes">502</response-err>
+		<response-err name="Service Unavailable" last="yes">503</response-err>
+		<response-err name="Server Time-out" last="yes">504</response-err>
+		<response-err name="Version Not Supported" last="yes">505</response-err>
+		<response-err name="Message Too Large" last="yes">513</response-err>
+		<!-- Global Failures 6xx Responses -->
+		<response-err name="Busy Everywhere" last="yes">600</response-err>
+		<response-err name="Decline" last="yes">603</response-err>
+		<response-err name="Does Not Exist Anywhere" last="yes">604</response-err>
+		<response-err name="Not Acceptable" last="yes">606</response-err>
+	</state>
+	<state id="5">
+		<name>OPTIONS</name>
+		<!-- Provisional 1xx Responses -->
+		<response-ok name="Trying" last="no">100</response-ok>
+		<response-ok name="Ringing" last="no">180</response-ok>
+		<response-ok name="Call Is Being Forwarded" last="no">181</response-ok>
+		<response-ok name="Queued" last="no">182</response-ok>
+		<response-ok name="Session Progress" last="no">183</response-ok>
+		<!-- Successful 2xx Responses -->
+		<response-ok name="Ok" last="yes">200</response-ok>
+		<!-- Redirection 3xx Responses -->
+		<response-err name="Multiple Choices" last="yes">300</response-err>
+		<response-err name="Moved Permanently" last="yes">301</response-err>
+		<response-err name="Moved Temporarily" last="yes">302</response-err>
+		<response-err name="Use Proxy" last="yes">305</response-err>
+		<response-err name="Alternative Service" last="yes">380</response-err>
+		<!-- Request Failure 4xx Responses -->
+		<response-err name="Bad Request" last="yes">400</response-err>
+		<response-err name="Unauthorized" last="yes">401</response-err>
+		<response-err name="Payment Required" last="yes">402</response-err>
+		<response-err name="Forbidden" last="yes">403</response-err>
+		<response-err name="Not found" last="yes">404</response-err>
+		<response-err name="Method Not Allowed" last="yes">405</response-err>
+		<response-err name="Not Acceptable" last="yes">406</response-err>
+		<response-err name="Proxy Authentication Required" last="yes">407</response-err>
+		<response-err name="Request Timeout" last="yes">408</response-err>
+		<response-err name="Gone" last="yes">410</response-err>
+		<response-err name="Request Entity Too Large" last="yes">413</response-err>
+		<response-err name="Request-URI Too Long" last="yes">414</response-err>
+		<response-err name="Unsupported Media Type" last="yes">415</response-err>
+		<response-err name="Unsupported URI Scheme" last="yes">416</response-err>
+		<response-err name="Bad Extension" last="yes">420</response-err>
+		<response-err name="Extension Required" last="yes">421</response-err>
+		<response-err name="Interval Too Brief" last="yes">423</response-err>
+		<response-err name="Temporarily Unavailable" last="yes">480</response-err>
+		<response-err name="Call/Transaction Does Not Exist" last="yes">481</response-err>
+		<response-err name="Loop Detected" last="yes">482</response-err>
+		<response-err name="Too Many Hops" last="yes">483</response-err>
+		<response-err name="Address Incomplete" last="yes">484</response-err>
+		<response-err name="Ambiguous" last="yes">485</response-err>
+		<response-err name="Busy Here" last="yes">486</response-err>
+		<response-err name="Request Terminated" last="yes">487</response-err>
+		<response-err name="Not Acceptable Here" last="yes">488</response-err>
+		<response-err name="Request Pending" last="yes">491</response-err>
+		<response-err name="Undecipherable" last="yes">493</response-err>
+		<!-- Server Failure 5xx Responses -->
+		<response-err name="Not Implemented" last="yes">501</response-err>
+		<response-err name="Bad Gateway" last="yes">502</response-err>
+		<response-err name="Service Unavailable" last="yes">503</response-err>
+		<response-err name="Server Time-out" last="yes">504</response-err>
+		<response-err name="Version Not Supported" last="yes">505</response-err>
+		<response-err name="Message Too Large" last="yes">513</response-err>
+		<!-- Global Failures 6xx Responses -->
+		<response-err name="Busy Everywhere" last="yes">600</response-err>
+		<response-err name="Decline" last="yes">603</response-err>
+		<response-err name="Does Not Exist Anywhere" last="yes">604</response-err>
+		<response-err name="Not Acceptable" last="yes">606</response-err>
+	</state>
+	<state id="6">
+		<name>BYE</name>
+		<!-- Provisional 1xx Responses -->
+		<response-ok name="Trying" last="no">100</response-ok>
+		<response-ok name="Ringing" last="no">180</response-ok>
+		<response-ok name="Call Is Being Forwarded" last="no">181</response-ok>
+		<response-ok name="Queued" last="no">182</response-ok>
+		<response-ok name="Session Progress" last="no">183</response-ok>
+		<!-- Successful 2xx Responses -->
+		<response-ok name="Ok" last="yes">200</response-ok>
+		<!-- Redirection 3xx Responses -->
+		<response-err name="Multiple Choices" last="yes">300</response-err>
+		<response-err name="Moved Permanently" last="yes">301</response-err>
+		<response-err name="Moved Temporarily" last="yes">302</response-err>
+		<response-err name="Use Proxy" last="yes">305</response-err>
+		<response-err name="Alternative Service" last="yes">380</response-err>
+		<!-- Request Failure 4xx Responses -->
+		<response-err name="Bad Request" last="yes">400</response-err>
+		<response-err name="Unauthorized" last="yes">401</response-err>
+		<response-err name="Payment Required" last="yes">402</response-err>
+		<response-err name="Forbidden" last="yes">403</response-err>
+		<response-err name="Not found" last="yes">404</response-err>
+		<response-err name="Method Not Allowed" last="yes">405</response-err>
+		<response-err name="Not Acceptable" last="yes">406</response-err>
+		<response-err name="Proxy Authentication Required" last="yes">407</response-err>
+		<response-err name="Request Timeout" last="yes">408</response-err>
+		<response-err name="Gone" last="yes">410</response-err>
+		<response-err name="Request Entity Too Large" last="yes">413</response-err>
+		<response-err name="Request-URI Too Long" last="yes">414</response-err>
+		<response-err name="Unsupported Media Type" last="yes">415</response-err>
+		<response-err name="Unsupported URI Scheme" last="yes">416</response-err>
+		<response-err name="Bad Extension" last="yes">420</response-err>
+		<response-err name="Extension Required" last="yes">421</response-err>
+		<response-err name="Interval Too Brief" last="yes">423</response-err>
+		<response-err name="Temporarily Unavailable" last="yes">480</response-err>
+		<response-err name="Call/Transaction Does Not Exist" last="yes">481</response-err>
+		<response-err name="Loop Detected" last="yes">482</response-err>
+		<response-err name="Too Many Hops" last="yes">483</response-err>
+		<response-err name="Address Incomplete" last="yes">484</response-err>
+		<response-err name="Ambiguous" last="yes">485</response-err>
+		<response-err name="Busy Here" last="yes">486</response-err>
+		<response-err name="Request Terminated" last="yes">487</response-err>
+		<response-err name="Not Acceptable Here" last="yes">488</response-err>
+		<response-err name="Request Pending" last="yes">491</response-err>
+		<response-err name="Undecipherable" last="yes">493</response-err>
+		<!-- Server Failure 5xx Responses -->
+		<response-err name="Not Implemented" last="yes">501</response-err>
+		<response-err name="Bad Gateway" last="yes">502</response-err>
+		<response-err name="Service Unavailable" last="yes">503</response-err>
+		<response-err name="Server Time-out" last="yes">504</response-err>
+		<response-err name="Version Not Supported" last="yes">505</response-err>
+		<response-err name="Message Too Large" last="yes">513</response-err>
+		<!-- Global Failures 6xx Responses -->
+		<response-err name="Busy Everywhere" last="yes">600</response-err>
+		<response-err name="Decline" last="yes">603</response-err>
+		<response-err name="Does Not Exist Anywhere" last="yes">604</response-err>
+		<response-err name="Not Acceptable" last="yes">606</response-err>
+	</state>
+	<state id="7">
+		<name>SUBSCRIBE</name>
+		<!-- Provisional 1xx Responses -->
+		<response-ok name="Trying" last="no">100</response-ok>
+		<response-ok name="Ringing" last="no">180</response-ok>
+		<response-ok name="Call Is Being Forwarded" last="no">181</response-ok>
+		<response-ok name="Queued" last="no">182</response-ok>
+		<response-ok name="Session Progress" last="no">183</response-ok>
+		<!-- Successful 2xx Responses -->
+		<response-ok name="Ok" last="yes">200</response-ok>
+		<!-- Redirection 3xx Responses -->
+		<response-err name="Multiple Choices" last="yes">300</response-err>
+		<response-err name="Moved Permanently" last="yes">301</response-err>
+		<response-err name="Moved Temporarily" last="yes">302</response-err>
+		<response-err name="Use Proxy" last="yes">305</response-err>
+		<response-err name="Alternative Service" last="yes">380</response-err>
+		<!-- Request Failure 4xx Responses -->
+		<response-err name="Bad Request" last="yes">400</response-err>
+		<response-err name="Unauthorized" last="yes">401</response-err>
+		<response-err name="Payment Required" last="yes">402</response-err>
+		<response-err name="Forbidden" last="yes">403</response-err>
+		<response-err name="Not found" last="yes">404</response-err>
+		<response-err name="Method Not Allowed" last="yes">405</response-err>
+		<response-err name="Not Acceptable" last="yes">406</response-err>
+		<response-err name="Proxy Authentication Required" last="yes">407</response-err>
+		<response-err name="Request Timeout" last="yes">408</response-err>
+		<response-err name="Gone" last="yes">410</response-err>
+		<response-err name="Request Entity Too Large" last="yes">413</response-err>
+		<response-err name="Request-URI Too Long" last="yes">414</response-err>
+		<response-err name="Unsupported Media Type" last="yes">415</response-err>
+		<response-err name="Unsupported URI Scheme" last="yes">416</response-err>
+		<response-err name="Bad Extension" last="yes">420</response-err>
+		<response-err name="Extension Required" last="yes">421</response-err>
+		<response-err name="Interval Too Brief" last="yes">423</response-err>
+		<response-err name="Temporarily Unavailable" last="yes">480</response-err>
+		<response-err name="Call/Transaction Does Not Exist" last="yes">481</response-err>
+		<response-err name="Loop Detected" last="yes">482</response-err>
+		<response-err name="Too Many Hops" last="yes">483</response-err>
+		<response-err name="Address Incomplete" last="yes">484</response-err>
+		<response-err name="Ambiguous" last="yes">485</response-err>
+		<response-err name="Busy Here" last="yes">486</response-err>
+		<response-err name="Request Terminated" last="yes">487</response-err>
+		<response-err name="Not Acceptable Here" last="yes">488</response-err>
+		<response-err name="Request Pending" last="yes">491</response-err>
+		<response-err name="Undecipherable" last="yes">493</response-err>
+		<!-- Server Failure 5xx Responses -->
+		<response-err name="Not Implemented" last="yes">501</response-err>
+		<response-err name="Bad Gateway" last="yes">502</response-err>
+		<response-err name="Service Unavailable" last="yes">503</response-err>
+		<response-err name="Server Time-out" last="yes">504</response-err>
+		<response-err name="Version Not Supported" last="yes">505</response-err>
+		<response-err name="Message Too Large" last="yes">513</response-err>
+		<!-- Global Failures 6xx Responses -->
+		<response-err name="Busy Everywhere" last="yes">600</response-err>
+		<response-err name="Decline" last="yes">603</response-err>
+		<response-err name="Does Not Exist Anywhere" last="yes">604</response-err>
+		<response-err name="Not Acceptable" last="yes">606</response-err>
+	</state>
+	<state id="8">
+		<name>MESSAGE</name>
+		<!-- Provisional 1xx Responses -->
+		<response-ok name="Trying" last="no">100</response-ok>
+		<response-ok name="Ringing" last="no">180</response-ok>
+		<response-ok name="Call Is Being Forwarded" last="no">181</response-ok>
+		<response-ok name="Queued" last="no">182</response-ok>
+		<response-ok name="Session Progress" last="no">183</response-ok>
+		<!-- Successful 2xx Responses -->
+		<response-ok name="Ok" last="yes">200</response-ok>
+		<!-- Redirection 3xx Responses -->
+		<response-err name="Multiple Choices" last="yes">300</response-err>
+		<response-err name="Moved Permanently" last="yes">301</response-err>
+		<response-err name="Moved Temporarily" last="yes">302</response-err>
+		<response-err name="Use Proxy" last="yes">305</response-err>
+		<response-err name="Alternative Service" last="yes">380</response-err>
+		<!-- Request Failure 4xx Responses -->
+		<response-err name="Bad Request" last="yes">400</response-err>
+		<response-err name="Unauthorized" last="yes">401</response-err>
+		<response-err name="Payment Required" last="yes">402</response-err>
+		<response-err name="Forbidden" last="yes">403</response-err>
+		<response-err name="Not found" last="yes">404</response-err>
+		<response-err name="Method Not Allowed" last="yes">405</response-err>
+		<response-err name="Not Acceptable" last="yes">406</response-err>
+		<response-err name="Proxy Authentication Required" last="yes">407</response-err>
+		<response-err name="Request Timeout" last="yes">408</response-err>
+		<response-err name="Gone" last="yes">410</response-err>
+		<response-err name="Request Entity Too Large" last="yes">413</response-err>
+		<response-err name="Request-URI Too Long" last="yes">414</response-err>
+		<response-err name="Unsupported Media Type" last="yes">415</response-err>
+		<response-err name="Unsupported URI Scheme" last="yes">416</response-err>
+		<response-err name="Bad Extension" last="yes">420</response-err>
+		<response-err name="Extension Required" last="yes">421</response-err>
+		<response-err name="Interval Too Brief" last="yes">423</response-err>
+		<response-err name="Temporarily Unavailable" last="yes">480</response-err>
+		<response-err name="Call/Transaction Does Not Exist" last="yes">481</response-err>
+		<response-err name="Loop Detected" last="yes">482</response-err>
+		<response-err name="Too Many Hops" last="yes">483</response-err>
+		<response-err name="Address Incomplete" last="yes">484</response-err>
+		<response-err name="Ambiguous" last="yes">485</response-err>
+		<response-err name="Busy Here" last="yes">486</response-err>
+		<response-err name="Request Terminated" last="yes">487</response-err>
+		<response-err name="Not Acceptable Here" last="yes">488</response-err>
+		<response-err name="Request Pending" last="yes">491</response-err>
+		<response-err name="Undecipherable" last="yes">493</response-err>
+		<!-- Server Failure 5xx Responses -->
+		<response-err name="Not Implemented" last="yes">501</response-err>
+		<response-err name="Bad Gateway" last="yes">502</response-err>
+		<response-err name="Service Unavailable" last="yes">503</response-err>
+		<response-err name="Server Time-out" last="yes">504</response-err>
+		<response-err name="Version Not Supported" last="yes">505</response-err>
+		<response-err name="Message Too Large" last="yes">513</response-err>
+		<!-- Global Failures 6xx Responses -->
+		<response-err name="Busy Everywhere" last="yes">600</response-err>
+		<response-err name="Decline" last="yes">603</response-err>
+		<response-err name="Does Not Exist Anywhere" last="yes">604</response-err>
+		<response-err name="Not Acceptable" last="yes">606</response-err>
+	</state>
+	<state id="9">
+		<name>PING</name>
+		<!-- Provisional 1xx Responses -->
+		<response-ok name="Trying" last="no">100</response-ok>
+		<response-ok name="Ringing" last="no">180</response-ok>
+		<response-ok name="Call Is Being Forwarded" last="no">181</response-ok>
+		<response-ok name="Queued" last="no">182</response-ok>
+		<response-ok name="Session Progress" last="no">183</response-ok>
+		<!-- Successful 2xx Responses -->
+		<response-ok name="Ok" last="yes">200</response-ok>
+		<!-- Redirection 3xx Responses -->
+		<response-err name="Multiple Choices" last="yes">300</response-err>
+		<response-err name="Moved Permanently" last="yes">301</response-err>
+		<response-err name="Moved Temporarily" last="yes">302</response-err>
+		<response-err name="Use Proxy" last="yes">305</response-err>
+		<response-err name="Alternative Service" last="yes">380</response-err>
+		<!-- Request Failure 4xx Responses -->
+		<response-err name="Bad Request" last="yes">400</response-err>
+		<response-err name="Unauthorized" last="yes">401</response-err>
+		<response-err name="Payment Required" last="yes">402</response-err>
+		<response-err name="Forbidden" last="yes">403</response-err>
+		<response-err name="Not found" last="yes">404</response-err>
+		<response-err name="Method Not Allowed" last="yes">405</response-err>
+		<response-err name="Not Acceptable" last="yes">406</response-err>
+		<response-err name="Proxy Authentication Required" last="yes">407</response-err>
+		<response-err name="Request Timeout" last="yes">408</response-err>
+		<response-err name="Gone" last="yes">410</response-err>
+		<response-err name="Request Entity Too Large" last="yes">413</response-err>
+		<response-err name="Request-URI Too Long" last="yes">414</response-err>
+		<response-err name="Unsupported Media Type" last="yes">415</response-err>
+		<response-err name="Unsupported URI Scheme" last="yes">416</response-err>
+		<response-err name="Bad Extension" last="yes">420</response-err>
+		<response-err name="Extension Required" last="yes">421</response-err>
+		<response-err name="Interval Too Brief" last="yes">423</response-err>
+		<response-err name="Temporarily Unavailable" last="yes">480</response-err>
+		<response-err name="Call/Transaction Does Not Exist" last="yes">481</response-err>
+		<response-err name="Loop Detected" last="yes">482</response-err>
+		<response-err name="Too Many Hops" last="yes">483</response-err>
+		<response-err name="Address Incomplete" last="yes">484</response-err>
+		<response-err name="Ambiguous" last="yes">485</response-err>
+		<response-err name="Busy Here" last="yes">486</response-err>
+		<response-err name="Request Terminated" last="yes">487</response-err>
+		<response-err name="Not Acceptable Here" last="yes">488</response-err>
+		<response-err name="Request Pending" last="yes">491</response-err>
+		<response-err name="Undecipherable" last="yes">493</response-err>
+		<!-- Server Failure 5xx Responses -->
+		<response-err name="Not Implemented" last="yes">501</response-err>
+		<response-err name="Bad Gateway" last="yes">502</response-err>
+		<response-err name="Service Unavailable" last="yes">503</response-err>
+		<response-err name="Server Time-out" last="yes">504</response-err>
+		<response-err name="Version Not Supported" last="yes">505</response-err>
+		<response-err name="Message Too Large" last="yes">513</response-err>
+		<!-- Global Failures 6xx Responses -->
+		<response-err name="Busy Everywhere" last="yes">600</response-err>
+		<response-err name="Decline" last="yes">603</response-err>
+		<response-err name="Does Not Exist Anywhere" last="yes">604</response-err>
+		<response-err name="Not Acceptable" last="yes">606</response-err>
+	</state>
+	<state id="10">
+		<name>INFO</name>
+		<!-- Provisional 1xx Responses -->
+		<response-ok name="Trying" last="no">100</response-ok>
+		<response-ok name="Ringing" last="no">180</response-ok>
+		<response-ok name="Call Is Being Forwarded" last="no">181</response-ok>
+		<response-ok name="Queued" last="no">182</response-ok>
+		<response-ok name="Session Progress" last="no">183</response-ok>
+		<!-- Successful 2xx Responses -->
+		<response-ok name="Ok" last="yes">200</response-ok>
+		<!-- Redirection 3xx Responses -->
+		<response-err name="Multiple Choices" last="yes">300</response-err>
+		<response-err name="Moved Permanently" last="yes">301</response-err>
+		<response-err name="Moved Temporarily" last="yes">302</response-err>
+		<response-err name="Use Proxy" last="yes">305</response-err>
+		<response-err name="Alternative Service" last="yes">380</response-err>
+		<!-- Request Failure 4xx Responses -->
+		<response-err name="Bad Request" last="yes">400</response-err>
+		<response-err name="Unauthorized" last="yes">401</response-err>
+		<response-err name="Payment Required" last="yes">402</response-err>
+		<response-err name="Forbidden" last="yes">403</response-err>
+		<response-err name="Not found" last="yes">404</response-err>
+		<response-err name="Method Not Allowed" last="yes">405</response-err>
+		<response-err name="Not Acceptable" last="yes">406</response-err>
+		<response-err name="Proxy Authentication Required" last="yes">407</response-err>
+		<response-err name="Request Timeout" last="yes">408</response-err>
+		<response-err name="Gone" last="yes">410</response-err>
+		<response-err name="Request Entity Too Large" last="yes">413</response-err>
+		<response-err name="Request-URI Too Long" last="yes">414</response-err>
+		<response-err name="Unsupported Media Type" last="yes">415</response-err>
+		<response-err name="Unsupported URI Scheme" last="yes">416</response-err>
+		<response-err name="Bad Extension" last="yes">420</response-err>
+		<response-err name="Extension Required" last="yes">421</response-err>
+		<response-err name="Interval Too Brief" last="yes">423</response-err>
+		<response-err name="Temporarily Unavailable" last="yes">480</response-err>
+		<response-err name="Call/Transaction Does Not Exist" last="yes">481</response-err>
+		<response-err name="Loop Detected" last="yes">482</response-err>
+		<response-err name="Too Many Hops" last="yes">483</response-err>
+		<response-err name="Address Incomplete" last="yes">484</response-err>
+		<response-err name="Ambiguous" last="yes">485</response-err>
+		<response-err name="Busy Here" last="yes">486</response-err>
+		<response-err name="Request Terminated" last="yes">487</response-err>
+		<response-err name="Not Acceptable Here" last="yes">488</response-err>
+		<response-err name="Request Pending" last="yes">491</response-err>
+		<response-err name="Undecipherable" last="yes">493</response-err>
+		<!-- Server Failure 5xx Responses -->
+		<response-err name="Not Implemented" last="yes">501</response-err>
+		<response-err name="Bad Gateway" last="yes">502</response-err>
+		<response-err name="Service Unavailable" last="yes">503</response-err>
+		<response-err name="Server Time-out" last="yes">504</response-err>
+		<response-err name="Version Not Supported" last="yes">505</response-err>
+		<response-err name="Message Too Large" last="yes">513</response-err>
+		<!-- Global Failures 6xx Responses -->
+		<response-err name="Busy Everywhere" last="yes">600</response-err>
+		<response-err name="Decline" last="yes">603</response-err>
+		<response-err name="Does Not Exist Anywhere" last="yes">604</response-err>
+		<response-err name="Not Acceptable" last="yes">606</response-err>
+	</state>
+	<state id="11">
+		<name>REFER</name>
+		<!-- Provisional 1xx Responses -->
+		<response-ok name="Trying" last="no">100</response-ok>
+		<response-ok name="Ringing" last="no">180</response-ok>
+		<response-ok name="Call Is Being Forwarded" last="no">181</response-ok>
+		<response-ok name="Queued" last="no">182</response-ok>
+		<response-ok name="Session Progress" last="no">183</response-ok>
+		<!-- Successful 2xx Responses -->
+		<response-ok name="Ok" last="yes">200</response-ok>
+		<!-- Redirection 3xx Responses -->
+		<response-err name="Multiple Choices" last="yes">300</response-err>
+		<response-err name="Moved Permanently" last="yes">301</response-err>
+		<response-err name="Moved Temporarily" last="yes">302</response-err>
+		<response-err name="Use Proxy" last="yes">305</response-err>
+		<response-err name="Alternative Service" last="yes">380</response-err>
+		<!-- Request Failure 4xx Responses -->
+		<response-err name="Bad Request" last="yes">400</response-err>
+		<response-err name="Unauthorized" last="yes">401</response-err>
+		<response-err name="Payment Required" last="yes">402</response-err>
+		<response-err name="Forbidden" last="yes">403</response-err>
+		<response-err name="Not found" last="yes">404</response-err>
+		<response-err name="Method Not Allowed" last="yes">405</response-err>
+		<response-err name="Not Acceptable" last="yes">406</response-err>
+		<response-err name="Proxy Authentication Required" last="yes">407</response-err>
+		<response-err name="Request Timeout" last="yes">408</response-err>
+		<response-err name="Gone" last="yes">410</response-err>
+		<response-err name="Request Entity Too Large" last="yes">413</response-err>
+		<response-err name="Request-URI Too Long" last="yes">414</response-err>
+		<response-err name="Unsupported Media Type" last="yes">415</response-err>
+		<response-err name="Unsupported URI Scheme" last="yes">416</response-err>
+		<response-err name="Bad Extension" last="yes">420</response-err>
+		<response-err name="Extension Required" last="yes">421</response-err>
+		<response-err name="Interval Too Brief" last="yes">423</response-err>
+		<response-err name="Temporarily Unavailable" last="yes">480</response-err>
+		<response-err name="Call/Transaction Does Not Exist" last="yes">481</response-err>
+		<response-err name="Loop Detected" last="yes">482</response-err>
+		<response-err name="Too Many Hops" last="yes">483</response-err>
+		<response-err name="Address Incomplete" last="yes">484</response-err>
+		<response-err name="Ambiguous" last="yes">485</response-err>
+		<response-err name="Busy Here" last="yes">486</response-err>
+		<response-err name="Request Terminated" last="yes">487</response-err>
+		<response-err name="Not Acceptable Here" last="yes">488</response-err>
+		<response-err name="Request Pending" last="yes">491</response-err>
+		<response-err name="Undecipherable" last="yes">493</response-err>
+		<!-- Server Failure 5xx Responses -->
+		<response-err name="Not Implemented" last="yes">501</response-err>
+		<response-err name="Bad Gateway" last="yes">502</response-err>
+		<response-err name="Service Unavailable" last="yes">503</response-err>
+		<response-err name="Server Time-out" last="yes">504</response-err>
+		<response-err name="Version Not Supported" last="yes">505</response-err>
+		<response-err name="Message Too Large" last="yes">513</response-err>
+		<!-- Global Failures 6xx Responses -->
+		<response-err name="Busy Everywhere" last="yes">600</response-err>
+		<response-err name="Decline" last="yes">603</response-err>
+		<response-err name="Does Not Exist Anywhere" last="yes">604</response-err>
+		<response-err name="Not Acceptable" last="yes">606</response-err>
+	</state>
+	<state id="12">
+		<name>NOTIFY</name>
+		<!-- Provisional 1xx Responses -->
+		<response-ok name="Trying" last="no">100</response-ok>
+		<response-ok name="Ringing" last="no">180</response-ok>
+		<response-ok name="Call Is Being Forwarded" last="no">181</response-ok>
+		<response-ok name="Queued" last="no">182</response-ok>
+		<response-ok name="Session Progress" last="no">183</response-ok>
+		<!-- Successful 2xx Responses -->
+		<response-ok name="Ok" last="yes">200</response-ok>
+		<!-- Redirection 3xx Responses -->
+		<response-err name="Multiple Choices" last="yes">300</response-err>
+		<response-err name="Moved Permanently" last="yes">301</response-err>
+		<response-err name="Moved Temporarily" last="yes">302</response-err>
+		<response-err name="Use Proxy" last="yes">305</response-err>
+		<response-err name="Alternative Service" last="yes">380</response-err>
+		<!-- Request Failure 4xx Responses -->
+		<response-err name="Bad Request" last="yes">400</response-err>
+		<response-err name="Unauthorized" last="yes">401</response-err>
+		<response-err name="Payment Required" last="yes">402</response-err>
+		<response-err name="Forbidden" last="yes">403</response-err>
+		<response-err name="Not found" last="yes">404</response-err>
+		<response-err name="Method Not Allowed" last="yes">405</response-err>
+		<response-err name="Not Acceptable" last="yes">406</response-err>
+		<response-err name="Proxy Authentication Required" last="yes">407</response-err>
+		<response-err name="Request Timeout" last="yes">408</response-err>
+		<response-err name="Gone" last="yes">410</response-err>
+		<response-err name="Request Entity Too Large" last="yes">413</response-err>
+		<response-err name="Request-URI Too Long" last="yes">414</response-err>
+		<response-err name="Unsupported Media Type" last="yes">415</response-err>
+		<response-err name="Unsupported URI Scheme" last="yes">416</response-err>
+		<response-err name="Bad Extension" last="yes">420</response-err>
+		<response-err name="Extension Required" last="yes">421</response-err>
+		<response-err name="Interval Too Brief" last="yes">423</response-err>
+		<response-err name="Temporarily Unavailable" last="yes">480</response-err>
+		<response-err name="Call/Transaction Does Not Exist" last="yes">481</response-err>
+		<response-err name="Loop Detected" last="yes">482</response-err>
+		<response-err name="Too Many Hops" last="yes">483</response-err>
+		<response-err name="Address Incomplete" last="yes">484</response-err>
+		<response-err name="Ambiguous" last="yes">485</response-err>
+		<response-err name="Busy Here" last="yes">486</response-err>
+		<response-err name="Request Terminated" last="yes">487</response-err>
+		<response-err name="Not Acceptable Here" last="yes">488</response-err>
+		<response-err name="Request Pending" last="yes">491</response-err>
+		<response-err name="Undecipherable" last="yes">493</response-err>
+		<!-- Server Failure 5xx Responses -->
+		<response-err name="Not Implemented" last="yes">501</response-err>
+		<response-err name="Bad Gateway" last="yes">502</response-err>
+		<response-err name="Service Unavailable" last="yes">503</response-err>
+		<response-err name="Server Time-out" last="yes">504</response-err>
+		<response-err name="Version Not Supported" last="yes">505</response-err>
+		<response-err name="Message Too Large" last="yes">513</response-err>
+		<!-- Global Failures 6xx Responses -->
+		<response-err name="Busy Everywhere" last="yes">600</response-err>
+		<response-err name="Decline" last="yes">603</response-err>
+		<response-err name="Does Not Exist Anywhere" last="yes">604</response-err>
+		<response-err name="Not Acceptable" last="yes">606</response-err>
+	</state>
+</protocol-states>

@@ -1,0 +1,395 @@
+Basic disasm engine -- based on the x86 ARCH extension for the bastard
+
+FILES
+-----
+bastard.h       : Dummy header file to replace libbastard.so
+bin_from_dump.pl: A perl script that creates a flat binary from an objdump .lst
+extension.h     : Dummy header file to replace libbastard.so
+i386.c          : The core library code 
+i386.h          : Internal header file for the above
+i386.opcode.map : as it says; included in i386.h
+i386_opcode.h   : Internal header for i386.c
+libdis.c        : Wrappers for the bastard extension routines in i386.c
+libdis.h        : The header file to use when linking to the .so
+op-conv.pl	    : Perl script for messing with opcode.map structure
+quikdis.c       : a quick & dirty tester for the library
+testdis.c       : a simple tester for files from bin_from_dump.pl
+vm.h            : Dummy header file to replace libbastard.so
+
+
+
+
+COMPILATION
+-----------
+First, change to the source directory which, due to the bastard src structure,
+is unnecessarily deep:
+   cd libdisasm_src-0.16/src/arch/i386/libdisasm
+
+To compile the .so and the test disassembler:
+   make
+
+To compile the .so:
+   make libdis
+
+To compile the test disassembler:
+   make quikdis
+     ...or...
+   gcc -O3 -I. -L. -ldisasm quikdis.c -o quikdis
+
+To link to libdisasm:
+   #include "libdis.h"
+   gcc -ldisasm ....
+
+
+
+OPERATION
+---------
+The basic usage of the library is as follows:
+
+   1. sys_initialize disassembler
+   2. Disassemble stuff
+   3. Un-init the disassembler
+   
+This translates into C code like the following:
+
+   char buf[BUF_SIZE];      /* buffer of bytes to disassemble */
+   int pos = 0;             /* current position in buffer */
+   int size;                /* size of instruction */
+   struct instr i;          /* representation of the code instruction */
+
+   disassemble_init(0, INTEL_SYNTAX);
+   
+   while ( pos < BUF_SIZE ) {
+      size = disassemble_address(buf + pos, &i);
+      if (size) { 
+         /* ... do something with i */
+         pos += size;
+      } else {
+         /* invalid/unrecognized instruction */
+         pos++;
+      }
+   }
+
+   disassemble_cleanup();
+
+      
+The first argument to disassemble_init() represents disassembler options; for
+the x86 disassembler these are 
+
+   MODE_16_BIT       /* useless 16-bit mode */
+   IGNORE_NULLS      /* ignore sequences of > 4 NULLs */
+
+though passing '0' will suffice. The second argument specifies the assembler
+syntax; valid options are
+
+	NATIVE_SYNTAX
+	INTEL_SYNTAX
+	ATT_SYNTAX
+
+with "native" syntax currently being the same as "intel".
+
+   struct instr {
+      char    mnemonic[16];      /* mnemonic for instruction */
+      char    dest[32];          /* string representation of operand 'dest' */
+      char    src[32];           /* string representation of operand 'src' */
+      char    aux[32];           /* string representation of operand 'aux' */
+      int     mnemType;          /* mnemonic type */
+      int     destType;          /* operand type for 'dest' */
+      int     srcType;           /* operand type for 'src' */
+      int     auxType;           /* operand type for 'aux' */
+      int     size;              /* size of instruction */
+   };
+
+The mnemonic and operand types are defined in bastard.h as follows:
+ /* Operand and instruction types */
+/*                   Permissions: */
+#define OP_R         0x001      /* operand is READ */
+#define OP_W         0x002      /* operand is WRITTEN */
+#define OP_X         0x004      /* operand is EXECUTED */
+/*                   Types: */
+#define OP_UNK       0x000      /* unknown operand */     
+#define OP_REG       0x100      /* register */
+#define OP_IMM       0x200      /* immediate value */
+#define OP_REL       0x300      /* relative Address [offset from IP] */
+#define OP_ADDR      0x400      /* Absolute Address */
+#define OP_EXPR      0x500      /* Address Expression [e.g. SIB byte] */
+#define OP_PTR       0x600      /* Operand is an Address containing a Pointer */
+#define OP_OFF       0x700      /* Operand is an offset from a seg/selector */
+/*                   Modifiers: */
+#define OP_SIGNED    0x001000   /* operand is signed */
+#define OP_STRING    0x002000   /* operand a string */
+#define OP_CONST     0x004000   /* operand is a constant */
+#define OP_EXTRASEG  0x010000   /* seg overrides */
+#define OP_CODESEG   0x020000
+#define OP_STACKSEG  0x030000
+#define OP_DATASEG   0x040000
+#define OP_DATA1SEG  0x050000
+#define OP_DATA2SEG  0x060000
+/*                   Size: */
+#define OP_BYTE      0x100000   /* operand is  8 bits/1 byte  */
+#define OP_WORD      0x200000   /* operand is 16 bits/2 bytes */
+#define OP_DWORD     0x300000   /* operand is 32 bits/4 bytes */
+#define OP_QWORD     0x400000   /* operand is 64 bits/8 bytes */
+#define OP_SREAL     0x500000   /* operand is 4 bytes */
+#define OP_DREAL     0x600000   /* operand is 8 bytes */
+#define OP_XREAL     0x700000   /* operand is 10 bytes */
+#define OP_BCD       0x800000   /* operand is 10 bytes */            
+#define OP_SIMD      0x900000   /* operand is 16 bytes */            
+#define OP_FPENV     0xA00000   /* operand is 28 bytes */            
+
+/* operand masks */
+#define OP_PERM_MASK 0x0000007  /* perms are NOT mutually exclusive */
+#define OP_TYPE_MASK 0x0000F00  /* types are mututally exclusive */
+#define OP_MOD_MASK  0x00FF000  /* mods are NOT mutual;y exclusive */
+#define OP_SEG_MASK  0x00F0000  /* segs are NOT mutually exclusive */
+#define OP_SIZE_MASK 0x0F00000  /* sizes are mutually exclusive */
+
+#define OP_REG_MASK    0x0000FFFF /* lower WORD is register ID */
+#define OP_REGTBL_MASK 0xFFFF0000 /* higher word is register type [gen/dbg] */
+
+/* instruction types [groups] */
+#define INS_EXEC		0x1000
+#define INS_ARITH		0x2000
+#define INS_LOGIC		0x3000
+#define INS_STACK		0x4000
+#define INS_COND		0x5000
+#define INS_LOAD		0x6000
+#define INS_ARRAY		0x7000
+#define INS_BIT		0x8000
+#define INS_FLAG		0x9000
+#define INS_FPU		0xA000
+#define INS_TRAPS		0xD000
+#define INS_SYSTEM	0xE000
+#define INS_OTHER		0xF000
+
+/* INS_EXEC group */
+#define INS_BRANCH	INS_EXEC | 0x01	/* Unconditional branch */
+#define INS_BRANCHCC	INS_EXEC | 0x02	/* Conditional branch */
+#define INS_CALL		INS_EXEC | 0x03	/* Jump to subroutine */
+#define INS_CALLCC	INS_EXEC | 0x04	/* Jump to subroutine */
+#define INS_RET		INS_EXEC | 0x05	/* Return from subroutine */
+#define INS_LOOP		INS_EXEC | 0x06	/* loop to local label */
+
+/* INS_ARITH group */
+#define INS_ADD 		INS_ARITH | 0x01
+#define INS_SUB		INS_ARITH | 0x02
+#define INS_MUL		INS_ARITH | 0x03
+#define INS_DIV		INS_ARITH | 0x04
+#define INS_INC		INS_ARITH | 0x05	/* increment */
+#define INS_DEC		INS_ARITH | 0x06	/* decrement */
+#define INS_SHL		INS_ARITH | 0x07	/* shift right */
+#define INS_SHR		INS_ARITH | 0x08	/* shift left */
+#define INS_ROL		INS_ARITH | 0x09	/* rotate left */
+#define INS_ROR		INS_ARITH | 0x0A	/* rotate right */
+
+/* INS_LOGIC group */
+#define INS_AND		INS_LOGIC | 0x01
+#define INS_OR		INS_LOGIC | 0x02
+#define INS_XOR		INS_LOGIC | 0x03
+#define INS_NOT		INS_LOGIC | 0x04
+#define INS_NEG		INS_LOGIC | 0x05
+
+/* INS_STACK group */
+#define INS_PUSH		INS_STACK | 0x01
+#define INS_POP		INS_STACK | 0x02
+#define INS_PUSHREGS	INS_STACK | 0x03	/* push register context */
+#define INS_POPREGS	INS_STACK | 0x04	/* pop register context */
+#define INS_PUSHFLAGS	INS_STACK | 0x05	/* push all flags */
+#define INS_POPFLAGS	INS_STACK | 0x06	/* pop all flags */
+#define INS_ENTER		INS_STACK | 0x07	/* enter stack frame */
+#define INS_LEAVE		INS_STACK | 0x08	/* leave stack frame */
+
+/* INS_COND group */
+#define INS_TEST		INS_COND | 0x01
+#define INS_CMP		INS_COND | 0x02
+
+/* INS_LOAD group */
+#define INS_MOV		INS_LOAD | 0x01
+#define INS_MOVCC		INS_LOAD | 0x02
+#define INS_XCHG		INS_LOAD | 0x03
+#define INS_XCHGCC	INS_LOAD | 0x04
+
+/* INS_ARRAY group */
+#define INS_STRCMP	INS_ARRAY | 0x01
+#define INS_STRLOAD	INS_ARRAY | 0x02
+#define INS_STRMOV	INS_ARRAY | 0x03
+#define INS_STRSTOR	INS_ARRAY | 0x04
+#define INS_XLAT		INS_ARRAY | 0x05
+
+/* INS_BIT group */
+#define INS_BITTEST	INS_BIT | 0x01
+#define INS_BITSET	INS_BIT | 0x02
+#define INS_BITCLR	INS_BIT | 0x03
+
+/* INS_FLAG group */
+#define INS_CLEARCF	INS_FLAG | 0x01	/* clear Carry flag */
+#define INS_CLEARZF	INS_FLAG | 0x02	/* clear Zero flag */
+#define INS_CLEAROF	INS_FLAG | 0x03	/* clear Overflow flag */
+#define INS_CLEARDF	INS_FLAG | 0x04	/* clear Direction flag */
+#define INS_CLEARSF	INS_FLAG | 0x05	/* clear Sign flag */
+#define INS_CLEARPF	INS_FLAG | 0x06	/* clear Parity flag */
+#define INS_SETCF		INS_FLAG | 0x07
+#define INS_SETZF		INS_FLAG | 0x08
+#define INS_SETOF		INS_FLAG | 0x09
+#define INS_SETDF		INS_FLAG | 0x0A
+#define INS_SETSF		INS_FLAG | 0x0B
+#define INS_SETPF		INS_FLAG | 0x0C
+#define INS_TOGCF		INS_FLAG | 0x10	/* toggle */
+#define INS_TOGZF		INS_FLAG | 0x20
+#define INS_TOGOF		INS_FLAG | 0x30
+#define INS_TOGDF		INS_FLAG | 0x40
+#define INS_TOGSF		INS_FLAG | 0x50
+#define INS_TOGPF		INS_FLAG | 0x60
+
+/* INS_FPU */
+
+/* INS_TRAP */
+#define INS_TRAP		INS_TRAPS | 0x01		/* generate trap */
+#define INS_TRAPCC	INS_TRAPS | 0x02		/* conditional trap gen */
+#define INS_TRET		INS_TRAPS | 0x03		/* return from trap */
+#define INS_BOUNDS	INS_TRAPS | 0x04		/* gen bounds trap */
+#define INS_DEBUG		INS_TRAPS | 0x05		/* gen breakpoint trap */
+#define INS_TRACE		INS_TRAPS | 0x06		/* gen single step trap */
+#define INS_INVALIDOP	INS_TRAPS | 0x07		/* gen invalid instruction */
+#define INS_OFLOW		INS_TRAPS | 0x08		/* gen overflow trap */
+
+/* INS_SYSTEM */
+#define INS_HALT		INS_SYSTEM | 0x01		/* halt machine */
+#define INS_IN		INS_SYSTEM | 0x02		/* input form port */
+#define INS_OUT		INS_SYSTEM | 0x03		/* output to port */
+#define INS_CPUID		INS_SYSTEM | 0x04		/* identify cpu */
+
+/* INS_OTHER */
+#define INS_NOP		INS_OTHER | 0x01
+#define INS_BCDCONV	INS_OTHER | 0x02	/* convert to/from BCD */
+#define INS_SZCONV	INS_OTHER | 0x03	/* convert size of operand */
+ 
+   /* instruction size */
+#define INS_BYTE      0x10000   /* operand is  8 bits/1 byte  */
+#define INS_WORD      0x20000   /* operand is 16 bits/2 bytes */
+#define INS_DWORD      0x40000   /* operand is 32 bits/4 bytes */
+#define INS_QWORD      0x80000   /* operand is 64 bits/8 bytes */
+   /* instruction modifiers */
+#define INS_REPZ     0x0100000
+#define INS_REPNZ    0x0200000  
+#define INS_LOCK     0x0400000 /* lock bus */
+#define INS_DELAY    0x0800000 /* branch delay slot */
+
+#define INS_TYPE_MASK	0xFFFF
+#define INS_GROUP_MASK	0x1000
+#define INS_SIZE_MASK   0xF0000
+#define INS_MOD_MASK    0xFF00000
+
+The application can use this information to implement higher-level disassembly
+features such as cross references (`if ((i.destType & OP_PERM_MASK) == OP_X`), 
+string or array references (`if ((i.mnemType & INS_TYPE_MASK) == INS_ARRAY)`),
+subroutine recognition, and other automatic analyses. 
+
+If the additional information about the instruction is not needed, the 
+sprint_address() routine can be used in place of disassemble_address(). This
+routine takes as parameters a buffer to print to, the length of the buffer, and
+the address of the bytes to disassemble. The sample code provided above could
+therefore be replaced with:
+
+
+   char buf[BUF_SIZE];      /* buffer of bytes to disassemble */
+   char output[LINE_SIZE];  /* buffer for disassembler output */
+   int pos = 0;             /* current position in buffer */
+   int size;                /* size of instruction */
+
+   disassemble_init(0, INTEL_SYNTAX);
+   
+   while ( pos < BUF_SIZE ) {
+      size = sprint_address(output, LINE_SIZE, buf + pos);
+      if (size) { 
+         printf("%08X:   %s\n", pos, output);
+         pos += size;
+      } else {
+         printf("%08X:   Invalid Instruction %02X\n", pos, buf[pos]);
+         pos++;
+      }
+   }
+
+   disassemble_cleanup();
+
+
+IMPLEMENTATION NOTES
+--------------------
+The disassemble_address() library routine and the internal disasm_addr() routine
+do not perform bounds-checking on the buffer of bytes passed for disassembly. In
+order to prevent a malformed code instruction from causing a SEGV (for example,
+by including the first byte of a multi-byte instruction as the last byte of the
+file), it is recommended that the programmer pass a secure buffer the size of
+the maximum instruction length (for Intel, 20 bytes) containing the bytes to be
+disassembled. For example:
+
+   static unsigned char disasm_buf = NULL;
+   int bytes_left;
+   ...
+   while ( pos < BUF_SIZE ) {
+      /* zero-fill buffer of max_instruction_size */
+      if (! disasm_buf) disasm_buf = malloc( cpu_inst_size() );
+	memset(disasm_buf, 0, cpu_inst_size() );
+
+	/* copy appropriate # of bytes into buffer */
+	bytes_left = BUF_SIZE - pos;
+	size = ( bytes_left >= cpu_inst_size() ) ? cpu_inst_size() : bytes_left;
+	memcpy( disasm_buf, buf + pos, size );
+
+	/* do disassembly of said buffer */
+      size = sprint_address(output, LINE_SIZE, disasm_buf);
+
+	/* check if there was an error */
+      if (size && size <= bytes_left) { 
+         printf("%08X:   %s\n", pos, output);
+         pos += size;
+      } else {
+         printf("%08X:   Invalid Instruction %02X\n", pos, buf[pos]);
+         pos++;
+      }
+   }
+	
+
+Intel has a habit of implying operands in certain of its instructions, notably
+
+	0x6C    	INSB	(e)di, dx
+	0x6D    	INSW	(e)di, dx
+	0x6E    	OUTSB	dx, (e)di
+	0x6F    	OUTSW	dx, (e)di
+	0xA6    	CMPSB	(e)di, (e)si
+	0xA7    	CMPSW	(e)di, (e)si
+	0xA4    	MOVSB	(e)si, (e)di
+	0xA5    	MOVSW	(e)si, (e)di
+	0xAA    	STOSB	(e)di, al
+	0xAB    	STOSW	(e)di, (e)ax
+	0xAC    	LODSB	al, (e)si
+	0xAD    	LODSW	(e)ax, (e)si
+	0xAE    	SCASB	al, (e)di
+	0xAF    	SCASW	(e)ax, (e)di
+	0xF6 100	MUL 	al, Eb
+	0xF6 101	IMUL	al, Eb
+	0xF6 110	DIV	al, Eb
+	0xF6 111	IDIV	al, Eb
+	0xF7 100	MUL	(e)ax, Ev
+	0xF7 101	IMUL	(e)ax, Ev
+	0xF7 110	DIV	(e)ax, Ev
+	0xF7 111	IDIV	(e)ax, Ev
+
+Libdisasm -- and programs that use it, such as the bastard -- include such
+"hidden operands" as the first operand (or second, i.e. as 'src' or 'dest', 
+when appropriate) in an instruction. This means that the disassembly produced
+by libdisasm may not be compatible with standard Intel-syntax assemblers; the
+intent is to generate instructions that are suitable for automatic analysis,
+not for subsequent re-assembly. Blame Intel for blatantly encouraging the use
+of programming-through-side-effects...hell, blame them for 20-bit addressing,
+and a lot of other bad design decisions.
+
+
+
+That should do it. As usual, flames, fixes, and contributions welcome.
+
+
+
+BUGS
+----
+   MMX and other weird instructions are not yet supported.

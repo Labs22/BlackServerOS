@@ -1,0 +1,15 @@
+#!/bin/bash
+#HEAD#########################################################
+#
+# Katana Framework | ktf.ktf (shortcut)                       
+# Last Modified: 31/12/2016 
+#
+#########################################################HEAD#
+
+PARAMETERS=""
+while (( $# > 0 ))   
+do
+    PARAMETERS+=" "$1
+    shift
+done
+python /usr/share/KatanaFramework/ktf.ktf $PARAMETERS

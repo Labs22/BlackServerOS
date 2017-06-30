@@ -1,0 +1,7 @@
+*.py[cod]
+*.so
+build
+test
+v3n0m-*
+MANIFEST
+dist/

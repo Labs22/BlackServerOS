@@ -1,0 +1,15 @@
+# project configuration
+.settings/
+target/
+.classpath
+.project
+
+# code quality plugin properties
+test-output/
+.codepro/
+.sonar/
+.checkstyle
+.pmd
+sonar-project.properties
+dependency-reduced-pom.xml
+build.xml

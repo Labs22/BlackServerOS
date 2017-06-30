@@ -1,0 +1,4 @@
+*.pyc
+archived_fuzzies/*.session
+docs/
+.idea/

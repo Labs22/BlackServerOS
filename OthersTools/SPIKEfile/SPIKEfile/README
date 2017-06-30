@@ -1,0 +1,27 @@
+modified version of spike 2.9 with the network specific stuff stripped 
+out, and some simple hackish code to facilitate in locally 
+discovering/logging file format issues. this probably should have simply 
+been merged into a full version of spike, but oh well. this was 
+designed/tested on linux and will not work on cygwin because it uses 
+ptrace. if you want to make it work on cygwin, you will need to remove the 
+ptrace stuff and just log return values from each child. it shouldnt work 
+on any other systems.
+
+Known Issues:
+Does not segfault when it finds a 0day. This functionality may be added 
+in later releases :>
+
+to install, please see INSTALL
+
+quirks:
+
+some apps like Acrobat and RealPlayer are really shell scripts that set special environment variables before launching the
+actual binary. be aware of this, it's easy to get around.
+
+RealPlayer:
+HELIX_PATH must be set, and realplay.bin must be used as the binary.
+
+Adobe Acrobat:
+first invoke the shell script with -DEBUG, then run from there. the actual binary
+is usually in Adobe/Acrobat7.0/Reader/intellinux/bin/acroread
+

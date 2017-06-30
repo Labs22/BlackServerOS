@@ -1,0 +1,366 @@
+# Copyright (C) 2008, Bertrand Mesot <http://www.objectif-securite.ch>
+#	 	2008, Cedric Tissieres <http://www.objectif-securite.ch>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-13, USA
+
+
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ(2.62)
+AC_INIT(ophcrack, 3.7.0, http://ophcrack.sf.net)
+AC_CONFIG_SRCDIR([src])
+AC_CONFIG_HEADER([config.h])
+
+AC_SUBST(MAJOR,[3])
+AC_SUBST(MINOR,[7])
+AC_SUBST(MAINT,[0])
+
+m4_include([config/ax_path_qmake4.m4])
+m4_include([config/ax_path_moc4.m4])
+m4_include([config/check_ssl.m4])
+m4_include([config/ax_count_cpus.m4])
+m4_include([config/check_qwt.m4])
+
+# Check host and system types
+AC_CANONICAL_HOST
+
+# Checks for programs.
+AC_PROG_CXX
+AC_PROG_CC
+
+AC_ARG_ENABLE(debug,
+	      [AS_HELP_STRING([--enable-debug],
+			      [Enable debugging])],
+			      ,
+			      [enable_debug=no])
+
+AC_MSG_CHECKING(if debugging is enabled)
+if test "x$enable_debug" = "xyes"; then
+	AC_MSG_RESULT(yes)
+	AM_CONDITIONAL(HAVE_DEBUG, true)
+	AC_DEFINE_UNQUOTED([DEBUG], 1, [DEBUG is enabled])
+	CFLAGS="-g"
+	CXXFLAGS="-g"
+else
+	AC_MSG_RESULT(no)
+	AM_CONDITIONAL(HAVE_DEBUG, false)
+	if test "$GCC" = "yes"; then
+	   CFLAGS="$CFLAGS -DNDEBUG"
+	   CXXFLAGS="$CXXFLAGS -DNDEBUG"
+	else
+	   CFLAGS="$CFLAGS -DNDEBUG"
+           CXXFLAGS="$CXXFLAGS -DNDEBUG"
+	fi
+
+fi
+
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+AC_PROG_RANLIB
+
+#AX_COUNT_CPUS
+AC_DEFINE([MY_CPU_COUNT],[1],[Number of CPUs => N+1 threads.])
+
+if test "$GCC" = "yes"; then
+   CFLAGS="$CFLAGS -Wall -std=gnu9x -pedantic -I.."
+   CXXFLAGS="$CXXFLAGS -Wall -pedantic -fpermissive -Wno-long-long -I../.."
+fi
+CFLAGS="$CFLAGS -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -I.."
+CXXFLAGS="$CXXFLAGS -I../.."
+
+# Mac OS X, WIN32 and Solaris related
+AC_MSG_CHECKING(for Mac OS X or WIN32 or Solaris)
+case "${host_os}" in
+   *darwin* )
+      AC_MSG_RESULT(Mac OS X detected)
+      AM_CONDITIONAL(HAVE_OSX, true)
+      AM_CONDITIONAL(HAVE_WIN32, false)	
+      CFLAGS="$CFLAGS -DOSX"
+      CXXFLAGS="$CXXFLAGS -DOSX"
+      QMAKE_ARG="-macx -spec macx-g++"
+      ;;
+   *mingw* )
+      AC_MSG_RESULT(WIN32 detected)
+      enable_win32=yes
+      AM_CONDITIONAL(HAVE_WIN32, true)
+      AM_CONDITIONAL(HAVE_OSX, false)
+      CFLAGS="$CFLAGS -DWIN32"
+      CXXFLAGS="$CXXFLAGS -DWIN32"
+      LIBS_END="$LIBS_END -lwsock32 -lregex -lntdll -lmman"
+      QMAKE_ARG=""  
+      ;;
+   *solaris* | *sun*)
+      AC_MSG_RESULT(Solaris detected)
+      AM_CONDITIONAL(HAVE_OSX, false)
+      AM_CONDITIONAL(HAVE_WIN32, false)
+      LIBS="$LIBS -lkstat -lrt"
+      ;;
+   * )
+      AC_MSG_RESULT(no)
+      AM_CONDITIONAL(HAVE_OSX, false)
+      AM_CONDITIONAL(HAVE_WIN32, false)	
+      ;;
+esac
+
+# Check for big or little endian
+AC_C_BIGENDIAN(
+   [ac_c_bigendian=yes],
+   [ac_c_bigendian=no],
+   [AC_COMPILE_IFELSE(
+      [AC_LANG_PROGRAM(
+         [[typedef unsigned char uchar_t;
+	   typedef unsigned short int uint16_t;]],
+         [[uchar_t x[2] = { 0x00, 0xff };
+           uint16_t y = *(uint16_t*)x;
+ 
+	   if (y & x[1])
+     	      return 0;
+	   else
+	     return 1;]])],
+      
+      [ac_c_bigendian=yes],
+      [ac_c_bigendian=no]
+   )]
+)
+
+if test $ac_c_bigendian = yes; then
+   AC_DEFINE([WORDS_BIGENDIAN], 1, 
+             [Define WORDS_BIGENDIAN to 1 if your processor stores words with the most 
+              significant byte first])
+fi
+
+# Checks for libraries.
+with_pthread=no
+AC_ARG_WITH(libpthread, AC_HELP_STRING(--with-libpthread=DIR,use libpthread in DIR),
+[ AC_MSG_CHECKING(for libpthread)
+  case "$withval" in
+  no)
+     AC_MSG_RESULT(no)
+     ;;
+  *)
+     AC_MSG_RESULT(yes)
+     with_pthread=$withval
+     if test "x$enable_win32" = "xyes"; then	
+     	CFLAGS="$CFLAGS -I$with_pthread"
+     	CXXFLAGS="$CXXFLAGS -I$with_pthread"
+     	LIBS="$LIBS -L$with_pthread"
+	LIBS_END="$LIBS_END -lpthreadGC2"
+     else
+	CFLAGS="$CFLAGS -I$with_pthread/include"
+	CXXFLAGS="$CXXFLAGS -I$with_pthread/include"
+	LIBS="$LIBS -L$with_pthread/lib -lpthread"
+     fi
+     ;;
+  esac ]
+)
+
+if test "x$with_pthread" = "xno"; then
+   AC_CHECK_LIB([pthread], [pthread_mutex_init], [], [AC_MSG_ERROR([ophcrack requires libpthread.])])
+fi
+
+
+AC_MSG_CHECKING(for libssl)
+with_ssl=no
+AC_ARG_WITH(libssl, AC_HELP_STRING(--with-libssl=DIR,use libssl in DIR),
+[ case "$withval" in
+  no)
+     AC_MSG_RESULT(no)
+     ;;
+  *)
+     AC_MSG_RESULT(yes)
+     with_ssl=$withval
+     CFLAGS="$CFLAGS -I$with_ssl/include"
+     CXXFLAGS="$CXXFLAGS -I$with_ssl/include"
+	   LIBS="$LIBS -L$with_ssl/lib -lssl -lcrypto"
+     ;;
+  esac ]
+)
+
+if test "x$with_ssl" = "xno"; then
+   CHECK_SSL
+fi
+
+with_expat=no
+AC_ARG_WITH(libexpat, AC_HELP_STRING(--with-libexpat=DIR,use libexpat in DIR),
+[ AC_MSG_CHECKING(for libexpat)
+  case "$withval" in
+  no)
+     AC_MSG_RESULT(no)
+     ;;
+  *)
+     AC_MSG_RESULT(yes)
+     with_expat=$withval
+     if test "x$enable_win32" = "xyes"; then	
+     	CFLAGS="$CFLAGS -I$with_expat/lib"
+     	CXXFLAGS="$CXXFLAGS -I$with_expat/lib"
+     	LIBS="$LIBS -L$with_expat"
+	LIBS_END="$LIBS_END -lexpat"
+     else
+	CFLAGS="$CFLAGS -I$with_expat/include"
+	CXXFLAGS="$CXXFLAGS -I$with_expat/include"
+	LIBS="$LIBS -L$with_expat/lib -lexpat"
+     fi
+     ;;
+  esac ]
+)
+
+if test "x$with_expat" = "xno"; then
+   AC_CHECK_LIB([expat], [XML_ParserCreate], [], [AC_MSG_ERROR([ophcrack requires libexpat.])])
+fi
+
+AC_CHECK_LIB([m], [sqrt], [], [AC_MSG_ERROR([ophcrack requires libmath.])])
+
+# Checks for header files.
+AC_HEADER_STDC
+AC_CHECK_HEADERS([netinet/in.h stdint.h stdlib.h string.h sys/param.h sys/time.h unistd.h sys/sysinfo.h sys/sysctl.h byteswap.h libkern/OSByteOrder.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_HEADER_STDBOOL
+AC_C_CONST
+AC_TYPE_SIZE_T
+AC_HEADER_TIME
+AC_TYPE_UINT16_T
+AC_TYPE_UINT32_T
+AC_TYPE_UINT64_T
+AC_CHECK_TYPES([uchar_t, ulong_t])
+AC_CHECK_TYPES([struct sysinfo],[], [], [[#include <sys/sysinfo.h>]])
+
+AC_ARG_WITH(libqt4, AC_HELP_STRING(--with-libqt4=DIR,use libqt4 in DIR),
+[ AC_MSG_CHECKING(for libqt4)
+  case "$withval" in
+  no)
+     AC_MSG_RESULT(no)
+     ;;
+  *)
+     AC_MSG_RESULT(yes)
+     with_qt=$withval
+     CXXFLAGS="$CXXFLAGS -I$with_qt/include"
+     LIBS="$LIBS -L$with_qt/lib"
+     ;;
+  esac ]
+)
+
+# Sets GUI_TARGET and qt specific stuff
+AC_ARG_ENABLE(gui,
+	      [AC_HELP_STRING([--enable-gui],
+			      [Builds gui frontend (enabled by default, use
+			       --disable-gui to disable it)])],
+			      ,
+			      [enable_gui=yes])
+
+AC_MSG_CHECKING(whether we want to build ophcrack gui)
+# Check QT environment if we want GUI
+if test "x$enable_gui" = "xyes"; then
+	AC_MSG_RESULT(yes)
+	
+	AX_PATH_QMAKE4
+	AX_PATH_MOC4
+
+	AC_DEFINE_UNQUOTED([HAVE_GUI], 1, [GUI is enabled])
+	AM_CONDITIONAL(HAVE_GUI, true)
+else
+	AC_MSG_RESULT(no)
+	AM_CONDITIONAL(HAVE_GUI, false)
+   	AM_CONDITIONAL(HAVE_QWT, false)
+   	AC_DEFINE_UNQUOTED([HAVE_QWT], 0, [QWT is disabled])
+	enable_graph="no"
+fi
+
+AC_ARG_ENABLE(graph,
+	      [AC_HELP_STRING([--enable-graph],
+			      [Enables graph rendering in GUI with libqwt (enabled by default, use
+			       --disable-graph to disable it)])],
+			      ,
+			      [enable_graph=yes])
+
+AC_MSG_CHECKING(if graph drawing is enabled)
+if test "x$enable_graph" = "xyes"; then
+	AC_MSG_RESULT(yes)
+else
+	AC_MSG_RESULT(no)
+	AM_CONDITIONAL(HAVE_QWT, false)
+        AC_DEFINE_UNQUOTED([HAVE_QWT], 0, [QWT is disabled])
+fi
+
+if test "x$enable_graph" = "xyes"; then
+   AC_MSG_CHECKING(for libqwt)
+   with_qwt=no
+   AC_ARG_WITH(libqwt, AC_HELP_STRING(--with-libqwt=DIR,use libqwt in DIR),
+   [ case "$withval" in
+     no)
+	AC_MSG_RESULT(no)
+     	;;
+     *)
+  with_qwt=$withval
+     CXXFLAGS="$CXXFLAGS -I$with_qwt/include"
+	   LIBS="$LIBS -L$with_qwt/lib -lqwt"
+     	;;
+   esac ]
+   )
+
+   if test "x$with_qwt" = "xno"; then
+      CHECK_QWT
+   else
+      printf "Qwt found in $with_qwt\n";
+      AM_CONDITIONAL(HAVE_QWT, true)
+      AC_DEFINE_UNQUOTED([HAVE_QWT], 1, [QWT is enabled])
+   fi
+fi
+
+
+# Dirty trick for win32 MinGW
+LIBS="$LIBS ${LIBS_END}"
+
+# Checks for library functions.
+# AC_FUNC_MALLOC
+AC_FUNC_MEMCMP
+AC_FUNC_MMAP
+AC_FUNC_SELECT_ARGTYPES
+AC_CHECK_FUNCS([floor gettimeofday memchr memset munmap regcomp select sqrt strchr strdup strndup strtoul])
+
+
+AC_CONFIG_FILES([
+  Makefile
+  src/Makefile
+  src/common.mk
+  src/core/Makefile
+  src/ntproba/Makefile
+  src/samdump2/Makefile
+  src/test/Makefile
+  src/gui/Makefile
+  src/gui/gui.pro
+  src/gui/ophcrack_win32.rc
+  src/gui/Info.plist
+])
+AC_OUTPUT
+
+echo
+echo "===================================================="
+echo "ophcrack has been successfully configured as follow"
+echo "===================================================="
+echo
+echo " Install directory: "${prefix}
+echo
+echo " GUI: "${enable_gui}
+echo " Graph display: "${enable_graph}
+echo " Debugging: "${enable_debug}
+echo
+echo "===================================================="
+echo
+echo "Now enter 'make' to compile"
+echo "followed by 'make install' to install"
+echo

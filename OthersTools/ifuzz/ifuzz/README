@@ -1,0 +1,5 @@
+this should compile on just about anything with gcc. just do gmake or make
+
+used on irix, aix, unixware, solaris, linux, etc, etc, etc
+
+if you find any bugs with this, you should give them to me and not the vendor :>

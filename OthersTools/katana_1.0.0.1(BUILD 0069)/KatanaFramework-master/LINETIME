@@ -1,0 +1,91 @@
+
+* 14/03/17
+  Updated Whois module
+  Fixed Install file
+  Fixed Uninstall file 
+  Style Changes 
+
+* 07/01/17
+  Added New Banner : Hieroglyphics
+  Fixes
+  
+* 25/12/16
+  New Core : 1.0.0.1 Build:0068
+  Updated all modules.
+  New Developer structure
+
+* 21/12/16
+  Added New Banner : Chapecoense commemoration
+  Added New Function : isPortLive, check port services.
+  Upgrading to Core:0.0.0.1 Build:0067
+  Happy New Years my friends.
+  
+* 13/11/16
+  Deleted a Module : set/facebrok, is not appropriated.
+  Added New Module : net/http.sniff, HTTP sniffer.
+  Added Parameter to update : -f , Force to update the framework.
+  Added Python2 version instance to head files.
+  Added Collaborators variable in head modules.
+
+* 08/11/16
+  Added New Module : fle/scan.virus, Report of Virus Scan file API (VirusTotal.com).
+
+* 08/10/16
+  Added New Module : msf/back.door, Generator of backdoor with Metasploit
+  Added New Function : session, save and load session
+  Upgrading to Core:0.0.0.1 Build:0065
+
+* 23/09/16
+  Added New Dependence : default-jre, for run ktg.gui
+  Added New Lib ; setuptools, for usblib lib
+
+* 21/09/16
+  Added the GUI!!!
+  Install : Install man files
+  Doc     : Added new paper (Spanish)
+  Fixed Module : fbt/pr.pop
+  Fixed Import modules installed
+
+* 23/08/16
+  Added New Function : Invoke, to call module within another module.
+  Added New Dependence : xterm, For open news consoles in other windows
+  Added new feature : [+], In "sop" command for extra variables alert
+
+* 18/08/16
+  Added New Module : clt/clt.adb, ADB console Client for android
+  Fixed installer  : Conflicts in ubuntu
+  Change of style of Helper commands 
+
+* 04/08/16
+  Added New Option to ktf.ktf class: import remote modules
+  Create New Repository : rmfktf, for remote modules and tools
+
+* 01/08/16
+  New Class : ktf.ktf, for functions of framework (import, export, setting, etc)
+  Change of banner for ktf.tool, ktf.run, ktf.linker
+  Change of functions in ktf.tool, now to is just for tools use.
+
+* 30/07/16
+  Added New Module : net/web.dos, for web D.O.S in Local Area Network 
+
+* 29/07/16
+  Change Name-Code Module : at.arpsp -> net/arp.pson
+  Adedd New Module: dns.spoof, dns spoofing attack
+  Added New Dependecies: arpspoof, dnsspoof
+
+* 28/07/16
+  Upgrading to Core:0.0.0.1 Build:0062
+
+* 27/07/16
+  Update Module: net/at.arpsp module was update to 3.1 version {SSL protocol capturing with ssltrip}
+  Added Args to ktf.console for not show banner or list modules
+  Added Ramdon Banner
+
+* 26/07/16
+  Added New module : px.checker, Proxy List check HTTP, SOCK4, SOCK5 protocolos
+  Added New library: pysock, Necesary for the new module
+
+* 21/07/16
+  Added New module : dns.fake, dns server for spoof dns
+  List Reset in module net/sc.hosts
+  Fixed errors in clt/clt.ftp module 

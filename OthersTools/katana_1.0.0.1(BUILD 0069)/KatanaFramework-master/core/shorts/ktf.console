@@ -1,0 +1,16 @@
+#!/bin/bash
+#HEAD#########################################################
+#
+# Katana Framework | ktf.console (shortcut)                       
+# Last Modified: 31/12/2016 
+#
+#########################################################HEAD#
+
+PARAMETERS=""
+while (( $# > 0 ))   
+do
+    PARAMETERS+=" "$1
+    shift
+done
+cd /usr/share/KatanaFramework
+python ktf.console $PARAMETERS

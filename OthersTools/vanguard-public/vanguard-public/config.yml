@@ -1,0 +1,12 @@
+---
+rewrite: 0
+use_whitelist: 1
+module_whitelist:
+  - WEBAPPS
+  - SHELL
+  - NMAP
+  - CRAWL
+  - XSS_GET
+  - SQL_GET
+  - LFI_GET
+  - RCI_GET

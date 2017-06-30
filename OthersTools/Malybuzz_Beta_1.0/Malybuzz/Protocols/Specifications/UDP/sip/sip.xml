@@ -1,0 +1,543 @@
+<!-- DO NOT MODIFY!!!COPY IT... -->
+<!-- DO NOT MODIFY!!!COPY IT... -->
+
+<!-- SIP protocol specification -->
+
+<!-- Delimiters between values and arguments must be defined in the last character of each element.-->
+<!-- The order of the commands in this file is the order to send them. Important to do the fuzzing correctly. -->
+<!-- Possible fuzzings: "overflow","formatString","badString","badNumber","badPath","badIp","badHost","repeat","sql","binary" -->
+<!-- Xml variables: 'REMOTE_ADDRESS','REMOTE_PORT','LOCAL_ADDRESS','LOCAL_PORT','TRANSPORT_PROTOCOL','APP_PROTOCOL','ACTUAL_COMMAND' -->
+<!-- Xml functions: 'SIZE' -->
+<protocol>
+<port>5060</port>
+<commands>
+	<end-line>CRLF</end-line>
+	<end-command>CRLF</end-command>
+	
+	<!-- Minimum commands -->
+	
+	<com send="yes" id="1">
+		<com-name type="text">CANCEL </com-name>
+	</com>
+	<com send="no" id="2">
+		<com-name type="text">ACK </com-name>
+	</com>
+	<com send="yes" id="3">
+		<com-name type="text">INVITE </com-name>
+	</com>
+	<com send="no" id="4">
+		<!-- Values of To and From header fields must be the same -->
+		<!-- URI in Request-URI must not include username nor @ symbol -->
+		<com-name type="text">REGISTER </com-name>
+	</com>
+	<com send="no" id="5">
+		<com-name type="text">OPTIONS </com-name>
+	</com>
+	<com send="no" id="6">
+		<com-name type="text">BYE </com-name>
+	</com>
+	
+	<!-- Extended commands -->
+	
+	<com send="no" id="7">
+		<com-name type="text">SUBSCRIBE </com-name>
+	</com>
+	<com send="no" id="8">
+		<com-name type="text">MESSAGE </com-name>
+	</com>
+	<com send="no" id="9">
+		<com-name type="text">PING </com-name>
+	</com>
+	<com send="no" id="10">
+		<com-name type="text">INFO </com-name>
+	</com>
+	<com send="no" id="11">
+		<com-name type="text">REFER </com-name>
+	</com>
+	<com send="no" id="12">
+		<com-name type="text">NOTIFY </com-name>
+	</com>
+	
+	<!-- Global arguments (in all the commands) -->
+	
+	<global-arg name="URI_PROTO" type="text" send="yes" command="1,2,3,4,5,6">sip:</global-arg>
+	<global-arg name="URI_USER" type="text" send="yes" command="1,2,3,4,5,6">user@</global-arg>
+	<global-arg name="URI_HOST" type="text" send="yes" command="1,2,3,4,5,6">ip/domain </global-arg>
+	<global-arg name="PROTOCOL" type="text" send="yes" command="1,2,3,4,5,6">SIP/</global-arg>
+	<global-arg name="PROTOCOL VERSION" type="integer" send="yes" command="1,2,3,4,5,6">2.0 </global-arg>
+
+	<!-- Fields -->
+
+	<field send="no" command="3,4,5,6">
+		<field-name type="text">Accept:</field-name>
+		<!-- It's possible to have more than one "field-value" element in a "field" -->
+		<field-value>
+			<!-- Only one value field for each "field-value" element -->
+			<!-- It must be specified the separation character between values at the end -->
+			<value type="text">text/*,</value>
+		</field-value>
+		<field-value>
+			<value type="text">application/sdp</value>
+		</field-value>
+	</field>
+	<field send="no" command="3,4,5,6">
+		<field-name type="text">Accept-Encoding:</field-name>
+		<field-value>
+			<value type="text">gzip</value>
+		</field-value>
+	</field>
+	<field send="no" command="3,4,5,6">
+		<field-name type="text">Accept-Language:</field-name>
+		<field-value>
+			<value type="text">en-gb</value>
+			<!-- It's possible to have more than one "parameter" element in a "field-value" -->
+			<parameter send="yes" command="3,4,5,6">
+				<param-name type="text" beginChar=";" endChar="=">q</param-name>
+				<!-- Only one value field for each "param-value" element -->
+				<!-- It must be specified the separation character between values at the end -->
+				<param-value type="float" fuzzing="overflow">0.8,</param-value>
+			</parameter>
+		</field-value>
+		<field-value>
+			<value type="text">en</value>
+			<parameter send="yes" command="3,4,5,6">
+				<param-name type="text" beginChar=";" endChar="=">q</param-name>
+				<param-value type="float" fuzzing="overflow">0.7</param-value>
+			</parameter>
+		</field-value>
+	</field>
+	<field send="no" command="3">
+		<field-name type="text">Alert-Info:</field-name>
+		<field-value>
+			<value type="text">http://www.example.com/sounds/moo.wav</value>
+		</field-value>
+	</field>
+	<field send="no" command="3,4,5,6">
+		<field-name type="text">Allow:</field-name>
+		<field-value>
+			<value type="text">INVITE,</value>
+		</field-value>
+		<field-value>
+			<value type="text">ACK,</value>
+		</field-value>
+		<field-value>
+			<value type="text">CANCEL,</value>
+		</field-value>
+		<field-value>
+			<value type="text">REGISTER,</value>
+		</field-value>
+		<field-value>
+			<value type="text">OPTIONS,</value>
+		</field-value>
+		<field-value>
+			<value type="text">BYE,</value>
+		</field-value>
+		<field-value>
+			<value type="text">SUSCRIBE,</value>
+		</field-value>
+		<field-value>
+			<value type="text">MESSAGE,</value>
+		</field-value>
+		<field-value>
+			<value type="text">PING,</value>
+		</field-value>
+		<field-value>
+			<value type="text">INFO,</value>
+		</field-value>
+		<field-value>
+			<value type="text">REFER</value>
+		</field-value>
+	</field>
+	<field send="no" command="3,4,5,6" comment="Don't send according to protocol">
+		<field-name type="text">Authentication-Info:</field-name>
+		<field-value>
+			<value type="text"> </value>
+			<parameter send="yes" command="3,4,5,6">
+				<param-name type="text" beginChar="" endChar="=">nextnonce</param-name>
+				<param-value type="text" fuzzing="overflow">"47364c23432d2e131a5fb210812c"</param-value>
+			</parameter>
+		</field-value>
+	</field>
+	<field send="no" command="1,2,3,4,5,6">
+		<field-name type="text">Authorization:</field-name>
+		<field-value>
+			<value type="text"> </value>
+			<parameter send="yes" command="1,2,3,4,5,6">
+				<param-name type="text" beginChar="" endChar="=">Digest username</param-name>
+				<param-value type="text" fuzzing="overflow">"Alice"</param-value>
+			</parameter>
+			<parameter send="yes" command="1,2,3,4,5,6">
+				<param-name type="text" beginChar="," endChar="=">realm</param-name>
+				<param-value type="text" fuzzing="overflow">"atlanta.com"</param-value>
+			</parameter>
+			<parameter send="yes" command="1,2,3,4,5,6">
+				<param-name type="text" beginChar="," endChar="=">nonce</param-name>
+				<param-value type="text" fuzzing="overflow">"84a4cc6f3082121f32b42a2187831a9e"</param-value>
+			</parameter>
+			<parameter send="yes" command="1,2,3,4,5,6">
+				<param-name type="text" beginChar="," endChar="=">response</param-name>
+				<param-value type="text" fuzzing="overflow">"7587245234b3434cc3412213e5f113a5432"</param-value>
+			</parameter>
+		</field-value>
+	</field>
+	<field send="yes" command="1,2,3,4,5,6,9" comment="Mandatory; Compact form: i">
+		<field-name type="text">Call-ID:</field-name>
+		<field-value>
+			<value type="text">f81d4fae-7dec-11d0-a765-00a0c91e6bf6@foo.bar.com</value>
+		</field-value>
+	</field>
+	<field send="no" command="3,4,5">
+		<field-name type="text">Call-Info:</field-name>
+		<field-value>
+			<value type="text">http://wwww.example.com/alice/photo.jpg</value>
+			<parameter send="yes" command="3,4,5">
+				<param-name type="text" beginChar=";" endChar="=">purpose</param-name>
+				<param-value type="text" fuzzing="overflow">icon,</param-value>
+			</parameter>
+		</field-value>
+		<field-value>
+			<value type="text">http://wwww.example.com/alice/</value>
+			<parameter send="yes" command="3,4,5">
+				<param-name type="text" beginChar=";" endChar="=">purpose</param-name>
+				<param-value type="text" fuzzing="overflow">info</param-value>
+			</parameter>
+		</field-value>
+	</field>
+	<field send="yes" command="2,3,4,5" comment="Mandatory in INVITE; Compact form: m">
+		<field-name type="text">Contact:</field-name>
+		<field-value>
+			<value type="text">sip:user@ip/domain[:port]</value>
+			<parameter send="yes" command="4">
+				<param-name type="text" beginChar=";" endChar="=">q</param-name>
+				<param-value type="float">0.7,</param-value>
+			</parameter>
+			<parameter send="yes" command="4">
+				<param-name type="text" beginChar=";" endChar="=">expires</param-name>
+				<param-value type="integer">3600</param-value>
+			</parameter>
+			<parameter send="yes" command="4" comment="Values: proxy | redirect">
+				<param-name type="text" beginChar=";" endChar="=">action</param-name>
+				<param-value type="text">proxy</param-value>
+			</parameter>
+		</field-value>
+	</field>
+	<field send="no" command="2,3,4,5,6" comment="Values: session | render">
+		<field-name type="text">Content-Disposition:</field-name>
+		<field-value>
+			<value type="text">render</value>
+			<parameter send="yes" command="2,3,4,5,6" comment="Values: optional | required">
+				<param-name type="text" beginChar=";" endChar="=">handling-param</param-name>
+				<param-value type="text">optional</param-value>
+			</parameter>
+		</field-value>
+	</field>
+	<field send="no" command="2,3,4,5,6" comment="Compact form: e">
+		<field-name type="text">Content-Encoding:</field-name>
+		<field-value>
+			<value type="text">gzip</value>
+		</field-value>
+	</field>
+	<field send="no" command="2,3,4,5,6">
+		<field-name type="text">Content-Language:</field-name>
+		<field-value>
+			<value type="text">en</value>
+		</field-value>
+	</field>
+	<field send="yes" command="3,4,5,6" comment="Mandatory over TCP; Compact form: l">
+		<field-name type="text">Content-Length:</field-name>
+		<field-value>
+			<value type="integer">$F:SIZE($X:BODY$)$</value>
+		</field-value>
+	</field>
+	<field send="yes" command="2,3,4,5,6" comment="Mandatory if body is not empty; Compact form: c">
+		<field-name type="text">Content-Type:</field-name>
+		<field-value>
+			<value type="text">application/sdp</value>
+		</field-value>
+	</field>
+	<field send="yes" command="1,2,3,4,5,6,9" comment="Mandatory">
+		<field-name type="text">CSeq:</field-name>
+		<field-value>
+			<value type="integer" range="0-2147483648">4321 </value>
+		</field-value>
+		<!-- $com-name refers to the value of the name element in the actual command -->
+		<!-- TODO: $"X"-Y could refer to a value of an element Y whom element name is X??-->
+		<field-value>
+			<value type="text">$V:ACTUAL_COMMAND$</value>
+		</field-value>
+	</field>
+	<field send="no" command="1,2,3,4,5,6">
+		<field-name type="text">Date:</field-name>
+		<field-value>
+			<value type="date">Sat, 13 Nov 2010 23:29:00 GMT</value>
+		</field-value>
+	</field>
+	<field send="no" command="1,3,4,5,6" comment="Don't send according to protocol">
+		<field-name type="text">Error-Info:</field-name>
+		<field-value>
+			<value type="integer">sip:not-in-service-recording@atlanta.com</value>
+		</field-value>
+	</field>
+	<field send="no" command="3,4" comment="Seconds">
+		<field-name type="text">Expires:</field-name>
+		<field-value>
+			<value type="integer" range="0-2147483647">417</value>
+		</field-value>
+	</field>
+	<field send="yes" command="1,2,3,4,5,6,9" comment="Mandatory; Compact form: f">
+		<field-name type="text">From:</field-name>
+		<field-value>
+			<value type="text" fuzzCommand="">sip:user@ip/domain[:port]</value>
+			<parameter send="yes" command="1,2,3,4,5,6">
+				<param-name type="text" beginChar=";" endChar="=">tag</param-name>
+				<param-value type="text">a48s</param-value>
+			</parameter>
+		</field-value>
+	</field>
+	<field send="no" command="3">
+		<field-name type="text">In-Reply-To:</field-name>
+		<field-value>
+			<value type="text">70710@saturn.bell-tel.com</value>
+		</field-value>
+	</field>
+	<field send="no" command="1,2,3,4,5,6,9" comment="Mandatory">
+		<field-name type="text">Max-Forwards:</field-name>
+		<field-value>
+			<value type="integer" range="0-255">70</value>
+		</field-value>
+	</field>
+	<field send="no" command="6" comment="Mandatory; Don't send according to protocol">
+		<field-name type="text">Min-Expires:</field-name>
+		<field-value>
+			<value type="integer" range="0-2147483647">60</value>
+		</field-value>
+	</field>
+	<field send="no" command="2,3,4,5,6">
+		<field-name type="text">MIME-Version:</field-name>
+		<field-value>
+			<value type="float">1.0</value>
+		</field-value>
+	</field>
+	<field send="no" command="3,4,5">
+		<field-name type="text">Organization:</field-name>
+		<field-value>
+			<value type="text">S21Sec Labs</value>
+		</field-value>
+	</field>
+	<field send="no" command="3" comment="Values: non-urgent | normal | urgent | emergency">
+		<field-name type="text">Priority:</field-name>
+		<field-value>
+			<value type="text">normal</value>
+		</field-value>
+	</field>
+	<field send="no" command="3,4,5,6" comment="Don't send according to protocol">
+		<field-name type="text">Proxy-Authenticate:</field-name>
+		<field-value>
+			<value type="text"> </value>
+			<parameter send="yes" command="3,4,5,6">
+				<param-name type="text" beginChar="" endChar="=">Digest realm</param-name>
+				<param-value type="text" fuzzing="overflow">"atlanta.com"</param-value>
+			</parameter>
+			<parameter send="yes" command="3,4,5,6">
+				<param-name type="text" beginChar="," endChar="=">nonce</param-name>
+				<param-value type="text" fuzzing="overflow">"84a4cc6f3082121f32b42a2187831a9e"</param-value>
+			</parameter>
+			<parameter send="yes" command="3,4,5,6">
+				<param-name type="text" beginChar="," endChar="=">algorithm</param-name>
+				<param-value type="text" fuzzing="overflow">MD5</param-value>
+			</parameter>
+		</field-value>
+	</field>
+	<field send="no" command="2,3,4,5,6">
+		<field-name type="text">Proxy-Authorization:</field-name>
+		<field-value>
+			<value type="text"> </value>
+			<parameter send="yes" command="1,2,3,4,5,6">
+				<param-name type="text" beginChar="" endChar="=">Digest username</param-name>
+				<param-value type="text" fuzzing="overflow">"Alice"</param-value>
+			</parameter>
+			<parameter send="yes" command="1,2,3,4,5,6">
+				<param-name type="text" beginChar="," endChar="=">realm</param-name>
+				<param-value type="text" fuzzing="overflow">"atlanta.com"</param-value>
+			</parameter>
+			<parameter send="yes" command="1,2,3,4,5,6">
+				<param-name type="text" beginChar="," endChar="=">nonce</param-name>
+				<param-value type="text" fuzzing="overflow">"84a4cc6f3082121f32b42a2187831a9e"</param-value>
+			</parameter>
+			<parameter send="yes" command="1,2,3,4,5,6">
+				<param-name type="text" beginChar="," endChar="=">response</param-name>
+				<param-value type="text" fuzzing="overflow">"7587245234b3434cc3412213e5f113a5432"</param-value>
+			</parameter>
+		</field-value>
+	</field>
+	<field send="no" command="3,4,5,6">
+		<field-name type="text">Proxy-Require:</field-name>
+		<field-value>
+			<value type="text">foo</value>
+		</field-value>
+	</field>
+	<field send="no" command="1,2,3,5,6,9">
+		<field-name type="text">Record-Route:</field-name>
+		<field-value>
+			<value type="text">sip:server10.biloxi.com;lr</value>
+		</field-value>
+	</field>
+	<field send="no" command="11">
+		<field-name type="text">Refer-To:</field-name>
+		<field-value>
+			<value>sip:user@ip/domain[:port]</value>
+		</field-value>
+	</field>
+	<field send="no" command="3">
+		<field-name type="text">Reply-To:</field-name>
+		<field-value>
+			<value>sip:user@ip/domain[:port]</value>
+		</field-value>
+	</field>
+	<field send="no" command="3,4,5,6">
+		<field-name type="text">Require:</field-name>
+		<field-value>
+			<value type="text">100rel</value>
+		</field-value>
+	</field>
+	<field send="no" command="1,3,4,5,6" comment="Don't send according to protocol; Seconds">
+		<field-name type="text">Retry-After:</field-name>
+		<field-value>
+			<value type="integer">18000</value>
+			<parameter send="yes" command="1,3,4,5,6">
+				<param-name type="text" beginChar=";" endChar="=">duration</param-name>
+				<param-value type="integer">3600</param-value>
+			</parameter>
+		</field-value>
+	</field>
+	<field send="no" command="1,2,3,4,5,6,9">
+		<field-name type="text">Route:</field-name>
+		<field-value>
+			<value type="text">sip:bigbox3.site3.atlanta.com;lr</value>
+		</field-value>
+	</field>
+	<field send="no" command="1,3,4,5,6" comment="Don't send according to protocol">
+		<field-name type="text">Server:</field-name>
+		<field-value>
+			<value type="text">HomeServer v2</value>
+		</field-value>
+	</field>
+	<field send="no" command="3" comment="Compact form: s">
+		<field-name type="text">Subject:</field-name>
+		<field-value>
+			<value type="text">Some text...</value>
+		</field-value>
+	</field>
+	<field send="no" command="1,3,4,5,6" comment="Compact form: k">
+		<field-name type="text">Supported:</field-name>
+		<field-value>
+			<value type="text">100rel</value>
+		</field-value>
+	</field>
+	<field send="no" command="1,2,3,4,5,6">
+		<field-name type="text">Timestamp:</field-name>
+		<field-value>
+			<value type="integer">54</value>
+		</field-value>
+	</field>
+	<field send="yes" command="1,2,3,4,5,6,9" comment="Mandatory; Compact form: t">
+		<field-name type="text">To:</field-name>
+		<field-value>
+			<value type="text">sip:user@ip/domain</value>
+		</field-value>
+	</field>
+	<field send="no" command="3" comment="Don't send according to protocol; Mandatory">
+		<field-name type="text">Unsupported:</field-name>
+		<field-value>
+			<value type="text">foo</value>
+		</field-value>
+	</field>
+	<field send="no" command="1,2,3,4,5,6,9">
+		<field-name type="text">User-Agent:</field-name>
+		<field-value>
+			<value type="text">Softphone Beta1.5</value>
+		</field-value>
+	</field>
+	<field send="yes" command="1,2,3,4,5,6,9" comment="Mandatory; Compact form: v">
+		<field-name fuzzing="overflow" fuzzCommand="4">Via:</field-name>
+		<field-value>
+			<value type="text">SIP/</value>
+		</field-value>
+		<field-value>
+			<value type="integer">2.0/</value>
+		</field-value>
+		<field-value>
+			<value type="text">UDP </value>
+		</field-value>
+		<field-value>
+			<value type="text">ip/domain:</value>
+		</field-value>
+		<field-value>
+			<value type="integer">port</value>
+			<parameter send="yes" command="1,2,3,4,5,6">
+				<param-name type="text" beginChar=";" endChar="=" comment="Must start with z9hG4bK">branch</param-name>
+				<param-value type="text">z9hG4bK74b76</param-value>
+			</parameter>
+			<parameter send="no" command="1,2,3,4,5,6">
+				<param-name type="text" beginChar=";" endChar="=">maddr</param-name>
+				<param-value type="text">224.2.0.1</param-value>
+			</parameter>
+			<parameter send="no" command="1,2,3,4,5,6">
+				<param-name type="text" beginChar=";" endChar="=">ttl</param-name>
+				<param-value type="integer">16</param-value>
+			</parameter>
+			<parameter send="no" command="1,2,3,4,5,6">
+				<param-name type="text" beginChar=";" endChar="=">received</param-name>
+				<param-value type="text">192.0.2.207</param-value>
+			</parameter>
+		</field-value>
+	</field>
+	<field send="no" command="1,3,4,5,6" comment="Don't send according to protocol">
+		<field-name type="text">Warning:</field-name>
+		<field-value>
+			<value type="integer">307 </value>
+		</field-value>
+		<field-value>
+			<value type="text"> isi.edu </value>
+		</field-value>
+		<field-value>
+			<value type="text">"Session parameter 'foo' not understood"</value>
+		</field-value>
+	</field>
+	<field send="no" command="3,4,5,6" comment="Don't send according to protocol">
+		<field-name type="text">WWW-Authenticate:</field-name>
+		<field-value>
+			<value type="text"> </value>
+			<parameter send="yes" command="3,4,5,6">
+				<param-name type="text" beginChar="" endChar="=">Digest realm</param-name>
+				<param-value type="text" fuzzing="overflow">"atlanta.com"</param-value>
+			</parameter>
+			<parameter send="yes" command="3,4,5,6">
+				<param-name type="text" beginChar="," endChar="=">nonce</param-name>
+				<param-value type="text" fuzzing="overflow">"84a4cc6f3082121f32b42a2187831a9e"</param-value>
+			</parameter>
+			<parameter send="yes" command="3,4,5,6">
+				<param-name type="text" beginChar="," endChar="=">algorithm</param-name>
+				<param-value type="text" fuzzing="overflow">MD5</param-value>
+			</parameter>
+		</field-value>
+	</field>
+<body name="BODY" type="text" send="yes" command="3">v=0
+o=- 1170678308 1170678308 IN IP4 172.21.1.133
+s=Opal SIP Session
+c=IN IP4 172.21.1.133
+t=0 0
+m=audio 5008 RTP/AVP 114 115 3 107 110 0 8 101
+a=rtpmap:114 SPEEX/16000
+a=rtpmap:115 iLBC/8000
+a=rtpmap:3 GSM/8000
+a=rtpmap:107 MS-GSM/8000
+a=rtpmap:110 SPEEX/8000
+a=rtpmap:0 PCMU/8000
+a=rtpmap:8 PCMA/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-15
+m=video 5010 RTP/AVP 31
+a=rtpmap:31 H261/90000</body>
+</commands>
+</protocol>

@@ -1,0 +1,23 @@
+Fix session resumption test
+    We have a false positive for session resumption
+    IDs are assigned but not accepted for resumption
+Fix the certificate formatting (prefix it with whitespace)
+Add support for SOCKS5 proxy (or audit for 'usewithtor')
+    It seems to work fine with 'usewithtor'
+    It still seems prudent to add proper proxy support
+Add STARTTLS support for LDAP:
+    http://www.rfc-editor.org/rfc/rfc2830.txt
+Fix XMPP scans that do not support StartTLS:
+    "<stream:error><invalid-namespace xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>"
+Add HTML report generation
+Add diff between reported and actually supported ciphers
+Make a Debian package
+Merge the Windows port into tip: http://code.google.com/p/sslscan-win/
+Ensure that output is highlighted for dangerous ciphers (blink, blink)
+    Throw up sirens if ssl2 is enabled
+    ciphers from the LOW/EXP/eNULL category are supported for any protocol
+    renegotiation is allowed on tlsv1 (maybe check if TRACE is supported if it's an http server)
+We should explictly check for things that may be NULL; the original author was not very careful.
+Perhaps write a GUI for people who are console adverse?
+Compare with http://www.thesprawl.org/memdump/?entry=7
+Finally, we should send a diff from 1.8.2 to the upstream developer

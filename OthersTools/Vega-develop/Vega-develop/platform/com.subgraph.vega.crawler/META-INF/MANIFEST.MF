@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Crawler
+Bundle-SymbolicName: com.subgraph.vega.crawler
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SUBGRAPH
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7,
+ JavaSE-1.6
+Import-Package: com.subgraph.vega.api.crawler,
+ com.subgraph.vega.api.http.requests,
+ com.subgraph.vega.api.model.requests,
+ org.apache.http;version="4.0.0",
+ org.apache.http.client,
+ org.apache.http.client.methods,
+ org.apache.http.util;version="4.1.0"
+Service-Component: OSGI-INF/crawler-factory.xml

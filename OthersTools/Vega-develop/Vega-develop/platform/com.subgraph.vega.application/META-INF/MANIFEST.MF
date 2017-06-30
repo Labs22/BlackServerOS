@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Application
+Bundle-SymbolicName: com.subgraph.vega.application; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.subgraph.vega.application.Activator
+Bundle-Vendor: SUBGRAPH
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7,
+ JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Import-Package: com.subgraph.vega.api.console,
+ com.subgraph.vega.api.events,
+ com.subgraph.vega.api.http.requests,
+ com.subgraph.vega.api.model,
+ com.subgraph.vega.api.paths,
+ com.subgraph.vega.api.vuge,
+ com.subgraph.vega.ui.http,
+ com.subgraph.vega.ui.util.images,
+ com.subgraph.vega.ui.util.preferences,
+ org.apache.http;version="4.1.0",
+ org.apache.http.client.methods;version="4.2.2",
+ org.eclipse.ui.console,
+ org.eclipse.ui.internal.console
+Export-Package: com.subgraph.vega.ui.util
+Service-Component: OSGI-INF/path-finder.xml, OSGI-INF/console.xml

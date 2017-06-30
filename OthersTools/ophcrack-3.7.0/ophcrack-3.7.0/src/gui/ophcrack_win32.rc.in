@@ -1,0 +1,22 @@
+1 VERSIONINFO
+ FILEVERSION @MAJOR@,@MINOR@,@MAINT@,0
+ PRODUCTVERSION @MAJOR@,@MINOR@,@MAINT@,0
+ FILETYPE 1
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "Objectif Securite SA"
+            VALUE "FileDescription", "ophcrack"
+            VALUE "FileVersion", "@PACKAGE_VERSION@"
+            VALUE "InternalName", "Ophcrack"
+            VALUE "LegalCopyright", "Copyright (C) 2008 Objectif Securite"
+            VALUE "OriginalFilename", "ophcrack.exe"
+            VALUE "ProductName", "@PACKAGE_STRING@"
+            VALUE "ProductVersion", "@PACKAGE_VERSION@"
+        END
+    END
+END
+
+OPHCRACK_ICON 		ICON "pixmaps/os.ico"

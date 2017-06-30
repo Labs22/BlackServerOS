@@ -1,0 +1,2 @@
+if you trigger any crashes, check the dumps/ directory. there will be .c files to reproduce the crash. i dont escape all the strings
+properly so you might need to do that manually.

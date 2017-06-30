@@ -1,0 +1,13 @@
+this is by no means done, these TODO items are just to help me not to forget ideas i come up with. feel free to suggest stuff,
+unless you're greg because greg is ridiculous.
+
+-before killing, send other signals 
+-add more fuzz modules
+-add more options for getopt() fuzzer, at least allow easily specifying an argument to use after all
+ the options to get things like $program -a bla <fuzzstring> to be fuzzed easily. trivial to do.
+-document
+-nicer usage function (trivial++)
+-more commandline options (will come as more modules are written)
+-allow capture and archiving of a core dump upon a crash
+-extensions/flags to further define the behavior of the getopt() fuzzer, such as allowing the same option two or three times
+

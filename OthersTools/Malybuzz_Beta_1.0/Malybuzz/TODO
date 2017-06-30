@@ -1,0 +1,9 @@
+There are a lot of things to do yet. Some of them:
+
+- A user manual(soon!!)
+- Configuration of fuzzing parameters
+- Add more protocols support
+- Add more fuzzing vectors
+- More than one fuzzing session at the same time
+- A nice GUI to evoid annoying configurations
+- Interactive fuzzing?

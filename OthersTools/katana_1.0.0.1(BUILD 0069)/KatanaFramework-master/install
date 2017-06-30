@@ -1,0 +1,69 @@
+#!/usr/bin/env python
+#HEAD#########################################################
+#
+# Katana Framework | install                         
+# Last Modified: 14/03/2017
+#
+#########################################################HEAD#
+
+from core import Information, colors, Update
+import os, time, subprocess
+from sys import stdout
+
+def Command_exe(msg,cmd):
+	i = "\033[1mSTATUS"+colors.W+":[Processing]"
+	stdout.write(" " + msg + " %s" % i)
+	stdout.flush()
+	if subprocess.call(cmd+' >/dev/null 2>&1', shell=True)==0:
+		i = "[\033[1m"+colors.G+"OK"+colors.W+"]"
+	else:
+		i = "["+colors.R+"\033[1mERROR"+colors.W+"]["+colors.O+"\033[1mWARNING"+colors.W+"]"
+		
+	stdout.write("\r " + msg +" STATUS:%s" % i)
+
+print ""
+print "                    "+colors.B+",:"+colors.W+"       "+colors.B+":,"+colors.W+"                   				 "#                    ,:       :,                   
+print "                   "+colors.B+",/./"+colors.W+" _8_  "+colors.B+"\.\                  				 "#                   /./  _8_  \.\                  
+print "                   "+colors.B+",\ \\"+colors.W+"/"+colors.P+"("+colors.R+"O"+colors.P+")"+colors.W+"\\"+colors.B+"/ /                  				 "#                   \ \/( O )\/ /                  
+print "                    "+colors.B+",\ \:::/ /                   				 "#                    \ \:::::/ /                   
+print "                     /"+colors.O+"__"+colors.G+"---"+colors.O+"__"+colors.B+"\                   				 "#                     /__---__\                    
+print "                    ("+colors.O+"/__\ /__\\"+colors.B+")"+colors.W+"                   				 "#                    (/__\ /__\)                   
+print "                    "+colors.B+"/"+colors.W+"\  .V.  /"+colors.B+"\\"+colors.W+"                   				 "#                    /\  .V.  /\                   
+print "                   "+colors.B+"/"+colors.W+"  \,---,/  "+colors.B+"\\"+colors.W+"                  				 "#                   /  \,---,/  \                  
+print "                   "+colors.B+"\\"+colors.W+"___TTTTT___"+colors.B+"/"+colors.W+"         CODE: KATANA  "#                   \___TTTTT___/                  
+print "                ::::\ "+colors.R+"|"+colors.W+"_____"+colors.R+"|"+colors.W+" /::::      DATE: "+Information.date+""#                ::::\ "+colors.R+"|"+colors.W+"_____"+colors.R+"|"+colors.W+" /::::               
+print "                (+  _"+colors.R+"|"+colors.W+" __"+colors.R+"|"+colors.W+"__ "+colors.R+"|"+colors.W+"_  +)      CORE: "+Information.version+", BUILD: "+Information.build #                (+  _"+colors.R+"|"+colors.W+" __"+colors.R+"|"+colors.W+"__ "+colors.R+"|"+colors.W+"_  +)               
+print "        "+Information.Type+"    "+colors.R+"|"+colors.W+"  I_"+colors.R+"|"+colors.W+"KATANA."+colors.R+"|"+colors.W+"_I  "+colors.R+"|"+colors.W+"                               "#                "+colors.R+"|"+colors.W+"  I_"+colors.R+"|"+colors.W+".ANATAK"+colors.R+"|"+colors.W+"_I  "+colors.R+"|"+colors.W+"               
+print "                "+colors.R+"|"+colors.W+"  I_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"  "+colors.R+"|"+colors.W+"               				 "#                "+colors.R+"|"+colors.W+"  I_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"  "+colors.R+"|"+colors.W+"               
+print "    __________?_____________________________________  				 "#    __________?_________________________________  
+print "   {_"+colors.C+"B|"+colors.W+" "+colors.C+"Y|"+colors.W+" "+colors.R+"R|"+colors.W+" "+colors.W+"T|"+colors.W+" |"+colors.GR+"#################################"+colors.W+"/  				 "#   {_"+colors.R+"|"+colors.W+" "+colors.R+"|"+colors.W+" "+colors.R+"|"+colors.W+" "+colors.R+"|"+colors.W+" I#################################/  
+print "     ^ ^ ^ ^   ,ww   "+colors.O+"FRAMEWORK"+colors.W+"   ww,                   				 "#     ^ ^ ^ ^ EHT KROWEMARF, dliuB      
+print "                   I_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_I                  				 "#                   I_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_I                  
+print "                   \_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_/                  				 "#                   \_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_"+colors.R+"|"+colors.W+"_/                  
+print ""
+print ""
+
+if os.getuid() != 0:
+	print " ["+colors.R+"-"+colors.W+"] ERROR:"+colors.B+" Katana Install"+colors.B+" must be run as "+colors.R+"root"+colors.W+"."
+	print " ["+colors.R+"-"+colors.W+"] login as root ("+colors.R+"sudo"+colors.W+") or try "+colors.W+"sudo python install"+colors.W+"\n"
+	exit(1)
+time.sleep(1)
+
+Shortcuts ="ln -f -r -s /usr/share/KatanaFramework/core/shorts/ktf.console /usr/bin/ktf.console ; ln -f -r -s /usr/share/KatanaFramework/core/shorts/ktf.linker  /usr/bin/ktf.linker  ; ln -f -r -s /usr/share/KatanaFramework/core/shorts/ktf.update  /usr/bin/ktf.update  ; ln -f -r -s /usr/share/KatanaFramework/core/shorts/ktf.ktf     /usr/bin/ktf.ktf     ; ln -f -r -s /usr/share/KatanaFramework/core/shorts/ktf.tool    /usr/bin/ktf.tool    ; ln -f -r -s /usr/share/KatanaFramework/core/shorts/ktf.gui     /usr/bin/ktf.gui     ; ln -f -r -s /usr/share/KatanaFramework/core/shorts/ktf.run     /usr/bin/ktf.run "
+Files     ="cp -r * /usr/share/KatanaFramework/doc/man/ /usr/local/share/man/man1/   ; cd /usr/share/KatanaFramework/files/                                     ; tar xvf /usr/share/KatanaFramework/files/exiftool.tar >/dev/null 2>&1    ; tar xvf /usr/share/KatanaFramework/files/getdatareport.tar >/dev/null 2>&1; rm -R /usr/share/KatanaFramework/files/*.tar              ; rm /usr/share/KatanaFramework/install                     ; rm /usr/share/KatanaFramework/dependencies                ; rm /usr/share/KatanaFramework/README.md "
+Preinstall="rm -f /usr/bin/ktf.console; rm -f /usr/bin/ktf.linker; rm -f /usr/bin/ktf.update; rm -f /usr/bin/ktf.ktf; rm -f /usr/bin/ktf.tool; rm -f /usr/bin/ktf.run; rm -f /usr/bin/ktf.gui; "
+
+print " INSTALLING"
+print Command_exe("["+time.strftime('%H:%M:%S')+"] Pre-installing.                  ",Preinstall)
+print Command_exe("["+time.strftime('%H:%M:%S')+"] Checking dependencies.           ",'sudo bash dependencies')
+print " ["+time.strftime('%H:%M:%S')+"] Checking Updates."
+Update.update("installer",True)
+print ""
+print Command_exe("["+time.strftime('%H:%M:%S')+"] Creating Folder.                 ",'mkdir -p /usr/share/KatanaFramework')
+print Command_exe("["+time.strftime('%H:%M:%S')+"] Copying files.                   ",'cp -r * /usr/share/KatanaFramework')
+print Command_exe("["+time.strftime('%H:%M:%S')+"] Creating Shortcuts.              ",Shortcuts)
+print Command_exe("["+time.strftime('%H:%M:%S')+"] Extracting Files.                ",Files)
+print Command_exe("["+time.strftime('%H:%M:%S')+"] Giving privileges.               ",'chmod -R -c 777 /usr/share/KatanaFramework/')
+
+print "\n If all is [OK] Katana was installed, use ktf.console or ktf.gui (DEMO)"
+print " go to https://github.com/PowerScript/KatanaFramework/wiki for more info\n"

@@ -1,0 +1,780 @@
+Version 2.10b:
+  - Updated HTML tags and attributes that are checked for URL XSS
+    injections to also include a few HTML5 specific ones
+
+  - Updated test and description for semi-colon injection in HTML meta
+    refresh tags (this is IE6 specific)
+
+  - Relaxed HTML parsing a bit to allow spaces between HTML tag attributes
+    and their values (e.g. "foo =bar").
+
+  - Major update of LFI tests by adding more dynamic tests (double
+    encoding, dynamic amount of ../'s for web.xml). The total amount of
+    tests for this vulnerability is now 40 per injection point.
+
+  - The RFI test is now a separate test and no longer requires special
+    compile options. The default RFI URL and it's payload check are
+    still defined in src/config.h.
+
+  - Using the --flush-to-disk flag will cause requests and responses
+    to be flushed to disk which reduces the memory footprint. (especially
+    noticable in large scans)
+
+  - Fixed a bug where in some conditions (e.g. a page looks similar to
+    another) links were not scraped from responses which lead to links
+    to be missed (thanks to Anurag Chaurasia for reporting)
+
+  - Added configuration file support with the --config flag. In
+    config/example.conf you can find flags and examples.
+
+  - Several signature keyword enhancements have been made. Most
+    significant are the "header" keyword, which allows header matching
+    and the "depend" keyword which allows signature chaining.
+
+  - Fixed basic authentication which was broken per 2.08b. Cheers to
+    Michael Stevens for reporting.
+
+  - Fixed -k scheduling where 1:0:0 would count as a second in stead of
+    an hour (also visa versa). Cheers to Claudio Criscione for reporting.
+
+  - Small fix to compile time warnings
+
+Version 2.09b:
+
+  - Fixed a crash that could be triggered during 404 fingerprint failures
+
+  - Signature IDs for detected issues are now stored in the report
+    JSON files.
+
+  - Added mod_status, mod_info, MySQL dump, phpMyAdmin SQL dump and
+    robots.txt signatures. 
+
+  - Improved the Flash and Silverlight crossdomain policy signatures to
+    only warn about them when they use wildcards.
+
+Version 2.08b:
+
+  - Added Host header XSS testing.
+
+  - Added HTML encoding XSS tests to detect scenarios where our
+    injection string ends up in an attributes that execute HTML encoded
+    Javascript. For example: onclick.
+
+  - Bruteforcing is now disabled for URLs that gave a directory listing.
+
+  - Added subject alternate name checking for SSL certificates (cheers
+    to Matt Caroll for his feedback)
+
+  - Added signature matching (see doc/signatures.txt) which means a lot
+    of the content based issues are no longer hardcoded.
+
+  - Added active XSSI test. The passive XSSI stays (for now) but this
+    active check is more acurate and will remove issues detected by the
+    passive one if they cannot be confirmed. This reduces false positives
+
+  - Added HTML tag XSS test which triggers when our payload is used
+    as a tag attribute value but without quotes (courtesy of wavsep).
+
+  - Added javascript: scheme XSS testing (courtesy of wavsep).
+
+  - Added form based authentication. During these authenticated
+    scans, skipfish will check if the session has ended and re-authenticates
+    if necessary.
+
+  - Fixed a bug where in slow scans the console output could mess up
+    due to the high(er) refresh rate.
+
+  - Fixed a bug where a missed response during the injection tests could
+    result in a crash. (courtesy of Sebastian Roschke)
+
+  - Restructure the source package a bit by adding a src/, doc/ and
+    tools/ directory.
+
+Version 2.07b:
+--------------
+
+  - A bugfix to fprint_response() will help reduce false positives that
+    could occur for differential tests (i.e. the query and shell injection
+    tests)
+
+  - We now suppress implicit cache warnings when dealing with 302, 303 and 307
+    redirects.
+
+  - Added --no-checks which allows a scan to be run without any injection
+    tests. This still allows bruteforcing and combines well with the
+    new ability to load URLs from previous scan results.
+
+  - We can now parse the pivots.txt, which can be found in the output
+    directory of older scans. All URLs will be loaded which seriously
+    speeds up recurring scans.
+
+  - Directory bruteforcing now includes a content negotiation trick where
+    a using a fake mime in the Accept: header will cause some servers to
+    propose us files via a 406 response.
+
+  - A horrible bug fix which caused instable pages not be marked
+    as such. The result: false positives.
+
+
+Version 2.06b:
+--------------
+
+  - Crawler update which gives more control over the injection test
+    scheduling. This comes with the --checks and --checks-toggle
+    flags to display and enable/disable checks.
+
+  - Pages where the response varies are no longer completely
+    discarded. Instead now we only disable tests that require stability
+    which increases scan coverage.
+
+  - Split the traversal and disclosure test to increase coverage:
+    traversal checks require stable pages, the disclosure checks can be
+    performed on all.
+
+  - Updated dictionaries and converted them to use the dictionary
+    optimisations we introduced in 2.03b
+
+  - Fixed offline report viewing (thanks to Sebastian Roschke)
+
+  - Added NULL byte file disclosure tests
+
+  - Added JSP inclusion error check to analyse.c
+
+  - Added XSS injection tests for cookies
+
+  - Directory listings are now reported as individual (info-type) issues
+
+  - Added warning in case the negotiated SSL cipher turns out to be a
+    weak one (leaving the cipher enumeration to network scanners)
+
+  - Added experimental -v flag which can be used to enable (limited)
+    runtime reporting. This output is written to stderr and should be
+    redirected to a file, unless you use the -u flag.
+
+  - The man page has been rewritten and now includes detailed descriptions
+    and examples.
+
+  - A whole bunch of small bug fixes
+
+
+Version 2.05b:
+--------------
+
+  - Fixed a NULL pointer crash when adding "callback" tests to JavaScript
+    URLs that have a parameter with no value.
+
+  - Bug fix in the redirect callback which expected 2 responses but
+    since 2.04b actually should process 4.
+
+Version 2.04b:
+--------------
+
+  - Option -V eliminated in favor of -W / -S.
+
+  - Option -l added to limit the maximum requests per second (contributed by Sebastian Roschke)
+
+  - Option -k added to limit the maximum duration of a scan (contributed by Sebastian Roschke)
+
+  - Support for #ro, -W-; related documentation changes.
+
+  - HTTPS -> HTTP form detection.
+
+  - Added more diverse traversal and file disclosure tests (including file:// scheme tests)
+
+  - Improved injection detection in <script> sections, where a ' or "
+    is all we need to inject js code.
+
+  - Added check to see if our injection strings end up server Set-Cookie,
+    Set-Cookie2 and Content-Type reponse headers
+
+  - URLs that give us a Javascript response are now tested with a
+    "callback=" parameter to find JSONP issues.
+
+  - Fixed "response varies" bug in 404 detection where a stable page would be marked unstable.
+
+  - Bugfix to es / eg handling in dictionaries.
+
+
+Version 2.03b:
+--------------
+
+  - Fixed a minor glitch in form parsing in analysis.c, courtesy of
+    Niloufar Pahlevan Sadegh.
+
+  - Two database.c bugfixes to wordlist handler, courtesy of Shaojie Wang.
+
+Version 2.02b:
+--------------
+
+  - Fixed a minor NULL pointer crash in -Y mode.
+
+Version 2.01b:
+--------------
+
+  - Substantial improvement to SQL injection checks.
+
+  - Improvements to directory traversal checks (courtesy of Niels Heinen).
+
+  - Fix to numerical brute-force logic.
+
+  - Major improvement to directory brute force: much better
+    duplicate elimination in some webserver configurations.
+
+  - Added a check for attacker-controlled prefixes on inline responses.
+    This currently leads to UTF-7 BOM XSS, Flash, Java attacks (thanks to
+    Niels Heinen).
+
+Version 2.00b:
+--------------
+
+  - Minor bug fix to path parsing to avoid problems with /.$foo/,
+
+  - Improved PHP error detection (courtesy of Niels Heinen),
+
+  - Improved dictionary logic (courtesy of Niels Heinen) and new
+    documentation of the same,
+
+  - Improved support for file.ext keywords in the dictionary,
+
+  - Fixed missing content_checks() in unknown_check_callback()
+    (courtesy of Niels Heinen),
+
+  - Improved an oversight in dictionary case sensitivity,
+
+  - Improved pivots.txt data,
+
+  - Support for supplementary read-only dictionaries (-W +dict),
+
+  - Change to directory detection to work around a certain sneaky
+    server behavior.
+
+  - TODO: Revise dictionaries!!!
+
+Version 1.94b:
+--------------
+
+  - Proxy support! Currently only works for HTTP, put behind #ifdef 
+    PROXY_SUPPORT.
+
+  - Change to prefix() and change_prefix() macros to limit the risk of bugs.
+
+Version 1.93b:
+--------------
+
+  - Major fix to URL XSS detection logic (courtesy of Niels Heinen).
+
+Version 1.92b:
+--------------
+
+  - Reading starting URLs from file is now supported (@ prefix).
+
+Version 1.90b / 1.91b:
+----------------------
+
+  - Minor fix to pivots.txt.
+
+Version 1.89b:
+--------------
+
+  - Skipfish now saves all discovered URLs in a single file for third-party
+    tools: pivots.txt.
+
+Version 1.88b:
+--------------
+
+  - Dictionary improvements, contd.
+
+Version 1.87b:
+--------------
+
+  - Dictionary improvements.
+
+Version 1.86b:
+--------------
+
+  - HTTP auth header value changed from "basic" to "Basic" to
+    compensate for picky web frameworks.
+
+  - Minor fix to time display code.
+
+Version 1.85b:
+--------------
+
+  - Minor refinements to the content analysis module.
+
+Version 1.84b:
+--------------
+
+  - Option -S removed.
+
+Version 1.83b:
+--------------
+
+  - Minor fix to -e behavior.
+ 
+Version 1.82b:
+--------------
+
+  - NULL pointer in is_javascript() fixed.
+
+Version 1.81b:
+--------------
+
+  - Fix to numerical SQL injection detector logic.
+
+Version 1.80b:
+--------------
+
+  - New option (-e) to delete binary payloads.
+
+  - -J option is now obsolete (on by default).
+
+Version 1.79b:
+--------------
+
+  - Improvement to directory listing detector.
+
+Version 1.78b:
+--------------
+
+  - Fix to -J logic.
+
+Version 1.77b:
+--------------
+
+  - Further minor documentation and presentation tweaks.
+
+Version 1.76b:
+--------------
+
+  - Major clean-up of dictionary instructions.
+
+Version 1.75b:
+--------------
+
+  - iPhone U-A support added.
+
+Version 1.74b:
+--------------
+
+  - Non-HTTPS password form analysis added.
+
+Version 1.73b:
+--------------
+
+  - Silence some pointless compiler warnings on newer systems.
+  
+Version 1.72b:
+--------------
+
+  - Minor beautification stuff.
+
+Version 1.71b:
+--------------
+
+  - Child signatures now exposed in the report,
+
+  - Improvements to duplicate node detection,
+
+  - sfscandiff tool added to compare reports.
+
+Version 1.70b:
+--------------
+
+  - Improved SQL syntax detection slightly to avoid phone number FP.
+
+  - Removed obsolete allocator flags.
+
+Version 1.69b:
+--------------
+
+  - Minor improvements to parameter encoding, User-Agent controls.
+
+Version 1.68b:
+--------------
+
+  - Password detector improvement.
+
+Version 1.67b:
+--------------
+
+  - Improved directory detection logic.
+
+  - Some dictionary updates.
+
+Version 1.65b:
+--------------
+
+  - Relaxed MIME matching on claimed CSS/JS that fails MIME sniffing logic.
+
+  - Proper detection of @media in CSS.
+
+Version 1.64b:
+--------------
+
+  - Changed param injection check slightly to work better with WordPress.
+
+Version 1.62b:
+--------------
+
+  - Further refinements to content classifier.
+
+Version 1.60b:
+--------------
+
+  - Minor sniffer fix to better handle CSV file checks.
+
+Version 1.59b:
+--------------
+
+  - Fixed several file POI checks that depended on MIME information.
+
+Version 1.58b:
+--------------
+
+  - Descendant limit checks added.
+
+Version 1.57b:
+--------------
+
+  - Splash screen added (grr).
+
+Version 1.56b:
+--------------
+
+  - Path-based injection attacks now also carried out on file / pathinfo nodes.
+
+  - Minor bugfix to try_list logic.
+
+  - Slight tweak to form parsing to properly handle specified but empty action=
+    strings.
+
+Version 1.55b:
+--------------
+
+  - Improved 404 directory no-parse checks.
+
+Version 1.54b:
+--------------
+
+  - Improved loop detector on mappings that only look at the last path segment.
+
+Version 1.53b:
+--------------
+
+  - Slight improvement to JSON discriminator.
+
+Version 1.52b:
+--------------
+
+  - Fixed HTTP read loop after 1.48b.
+
+Version 1.51b:
+--------------
+
+  - abort() instead of exit() in several places.
+
+  - Cleaned up mem leak, incorrect use of ck_free() in IDN handling.
+
+Version 1.49b:
+--------------
+
+  - Minor improvement to the allocator,
+
+  - Several directory listing signatures added.
+
+Version 1.48b:
+--------------
+
+  - A fix to SSL handling to avoid mystery fetch failures when
+    talking to certain servers.
+
+Version 1.47b:
+--------------
+
+  - Minor tweaks around compiler warnings, etc.
+
+  - Versioned directories now in use.
+
+  - malloc_usable_size ditched in favor of djm's trick.
+
+  - Minor performance tweaks as suggested by Jeff Johnson.
+
+Version 1.46b:
+--------------
+
+  - Security: fixed a potential read past EOB in scrape_response() on
+    zero-sized payloads. Credit to Jeff Johnson.
+
+  - Removed redundant fdopen() in dictionary management,
+
+Version 1.45b:
+--------------
+
+  - Minor aesthetic tweaks to the report viewer.
+
+  - Report subnode ordering now a bit saner.
+
+Version 1.44b:
+--------------
+
+  - Significant improvement to numerical SQL injection detector.
+
+  - Minor tweak to SQL message detection rules.
+
+Version 1.43b:
+--------------
+
+  - Improvement to reduce the likelihood of crawl loops: do not
+    extract links if current page identical to parent.
+
+Version 1.42b:
+--------------
+
+  - Fix to SQL injection detection with empty parameters.
+
+Version 1.41b:
+--------------
+
+  - Logic change: if response varies, directory brute force is
+    also skipped.
+
+Version 1.40b:
+--------------
+
+  - Command-line option not to descend into 5xx directories.
+
+Version 1.39b:
+--------------
+
+  - Option to override 'Range' header from the command line.
+
+Version 1.38b:
+--------------
+
+  - Decompression now honors user-specified size limits more reliably.
+
+  - Retry logic corrected to account for certain Oracle servers.
+
+  - Terminal I/O fix for debug mode.
+
+Version 1.37b:
+--------------
+
+  - NULL ptr with -F fixed.
+
+Version 1.36b:
+--------------
+
+  - Command-line support for parameters that should not be fuzzed.
+
+  - In-flight URLs can be previewed by hitting 'return'.
+
+Version 1.35b:
+--------------
+
+  - Several new form autocomplete rules.
+
+Version 1.34b:
+--------------
+
+  - A small tweak to file / dir discriminator logic to accommodate
+    quirky frameworks.
+ 
+Version 1.33b:
+--------------
+
+  - New SQL error signature added.
+
+  - Improved tolerance for tabs in text page detector.
+
+Version 1.32b:
+--------------
+
+  - A minor fix for embedded URL auth detection.
+
+Version 1.31b:
+--------------
+
+  - Compilation with USE_COLOR commented out now works as expected.
+
+  - Fix to detect <frame> tags.
+
+Version 1.30b:
+--------------
+
+  - Support for the (rare) <button> tag in forms.
+
+  - Fixed compiler warning on some platforms.
+
+Version 1.29b:
+--------------
+
+  - Forms with no action= URL are now handled correctly.
+
+  - New option (-u) to suppress realtime info,
+
+  - Destination host displayed on stats screen.
+
+Version 1.27b:
+--------------
+
+  - Tweak to CFLAGS ordering to always enforce FORTIFY_SOURCE.
+
+  - Man page added.
+
+Version 1.26b:
+--------------
+
+  - phtml added to the dictionary.
+
+  - Yet another workaround for MALLOC_CHECK_. Grr.
+
+Version 1.25b:
+--------------
+  
+  - A limit on the number of identically named path elements added. This 
+    is a last-resort check against endless recursion (e.g., for 'subdir'
+    -> '.' symlinks).
+
+Version 1.24b:
+--------------
+
+  - XSS detection now accounts for commented out text.
+
+Version 1.23b:
+--------------
+
+  - A minor improvement to XHTML detection.
+
+  - HTML vs XHTML mismatches no longer trigger a warning.
+
+Version 1.22b:
+--------------
+
+  - URL parser now accounts for its own \.\ injection pattern.
+
+Version 1.19b:
+--------------
+
+  - New ODBC POI added.
+
+  - Apache config file detection tightened up.
+
+Version 1.18b:
+--------------
+
+  - Fix a potential NULL ptr deref with malformed Set-Cookie.
+
+  - Another last-resort HTML detection pattern added.
+
+Version 1.17b:
+--------------
+
+  - JS detector refined not to trigger on certain text/plain inputs.
+
+Version 1.16b:
+--------------
+
+  - Fixed a typo introduced in 1.16 to index.html (d'oh).
+
+  - Further refinements to Makefile CFLAGS / LIBS / LDFLAGS to keep package
+    maintainers happy.
+
+Version 1.15b:
+--------------
+
+  - Better documentation on why certain issues are not reported by skipfish.
+
+  - Another minor tweak to improve path mapping detection logic.
+
+Version 1.14b:
+--------------
+
+  - Several new wordlist entries, courtesy of Glastopf Honeypot:
+    http://glastopf.org/index.php
+
+  - A tweak to path mapping detection logic to detect certain path mappings
+    that may result in crawl loops.
+
+  - Makefile now honors external LDFLAGS, CFLAGS.
+
+  - Some more documentation tweaks and rewrites.
+
+  - PUT detection logic added.
+
+Version 1.13b:
+--------------
+
+  - Improved password, file form detection slightly.
+
+Version 1.12b:
+--------------
+
+  - Improved visibility of the KnownIssues page (reports, Makefile).
+
+  - The location of assets/ directory is now configurable.
+
+Version 1.11b:
+--------------
+
+  - SIGWINCH support: you can now cleanly resize your window while scanning.
+
+  - Typo in report category name fixed.
+
+  - Terminal color fix (for users with non-standard color themes).
+
+  - Corrected icons license (GPL -> LGPL).
+
+  - Fixed a typo in -b ffox headers.
+
+  - Fixed a potential NULL ptr deref when doing form parsing.
+
+Version 1.10b:
+--------------
+
+  - Fix to extensions-only.wl (some bad keywords removed).
+
+Version 1.09b:
+--------------
+
+  - Fix for a potential NULL ptr deref in probabilistic scan mode (<100%).
+
+Version 1.08b:
+--------------
+
+  - A minor improvement to XHTML / XML detection.
+
+Version 1.07b:
+--------------
+
+  - Several build fixes for FreeBSD, MacOS X (-I, -L paths).
+
+Version 1.06b:
+--------------
+
+  - Minor documentation updates, typos fixed, etc.
+
+Version 1.05b:
+--------------
+
+  - A more robust workaround for FORTIFY_SOURCE (MacOS X).
+
+Version 1.04b:
+--------------
+
+  - Workaround for *BSD systems with malloc J or Z options set by default
+    (0x5a5a5a5a deref after realloc()).
+
+  - A minor tweak to reject certain not-quite-URLs extracted from JS.
+
+Version 1.01b:
+--------------
+
+  - Workaround for a glitch in FORTIFY_SOURCE on Linux (causing crash
+    on startup).
+
+Version 1.00b:
+--------------
+
+  - Initial public release.

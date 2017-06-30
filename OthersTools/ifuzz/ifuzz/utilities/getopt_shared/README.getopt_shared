@@ -1,0 +1,6 @@
+Do something like...
+$make
+$LD_PRELOAD=./getopt_shared.so /path/to/suid/binary -h
+
+You will get a dump of the getopt string if the binary uses getopt.
+You can then plug that into iFUZZ mode 3.

@@ -1,0 +1,89 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "iIUYZyoanCQQTUaWsu8b+iOSPt4=",
+			"path": "github.com/gorilla/context",
+			"revision": "1ea25387ff6f684839d82767c1733ff4d4d15d0a",
+			"revisionTime": "2016-02-26T21:46:23Z"
+		},
+		{
+			"checksumSHA1": "TfZ8ulM+No3vdOTjK6qF1y9yVlI=",
+			"path": "github.com/gorilla/mux",
+			"revision": "780415097119f6f61c55475fe59b66f3c3e9ea53",
+			"revisionTime": "2016-08-01T17:00:46Z"
+		},
+		{
+			"checksumSHA1": "0YgW0+rmiIzLlvhIKlQ0s0olPg8=",
+			"path": "github.com/mattn/go-sqlite3",
+			"revision": "e5a3c16c5c1d80b24f633e68aecd6b0702786d3d",
+			"revisionTime": "2016-10-04T16:01:36Z"
+		},
+		{
+			"checksumSHA1": "GIGmSrYACByf5JDIP9ByBZksY80=",
+			"path": "golang.org/x/net/idna",
+			"revision": "075e191f18186a8ff2becaf64478e30f4545cdad",
+			"revisionTime": "2016-08-05T06:12:51Z"
+		},
+		{
+			"checksumSHA1": "NHNmSR5DggsQ15Ms7tlbgTOjHo8=",
+			"path": "menteslibres.net/gosexy/to",
+			"revision": "c20e083e31230b84ffa23c5d2fb0bc55f5292681",
+			"revisionTime": "2014-12-21T20:36:44Z"
+		},
+		{
+			"checksumSHA1": "E0ZGp3xUBhoUvetpNh7pebDFyxM=",
+			"path": "upper.io/db.v2",
+			"revision": "44486cf0b7eb94f22e3c47f7ea4e217344511d55",
+			"revisionTime": "2016-10-04T14:12:43Z"
+		},
+		{
+			"checksumSHA1": "xmdIb9FZxQZZH6PLdNPHzW+GuJI=",
+			"path": "upper.io/db.v2/internal/cache",
+			"revision": "44486cf0b7eb94f22e3c47f7ea4e217344511d55",
+			"revisionTime": "2016-10-04T14:12:43Z"
+		},
+		{
+			"checksumSHA1": "8dZt1RYgzUgPFs0xuEMn14W5aiU=",
+			"path": "upper.io/db.v2/internal/cache/hashstructure",
+			"revision": "44486cf0b7eb94f22e3c47f7ea4e217344511d55",
+			"revisionTime": "2016-10-04T14:12:43Z"
+		},
+		{
+			"path": "upper.io/db.v2/internal/logger",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "NWh0yReCRuYiBi/EYS0hY778BX8=",
+			"path": "upper.io/db.v2/internal/sqladapter",
+			"revision": "44486cf0b7eb94f22e3c47f7ea4e217344511d55",
+			"revisionTime": "2016-10-04T14:12:43Z"
+		},
+		{
+			"checksumSHA1": "PmGQXXNAU67IZjhf7y7MunJIMDQ=",
+			"path": "upper.io/db.v2/internal/sqladapter/exql",
+			"revision": "44486cf0b7eb94f22e3c47f7ea4e217344511d55",
+			"revisionTime": "2016-10-04T14:12:43Z"
+		},
+		{
+			"checksumSHA1": "9BBZRhHkGs7jb3Yozyyri/+NHCg=",
+			"path": "upper.io/db.v2/lib/reflectx",
+			"revision": "44486cf0b7eb94f22e3c47f7ea4e217344511d55",
+			"revisionTime": "2016-10-04T14:12:43Z"
+		},
+		{
+			"checksumSHA1": "CVK7UW5Wf3ju5Jf+tpEa7YOvePk=",
+			"path": "upper.io/db.v2/lib/sqlbuilder",
+			"revision": "44486cf0b7eb94f22e3c47f7ea4e217344511d55",
+			"revisionTime": "2016-10-04T14:12:43Z"
+		},
+		{
+			"checksumSHA1": "LCKL4uqGgxTJ1wI9q76+GYEoLWI=",
+			"path": "upper.io/db.v2/sqlite",
+			"revision": "44486cf0b7eb94f22e3c47f7ea4e217344511d55",
+			"revisionTime": "2016-10-04T14:12:43Z"
+		}
+	],
+	"rootPath": "github.com/malfunkt/hyperfox"
+}

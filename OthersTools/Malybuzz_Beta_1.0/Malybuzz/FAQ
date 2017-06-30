@@ -1,0 +1,119 @@
+##################
+#  Malybuzz FAQ  #
+##################
+
+First of all,remember this is not a full explained manual,it's only a document with some basic questions
+and answers...So,enjoy it!:)
+
+
+--------------------------
+
+- Where's the user manual?
+
+	Sorry,I'm very slow translating,but perhaps in some years it will be ready;)
+
+--------------------------
+
+- Then,how can I use this tool?
+
+	Is it not enough with './Malybuzz.py -h'?
+
+--------------------------
+
+- Noooooooo!!!
+
+	Ok,ok,then,continue reading...
+
+--------------------------
+
+- What protocols can I fuzz?
+
+	This fuzzer is focused on TCP/UDP protocols,and nowadays the only
+developed protocols are FTP(TCP) and SIP(UDP).
+
+--------------------------
+
+- How can I launch the fuzzing session?
+
+	The general syntax is:
+
+		./Malybuzz.py target_host tcp|udp protocol_to_fuzz
+
+	This is an example for the SIP protocol:
+
+		./Malybuzz.py 192.168.0.25 udp sip
+
+	But this is the default way,this won't fuzz anything,it's only a sample.This is
+based on the 'sip.xml' template file of the Protocols/Specifications/UDP/sip folder.
+In this folder there are some useful samples,like 'inviteFuzzingLength.xml' and
+'inviteTest.xml'.To create your own fuzzing test you must make a copy of the templates and
+samples and modify them.Once you've done it you can launch the test as follows:
+
+		./Malybuzz 192.168.0.25 udp sip -xc Protocols/Specifications/UDP/myOwnSIPFuzzing.xml
+
+	Also,by default,the first command which is sent in SIP fuzzing sessions is the CANCEL command.
+Perhaps I'll change this in the next release,but at this moment you must add '-f INVITE' if you want
+to obtain some vaild communications with the SIP application(if you want,you can modify the responses protocol
+file 'sip_states.xml' too).So...
+
+		./Malybuzz 192.168.0.25 udp sip -xc Protocols/Specifications/UDP/myOwnSIPFuzzing.xml -f INVITE
+
+	An FTP example can be the following:
+
+		./Malybuzz 192.168.0.25 tcp ftp -xc Protocols/Specifications/TCP/ftp/ftpTest.xml -b
+
+	The -b option must be added if the application returns a banner message when it receives a connection.
+
+--------------------------
+
+- If I want to do the same fuzzing tests against various targets,do I have to generate the same commands all
+the time?
+
+	No,you can generate the commands with the '-g' option:
+
+		./Malybuzz.py 192.168.0.25 udp sip -g Protocols/Specifications/UDP/sip/inviteTest.xml mySIPCommands
+
+This will create some fixed tests in the Restore/Commands/mySIPCommands[date]@[time] folder which you can use
+with the '-o' parameter as follows,gaining some time:
+
+		./Malybuzz.py 192.168.0.25 udp sip -o Restore/Commands/mySIPCommands2007-10-21@23:39:11/mySIPCommands
+
+		./Malybuzz.py 192.168.0.30 udp sip -o Restore/Commands/mySIPCommands2007-10-21@23:39:11/mySIPCommands
+
+
+- But,what happens if I must shutdown the computer before the fuzzing session has finished?The next time,will
+the session be started from the beginning?
+
+	No,you can specify that you want to store the session when it's aborted adding the '-k' parameter,and Malybuzz
+will copy your fuzzing point in the 'Restore' folder.After that,you will be able to resume it with the '-z'
+option:
+
+		./Malybuzz 192.168.0.25 udp sip -xc Protocols/Specifications/UDP/myOwnSIPFuzzing.xml -f INVITE -k
+
+		./Malybuzz -z Restore/192.168.0.25_sip2007-10-21@23:46:08
+
+--------------------------
+
+- This tool is sooooo baaaaad...I obtain a lot of timeouts and this doesn't run like it's supposed to do.
+
+	Ok,be quiet...this is not a magic wand.The fuzzing effectivity depends on the target application and the
+fuzzing configuration.You must understand the application behaviour and set some values to the different available
+timeouts (t1,t2 and t3).Perhaps you have to modify the responses protocol XML file too,in order to trace an specific
+communication line(send Y command when it receives X response,for example).The timeouts configuration can be done easily,
+but the other one is a bit more complex.I promise I will create a document to explain it,but until this happens you can do
+a little research job and do it yourself;)
+
+--------------------------
+
+- Ok,but how can I configure a fuzzing session?what types of fuzzing can I do?
+
+	Like I've said,if you want to do your own tests you must copy and modify the base protocol file.You can mark the commands
+and fields to be sent with the attribute 'send' set to 'yes',and specify that you want to fuzz them with the attribute
+'fuzzing'.The possible values for this attribute are 'overflow','formatString','badString','badNumber','badPath','badIp',
+'badHost','repeat','sql' and 'binary'.You can set more than one fuzzing type by separating them with commas.A little example:
+
+		<global-arg name="URI_PROTO" type="text" send="yes" fuzzing="overflow,badString">sip:</global-arg>	
+
+This is the most simple configuration,a more advanced explanation will be given in the user manual I plan to write.Be patient!;)
+
+--------------------------

@@ -1,0 +1,6 @@
+*.swp
+*.db
+hyperfox
+certs/
+bin/
+vendor/*/

@@ -1,0 +1,180 @@
+<!-- FTP Fuzzing Specification-->
+
+<!-- Delimiters between values and arguments must be defined in the last character of each element.-->
+<!-- The order of the commands in this file is the order to send them. Important to do the fuzzing correctly. -->
+<!-- Possible fuzzings: "overflow","formatString","badString","badNumber","badPath","badIp","badHost","repeat","sql","binary" -->
+<!-- Xml variables: 'REMOTE_ADDRESS','REMOTE_PORT','LOCAL_ADDRESS','LOCAL_PORT','TRANSPORT_PROTOCOL','APP_PROTOCOL','ACTUAL_COMMAND' -->
+<!-- Xml functions: 'SIZE' -->
+<protocol>
+<port>21</port>
+<commands>
+	<end-command>CRLF</end-command>
+	<!-- Minimum commands -->
+	<com send="yes" id="1">
+		<!-- USER <SP> <username> <CRLF> -->
+		<com-name type="text" fuzzing="overflow,badString,formatString">USER </com-name>
+		<arg type="text" fuzzing="overflow,badString,formatString">anonymous</arg>
+	</com>
+	<com send="yes" id="2">
+		<!-- PASS <SP> <password> <CRLF> -->	
+		<com-name type="text">PASS </com-name>
+		<arg type="text" fuzzing="overflow,badString,formatString">anonymous</arg>
+	</com>
+	<com send="yes" id="3">
+		<!-- PORT <SP> <host-port> <CRLF> -->
+		<com-name type="text" fuzzing="overflow,badString,formatString">PORT </com-name>
+		<!-- port 32030 -->
+		<arg type="text" fuzzing="overflow,badString,badNumber">172,</arg>
+		<arg type="text">21,</arg>
+		<arg type="text">1,</arg>
+		<arg type="text" fuzzing="overflow,badString,badNumber">148,</arg>
+		<arg type="text" fuzzing="overflow,badString,badNumber">125,</arg>
+		<arg type="text" fuzzing="overflow,badString,badNumber">30</arg>
+	</com>
+	<com send="yes" id="4">
+		<!-- LIST [<SP> <pathcom-name>] <CRLF> -->
+		<com-name type="text" fuzzing="overflow,badString,formatString">LIST </com-name>
+		<arg type="text" fuzzing="overflow,badString,formatString,badPath">.</arg>
+	</com>
+	<com send="yes" id="5">
+		<!-- RETR <SP> <pathcom-name> <CRLF> -->
+		<com-name type="text">RETR </com-name>
+		<arg type="text" fuzzing="overflow,badString,formatString,badPath">file.txt</arg>
+	</com>
+	<com send="no" id="6">
+		<!-- STOR <SP> <pathcom-name> <CRLF> -->
+		<com-name type="text">STOR </com-name>
+		<arg type="text">file.txt</arg>
+	</com>
+	<com send="yes" id="7">
+		<!-- QUIT <CRLF> -->
+		<com-name type="text">QUIT</com-name>
+	</com>
+	<com send="no" id="8">
+		<!-- TYPE <SP> <type-code> <CRLF> -->
+		<com-name type="text">TYPE </com-name>
+		<arg type="text" comment="Values: A|E|I">A</arg>
+	</com>
+	<com send="no" id="9">
+		<!-- MODE <SP> <mode-code> <CRLF> -->
+		<com-name type="text">MODE </com-name>
+		<arg type="text" comment="Values: S|B|C">S</arg>
+	</com>
+	<com send="no" id="10">
+		<!-- STRU <SP> <structure-code> <CRLF> -->
+		<com-name type="text">STRU </com-name>
+		<arg type="text" comment="Values: F|R|P">F</arg>
+	</com>
+	<com send="no" id="11">
+		<!-- NOOP <CRLF> -->
+		<com-name type="text">NOOP</com-name>
+	</com>
+	<!-- Extended commands -->
+	<com send="no" id="12">
+		<!-- PASV <CRLF> -->
+		<com-name type="text">PASV</com-name>
+	</com>
+	<com send="no" id="13">
+		<!-- ACCT <SP> <account-information> <CRLF> -->
+		<com-name type="text">ACCT </com-name>
+	</com>
+	<com send="no" id="14">
+		<!-- CDUP <CRLF> -->
+		<com-name type="text">CDUP</com-name>
+	</com>
+	<com send="no" id="15">
+		<!-- SMNT <SP> <pathcom-name> <CRLF> -->
+		<com-name type="text">SMNT </com-name>
+		<arg type="text">file.txt</arg>
+	</com>
+	<com send="no" id="16">
+		<!-- APPE <SP> <pathcom-name> <CRLF> -->
+		<!-- Appends data to an existing file or creates it -->
+		<com-name type="text">APPE </com-name>
+		<arg type="text">file.txt</arg>
+	</com>
+	<com send="no" id="17">
+		<!-- ALLO <SP> <decimal-integer>
+                [<SP> R <SP> <decimal-integer>] <CRLF> -->
+		<com-name type="text">ALLO </com-name>
+		<arg type="integer">1000 </arg>
+		<arg type="text">R </arg>
+		<arg type="integer">1000</arg>
+	</com>
+	<com send="no" id="18">
+		<!-- REST <SP> <marker> <CRLF> -->
+		<com-name type="text">REST </com-name>
+		<arg type="integer">marker</arg>
+	</com>
+	<com send="no" id="19">
+		<!-- RNFR <SP> <pathcom-name> <CRLF> -->
+		<com-name type="text">RNFR </com-name>
+		<arg type="text">file.txt</arg>
+	</com>
+	<com send="no" id="20">
+		<!-- RNTO <SP> <pathcom-name> <CRLF> -->
+		<com-name type="text">RNTO </com-name>
+		<arg type="text">file2.txt</arg>
+	</com>
+	<com send="no" id="21">
+		<!-- ABOR <CRLF> -->
+		<com-name type="text">ABOR</com-name>
+	</com>
+	<com send="no" id="22">
+		<!-- DELE <SP> <pathcom-name> <CRLF> -->
+		<com-name type="text">DELE </com-name>
+		<arg type="text">file.txt</arg>
+	</com>
+	<com send="no" id="23">
+		<!-- RMD  <SP> <pathcom-name> <CRLF> -->
+		<com-name type="text">RMD </com-name>
+		<arg type="text">directory</arg>
+	</com>
+	<com send="no" id="24">
+		<!-- MKD  <SP> <pathcom-name> <CRLF> -->
+		<com-name type="text">MKD </com-name>
+		<arg type="text">directory</arg>
+	</com>
+	<com send="no" id="25">
+		<!-- PWD  <CRLF> -->
+		<com-name type="text">PWD</com-name>
+	</com>
+	<com send="no" id="26">
+		<!-- NLST [<SP> <pathcom-name>] <CRLF> -->
+		<com-name type="text">NLST </com-name>
+		<arg type="text">.</arg>
+	</com>
+	<com send="no" id="27">
+		<!-- SITE <SP> <string> <CRLF> -->
+		<com-name type="text">SITE </com-name>
+		<arg type="text">command</arg>
+	</com>
+	<com send="no" id="28">
+		<!-- SYST <CRLF> -->
+		<com-name type="text">SYST</com-name>
+	</com>
+	<com send="no" id="29">
+		<!-- STAT [<SP> <pathcom-name>] <CRLF> -->
+		<com-name type="text">STAT </com-name>
+		<arg type="text">directory</arg>
+	</com>
+	<com send="no" id="30">
+		<!-- HELP [<SP> <string>] <CRLF> -->
+		<com-name type="text">HELP </com-name>
+		<arg type="text">command</arg>
+	</com>
+	<com send="no" id="31">
+		<!-- CWD  <SP> <pathcom-name> <CRLF> -->
+		<com-name type="text">CWD </com-name>
+		<arg type="text">directory</arg>
+	</com>
+	<com send="no" id="32">
+		<!-- REIN <CRLF> -->
+		<com-name type="text">REIN</com-name>
+	</com>
+	<com send="no" id="33">
+		<!-- STOU <CRLF> -->
+		<com-name type="text">STOU</com-name>
+	</com>
+</commands>
+</protocol>

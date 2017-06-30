@@ -1,0 +1,89 @@
+# Copyright (C) 2008, Bertrand Mesot <http://www.objectif-securite.ch>
+#	 	2008, Cedric Tissieres <http://www.objectif-securite.ch>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-13, USA
+
+TEMPLATE = app
+CONFIG += warn_on release @HAVE_DEBUG_TRUE@debug
+
+TARGET = ophcrack
+DESTDIR = ..
+
+INCLUDEPATH += ../core ../samdump2 ../ntproba
+
+ARCHIVES = \
+  ../core/libophcrack.a \
+  ../samdump2/libsamdump2.a \
+  ../ntproba/libntproba.a
+
+PRE_TARGETDEPS += $$ARCHIVES
+LIBS += $$ARCHIVES @LDFLAGS@ @LIBS@ @QWT_LDFLAGS@ @QWT_LIBS@
+
+QMAKE_CC = @CC@
+QMAKE_CXX = @CXX@
+QMAKE_LINK = @CXX@
+
+QMAKE_CFLAGS += @CFLAGS@
+QMAKE_CXXFLAGS += @CXXFLAGS@ @QWT_INCLUDES@
+
+# Input
+
+HEADERS += ui_ophcrackgui.h \
+           ophcrackgui.h \
+           hashmodel.h \
+           tablemodel.h \
+           progdelegate.h \
+           ui_tabledialog.h \
+           tabledialog.h \
+           singlehashdialog.h \
+           hashview.h \
+           aboutdialog.h \
+           helpdialog.h \
+@HAVE_QWT_TRUE@           graphdialog.h \
+@HAVE_QWT_TRUE@           histogram_item.h \
+           exportdialog.h
+
+FORMS += ophcrackgui.ui \
+         tabledialog.ui \
+         singlehashdialog.ui \
+         aboutdialog.ui \
+         helpdialog.ui \
+@HAVE_QWT_TRUE@         graphdialog.ui \
+         exportdialog.ui
+
+SOURCES += main.cpp \
+           ophcrackgui.cpp \
+           hashmodel.cpp \
+           tablemodel.cpp \
+           progdelegate.cpp \
+           tabledialog.cpp \
+           singlehashdialog.cpp \
+           hashview.cpp \
+           aboutdialog.cpp \
+           helpdialog.cpp \
+@HAVE_QWT_TRUE@           graphdialog.cpp \
+@HAVE_QWT_TRUE@           histogram_item.cpp \
+           exportdialog.cpp
+
+RESOURCES += gui.qrc
+
+RC_FILE += ophcrack_win32.rc
+
+mac {
+    ICON = ophcrack.icns
+    QMAKE_INFO_PLIST = Info.plist
+}
+
+win32:QMAKE_LFLAGS += -Wl,--allow-multiple-definition

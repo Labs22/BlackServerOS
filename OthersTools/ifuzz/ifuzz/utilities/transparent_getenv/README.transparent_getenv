@@ -1,0 +1,57 @@
+
+ripoff of david aitels sharefuzz. just a little friendlier for tweaking options.
+
+
+Do something like...
+$make
+$LD_PRELOAD=./transparent_getenv.so /path/to/suid/binary args
+
+It will automatically fuzz the environment variables or give unmolested
+values from the current environment depending on how you have configured 
+the array in the .c file.
+
+
+
+
+Some notes for different platforms that may or may not work for you...
+GNU ld is assumed.
+I have not tested all of these, and some are actually a bitch to get
+working properly.  please send me your results when testing these out.
+
+IRIX
+To make a mips2 compatible shared object:
+	make mips2
+To make a mips3 compatible shared object (or whatever is standard)
+	make
+To load any shared object: _RLD_LIST=<object>:DEFAULT <program>
+
+
+Solaris
+To build:
+	make
+To load any shared object: LD_PRELOAD=<object> <program>
+
+
+HP-UX 
+Requires a patch for LD_PRELOAD functionality
+To build:
+	make
+To load any shared object: LD_PRELOAD=<object> <program>
+
+Linux
+To build:
+        make
+To load any shared object: LD_PRELOAD=<object> <program>
+
+
+AIX
+AIX does not support this or the version tested did not have up to date patches to support it so you're on your own.
+
+TRU64
+To build:
+        make
+To load any shared object: RLD_LIST=<object>:DEFAULT <program>
+
+
+
+

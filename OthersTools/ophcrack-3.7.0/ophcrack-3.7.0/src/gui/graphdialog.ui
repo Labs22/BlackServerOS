@@ -1,0 +1,87 @@
+<ui version="4.0" >
+ <class>GraphDialog</class>
+ <widget class="QDialog" name="GraphDialog" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>740</width>
+    <height>602</height>
+   </rect>
+  </property>
+  <property name="minimumSize" >
+   <size>
+    <width>400</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="windowTitle" >
+   <string>Graph</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset>
+    <normaloff>pixmaps/os_icon.png</normaloff>pixmaps/os_icon.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout" >
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout" >
+     <item>
+      <widget class="QwtPlot" name="categoryPlot" />
+     </item>
+     <item>
+      <widget class="QwtPlot" name="lengthPlot" />
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="label" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text" >
+      <string>0: empty / 1: single-case alpha / 2: single-case alphanum / 3: mixed-case alpha / 4: mixed-case alphanum / 5: special char</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QwtPlot" name="timePlot" />
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox" >
+     <property name="standardButtons" >
+      <set>QDialogButtonBox::Close</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QwtPlot</class>
+   <extends>QFrame</extends>
+   <header>qwt_plot.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>GraphDialog</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>321</x>
+     <y>438</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>321</x>
+     <y>230</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

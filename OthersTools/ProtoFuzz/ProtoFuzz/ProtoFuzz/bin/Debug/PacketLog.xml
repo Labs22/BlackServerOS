@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<PacketLog>
+  <LogData>
+    <UserName>michael.sutton</UserName>
+    <MachineName>MSUTTONLAP</MachineName>
+    <CLRVersion>2.0.50727.42</CLRVersion>
+    <StartDate>Monday, October 23, 2006</StartDate>
+    <StartTime>12:07:57 AM</StartTime>
+  </LogData>
+  <Packet>
+    <PacketData>
+      <ArrivalDate>Monday, October 23, 2006</ArrivalDate>
+      <ArrivalTime>12:07:57 AM</ArrivalTime>
+    </PacketData>
+    <EthernetHeader>
+      <SourceMAC>00-15-C5-3F-C6-F</SourceMAC>
+      <DestinationMAC>00-13-49-25-D5-72</DestinationMAC>
+      <NetworkProtocol>IP</NetworkProtocol>
+    </EthernetHeader>
+    <IpV4Header>
+      <SourceAddress>192.168.1.103</SourceAddress>
+      <DestinationAddress>216.239.37.99</DestinationAddress>
+      <TransportProtocol>Tcp</TransportProtocol>
+      <TimeToLive>128</TimeToLive>
+      <Identification>9693</Identification>
+      <Checksum>5265</Checksum>
+      <IpLengthFields>
+        <TotalLength>40 bytes</TotalLength>
+        <HeaderLength>20 bytes</HeaderLength>
+        <OptionsLength>0 bytes</OptionsLength>
+        <PaddingLength>0 bytes</PaddingLength>
+        <DataLength>20 bytes</DataLength>
+      </IpLengthFields>
+      <Fragmentation>
+        <Fragments>0</Fragments>
+        <DontFragment>True</DontFragment>
+        <MoreFragments>False</MoreFragments>
+        <Offset>0</Offset>
+      </Fragmentation>
+      <TypeOfService>
+        <Precedence>Routine</Precedence>
+        <Delay>Normal</Delay>
+        <Reliability>Normal</Reliability>
+        <Throughput>Normal</Throughput>
+      </TypeOfService>
+    </IpV4Header>
+    <TcpHeader>
+      <SourcePort>4986</SourcePort>
+      <DestinationPort>80</DestinationPort>
+      <SequenceNumber>2738116774</SequenceNumber>
+      <AcknowledgmentNumber>194171326</AcknowledgmentNumber>
+      <Window>65535</Window>
+      <UrgentPointer>0</UrgentPointer>
+      <Checksum>637</Checksum>
+      <TcpLengthFields>
+        <TotalLength>20 bytes</TotalLength>
+        <HeaderLength>20 bytes</HeaderLength>
+        <PaddingLength>0 bytes</PaddingLength>
+        <DataLength>0 bytes</DataLength>
+      </TcpLengthFields>
+      <Flags>
+        <ACK>True</ACK>
+        <FIN>False</FIN>
+        <PSH>False</PSH>
+        <RST>False</RST>
+        <SYN>False</SYN>
+        <URG>False</URG>
+      </Flags>
+    </TcpHeader>
+  </Packet>
+</PacketLog>ketLog>cketLog>mentSize</Type>
+          <Length>4 bytes</Length>
+          <MaximumSegmentSize>46085</MaximumSegmentSize>
+        </Option>
+        <Option>
+          <Type>NoOperation</Type>
+          <Length>1 bytes</Length>
+        </Option>
+        <Option>
+          <Type>NoOperation</Type>
+          <Length>1 bytes</Length>
+        </Option>
+        <Option>
+          <Type>4</Type>
+          <Length>2 bytes</Length>
+        </Option>
+      </TcpOptions>
+    </TcpHeader>
+  </Packet>
+</PacketLog>

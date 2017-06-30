@@ -1,0 +1,144 @@
+v 3.7.0 - (feature) better preloading strategy
+	- (feature) Compilation chain refactored
+	- (feature) improved cracking speed in case of mixed preloading	(memory & disk)
+	- (fix) removed non-working pwdump6 related functions
+	- (fix) correct memory calculation on windows
+	
+v 3.6.1 - (fix) compatibility with openssl 1.1.0
+	
+v 3.6.0 - (fix) rewrite of probabilistic support
+	- (feature) new preload policy (priority on index + bin)
+	- (fix) Debian patches applied (FreeBSD)
+
+v 3.5.0 - (feature) support of probabilistic tables
+	
+v 3.4.1 - (feature) new vista_specialxl support
+
+v 3.4.0 - (feature) new lm_flash tables support
+	- (feature) new vista_eightxl support
+	- (feature) dump of the password with samdump2 on a live
+	  system to avoid code injection
+	- (fix) support of special characters in usernames
+	- (fix) bug in file output (thanks to pkasza)
+	
+v 3.3.1 - (feature) possibility to export to a specific CSV in cmd-line
+	- (fix) int overflow on 32 bits platforms
+	- (fix) default share name modified for pwdump
+	- (fix) hide username in CSV output
+	
+v 3.3.0 - (feature) new vista_seven tables support
+	- (feature) tables size verification
+	- (feature) switch to control the preloading
+	- (fix) bug fix to avoid division by zero with unknown table
+	- (fix) LARGEFILE flags set in the Makefile explicitely
+	- (fix) memory leak in regex
+	- (fix) small fixes in configure (thanks to Adam Miller)
+	
+v 3.2.1 - (feature) new vista_num tables support
+	- (feature) Qt and Qwt upgraded
+	- (fix) 2GB limitation removed on 32-bits architectures
+	- (fix) Windows memory detection overflow
+	
+v 3.2.0 - (feature) new vista_eight tables support
+	- (feature) graphs display with libqwt
+	- (feature) audit mode (no sensitive info displayed)
+	- (feature) export to CSV (not possible to load back)
+	- (fix) integer overflow with big tables
+	- (fix) calculation of cmin and cmax with long chains
+	
+v 3.1.0 - (feature) new vista_nine tables support
+	- (feature) usernames can be hidden
+	- (feature) bruteforce is much faster now
+	- (feature) platform detection in configure
+	- (feature) pwdump6 updated to 1.7.2
+	- (fix) code improved on Solaris (thanks to Jens Elkner)
+	- (fix) code improved on Mac OS X (thanks to Cedric Luethi)
+	- (fix) SSL detection improved
+	- (fix) list functions renamed
+	
+v 3.0.1 - (fix) bug in configure for qmake > 4.3
+	- (feature) Support for mac os x (--enable-osx in configure)
+	- (fix) Various minor fixes related to Mac OS X compilation
+	
+v 3.0	- (feature) multithreading
+	- (feature) bruteforce
+	- (feature) command line version
+	- (feature) GUI in Qt
+	- (feature) support of simultaneous tables sets
+	- (feature) session saving
+	- (feature) new vista tables
+	- (feature) lots of new other features...
+
+
+v 2.4.1 - (fix) bug in loading SAM and SYSTEM on Unix
+	- (feature) windows dir is given in argument on the LiveCD
+	
+v 2.4   - (feature) crack accented characters that map to ASCII
+	- (feature) shortcut to delete hashes (delete key)
+	- (feature) case insensitivity for loading SAM and SYSTEM on Unix
+	- (feature) remote files in file dialog
+	- (fix) bug in save file 
+
+v 2.3.4 - (feature) Vista support
+	- (feature) bkhive 1.1.0 (see its own Changelog)
+	- (feature) samdump2 1.1.0 (see its own Changelog)
+	- (feature) support for cracking german LM hashes
+	- (feature) easier to change tables on the livecd
+	- (fix) problems in counting cracked/non-cracked hashes
+	- (fix) tables configuration file	
+	
+v 2.3.3 - (feature) bkhive2 instead of bkhive (more stable)
+	- (feature) auto-save last tables used
+	- (fix) error message when no tables found
+
+v 2.3.2 - (fix) bug in bkhive (thanks to Louis Schlesinger)
+	- (fix) bug in pwdump6 when launched locally (thanks to Fizzgig)
+	- (fix) bug in display when pre-loading table
+	- (fix) patch for FreeBSD and Mac OS X
+	
+v 2.3.1 - (feature) fit screen if the resolution is too small
+	- (fix) livecd bug
+	- (fix) performance improvement in make_redux.c
+
+v 2.3	- (feature) support for cracking of NTLM hashes ( length<6: alphanum
+	+33 special chars / length=7: alphanum (lowercase + uppercase) / 
+	length=8: alphanum (lowercase only))
+	- (feature) auto-detection of tables type
+	- (feature) preload of the tables with Windows (makes the
+	cracking process much faster)
+	- (feature) support of pwdump6 instead of pwdump2/pwdump4 to avoid
+	LSASS crash (Win32 only)
+	- (feature) replacement of the binary search by a linear search
+	- (feature) support of Mac OS X (Intel CPU only) thanks to Cedric Luthi
+	- (feature) status bar is more explicit than before
+	- (feature) help menu added 
+	- (fix) configure script improved (thanks to Cedric Luthi)
+	- (fix) loading files containing many hashes are better handled
+	- (fix) some memory leaks fixed
+	- (fix) handling of special characters in username improved
+	- (fix) few smaller bugs
+	
+v 2.2  - (feature) support of the new table set (alphanum + 33 special 
+	chars - WS-20k)
+       - (feature) easier configuration for the table set (tables.cfg)
+       - (feature) automatic definition of the number of tables to use
+	at the same time (batch_tables) by queriying the system for the
+	size of the memory
+       - (feature) speed-up in tables reading
+       - (feature) cleaning of the memory to make place for table 
+	readahead (linux version only)
+       - (feature) improved installer for windows version
+       - (fix) change of the default share for pwdump4 (ADMIN$)
+	
+v 2.1  - (feature) tables button for changing the tables parameters
+       - (feature) add single hash function
+       - (feature) delete single hash function
+       - (feature) change of the Load menu (linux version especially)
+       - (feature) tables readahead (linux version only)
+       - (fix) close the files when stop toggled
+       - (fix) handles directories with spaces in their name for SAM location
+	
+v 2.0  - added GTK GUI
+       - added hash dumping using bkhive for encrypted hashes, pwdump2 
+         for local hashes and pwdump4 for remote hashes
+

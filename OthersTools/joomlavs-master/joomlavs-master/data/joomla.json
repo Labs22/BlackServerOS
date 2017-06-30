@@ -1,0 +1,585 @@
+[
+  {
+    "title": "Joomla Akeeba Kickstart Unserialize Remote Code Execution",
+    "edbid": 35033,
+    "cveid": "2014-7228",
+    "date": "2014-10-21",
+    "ranges": [
+      {
+        "introduced_in": 1,
+        "fixed_in": "2.5.26"
+      },
+      {
+        "introduced_in": 3,
+        "fixed_in": "3.2.6"
+      },
+      {
+        "introduced_in": "3.3.0",
+        "fixed_in": "3.3.5"
+      }
+    ],
+    "fixed_in": "3.3.5"
+  },
+  {
+    "title": "Joomla 3.2.1 - SQL Injection Vulnerability",
+    "edbid": 31459,
+    "date": "2014-02-05",
+    "introduced_in": "3.2.1",
+    "fixed_in": "3.2.2"
+  },
+  {
+    "title": "Joomla Media Manager File Upload Vulnerability",
+    "edbid": 27610,
+    "cveid": "2013-5576",
+    "date": "2013-08-15",
+    "fixed_in": "3.1.5",
+    "ranges": [
+      {
+        "introduced_in": "2.5",
+        "fixed_in": "2.5.14"
+      },
+      {
+        "introduced_in": "3",
+        "fixed_in": "3.1.5"
+      }
+    ]
+  },
+  {
+    "title": "Joomla! <= 3.0.3 (remember.php) - PHP Object Injection Vulnerability",
+    "edbid": 25087,
+    "cveid": "2013-3242",
+    "fixed_in": "3.0.4",
+    "date": "2013-04-26",
+    "ranges": [
+      {
+        "introduced_in": 3,
+        "fixed_in": "3.0.4"
+      },
+      {
+        "introduced_in": 2.5,
+        "fixed_in": "2.5.10"
+      }
+    ]
+  },
+  {
+    "title": "Joomla! <= 3.0.2 (highlight.php) PHP Object Injection Vulnerability",
+    "edbid": 24551,
+    "cveid": "2013-1453",
+    "fixed_in": "2.5.9",
+    "date": "2013-02-27",
+    "ranges": [
+      {
+        "introduced_in": 3,
+        "fixed_in": "3.0.3"
+      },
+      {
+        "introduced_in": 2.5,
+        "fixed_in": "2.5.9"
+      }
+    ]
+  },
+  {
+    "title": "Joomla! CMS 1.5 beta 2 (search) Remote Code Execution Vulnerability",
+    "edbid": 4212,
+    "date": "2007-07-22",
+    "introduced_in": "1.5",
+    "fixed_in": "1.5.1"
+  },
+  {
+    "title": "Joomla! 1.0.13 - Search Component SearchWord Cross-Site Scripting Vulnerability",
+    "edbid": 30655,
+    "date": "2007-10-11",
+    "introduced_in": "1.0.13",
+    "fixed_in": "1.0.14"
+  },
+  {
+    "title": "Joomla 1.5 RC3 com_search Component - index.php Multiple Parameter SQL Injection",
+    "edbid": 30849,
+    "date": "2007-12-05",
+    "introduced_in": "1.5",
+    "fixed_in": "1.5.1"
+  },
+  {
+    "title": "Joomla 1.0.x - 'ordering' Parameter Cross-Site Scripting Vulnerability",
+    "edbid": 35167,
+    "date": "2011-01-06",
+    "introduced_in": "1.0.x",
+    "fixed_in": "1.1"
+  },
+  {
+    "title": "Joomla! 1.5 Beta1/Beta2/RC1 - Remote SQL Injection Exploit",
+    "edbid": 4350,
+    "date": "2007-09-01",
+    "introduced_in": "1.5",
+    "fixed_in": "1.5.1"
+  },
+  {
+    "title": "Joomla Component com_content 1.0.0 (ItemID) SQL Injection Vuln",
+    "edbid": 6025,
+    "date": "2008-07-08",
+    "introduced_in": "1.0.0",
+    "fixed_in": "1.0.1"
+  },
+  {
+    "title": "joomla simple file lister module <= 1.0 - Directory Traversal Vulnerability",
+    "edbid": 17736,
+    "date": "2011-08-28",
+    "fixed_in": "1.0.1"
+  },
+  {
+    "title": "Joomla 1.5 RC3 com_content index.php view Parameter SQL Injection",
+    "edbid": 30848,
+    "date": "2007-12-05",
+    "introduced_in": "1.5",
+    "fixed_in": "1.5.1"
+  },
+  {
+    "title": "Joomla! 1.5.x - Cross-Site Scripting and Information Disclosure Vulnerabilities",
+    "edbid": 33061,
+    "date": "2009-06-01",
+    "introduced_in": "1.5",
+    "fixed_in": "1.6"
+  },
+  {
+    "title": "Joomla 1.6.3 - CSRF Exploit",
+    "edbid": 17496,
+    "date": "2011-07-06",
+    "introduced_in": "1.6.3",
+    "fixed_in": "2"
+  },
+  {
+    "title": "Joomla! CMS 1.6.3 Multiple Cross Site Scripting Vulnerabilities",
+    "edbid": 35894,
+    "date": "2011-06-28",
+    "introduced_in": "1.6.3",
+    "fixed_in": "2"
+  },
+  {
+    "title": "Joomla! 1.5.x - Multiple Modules 'search' Parameter Cross-Site Scripting Vulnerabilities",
+    "edbid": 34056,
+    "date": "2010-05-28",
+    "introduced_in": "1.5",
+    "fixed_in": "1.5.1"
+  },
+  {
+    "title": "Joomla Redirect Component 1.5.19 - 'com_redirect' Local File Include Vulnerability",
+    "edbid": 35097,
+    "date": "2010-12-13",
+    "introduced_in": "1.5.19",
+    "fixed_in": "2"
+  },
+  {
+    "title": "Joomla! 1.7.0 and Prior Multiple Cross Site Scripting Vulnerabilities",
+    "edbid": 36176,
+    "date": "2011-09-29",
+    "fixed_in": "1.7.1"
+  },
+  {
+    "title": "Joomla_1.6.0-Alpha2 - XSS Vulnerabilities",
+    "edbid": 12489,
+    "date": "2010-05-03",
+    "introduced_in": "1.6.0",
+    "fixed_in": "1.6.1"
+  },
+  {
+    "title": "Joomla! Spam Mail Relay Vulnerability",
+    "edbid": 15979,
+    "date": "2011-01-12",
+    "introduced_in": "1.5.22",
+    "fixed_in": "1.6.1"
+  },
+  {
+    "title": "Joomla 1.5.0 Beta (pcltar.php) Remote File Inclusion Vulnerability",
+    "edbid": 3781,
+    "cveid": "2007-2199",
+    "date": "2007-04-23",
+    "introduced_in": 1.5,
+    "fixed_in": "1.5.1"
+  },
+  {
+    "title": "Joomla <= 1.5.8 (xstandard editor) Local Directory Traversal Vulnerability",
+    "edbid": 7691,
+    "cveid": "2009-0113",
+    "date": "2009-01-07",
+    "fixed_in": "1.5.9"
+  },
+  {
+    "title": "Joomla 1.5.12 - tinybrowser Remote File Upload/Execute Vulnerability",
+    "edbid": 9926,
+    "cveid": "2011-4908",
+    "date": "2009-07-22",
+    "introduced_in": "1.5.12",
+    "fixed_in": "1.5.13"
+  },
+  {
+    "title": "Joomla! 1.5 & 1.6 - JFilterInput XSS Bypass",
+    "edbid": 16091,
+    "date": "2011-02-01",
+    "introduced_in": "1.5.22",
+    "fixed_in": "1.6.1"
+  },
+  {
+    "title": "Joomla! 1.6 - Multiple SQL Injection Vulnerabilities",
+    "edbid": 16992,
+    "date": "2011-03-17",
+    "introduced_in": 1.6,
+    "fixed_in": "1.6.1"
+  },
+  {
+    "title": "Joomla 2.5.0-2.5.1 Time Based SQL Injection Exploit",
+    "edbid": 18618,
+    "date": "2012-03-19",
+    "introduced_in": 2.5,
+    "fixed_in": "2.5.2"
+  },
+  {
+    "title": "Joomla! 1.5.x 404 Error Page Cross-Site Scripting Vulnerability",
+    "edbid": 33378,
+    "date": "2009-11-23",
+    "introduced_in": 1.5,
+    "fixed_in": "1.5.12"
+  },
+  {
+    "title": "Joomla! 1.5.x SQL Error Information Disclosure Vulnerability",
+    "edbid": 34955,
+    "date": "2010-11-05",
+    "introduced_in": 1.5,
+    "fixed_in": "1.5.22"
+  },
+  {
+    "title": "Joomla! 'redirect.php' SQL Injection Vulnerability",
+    "edbid": 36913,
+    "cveid": "2012-1116",
+    "date": "2012-03-05",
+    "ranges": [
+      {
+        "introduced_in": 1.7,
+        "fixed_in": 2
+      },
+      {
+        "introduced_in": 2.5,
+        "fixed_in": "2.5.2"
+      }
+    ],
+    "fixed_in": "2.5.2"
+  },
+  {
+    "title": "Joomla 2.5.x Language Switcher ModuleMultiple Cross Site Scripting Vulnerabilities",
+    "edbid": 37473,
+    "date": "2012-07-02",
+    "introduced_in": 2.5,
+    "fixed_in": 3
+  },
+  {
+    "title": "Joomla Content History SQLi Remote Code Execution",
+    "edbid": 38797,
+    "cveid": [
+      "2015-7857",
+      "2015-7297",
+      "2015-7857",
+      "2015-7858"
+    ],
+    "date": "2015-11-23",
+    "introduced_in": 3,
+    "fixed_in": "3.4.5"
+  },
+  {
+    "title": "Joomla 1.5 - 3.4.5 - Object Injection Remote Command Execution",
+    "edbid": 38977,
+    "cveid": "2015-8562",
+    "date": "2015-12-15",
+    "introduced_in": 1.5,
+    "fixed_in": "3.4.6"
+  },
+  {
+    "title": "Remote Code Execution in third-party PHPMailer library",
+    "cveid": [
+      "2016-10033",
+      "2016-10045"
+    ],
+    "date": "2016-12-05",
+    "introduced_in": 1.5,
+    "fixed_in": "3.6.5",
+    "severity": "high"
+  },
+  {
+    "title": "Clickjacking",
+    "cveid": "2012-5827",
+    "date": "2012-10-15",
+    "severity": "Moderate",
+    "introduced_in": "2.5",
+    "fixed_in": "2.5.7"
+  },
+  {
+    "title": "Information Disclosure",
+    "cveid": "2013-1454",
+    "date": "2013-01-13",
+    "severity": "Low",
+    "introduced_in": 3,
+    "fixed_in": "3.0.2"
+  },
+  {
+    "title": "Information Disclosure",
+    "cveid": "2013-1455",
+    "date": "2013-01-16",
+    "severity": "Moderate",
+    "introduced_in": 3,
+    "fixed_in": "3.0.2"
+  },
+  {
+    "title": "XSS Vulnerability",
+    "cveid": "2013-3267",
+    "date": "2013-04-17",
+    "severity": "Low",
+    "ranges": [
+      {
+        "introduced_in": "2.5",
+        "fixed_in": "2.5.9"
+      },
+      {
+        "introduced_in": 3,
+        "fixed_in": "3.0.3"
+      }
+    ],
+    "fixed_in": "3.0.3"
+  },
+  {
+    "title": "Privilege Escalation",
+    "cveid": "2013-3056",
+    "date": "2013-03-29",
+    "severity": "Low",
+    "ranges": [
+      {
+        "introduced_in": "2.5",
+        "fixed_in": "2.5.9"
+      },
+      {
+        "introduced_in": 3,
+        "fixed_in": "3.0.3"
+      }
+    ],
+    "fixed_in": "3.0.3"
+  },
+  {
+    "title": "Information Disclosure",
+    "cveid": "2013-3057",
+    "date": "2013-03-29",
+    "severity": "Low",
+    "ranges": [
+      {
+        "introduced_in": "2.5",
+        "fixed_in": "2.5.9"
+      },
+      {
+        "introduced_in": 3,
+        "fixed_in": "3.0.3"
+      }
+    ],
+    "fixed_in": "3.0.3"
+  },
+  {
+    "title": "XSS Vulnerability",
+    "cveid": "2013-3058",
+    "date": "2013-03-09",
+    "severity": "Moderate",
+    "ranges": [
+      {
+        "introduced_in": "2.5",
+        "fixed_in": "2.5.9"
+      },
+      {
+        "introduced_in": 3,
+        "fixed_in": "3.0.3"
+      }
+    ],
+    "fixed_in": "3.0.3"
+  },
+  {
+    "title": "XSS Vulnerability",
+    "cveid": "2013-3059",
+    "date": "2013-02-26",
+    "severity": "Low",
+    "ranges": [
+      {
+        "introduced_in": "2.5",
+        "fixed_in": "2.5.9"
+      },
+      {
+        "introduced_in": 3,
+        "fixed_in": "3.0.3"
+      }
+    ],
+    "fixed_in": "3.0.3"
+  },
+  {
+    "title": "XSS Vulnerability",
+    "cveid": "2014-6631",
+    "date": "2014-08-27",
+    "severity": "Moderate",
+    "ranges": [
+      {
+        "introduced_in": "3.2",
+        "fixed_in": "3.2.4"
+      },
+      {
+        "introduced_in": "3.3",
+        "fixed_in": "3.3.3"
+      }
+    ],
+    "fixed_in": "3.3.3"
+  },
+  {
+    "title": "Unauthorised Logins",
+    "cveid": "2014-6632",
+    "date": "2014-09-09",
+    "severity": "Moderate",
+    "ranges": [
+      {
+        "introduced_in": "3.3",
+        "fixed_in": "3.3.3"
+      },
+      {
+        "introduced_in": "2.5",
+        "fixed_in": "2.5.24"
+      },
+      {
+        "introduced_in": 3,
+        "fixed_in": "3.2.4"
+      }
+    ],
+    "fixed_in": "3.3.3"
+  },
+  {
+    "title": "Denial of Service",
+    "cveid": "2014-7229",
+    "date": "2014-09-24",
+    "severity": "Low",
+    "ranges": [
+      {
+        "introduced_in": "2.5.4",
+        "fixed_in": "2.5.25"
+      },
+      {
+        "introduced_in": "3.3",
+        "fixed_in": "3.3.4"
+      },
+      {
+        "introduced_in": 3,
+        "fixed_in": "3.2.5"
+      }
+    ],
+    "fixed_in": "3.3.4"
+  },
+  {
+    "title": "Open Redirect",
+    "cveid": "2015-5608",
+    "date": "2015-04-08",
+    "severity": "Low",
+    "introduced_in": 3,
+    "fixed_in": "3.4.1"
+  },
+  {
+    "title": "CSRF Protection",
+    "cveid": "2015-5397",
+    "date": "2015-04-06",
+    "severity": "Low",
+    "introduced_in": "3.2",
+    "fixed_in": "3.4.1"
+  },
+  {
+    "title": "XSS Vulnerability",
+    "cveid": "2015-6939",
+    "date": "2015-08-18",
+    "severity": "Low",
+    "introduced_in": "3.4",
+    "fixed_in": "3.4.3"
+  },
+  {
+    "title": "ACL Violations",
+    "cveid": "2015-7859",
+    "date": "2015-10-15",
+    "severity": "Moderate",
+    "introduced_in": "3.2",
+    "fixed_in": "3.4.4"
+  },
+  {
+    "title": "Directory Traversal",
+    "cveid": "2015-8565",
+    "date": "2015-11-26",
+    "severity": "Low",
+    "introduced_in": "3.2",
+    "fixed_in": "3.4.5"
+  },
+  {
+    "title": "Directory Traversal",
+    "cveid": "2015-8564",
+    "date": "2015-11-26",
+    "severity": "Low",
+    "introduced_in": "3.4",
+    "fixed_in": "3.4.5"
+  },
+  {
+    "title": "CSRF Hardening",
+    "cveid": "2015-8563",
+    "date": "2015-11-26",
+    "severity": "Low",
+    "introduced_in": "3.2",
+    "fixed_in": "3.4.5"
+  },
+  {
+    "title": "Remote Code Execution Vulnerability",
+    "cveid": "2015-8566",
+    "date": "2015-12-13",
+    "severity": "High",
+    "introduced_in": 1,
+    "fixed_in": "1.3"
+  },
+  {
+    "title": "Account Creation",
+    "cveid": "2016-8870",
+    "date": "2016-10-18",
+    "severity": "High",
+    "introduced_in": "3.4.4",
+    "fixed_in": "3.6.3"
+  },
+  {
+    "title": "Elevated Privileges",
+    "cveid": "2016-8869",
+    "date": "2016-10-21",
+    "severity": "High",
+    "introduced_in": "3.4.4",
+    "fixed_in": "3.6.3"
+  },
+  {
+    "title": "Account Modifications",
+    "cveid": "2016-9081",
+    "date": "2016-10-26",
+    "severity": "High",
+    "introduced_in": "3.4.4",
+    "fixed_in": "3.6.3"
+  },
+  {
+    "title": "Elevated Privileges",
+    "cveid": "2016-9838",
+    "date": "2016-11-04",
+    "severity": "High",
+    "introduced_in": "1.6",
+    "fixed_in": "3.6.4"
+  },
+  {
+    "title": "Shell Upload",
+    "cveid": "2016-9836",
+    "date": "2016-10-26",
+    "severity": "Low",
+    "introduced_in": 3,
+    "fixed_in": "3.6.4"
+  },
+  {
+    "title": "Information Disclosure",
+    "cveid": "2016-9837",
+    "date": "2016-04-15",
+    "severity": "Low",
+    "introduced_in": 3,
+    "fixed_in": "3.6.4"
+  }
+]
