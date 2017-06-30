@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}goSecure User{% endblock %}
+
+{% block heading_title %} User Management {% endblock %}
+{% block heading_description %} Change the goSecure client user information. {% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 form-box">
+            <form role="form" action="" method="post" class="registration-form">
+                <fieldset>
+                    <div class="form-top">
+                        <div class="form-top-left">
+                            <h2>{{ current_user.id }}</h2>
+                        </div>
+                        <div class="form-top-right">
+                            <i class="fa fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="form-bottom">
+                        <div class="form-group">
+                            {{ form.username.label }}
+                            <br> {{ form.username(class="form-control") }}
+
+                        </div>
+                        <div class="form-group">
+                            {{ form.password.label }}
+                            <br> {{ form.password(class="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.new_password.label }}
+                            <br> {{ form.new_password(class="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.confirm_password.label }}
+                            <br> {{ form.confirm_password(class="form-control") }}
+                        </div>
+                        {{ form.userSubmit(class="btn btn-next") }}
+                    </div>
+                </fieldset>
+                {{ form.csrf_token }}
+            </form>
+        </div>
+    </div>
+
+{% endblock %}     
+
+{% block import_js %}
+<script src="/static/js/login.js"></script>
+{% endblock %}

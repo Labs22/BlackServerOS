@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}{% endblock %}</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/static/css/form-elements.css">
+        <link rel="stylesheet" href="/static/css/style.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+        
+        <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle">Menu <i class="fa fa-wrench"></i></a>
+        <nav id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+                <li class="sidebar-brand">
+                    <a href="#top" onclick="$(&quot;#menu-close&quot;).click();">Menu</a>
+                </li>
+                <li>
+                    <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
+                </li>
+                <li>
+                    <a href="status"><i class="fa fa-dashboard"></i> Status</a>
+                </li>
+                <li>
+                    <a href="initial_setup"><i class="fa fa-gear"></i> Initial Setup</a>
+                </li>
+                
+                <li><a href="#top" data-toggle="collapse" data-target="#manage_network"><i class="fa fa-globe"></i> Manage Network</a></li>
+                <div id="manage_network" class="collapse">
+                    <li>
+                        <a href="wifi">Configure Wifi</a>
+                    </li>
+                </div>
+                
+                <li><a href="#top" data-toggle="collapse" data-target="#manage_vpn"><i class="fa fa-lock"></i> Manage VPN</a></li>
+                <div id="manage_vpn" class="collapse">
+                    <li>
+                        <a href="vpn_psk">Configure VPN</a>
+                    </li>
+                    <li>
+                        <a href="#top" onclick="post('/action', {action: 'start_vpn'});">Start VPN</a>
+                    </li>
+                    <li>
+                        <a href="#restart_vpn" onclick="post('/action', {action: 'restart_vpn'});">Restart VPN</a>
+                    </li>
+                    <li>
+                        <a href="#top" onclick="post('/action', {action: 'stop_vpn'});">Stop VPN</a>
+                    </li>
+                </div>
+        
+            <li><a href="#top" data-toggle="collapse" data-target="#client_options"><i class="fa fa-power-off"></i> Client Options</a></li>
+                <div id="client_options" class="collapse">
+                    <li>
+                        <a href="user">User Management</a>
+                    </li>
+                    <li>
+                        <a href="#top" onclick="post('/action', {action: 'reboot'});">Reboot</a>
+                    </li>
+                    <li>
+                        <a href="#top" onclick="post('/action', {action: 'shutdown'});">Shutdown</a>
+                    </li>
+                    <li>
+                        <a href="reset_to_default">Reset to Default Settings</a>
+                    </li>
+                    <li>
+                        <a href="#top" onclick="post('/action', {action: 'ssh_service'});">Toggle SSH Service</a>
+                    </li>
+                    <li>
+                        <a href="#top" onclick="post('/action', {action: 'update_client'});">Update Client</a>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1>{% block heading_title %}{% endblock %}</h1>
+                            <div class="description">
+                            	<p>
+	                            	{% block heading_description %}{% endblock %}
+                            	</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                                <div class="description" name="message-div" id="message-div">
+                                    <p>
+                                        {% with messages = get_flashed_messages(with_categories=true) %}
+                                            {% if messages %}
+                                                <ul class="flashes">
+                                                    {% for category, message in messages %}
+                                                        <div class="{{ category }}" name="messages" id="messages">
+                                                            {{ message }}
+                                                        </div>
+                                                    {% endfor %}
+                                                </ul>
+                                            {% endif %}
+                                        {% endwith %}
+                                    
+                                        <div class="error">
+                                            {% if form.errors %}
+                                                {{ form.errors }}
+                                            {% endif %}
+                                        </div>
+                                    </p>
+                                </div>
+                            </div>
+                    </div>
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+            
+            
+        </div>
+
+
+        <!-- Javascript -->
+        <script src="/static/js/jquery-1.11.1.min.js"></script>
+        <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/static/js/jquery.backstretch.min.js"></script>
+        <script src="/static/js/retina-1.1.0.min.js"></script>
+        <script src="/static/js/default.js"></script>
+        {% block import_js %}{% endblock %}
+        
+        <!--[if lt IE 10]>
+            <script src="/static/js/placeholder.js"></script>
+        <![endif]-->
+    
+        <script>
+            // Closes the sidebar menu
+            $("#menu-close").click(function (e) {
+                e.preventDefault();
+                $("#sidebar-wrapper").toggleClass("active");
+            });
+
+            // Opens the sidebar menu
+            $("#menu-toggle").click(function (e) {
+                e.preventDefault();
+                $("#sidebar-wrapper").toggleClass("active");
+            });
+            
+            function post(path, params, method) {
+                method = method || "post";
+
+                var form = document.createElement("form");
+                form.setAttribute("method", method);
+                form.setAttribute("action", path);
+
+                for(var key in params) {
+                    if(params.hasOwnProperty(key)) {
+                        var hiddenField = document.createElement("input");
+                        hiddenField.setAttribute("type", "hidden");
+                        hiddenField.setAttribute("name", key);
+                        hiddenField.setAttribute("value", params[key]);
+
+                        form.appendChild(hiddenField);
+                     }
+                }
+
+                document.body.appendChild(form);
+                form.submit();
+            }
+        </script>
+
+    </body>
+
+</html>
