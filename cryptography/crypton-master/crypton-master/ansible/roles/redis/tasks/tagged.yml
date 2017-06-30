@@ -1,0 +1,28 @@
+---
+
+- name: add the apt keys for redis PPA
+  sudo: True
+  apt_key: >
+    state=present
+    id=C7917B12
+    data="{{ lookup('file', inventory_dir + '/../files/launchpad.net.chris-lea.key_C7917B12.asc' ) }}"
+
+- name: add the apt source repo for redis PPA
+  sudo: True
+  register: add_redis_ppa_result
+  apt_repository: >
+    repo="deb-src http://ppa.launchpad.net/chris-lea/redis-server/ubuntu {{ ansible_distribution_release }} main"
+
+- name: update apt after adding redis PPA source
+  sudo: True
+  apt: update_cache=yes
+  when: >
+    add_redis_ppa_result is defined
+    and add_redis_ppa_result.changed
+
+- name: install redis-server
+  sudo: True
+  apt: pkg={{ item }} state=present
+  with_items:
+    - redis-server
+  notify: start redis-server

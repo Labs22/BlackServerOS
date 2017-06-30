@@ -1,0 +1,104 @@
+---
+
+- name: copy crypton database schema setup file
+  sudo: yes
+  sudo_user: postgres
+  copy: >
+    src=setup.sql
+    dest={{ role_org_dir }}/setup.sql
+    backup=yes
+    owner=postgres
+    group=postgres
+    mode=600
+  tags: createdb
+
+- name: copy crypton database permissions template
+  sudo: yes
+  sudo_user: postgres
+  template: >
+    src=permissions.sql.j2
+    dest={{ role_org_dir }}/{{ item.1.name }}-permissions.sql
+    backup=yes
+    owner=postgres
+    group=postgres
+    mode=600
+  when: >
+    inventory_hostname in groups[item[0].hostgroup]
+  with_subelements:
+    - crypton_sites
+    - apps
+  tags: createdb
+
+#- name: drop crypton databases
+#  sudo: yes
+#  sudo_user: postgres
+#  postgresql_db: >
+#    state=absent
+#    name={{ item.1.db.name|default(item.1.name) }}
+#  with_subelements:
+#    - crypton_sites
+#    - apps
+#  when: >
+#    drop_crypton_db is defined
+#    and item.1.db.name|default(item.1.name) == drop_crypton_db
+#    and inventory_hostname in groups[item[0].hostgroup]
+#  tags: dropdb
+
+- name: create crypton databases
+  sudo: yes
+  sudo_user: postgres
+  postgresql_db: >
+    state=present
+    name={{ item.1.db.name|default(item.1.name) }}
+    owner=postgres
+    lc_collate=en_US.UTF-8
+    encoding=UTF8
+  with_subelements:
+    - crypton_sites
+    - apps
+  when: >
+    development or create_crypton_db|default(False)
+    and inventory_hostname in groups[item[0].hostgroup]
+  register: create_crypton_database
+  tags: createdb
+
+- name: create crypton central database users
+  sudo: yes
+  sudo_user: postgres
+  postgresql_user: >
+    state=present
+    name={{ item.1.db.user|default(item.1.user) }}
+    db={{ item.1.db.name|default(item.1.name) }}
+    password={{ item.1.db.password }}
+  with_subelements:
+    - crypton_sites
+    - apps
+  when: >
+    inventory_hostname in groups[item[0].hostgroup]
+  tags: pg_db_user
+
+- name: install crypton database schema
+  sudo: yes
+  sudo_user: postgres
+  command: >
+    /usr/bin/psql
+    --echo-queries
+    --file={{ role_org_dir }}/setup.sql
+    --log-file={{ role_org_dir }}/setup.sql.log.{{ timestamp }}
+    --dbname={{ item.item.1.db.name|default(item.item.1.name) }}
+  with_items: create_crypton_database.results
+  when: item.changed
+  tags: createdb
+
+- name: install crypton database permissions
+  sudo: True
+  sudo_user: postgres
+  command: >
+    /usr/bin/psql
+    --echo-queries
+    --file={{ role_org_dir }}/{{ item.item.1.name }}-permissions.sql
+    --log-file={{ role_org_dir }}/{{ item.item.1.name }}-permissions.sql.log.{{ timestamp }}
+    --dbname={{ item.item.1.db.name|default(item.item.1.name) }}
+  with_items: create_crypton_database.results
+  when: item.changed
+  tags: createdb

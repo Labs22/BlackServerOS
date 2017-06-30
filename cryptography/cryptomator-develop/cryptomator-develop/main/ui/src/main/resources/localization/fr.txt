@@ -1,0 +1,107 @@
+app.name = Cryptomator
+# main.fxml
+main.emptyListInstructions = Cliquez ici pour ajouter un coffre
+main.directoryList.contextMenu.remove = Retirer de la liste
+main.directoryList.contextMenu.changePassword = Changer le mot de passe
+main.addDirectory.contextMenu.new = Créer un nouveau coffre
+main.addDirectory.contextMenu.open = Ouvrir un coffre existant
+# welcome.fxml
+welcome.checkForUpdates.label.currentlyChecking = Recherche de mise à jour...
+welcome.newVersionMessage = La version %1$s peut-être téléchargée.\nIl s'agit de %2$s.
+# initialize.fxml
+initialize.label.password = Mot de passe
+initialize.label.retypePassword = Confirmation
+initialize.button.ok = Créer le coffre
+initialize.messageLabel.alreadyInitialized = Coffre déjà initialisé
+initialize.messageLabel.initializationFailed = Impossible d'initialiser le coffre. Voir le fichier de log pour plus de détails.
+# notfound.fxml
+notfound.label = Coffre introuvable. A-t-il été déplacé?
+# upgrade.fxml
+upgrade.button = Mettre à niveau
+upgrade.version3dropBundleExtension.msg = Ce coffre doit être converti dans un format plus récent.\n"%1$s" sera renommé en "%2$s".\nAssurez-vous que la synchronisation est terminée avant de continuer.
+upgrade.version3dropBundleExtension.err.alreadyExists = La conversion automatique a échoué.\n"%s" existe déjà.
+# unlock.fxml
+unlock.label.password = Mot de passe
+unlock.label.mountName = Nom du lecteur
+unlock.label.winDriveLetter = Lettre du lecteur
+unlock.label.downloadsPageLink = Toutes les versions de Cryptomator
+unlock.label.advancedHeading = Options avancées
+unlock.button.unlock = Déverrouiller le coffre
+unlock.button.advancedOptions.show = Plus d'options
+unlock.button.advancedOptions.hide = Moins d'options
+unlock.choicebox.winDriveLetter.auto = Assigner automatiquement
+unlock.errorMessage.wrongPassword = Mot de passe incorrect
+unlock.errorMessage.unsupportedVersion.vaultOlderThanSoftware = Coffre non supporté. Ce coffre a été créé avec une ancienne version de Cryptomator.
+unlock.errorMessage.unsupportedVersion.softwareOlderThanVault = Coffre non supporté. Ce coffre a été créé avec une version de Cryptomator plus récente.
+unlock.messageLabel.startServerFailed = Le serveur WebDAV n'a pas pu démarrer.
+# change_password.fxml
+changePassword.label.oldPassword = Ancien mot de passe
+changePassword.label.newPassword = Nouveau mot de passe
+changePassword.label.retypePassword = Vérification
+changePassword.label.downloadsPageLink = Toutes les versions de Cryptomator
+changePassword.button.change = Modification du mot de masse
+changePassword.errorMessage.wrongPassword = Mot de passe incorrect
+# En français, on dit déchiffrement lorsque la clé est connue
+changePassword.errorMessage.decryptionFailed = Echec du déchiffrement
+# unlocked.fxml
+unlocked.button.lock = Verrouiller le coffre
+unlocked.moreOptions.reveal = Voir le lecteur
+unlocked.moreOptions.copyUrl = Copier l'URL WebDAV
+unlocked.label.revealFailed = Echec de la commande
+unlocked.label.unmountFailed = Echec de l'éjection du lecteur
+# Crypter n'existe pas en français.
+unlocked.label.statsEncrypted = chiffré
+# Décryptage signifie récupérer les données en clair tout en ne connaissant pas la clé
+unlocked.label.statsDecrypted = déchiffré
+unlocked.ioGraph.yAxis.label = Débit (MiB/s)
+# settings.fxml
+settings.version.label = Version %s
+settings.checkForUpdates.label = Vérif. des mises à jour
+settings.port.label = Port WebDAV *
+settings.port.prompt = 0 \= Choix automatique
+settings.requiresRestartLabel = * Redémarrage requis
+# tray icon
+tray.menu.open = Ouvrir
+tray.menu.quit = Quitter
+tray.infoMsg.title = Toujours en fonctionnement
+tray.infoMsg.msg = Cryptomator est toujours en fonctionnement. Utiliser l'icône de la barre des tâches pour quitter.
+tray.infoMsg.msg.osx = Cryptomator est toujours en fonctionnement. Utilisez la barre de menu pour quitter.
+initialize.messageLabel.passwordStrength.0 = Très faible
+initialize.messageLabel.passwordStrength.1 = Faible
+initialize.messageLabel.passwordStrength.2 = Raisonnable
+initialize.messageLabel.passwordStrength.3 = Fort
+initialize.messageLabel.passwordStrength.4 = Très fort
+initialize.label.doNotForget = ATTENTION \: Si vous oubliez votre mot de passe, il n'y aura aucun moyen de récupérer vos données.
+main.directoryList.remove.confirmation.title = Retirer un coffre
+main.directoryList.remove.confirmation.header = Voulez-vous vraiment retirer ce coffre ?
+main.directoryList.remove.confirmation.content = Le coffre sera seulement retiré de la liste. Pour le supprimer complètement, supprimez les fichiers depuis votre système de fichiers.
+upgrade.version3to4.msg = Ce coffre doit être converti dans un nouveau format. Les noms de dossiers chiffrés seront mis à jour.\nMerci de vous assurer que la procédure de synchronisation est terminée avant de continuer.
+upgrade.version3to4.err.io = La migration a échoué à cause d'une erreur d'entrée/sortie. Référez-vous au fichier log pour plus de détails.
+settings.prefGvfsScheme.label = Schéma d'URI WebDAV
+# upgrade.fxml
+upgrade.confirmation.label = Oui, je suis certain que la synchronisation est terminée
+initialize.messageLabel.notEmpty = Le coffre n'est pas vide
+unlock.label.savePassword = Se souvenir du mot de passe
+unlock.errorMessage.unauthenticVersionMac = Impossible d'authentifier la version MAC
+unlocked.label.mountFailed = Echec de connexion au lecteur
+unlock.savePassword.delete.confirmation.title = supprimer le mot de passe sauvegardé
+unlock.savePassword.delete.confirmation.header = voulez vous vraiment supprimer le mot de pase sauvegardé de ce compte ?
+unlock.savePassword.delete.confirmation.content = Le mot de passe de ce coffre sera supprimé immédiatement du trousseau.Si vous voulez le sauvegarder à nouveau, vous devrez cocher la case "retenir le mot de passe" lors du déverrouillage du coffre.
+settings.debugMode.label = mode debuggage*
+upgrade.version3dropBundleExtension.title = mise à jour vers la version 3 du coffre (extension "drop bundle")
+upgrade.version3to4.title = metre à jour le coffre de la version 3 à la version 4
+upgrade.version4to5.title = metre à jour le coffre de la version 4 à la version 5
+upgrade.version4to5.msg = ce coffre doit être mis à jour vers un format plus récent.\nles fichiés chiffrés seront mis à jour.\nVeuillez vérifier que la synchronisation est terminée avant de commencer.\n\nNote \: la date de modification des fichiers sera mise à jour avec la date courante.
+upgrade.version4to5.err.io = Migration échouée due à une erreur de lecture. Lisez les logs pour plus de détails.
+settings.port.apply = Appliquer
+unlock.label.mountAfterUnlock = Monter un lecteur
+unlock.label.revealAfterMount = Voir le lecteur
+unlocked.lock.force.confirmation.title = Locking of %1$s failed
+unlocked.lock.force.confirmation.header = Do you want to force locking?
+unlocked.lock.force.confirmation.content = This may be because other programs are still accessing files in the vault or because some other problem occurred.\n\nPrograms still accessing the files may not work correctly and data not already written by those programs may be lost.
+unlock.label.unlockAfterStartup = Auto-Unlock on Start (Experimental)
+unlock.errorMessage.unlockFailed = Unlock failed. See log file for details.
+unlocked.moreOptions.mount = Mount Drive
+unlocked.moreOptions.unmount = Eject Drive
+upgrade.version5toX.title = Vault Version Upgrade
+upgrade.version5toX.msg = This vault needs to be migrated to a newer format.\nPlease make sure synchronization has finished before proceeding.

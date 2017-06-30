@@ -1,0 +1,11 @@
+{
+   "encrypted": false,
+   "name": "Test",
+   "purpose": "VERIFY",
+   "type": "RSA_PUB",
+   "versions": [ {
+      "exportable": false,
+      "status": "PRIMARY",
+      "versionNumber": 1
+   } ]
+}

@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+<head>
+  <title>Crypton Account Generation Example</title>
+  <style>
+  #chat,
+  #findPeer,
+  #progress {
+    display: none;
+  }
+
+  #chatInput {
+    padding: 5px;
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+  }
+  </style>
+</head>
+<body>
+<form id="userInput">
+  username: <input type="text" id="username" /><br />
+  password: <input type="password" id="password" autocomplete="off" /><br />
+  <button id="login">login</button>
+  <button id="register">register</button>
+</form>
+
+<div id="progress">
+  <span id="status"></span>
+</div>
+
+<form id="findPeer">
+  enter a username to chat with: <input type="text" id="peerUsername"><br />
+  <input type="submit" value="open conversation" />
+</form>
+
+<div id="chat">
+  <form id="sendMessage">
+    <input id="chatInput" text="text" placeholder="type something and press enter" />
+  </form>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="../../dist/crypton.js"></script>
+<script>
+$(document).ready(function () {
+  crypton.host = window.location.hostname;
+
+  $('#username').focus();
+  $('#userInput button').click(function (e) {
+    e.preventDefault();
+
+    $('#userInput').hide();
+    $('#progress').show();
+
+    var status = document.getElementById('status');
+    var username = $('#username').val();
+    var password = $('#password').val()
+
+    var action = e.target.id;
+    if (action == 'login') {
+      status.innerHTML = 'authorizing...';
+      crypton.authorize(username, password, function (err, session) {
+        if (err) {
+          alert(err);
+          $('#userInput').show();
+          $('#progress').hide();
+          return;
+        }
+
+        window.session = session;
+        start();
+      });
+    } else {
+      status.innerHTML = 'generating keys...';
+      crypton.generateAccount(username, password, function done (err, account) {
+        if (err) {
+           alert(err);
+          $('#userInput').show();
+          $('#progress').hide();
+          return;
+        }
+
+        crypton.authorize(username, password, function (err, session) {
+          if (err) {
+             alert(err);
+            $('#userInput').show();
+            $('#progress').hide();
+            return;
+          }
+
+          window.session = session;
+          start();
+        });
+      });
+    }
+
+  });
+});
+
+function start () {
+  $('#userInput').hide();
+  $('#progress').hide();
+  $('#findPeer').show();
+  $('#peerUsername').focus();
+  $('#findPeer').submit(function (e) {
+    e.preventDefault();
+    var name = $('#peerUsername').val();
+    session.getPeer(name, function (err, peer) {
+      if (err) {
+        alert(err);
+        return;
+      }
+
+      window.peer = peer;
+      $('#findPeer').hide();
+      $('#chat').show();
+      $('#chatInput').focus();
+      $('#sendMessage').submit(sendMessage);
+    });
+  });
+
+  session.on('message', function (data) {
+    addToScreen(peer.username, data.body.body);
+  });
+}
+
+function sendMessage (e) {
+  e.preventDefault();
+  var message = $(this).find('input').val();
+  $('#chatInput').val('');
+
+  peer.sendMessage({
+    app: 'chat',
+    type: 'message'
+  }, {
+    body: message
+  }, function (err, mid) {
+    if (err) {
+      alert(err);
+      return;
+    }
+
+    addToScreen(session.account.username, message);
+  });
+
+}
+
+function addToScreen (username, message) {
+  var $line = $('<div />').html('<strong>' + username + ':</strong> ' + message);
+  $('#chat').append($line);
+}
+</script>
+</body>
+</html>

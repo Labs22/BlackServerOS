@@ -1,0 +1,49 @@
+{
+  "database": {
+    "type": "postgres",
+    "postgres_user": "postgres",
+    "postgres_user_password": "",
+    "user": "crypton_test_user",
+    "password": "crypton_test_user_password",
+    "database": "crypton_test",
+    "host": "localhost",
+    "port": 5432
+  },
+  "defaultKeySize": 32,
+  "privateKey": "privateKeyExample.pem",
+  "certificate": "certificateExample.pem",
+  "appPath": ".",
+  "redis": {
+    "host": "localhost",
+    "port": 6379,
+    "pass": "",
+    "db": 1
+  },
+  "commitStatusCheckDelay": 100,
+  "commitStatusCheckLimit": 100,
+  "securityHeaders": {
+    "csrf": false,
+    "csp": {
+      "policy": {
+        "default-src": "'self' blob:",
+        "connect-src": "'self' wss://localhost:1025",
+        "script-src": "'self'",
+        "img-src": "'self'",
+        "style-src": "'self'",
+        "font-src": "'self'",
+        "object-src": "'self'"
+      },
+      "reportOnly": false,
+      "reportUri": ""
+    },
+    "xframe": "SAMEORIGIN",
+    "p3p": false,
+    "hsts": {
+      "maxAge": 3600,
+      "includeSubDomains": false,
+      "preload": false
+    },
+    "xssProtection": false
+  },
+  "port": 1026
+}

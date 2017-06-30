@@ -1,0 +1,2 @@
+inherited fmeLcOptions: TfmeLcOptions
+end

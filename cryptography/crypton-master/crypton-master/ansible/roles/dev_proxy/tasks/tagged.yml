@@ -1,0 +1,19 @@
+---
+
+- name: install squid proxy
+  sudo: True
+  tags: dev_proxy
+  apt: name=squid3 state=present
+
+- name: write squid config file
+  sudo: True
+  tags: dev_proxy
+  template: >
+    src=squid.conf.j2
+    dest=/etc/squid3/squid.conf
+    owner=root
+    group=root
+    mode=644
+  notify: reload squid
+
+- meta: flush_handlers

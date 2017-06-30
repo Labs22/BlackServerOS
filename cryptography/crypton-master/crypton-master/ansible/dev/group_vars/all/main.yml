@@ -1,0 +1,29 @@
+---
+# dev, not production
+development: True
+production: False
+deployment_environment: dev
+
+timestamp: "{{ lookup('pipe', 'date +%s') }}"
+
+pg_ver: 9.4
+
+crypton_src_repository: https://github.com/SpiderOak/crypton.git
+crypton_src_branch: master
+crypton_domain: local
+
+crypton_sites:
+  - hostgroup: dev
+    apps:
+    - name: crypton_dev
+      user: crypton_dev
+      local_port: 1025
+      db:
+        password: >
+          {{ lookup('password',
+          inventory_dir + '/secrets/'
+          + '/postgresql/crypton_dev.passwd
+          chars=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') }}
+        host: "{{ groups.database_master|first }}"
+      redis:
+        host: localhost

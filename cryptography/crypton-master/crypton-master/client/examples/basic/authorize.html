@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+  <title>Crypton Authorization Example</title>
+  <style>
+  #progress {
+    display: none;
+  }
+  </style>
+</head>
+<body>
+<form id="userInput">
+  username: <input type="text" id="username" /><br />
+  password: <input type="password" id="password" autocomplete="off" /><br />
+  <input type="submit" value="register" />
+</form>
+<div id="progress">
+  <progress value="0" max="2048" id="progBar"></progress>
+  <span id="status">initializing...</span>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="crypton.js"></script>
+<script>
+$(document).ready(function () {
+  crypton.host = window.location.hostname;
+
+  $('#username').focus();
+  $('#userInput').submit(function (e) {
+    e.preventDefault();
+
+    $(this).hide();
+    $('#progress').show();
+
+    var status = document.getElementById('status');
+    var username = $('#username').val();
+    var password = $('#password').val();
+
+    crypton.authorize(username, password, function (err, account) {
+      if (err) {
+        status.innerHTML = err;
+        $('#userInput').show();
+        return;
+      }
+
+      console.log(account);
+      status.innerHTML = 'done';
+    });
+  });
+});
+</script>
+</body>
+</html>

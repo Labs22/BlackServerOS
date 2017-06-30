@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=utf-8 />
+  <title>Crypton Chat</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="/style.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/login.css" />
+  <script type="text/javascript" src="/jquery.js"></script>
+  <script type="text/javascript" src="/async.js"></script>
+  <script type="text/javascript" src="/moment.min.js"></script>
+  <script type="text/javascript" src="/livestamp.min.js"></script>
+  <script type="text/javascript" src="/crypton.js"></script>
+  <script type="text/javascript" src="/login.js"></script>
+  <script type="text/javascript" src="/chat.js"></script>
+</head>
+<body>
+  <div id="login">
+    <img src="/crypton.png" />
+    <span class="status"></span>
+    <form>
+      <input type="text" name="username" placeholder="Username" />
+      <input type="password" name="password" placeholder="Password" autocomplete="off" />
+      <input type="submit" value="Login" />
+      <input type="submit" value="Register" />
+    </form>
+  </div>
+  <div id="header">
+    <span class="logo">Crypton Chat</span>
+    <span class="status">Loading...</span>
+    <ul id="nav">
+      <li class="padding">
+        Logged in as <strong class="username"></strong>
+      </li>
+      <li>
+        <a data-action="createConversation">Start a conversation</a>
+      </li>
+      <li>
+        <a data-action="logout">Logout</a>
+      </li>
+    </ul>
+  </div>
+  <div id="sidebar">
+  </div>
+  <div id="container">
+    <div id="create-conversation">
+      <form>
+        <p>Enter a peer's username below to start a conversation</p>
+        <input type="text" placeholder="Enter a peer's username" name="username" />
+        <input type="submit" value="Start conversation" />
+      </form>
+    </div>
+    <div id="conversation">
+      <div id="messages">
+      </div>
+      <form id="conversation-input">
+        <input name="message" placeholder="Type message here and press enter" />
+      </form>
+    </div>
+  </div>
+</body>
+</html>

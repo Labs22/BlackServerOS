@@ -1,0 +1,236 @@
+body {
+  font: 18px 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-transition: all 0.1s ease;
+}
+
+body.login {
+  background: #f43f20;
+  color: #fff;
+  text-align: center;
+}
+
+#login {
+  width: 500px;
+  margin: 100px auto;
+  opacity: 0.9;
+  line-height: 28px;
+}
+
+#login strong {
+  font-size: 22px;
+}
+
+#login form {
+  margin: 40px 0;
+}
+
+#login input[type=text],
+#login input[type=password] {
+  padding: 10px;
+  border: 0;
+  outline: 0;
+  font: 13px 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  margin-bottom: 10px;
+  border-radius: 2px;
+}
+
+#login input[type=submit] {
+  border: 0;
+  background: #fff;
+  border-radius: 2px;
+  padding: 10px 15px;
+  color: #2e3a47;
+  font: 12px 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  margin: 3px 7px;
+}
+
+#login input:hover,
+#login input:focus {
+  cursor: pointer;
+  position: relative;
+  top: 1px;
+}
+
+#login #status {
+  display: none;
+}
+
+#login .progressBar {
+  width: 300px;
+  height: 15px;
+  margin: 0 auto;
+  border: 1px solid #fff;
+  opacity: 0.97;
+  display: none;
+}
+
+#login .progressBar .progress {
+  height: 15px;
+  background: #fff;
+}
+
+p {
+}
+
+a {
+  color: #fff;
+}
+
+small {
+  opacity: 0.5;
+  font-size: 14px;
+}
+
+.center {
+  text-align: center;
+}
+
+#app {
+  display: none;
+}
+
+#header {
+  background: #f43f20;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 15px;
+  color: #fff;
+  -webkit-transition: all 0.5s ease;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+#header.hiding {
+  top: -100px;
+}
+
+#header span {
+  font-size: 14px;
+  padding-left: 30px;
+}
+
+#nav {
+  list-style: none;
+  float: right;
+  margin: 0;
+}
+
+#nav li {
+  float: left;
+}
+
+#nav li a {
+  text-decoration: none;
+  display: block;
+  height: 50px;
+  padding: 0 15px;
+  font-size: 16px;
+}
+
+#nav li a:hover {
+  background: #a62b16;
+}
+
+#nav li a img {
+  position: relative;
+  top: 3px;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+#pad,
+#entryList {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  z-index: 0;
+  -webkit-transform: scale3d(1, 0, 0);
+  -webkit-transition: all 0.2s ease;
+}
+
+#pad.active,
+#entryList.active {
+  opacity: 1;
+  z-index: 9;
+  -webkit-transform: scale(1, 1);
+}
+
+#entryList ul {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+
+#entryList li {
+  opacity: 0.3;
+  padding: 20px;
+  display: block;
+}
+
+#entryList li:hover {
+  opacity: 1;
+  cursor: pointer;
+  background: #eee;
+}
+
+#pad textarea {
+  border: 0;
+  margin: 0;
+  resize: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  outline: 0;
+  padding: 15px;
+  font: 20px 'HelveticaNeue', Helvetica, Arial, sans-serif;
+}
+
+#controls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  opacity: 0.9;
+  padding: 20px;
+  background: #fff;
+  text-align: right;
+}
+
+#date,
+#controls a {
+  display: block;
+  padding: 5px;
+  height: 30px;
+}
+
+#controls a {
+  border: 0;
+  color: #000;
+  background: 0;
+  text-decoration: none;
+}
+
+#controls a img {
+  margin-right: 10px;
+  position: relative;
+  top: 3px;
+}
+
+#save:hover {
+  color: green;
+}
+
+#delete:hover {
+  color: red;
+}

@@ -1,0 +1,193 @@
+body {
+  margin: 0;
+  font: 16px 'HelvetivaNeue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#login {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  color: #fff;
+  background: #222;
+  z-index: 10;
+}
+
+#login strong {
+  font-size: 30px;
+  font-weight: 100;
+}
+
+#login form {
+  padding: 15px;
+}
+
+#login .status {
+  display: block;
+  padding-top: 15px;
+}
+
+#login input,
+#login button {
+  border: 0;
+  outline: 0;
+  margin: 10px;
+  opacity: 0.8;
+  cursor: pointer;
+  font-size: 14px;
+  background: #fff;
+  padding: 10px 15px;
+  border-radius: 3px;
+  transition: all 0.1s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+#login button {
+  margin: 10px 8px;
+}
+
+#login input:focus,
+#login button:focus {
+  position: relative;
+  left: 5px;
+  opacity: 1;
+}
+
+#login input:hover,
+#login button:hover {
+  opacity: 1;
+}
+
+#app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* pointer-events: none; */
+  transition: all 0.1s ease;
+/*  margin-top: 1em; */
+}
+
+#app.active {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+#header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  line-height: 50px;
+  background: #222;
+}
+
+#header a {
+  color: #fff;
+  float: right;
+  height: 50px;
+  padding: 0 15px;
+  text-decoration: none;
+}
+
+#header span {
+  color: #fff;
+  float: right;
+  height: 50px;
+  padding: 0 15px;
+  text-decoration: none;
+}
+
+#header a:hover {
+  background: #000;
+}
+
+#main {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  right: 0;
+  bottom: 0;
+}
+
+.modal-dialog {
+    background-color: white;
+    position: absolute;
+    z-index: 99;
+    border: solid 2px #aaa;
+}
+
+.modal-content {
+    margin: 1em;
+}
+
+.modal-content-header {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.account-wrap {
+    margin: 1em;
+}
+
+.account-id {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+#fingerprint {
+    margin: 1em;
+}
+
+.fingerprint-txt {
+    margin: 1em;
+}
+
+div.instruction {
+    margin: 1em;
+    padding: 1em;
+}
+
+.identicon-header {
+    margin: 1em;
+}
+
+#placeholder {
+    margin: 1em;
+}
+
+#hidden-qrcode {
+    display: none;
+}
+
+#find-someone-btn {
+    font-size: 20px;
+    margin-left: 1em;
+}
+
+#find-someone {
+    font-size: 20px;
+}
+
+#search {
+    margin-top: 1em;
+}
+
+#download-identigrid {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.contacts-header {
+    font-weight: bold;
+}
+
+#contacts-list {
+    margin-top: 1em;
+}

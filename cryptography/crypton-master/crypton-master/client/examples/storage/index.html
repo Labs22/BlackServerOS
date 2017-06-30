@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+  <title>Crypton Storage Example</title>
+  <style>
+  #progress,
+  #padForm {
+    display: none;
+  }
+  </style>
+</head>
+<body>
+<form id="userInput">
+  username: <input type="text" id="username" /><br />
+  password: <input type="password" id="password" autocomplete="off" /><br />
+  <input type="submit" value="log in" />
+</form>
+<div id="progress">
+  <span id="status">initializing...</span>
+</div>
+<form id="padForm">
+  <textarea id="pad"></textarea><br />
+  <input type="submit" value="save" />
+</form>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="crypton.js"></script>
+<script>
+var $status;
+var $pad;
+var $padForm;
+
+$(document).ready(function () {
+  crypton.host = window.location.hostname;
+
+  $status = $('#status');
+  $pad = $('#pad');
+  $padForm = $('#padForm');
+  $('#username').focus();
+  $('#userInput').submit(function (e) {
+    e.preventDefault();
+
+    $(this).hide();
+    $('#progress').show();
+    $padForm.show();
+
+    var username = $('#username').val();
+    var password = $('#password').val()
+
+    crypton.authorize(username, password, function (err, session) {
+      if (err) {
+        $status.text(err);
+        $('#userInput').show();
+        return;
+      }
+
+      $status.text('authorized');
+      $padForm.show();
+      window.session = session;
+      getCollection();
+    });
+  });
+
+  $padForm.submit(function (e) {
+    e.preventDefault();
+    saveNote();
+  });
+});
+
+function getCollection () {
+  $status.text('loading notepad');
+  
+  session.load('notepad', function (err, container) {
+    if (err) {
+      session.create('notepad', function (err, container) {
+        window.container = container;
+        getNote();
+      });
+      return;
+    }
+
+    window.container = container;
+    getNote();
+  });
+}
+
+function getNote () {
+  $status.text('notepad loaded');
+
+  // create the key if it doesn't exist
+  container.add('note', function () {
+    container.get('note', function (err, note) {
+      $pad.val(note.text);
+    });
+  });
+}
+
+function saveNote () {
+  $status.text('saving note');
+
+  container.get('note', function (err, note) {
+    note.text = $pad.val();
+
+    container.save(function (err) {
+      if (err) {
+        $status.text(err);
+        return;
+      }
+
+      $status.text('note saved');
+    });
+  });
+}
+
+</script>
+</body>
+</html>

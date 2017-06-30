@@ -1,0 +1,131 @@
+package SDeanUtilsXE;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE RELEASE}
+{$ENDIF IMPLICITBUILDING}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  vclx,
+  xmlrtl,
+  vclsmp;
+
+contains
+  MSntdll in 'SDeanUtils\MSntdll.pas',
+  NetMsg in 'SDeanUtils\NetMsg.pas',
+  SDUClipbrd in 'SDeanUtils\SDUClipbrd.pas',
+  SDUComCtrls in 'SDeanUtils\SDUComCtrls.pas',
+  SDUDropFiles in 'SDeanUtils\SDUDropFiles.pas',
+  SDUExtCtrls in 'SDeanUtils\SDUExtCtrls.pas',
+  SDUFileIterator_U in 'SDeanUtils\SDUFileIterator_U.pas',
+  SDUMultimediaKeys in 'SDeanUtils\SDUMultimediaKeys.pas',
+  SDUNamedPipe_U in 'SDeanUtils\SDUNamedPipe_U.pas',
+  SDUSpin64Units in 'SDeanUtils\SDUSpin64Units.pas' {SDUSpin64Unit: TFrame},
+  SDUStdCtrls in 'SDeanUtils\SDUStdCtrls.pas',
+  SDUStringGrid in 'SDeanUtils\SDUStringGrid.pas',
+  SDUSystemTrayIcon in 'SDeanUtils\SDUSystemTrayIcon.pas',
+  SDUSystemTrayIconShellAPI in 'SDeanUtils\SDUSystemTrayIconShellAPI.pas',
+  Spin64 in 'SDeanUtils\Spin64.pas',
+  OTFEFreeOTFE_InstructionRichEdit in 'OTFE\OTFEFreeOTFE\OTFEFreeOTFE_InstructionRichEdit.pas',
+  OTFEFreeOTFE_PasswordRichEdit in 'OTFE\OTFEFreeOTFE\OTFEFreeOTFE_PasswordRichEdit.pas',
+  SDUCheckLst in 'SDeanUtils\SDUCheckLst.pas',
+  SDFilesystemCtrls in 'SDeanFilesystem\SDFilesystemCtrls.pas',
+  MouseRNG in 'SDeanSecurity\MouseRNG\MouseRNG.pas',
+  SDUDialogs in 'SDeanUtils\SDUDialogs.pas',
+  HashAlg_U in 'Hash\HashAlg_U.pas',
+  HashAlgEngine_U in 'Hash\HashAlgEngine_U.pas',
+  HashAlgGOST_U in 'Hash\HashAlgGOST_U.pas',
+  HashAlgGOSTEngine_U in 'Hash\HashAlgGOSTEngine_U.pas',
+  HashAlgMD2_U in 'Hash\HashAlgMD2_U.pas',
+  HashAlgMD2Engine_U in 'Hash\HashAlgMD2Engine_U.pas',
+  HashAlgMD4_U in 'Hash\HashAlgMD4_U.pas',
+  HashAlgMD4Engine_U in 'Hash\HashAlgMD4Engine_U.pas',
+  HashAlgMD5_U in 'Hash\HashAlgMD5_U.pas',
+  HashAlgMD5Engine_U in 'Hash\HashAlgMD5Engine_U.pas',
+  HashAlgRIPEMD_U in 'Hash\HashAlgRIPEMD_U.pas',
+  HashAlgRIPEMDEngine_U in 'Hash\HashAlgRIPEMDEngine_U.pas',
+  HashAlgSHA_U in 'Hash\HashAlgSHA_U.pas',
+  HashAlgSHA1_U in 'Hash\HashAlgSHA1_U.pas',
+  HashAlgSHA1Engine_U in 'Hash\HashAlgSHA1Engine_U.pas',
+  HashAlgSHA256_U in 'Hash\HashAlgSHA256_U.pas',
+  HashAlgSHA256Engine_U in 'Hash\HashAlgSHA256Engine_U.pas',
+  HashAlgSHA384_U in 'Hash\HashAlgSHA384_U.pas',
+  HashAlgSHA384Engine_U in 'Hash\HashAlgSHA384Engine_U.pas',
+  HashAlgSHA512_U in 'Hash\HashAlgSHA512_U.pas',
+  HashAlgSHA512Engine_U in 'Hash\HashAlgSHA512Engine_U.pas',
+  HashAlgSHAEngine_U in 'Hash\HashAlgSHAEngine_U.pas',
+  HashAlgTiger_U in 'Hash\HashAlgTiger_U.pas',
+  HashAlgTigerEngine_U in 'Hash\HashAlgTigerEngine_U.pas',
+  HashAlgTigerSBoxes_U in 'Hash\HashAlgTigerSBoxes_U.pas',
+  HashAlgUnified_U in 'Hash\HashAlgUnified_U.pas',
+  HashValue_U in 'Hash\HashValue_U.pas',
+  OTFEBestCryptBytesToString_U in 'OTFE\OTFEBestCrypt\OTFEBestCryptBytesToString_U.pas',
+  OTFEBestCryptGetDriveLetter_U in 'OTFE\OTFEBestCrypt\OTFEBestCryptGetDriveLetter_U.pas' {GetDriveLetter_F},
+  OTFEBestCryptStructures_U in 'OTFE\OTFEBestCrypt\OTFEBestCryptStructures_U.pas',
+  OTFEE4MPasswordEntry_U in 'OTFE\OTFEE4M\OTFEE4MPasswordEntry_U.pas' {OTFEE4MPasswordEntry_F},
+  OTFEE4MStructures_U in 'OTFE\OTFEE4M\OTFEE4MStructures_U.pas',
+  OTFEPGPDiskMounting_U in 'OTFE\OTFEPGPDisk\OTFEPGPDiskMounting_U.pas' {OTFEPGPDiskMounting_F},
+  OTFEPGPDiskStructures_U in 'OTFE\OTFEPGPDisk\OTFEPGPDiskStructures_U.pas',
+  SdStructures_U in 'OTFE\OTFEScramDisk\SdStructures_U.pas',
+  WindowsMissing_U in 'OTFE\OTFEScramDisk\WindowsMissing_U.pas',
+  CrossCrypt_PasswordConfirm in 'OTFE\OTFECrossCrypt\CrossCrypt_PasswordConfirm.pas' {CrossCrypt_PasswordConfirm_F},
+  OTFECrossCrypt_DriverAPI in 'OTFE\OTFECrossCrypt\OTFECrossCrypt_DriverAPI.pas',
+  OTFECrossCrypt_PasswordConfirm in 'OTFE\OTFECrossCrypt\OTFECrossCrypt_PasswordConfirm.pas' {OTFECrossCrypt_PasswordConfirm_F},
+  OTFECrossCrypt_PasswordEntry in 'OTFE\OTFECrossCrypt\OTFECrossCrypt_PasswordEntry.pas' {OTFECrossCrypt_PasswordEntry_F},
+  SDUForms in 'P:\src\PC\gui\common\SDUForms.pas' {SDUForm},
+  SDUFrames in 'P:\src\PC\gui\common\SDUFrames.pas' {SDUFrame: TFrame},
+  SDUGeneral in 'P:\src\PC\gui\common\SDeanUtils\SDUGeneral.pas',
+  SDUWinHTTP in 'P:\src\PC\gui\common\SDeanUtils\SDUWinHTTP.pas',
+  SDUWinHttp_API in 'P:\src\PC\gui\common\SDeanUtils\SDUWinHttp_API.pas',
+  SDUi18n in 'P:\src\PC\gui\common\SDeanUtils\SDUi18n.pas',
+  SDUGraphics in 'P:\src\PC\gui\common\SDeanUtils\SDUGraphics.pas',
+  SDUWindows64 in 'P:\src\PC\gui\common\SDeanUtils\SDUWindows64.pas',
+  SDUWindows in 'P:\src\PC\gui\common\SDeanUtils\SDUWindows.pas',
+  SDUObjectManager in 'P:\src\PC\gui\common\SDeanUtils\SDUObjectManager.pas',
+  SDUDirIterator_U in 'P:\src\PC\gui\common\SDeanUtils\SDUDirIterator_U.pas',
+  SDUClasses in 'P:\src\PC\gui\common\SDeanUtils\SDUClasses.pas',
+  SDUSysUtils in 'P:\src\PC\gui\common\SDeanUtils\SDUSysUtils.pas',
+  SDPartitionImage in 'P:\src\PC\gui\common\Filesystem\SDPartitionImage.pas',
+  SDPartitionImage_File in 'P:\src\PC\gui\common\Filesystem\SDPartitionImage_File.pas',
+  SDFilesystem in 'P:\src\PC\gui\common\Filesystem\SDFilesystem.pas',
+  SDFilesystem_FAT in 'P:\src\PC\gui\common\Filesystem\SDFilesystem_FAT.pas',
+  SDFilesystemCtrls_ColDetails in 'P:\src\PC\gui\common\Filesystem\SDFilesystemCtrls_ColDetails.pas' {SDFilesystemListView_ColDetails},
+  PasswordRichEdit in 'SDeanSecurity\PasswordRichEdit\PasswordRichEdit.pas',
+  FreeOTFEDriverConsts in 'OTFE\OTFEFreeOTFE\FreeOTFEDriverConsts.pas',
+  DriverAPI in 'P:\src\PC\gui\common\OTFE\OTFEFreeOTFE\DriverAPI.pas',
+  lcDialogs in 'P:\src\PC\gui\common\SDeanUtils\lcDialogs.pas',
+  SDUMRUList in 'P:\src\PC\gui\common\SDeanUtils\SDUMRUList.pas',
+  dlgProgress in 'P:\src\PC\gui\common\SDeanUtils\dlgProgress.pas',
+  lcTypes in 'P:\src\PC\gui\common\lcTypes.pas',
+  lcConsts in 'P:\src\PC\gui\common\lcConsts.pas',
+  PartitionTools in 'P:\src\PC\gui\common\PartitionTools.pas',
+  SDURegistry in 'P:\src\PC\gui\common\SDeanUtils\SDURegistry.pas';
+
+end.
+
+
+
+

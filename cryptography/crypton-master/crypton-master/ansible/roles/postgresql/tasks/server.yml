@@ -1,0 +1,88 @@
+---
+
+# TODO FIXME: install this from source instead of binary
+# don't trust upstream binaries.
+
+- name: install postgres server
+  sudo: yes
+  apt: pkg={{ item }} state=present
+  with_items:
+    - postgresql-{{pg_ver}}
+    - postgresql-plpython-{{pg_ver}}
+    - postgresql-plperl-{{pg_ver}}
+    - postgresql-contrib-{{pg_ver}}
+    - postgresql-server-dev-{{pg_ver}}
+
+- name: change ownership of postgres directory
+  sudo: yes
+  file: >
+    state=directory
+    path=/var/lib/postgresql
+    owner=postgres
+    group=postgres
+    mode=0700
+
+- name: create main pg cluster
+  sudo: yes
+  command: >
+    pg_createcluster {{ pg_ver }} main --start
+    creates=/var/lib/postgresql/{{ pg_ver }}/main
+
+- name: increase shared memory allowances
+  sudo: yes
+  template: >
+    src=postgresql-shm.conf.j2
+    dest=/etc/sysctl.d/30-postgresql-shm.conf
+    owner=root
+    group=root
+    mode=0644
+  notify: sysctl update
+
+- name: copy server certs
+  sudo: yes
+  copy: >
+    src={{ inventory_dir }}/secrets/certs/{{ crypton_domain }}-wildcard.pem
+    dest=/var/lib/postgresql/{{ pg_ver }}/main/{{ crypton_domain }}-wildcard.pem
+    owner=postgres
+    group=postgres
+    mode=0400
+  notify: reload postgres
+
+- name: write postgresql.conf file
+  tags: pg_conf
+  sudo: yes
+  template: >
+    src=postgresql.conf.j2
+    dest="/etc/postgresql/{{pg_ver}}/main/postgresql.conf"
+    owner=postgres
+    group=postgres
+    mode=0644
+  notify: reload postgres
+
+- meta: flush_handlers
+
+- name: start postgresql
+  sudo: yes
+  service: name=postgresql state=started
+
+- name: write postgres log rotate conf file
+  sudo: yes
+  template: >
+    src=logrotate.conf.j2
+    dest=/etc/logrotate.d/postgresql-common
+    owner=root
+    group=root
+    mode=0644
+
+- name: write postgresql hba conf file
+  sudo: yes
+  tags: pg_hba
+  template: >
+    src=pg_hba.conf.j2
+    dest="/etc/postgresql/{{pg_ver}}/main/pg_hba.conf"
+    owner=postgres
+    group=postgres
+    mode=0640
+  notify: reload postgres
+
+- meta: flush_handlers

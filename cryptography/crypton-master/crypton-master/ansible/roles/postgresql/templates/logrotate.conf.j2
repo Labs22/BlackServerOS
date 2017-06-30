@@ -1,0 +1,21 @@
+# {{ ansible_managed }}
+# check this with: 
+#    /usr/sbin/logrotate -d ./postgresql-common 
+
+/var/log/postgresql/*.log {
+       daily
+       rotate 30
+       delaycompress
+       compress
+       notifempty
+       missingok
+}
+
+/var/log/postgresql/*.csv {
+       daily
+       rotate 30
+       delaycompress
+       compress
+       notifempty
+       missingok
+}

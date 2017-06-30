@@ -1,0 +1,25 @@
+---
+
+- name: add the apt keys for postgresql provided DEBs
+  sudo: True
+  apt_key: >
+    state=present
+    id=ACCC4CF8
+    data="{{ lookup('file', inventory_dir + '/../files/apt.postgresql.org_key_ACCC4CF8.asc' ) }}"
+
+- name: add the apt source repo for postgresql DEBs
+  sudo: True
+  register: add_pg_apt_result
+  apt_repository: >
+    repo="deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main"
+
+- name: update apt after adding postgresql source
+  sudo: True
+  apt: update_cache=yes
+  when: >
+    add_pg_apt_result is defined
+    and add_pg_apt_result.changed
+
+- name: install psycopg2
+  apt: pkg=python-psycopg2 state=installed
+  sudo: True

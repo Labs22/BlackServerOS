@@ -1,0 +1,12 @@
+---
+- name: create replication user
+  sudo: yes
+  sudo_user: postgres
+  postgresql_user: >
+    state=present
+    name=replication
+    role_attr_flags=LOGIN,REPLICATION
+    password={{ lookup('password',
+      inventory_dir + '/secrets/'
+      + '/postgresql/replication.passwd
+      chars=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') }}

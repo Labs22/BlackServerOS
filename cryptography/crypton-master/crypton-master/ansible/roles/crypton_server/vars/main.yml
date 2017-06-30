@@ -1,0 +1,4 @@
+---
+
+runit_stdio_log:
+ path: /var/log/stdio

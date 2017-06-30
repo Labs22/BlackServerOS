@@ -1,0 +1,197 @@
+- name: create unix user
+  sudo: yes
+  user: >
+    state=present
+    name={{ item.1.user }}
+    system=yes
+    shell=/bin/false
+  with_subelements:
+    - crypton_sites
+    - apps
+  when: >
+    inventory_hostname in groups[item[0].hostgroup]
+
+- name: clone source code
+  sudo: yes
+  git: >
+    repo={{ item.1.src_repository|default(crypton_src_repository) }}
+    dest={{ item.1.src_checkout|default('/home/' + item.1.user + '/crypton') }}
+    version={{ item.1.src_branch|default(crypton_src_branch) }}
+  with_subelements:
+    - crypton_sites
+    - apps
+  when: >
+    inventory_hostname in groups[item[0].hostgroup]
+  register: clone_src
+
+- name: remove old node modules
+  sudo: yes
+  file: >
+    state=absent
+    path={{ item.item.1.src_checkout|default('/home/' + item.item.1.user + '/crypton') }}/server/node_modules
+  when: >
+    rebuild_crypton is defined
+    and (rebuild_crypton == 'all' and item.item is defined)
+    or (rebuild_crypton == 'changed' and item.changed)
+  with_items: clone_src.results
+
+- name: remove old client dist files
+  sudo: yes
+  file: >
+    state=absent
+    path={{ item.item.1.src_checkout|default('/home/' + item.item.1.user + '/crypton') }}/client/dist/crypton.js
+  when: >
+    rebuild_crypton is defined
+    and (rebuild_crypton == 'all' and item.item is defined)
+    or (rebuild_crypton == 'changed' and item.changed)
+  with_items: clone_src.results
+
+- name: install server node modules
+  sudo: yes
+  command: >
+    npm install
+    chdir={{ item.1.src_checkout|default('/home/' + item.1.user + '/crypton') }}/server
+    creates={{ item.1.src_checkout|default('/home/' + item.1.user + '/crypton') }}/server/node_modules
+  with_subelements:
+    - crypton_sites
+    - apps
+  when: >
+    inventory_hostname in groups[item[0].hostgroup]
+
+- name: build client dist files
+  sudo: yes
+  command: >
+    make compile
+    chdir={{ item.1.src_checkout|default('/home/' + item.1.user + '/crypton') }}/client
+    creates={{ item.1.src_checkout|default('/home/' + item.1.user + '/crypton') }}/client/dist/crypton.js
+  with_subelements:
+    - crypton_sites
+    - apps
+  when: >
+    inventory_hostname in groups[item[0].hostgroup]
+
+- name: make vendor dir for upstream static items
+  sudo: yes
+  file: >
+    state=directory
+    path=/home/{{ item.1.user }}/{{ item.2 }}
+    owner={{ item.1.user }}
+    group=www-data
+    mode=555
+  with_subelements_nested:
+    - crypton_sites
+    - apps
+    - - vendor
+      - vendor/jquery
+      - vendor/jquery/1.8.3
+      - vendor/jquery/1.10.2
+  when: >
+    inventory_hostname in groups[item[0].hostgroup]
+
+- name: fetch jquery so we can serve it locally
+  sudo: yes
+  get_url: >
+    url=https://ajax.googleapis.com/ajax/libs/jquery/{{ item.2.version }}/jquery.min.js
+    sha256sum={{ item.2.sha256sum }}
+    dest=/home/{{ item.1.user }}/vendor/jquery/{{ item.2.version }}/jquery.min.js
+    owner={{ item.1.user }}
+    group=www-data
+    mode=444
+  with_subelements_nested:
+    - crypton_sites
+    - apps
+    - - version: 1.8.3
+        sha256sum: ba6eda7945ab8d7e57b34cc5a3dd292fa2e4c60a5ced79236ecf1a9e0f0c2d32
+      - version: 1.10.2
+        sha256sum: 89a15e9c40bc6b14809f236ee8cd3ed1ea42393c1f6ca55c7855cd779b3f922e
+  when: >
+    inventory_hostname in groups[item[0].hostgroup]
+
+- name: copy server cookie keys
+  sudo: yes
+  copy: >
+    src={{ inventory_dir }}/secrets/keys/{{ item.1.name }}_cookie.key
+    dest=/home/{{ item.1.user }}/{{ item.1.name }}_cookie.key
+    owner={{ item.1.user }}
+    group={{ item.1.group|default(item.1.user) }}
+    mode=0400
+  with_subelements:
+    - crypton_sites
+    - apps
+  when: >
+    inventory_hostname in groups[item[0].hostgroup]
+
+- name: copy server certs
+  sudo: yes
+  copy: >
+    src={{ inventory_dir }}/secrets/certs/{{ item.1.domain|default(crypton_domain) }}-wildcard.pem
+    dest=/home/{{ item.1.user }}/{{ item.1.domain|default(crypton_domain) }}-wildcard.pem
+    owner={{ item.1.user }}
+    group={{ item.1.group|default(item.1.user) }}
+    mode=0400
+  with_subelements:
+    - crypton_sites
+    - apps
+  when: >
+    inventory_hostname in groups[item[0].hostgroup]
+
+- name: write server config file from template
+  sudo: yes
+  template: >
+    src=crypton.conf.json.j2
+    dest=/home/{{ item.1.user }}/{{ item.1.name }}.conf.json
+    owner=root
+    group={{ item.1.group|default(item.1.user) }}
+    mode=440
+  with_subelements:
+    - crypton_sites
+    - apps
+  when: >
+    inventory_hostname in groups[item[0].hostgroup]
+
+- include: runsv_services.yml
+
+- name: copy web server certs
+  sudo: yes
+  copy: >
+    src={{ inventory_dir }}/secrets/certs/{{ item.1.domain|default(crypton_domain) }}-wildcard.pem
+    dest=/etc/nginx/{{ item.1.domain|default(crypton_domain) }}-wildcard.pem
+    owner=root
+    group=root
+    mode=0400
+  with_subelements:
+    - crypton_sites
+    - apps
+  when: >
+    inventory_hostname in groups[item[0].hostgroup]
+
+- name: install nginx config
+  sudo: yes
+  tags: crypton_nginx_config
+  template: >
+    src=nginx-site.conf.j2
+    dest=/etc/nginx/sites-available/{{ item.1.name }}.{{ item.1.domain|default(crypton_domain) }}.conf
+    owner=root
+    group=root
+    mode=400
+  with_subelements:
+    - crypton_sites
+    - apps
+  when: >
+    inventory_hostname in groups[item[0].hostgroup]
+  notify: reload nginx
+
+- name: enable nginx config
+  sudo: yes
+  file: >
+    state=link
+    src=/etc/nginx/sites-available/{{ item.1.name }}.{{ item.1.domain|default(crypton_domain) }}.conf
+    dest=/etc/nginx/sites-enabled/{{ item.1.name }}.{{ item.1.domain|default(crypton_domain) }}.conf
+  with_subelements:
+    - crypton_sites
+    - apps
+  when: >
+    inventory_hostname in groups[item[0].hostgroup]
+  notify: reload nginx
+
+- meta: flush_handlers

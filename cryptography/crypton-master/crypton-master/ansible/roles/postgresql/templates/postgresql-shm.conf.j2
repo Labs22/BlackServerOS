@@ -1,0 +1,18 @@
+# {{ ansible_managed }}
+# Shared memory settings for PostgreSQL
+
+# Maximum size of shared memory segment in bytes
+{% if production %}
+kernel.shmmax = 5901085184
+{% else %}
+kernel.shmmax = 48676864
+{% endif %}
+
+{% if production %}
+kernel.msgmax = 32767
+{% endif %}
+
+kernel.sem = 3072 131072 256 1024
+
+# Maximum total size of shared memory in pages (normally 4096 bytes)
+#kernel.shmall = 2097152

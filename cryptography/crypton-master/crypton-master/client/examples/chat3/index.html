@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+  <title>Crypton Chat</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="/vendor/jquery/1.10.2/jquery.min.js"></script>
+  <script src="crypton.js"></script>
+  <script src="main.js"></script>
+</head>
+<body>
+  <div id="login">
+    <strong>Chat</strong>
+    <span class="status"></span>
+    <form>
+      <div>
+        <input type="text" placeholder="Username" name="username" />
+      </div>
+      <div>
+        <input type="password" placeholder="Passphrase" name="passphrase" autocomplete="off" />
+      </div>
+      <div>
+        <button class="login">Login</button>
+        <button class="register">Register</button>
+      </div>
+    </form>
+  </div>
+  <div id="app">
+    <div id="header">
+      <a href="#" data-action="startConversation">Create conversation</a>
+    </div>
+    <div id="sidebar">
+      <div id="conversations"></div>
+    </div>
+    <div id="main">
+      <div id="startConversation">
+        <form>
+          <input placeholder="Enter a username" /><br />
+          <button>Start conversation</button>
+        </form>
+      </div>
+      <div id="conversation">
+        <div id="messages"></div>
+        <input id="chatInput" placeholder="Type a message here and press enter to send" />
+      </div>
+    </div>
+  </div>
+</body>
+</html>

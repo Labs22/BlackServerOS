@@ -1,0 +1,41 @@
+Crypton Client, Copyright 2013, 2014, 2015 SpiderOak, Inc.
+
+This file is part of Crypton Client.
+
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+
+---
+
+Crypton Client comprises the following source files:
+
+src/account.js
+src/card.js
+src/container.js
+src/core.js
+src/diff.js
+src/errors.js
+src/history.js
+src/inbox.js
+src/item.js
+src/message.js
+src/peer.js
+src/session.js
+src/transaction.js
+src/work.js
+test/account.js
+test/card.js
+test/container.js
+test/core.js
+test/diff.js
+test/session.js
+test/transaction.js
+../compile.sh

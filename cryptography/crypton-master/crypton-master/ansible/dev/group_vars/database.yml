@@ -1,0 +1,5 @@
+---
+# mapping of groups of machines, which database users and databases they
+# are allowed to connect to.
+pg_hba_group_access:
+  - { group: "web", user: "crypton_user", db: "crypton_dev" }

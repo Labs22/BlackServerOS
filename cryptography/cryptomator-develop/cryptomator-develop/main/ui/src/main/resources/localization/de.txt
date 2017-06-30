@@ -1,0 +1,104 @@
+app.name = Cryptomator
+# main.fxml
+main.emptyListInstructions = Klicken Sie hier, um neue Tresore hinzuzufügen
+main.directoryList.contextMenu.remove = Aus Liste entfernen
+main.directoryList.contextMenu.changePassword = Passwort ändern
+main.addDirectory.contextMenu.new = Tresor erstellen
+main.addDirectory.contextMenu.open = Tresor öffnen
+# welcome.fxml
+welcome.checkForUpdates.label.currentlyChecking = Prüfe auf Updates...
+welcome.newVersionMessage = Version %1$s kann heruntergeladen werden.\nMomentane Version %2$s.
+# initialize.fxml
+initialize.label.password = Passwort
+initialize.label.retypePassword = Passwort bestätigen
+initialize.button.ok = Tresor erstellen
+initialize.messageLabel.alreadyInitialized = Tresor bereits vorhanden
+initialize.messageLabel.initializationFailed = Fehler beim Initialisieren. Details in der Log-Datei.
+# notfound.fxml
+notfound.label = Tresor konnte nicht gefunden werden.\nWurde er verschoben?
+# upgrade.fxml
+upgrade.button = Tresor aktualisieren
+upgrade.version3dropBundleExtension.msg = Dieser Tresor muss auf ein neueres Format aktualisiert werden.\n"%1$s" wird in "%2$s" umbenannt.\nStellen Sie bitte sicher, dass derzeit keine Synchronisation stattfindet.
+upgrade.version3dropBundleExtension.err.alreadyExists = Migration fehlgeschlagen.\n"%s" existiert bereits.
+# unlock.fxml
+unlock.label.password = Passwort
+unlock.label.mountName = Laufwerksname
+unlock.label.winDriveLetter = Laufwerksbuchstabe
+unlock.label.downloadsPageLink = Alle Cryptomator Versionen
+unlock.label.advancedHeading = Erweiterte Optionen
+unlock.button.unlock = Tresor entsperren
+unlock.button.advancedOptions.show = Weitere Optionen
+unlock.button.advancedOptions.hide = Weniger Optionen
+unlock.choicebox.winDriveLetter.auto = Automatisch ermitteln
+unlock.errorMessage.wrongPassword = Falsches Passwort
+unlock.errorMessage.unsupportedVersion.vaultOlderThanSoftware = Tresor nicht unterstützt. Der Tresor wurde mit einer älteren Version von Cryptomator erstellt.
+unlock.errorMessage.unsupportedVersion.softwareOlderThanVault = Tresor nicht unterstützt. Der Tresor wurde mit einer neueren Version von Cryptomator erstellt.
+unlock.messageLabel.startServerFailed = Starten des WebDAV-Servers fehlgeschlagen.
+# change_password.fxml
+changePassword.label.oldPassword = Altes Passwort
+changePassword.label.newPassword = Neues Passwort
+changePassword.label.retypePassword = Passwort bestätigen
+changePassword.label.downloadsPageLink = Alle Cryptomator Versionen
+changePassword.button.change = Passwort ändern
+changePassword.errorMessage.wrongPassword = Falsches Passwort
+changePassword.errorMessage.decryptionFailed = Entschlüsselung fehlgeschlagen
+# unlocked.fxml
+unlocked.button.lock = Tresor sperren
+unlocked.moreOptions.reveal = Laufwerk anzeigen
+unlocked.moreOptions.copyUrl = WebDAV-URL kopieren
+unlocked.label.revealFailed = Befehl fehlgeschlagen
+unlocked.label.unmountFailed = Trennen des Laufwerks fehlgeschlagen
+unlocked.label.statsEncrypted = verschlüsselt
+unlocked.label.statsDecrypted = entschlüsselt
+unlocked.ioGraph.yAxis.label = Durchsatz (MiB/s)
+# settings.fxml
+settings.version.label = Version %s
+settings.checkForUpdates.label = Auf Updates prüfen
+settings.port.label = WebDAV Port *
+settings.port.prompt = 0 \= Automatisch wählen
+settings.requiresRestartLabel = * benötigt Neustart von Cryptomator
+# tray icon
+tray.menu.open = Öffnen
+tray.menu.quit = Beenden
+tray.infoMsg.title = Cryptomator läuft noch
+tray.infoMsg.msg = Cryptomator läuft noch. Mit dem Tray-Icon beenden.
+tray.infoMsg.msg.osx = Cryptomator läuft noch. Über die Menüleiste beenden.
+initialize.messageLabel.passwordStrength.0 = Sehr schwach
+initialize.messageLabel.passwordStrength.1 = Schwach
+initialize.messageLabel.passwordStrength.2 = Mittel
+initialize.messageLabel.passwordStrength.3 = Stark
+initialize.messageLabel.passwordStrength.4 = Sehr stark
+initialize.label.doNotForget = WICHTIG\: Falls Sie Ihr Passwort vergessen, gibt es keine Möglichkeit Ihre Daten wiederherzustellen.
+main.directoryList.remove.confirmation.title = Tresor entfernen
+main.directoryList.remove.confirmation.header = Möchten Sie diesen Tresor wirklich entfernen?
+main.directoryList.remove.confirmation.content = Dieser Tresor wird nur aus der Liste entfernt. Um den Tresor unwiderruflich zu löschen, entfernen Sie bitte den Tresor aus Ihrem Dateisystem.
+upgrade.version3to4.msg = Dieser Tresor muss auf ein neueres Format aktualisiert werden.\nVerschlüsselte Ordnernamen werden dabei aktualisiert.\nStellen Sie bitte sicher, dass derzeit keine Synchronisation stattfindet.
+upgrade.version3to4.err.io = Migration aufgrund eines I/O-Fehlers fehlgeschlagen.\nWeitere Informationen in der Log-Datei.
+settings.prefGvfsScheme.label = WebDAV Schema
+# upgrade.fxml
+upgrade.confirmation.label = Ja, die Synchronisation ist abgeschlossen
+initialize.messageLabel.notEmpty = Tresor ist nicht leer
+unlock.label.savePassword = Passwort speichern
+unlock.errorMessage.unauthenticVersionMac = Versions-MAC konnte nicht authentifiziert werden.
+unlocked.label.mountFailed = Verbinden des Laufwerks fehlgeschlagen
+unlock.savePassword.delete.confirmation.title = Gespeichertes Passwort löschen
+unlock.savePassword.delete.confirmation.header = Möchten Sie das gespeicherte Passwort von diesem Tresor wirklich löschen?
+unlock.savePassword.delete.confirmation.content = Das gespeicherte Passwort von diesem Tresor wird sofort aus Ihrem System-Schlüsselbund gelöscht. Falls Sie das Passwort erneut speichern möchten, müssen Sie den Tresor entsperren und dabei die "Passwort speichern"-Option aktiviert haben.
+settings.debugMode.label = Debug-Modus *
+upgrade.version3dropBundleExtension.title = Upgrade Tresor-Version 3 (Entfall der Bundle-Extension)
+upgrade.version3to4.title = Upgrade Tresor-Version 3 zu 4
+upgrade.version4to5.title = Upgrade Tresor-Version 4 zu 5
+upgrade.version4to5.msg = Dieser Tresor muss auf ein neueres Format aktualisiert werden.\nVerschlüsselte Dateien werden dabei aktualisiert.\nStellen Sie sicher, dass keine Synchronisation stattfindet, bevor Sie fortfahren.\n\nHinweis\: Beim Upgrade wird das Änderungsdatum aller Dateien auf das aktuelle Datum geändert.
+upgrade.version4to5.err.io = Migration aufgrund eines I/O-Fehlers fehlgeschlagen.\nWeitere Informationen in der Log-Datei.
+settings.port.apply = Anwenden
+unlock.label.mountAfterUnlock = Laufwerk verbinden
+unlock.label.revealAfterMount = Laufwerk anzeigen
+unlocked.lock.force.confirmation.title = Sperren von %1$s fehlgeschlagen
+unlocked.lock.force.confirmation.header = Möchten Sie das Sperren erzwingen?
+unlocked.lock.force.confirmation.content = Dies kann passieren, wenn andere Programme weiterhin auf Dateien im Tresor zugreifen. Oder es ist ein anderes Problem aufgetreten.\n\nProgramme, die weiterhin auf die Dateien zugreifen, könnten nicht mehr richtig funktionieren, oder Daten, die durch diese Programme noch nicht geschrieben wurden, könnten verloren gehen.
+unlock.label.unlockAfterStartup = Automatisch entsperren beim Start (Experimentell)
+unlock.errorMessage.unlockFailed = Entsperren fehlgeschlagen. Siehe Log-Datei für Details.
+unlocked.moreOptions.mount = Laufwerk verbinden
+unlocked.moreOptions.unmount = Laufwerk auswerfen
+upgrade.version5toX.title = Upgrade Tresor-Version 5 zu X
+upgrade.version5toX.msg = Dieser Tresor muss auf ein neueres Format aktualisiert werden.\nStellen Sie sicher, dass keine Synchronisation stattfindet, bevor Sie fortfahren.

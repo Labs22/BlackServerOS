@@ -1,0 +1,39 @@
+
+End-User License Agreement ("Agreement")
+
+Last updated: September 21, 2016
+
+Please read this End-User License Agreement ("Agreement") carefully before downloading.
+By downloading or using Demonsaw, you are agreeing to be bound by the terms and conditions of this Agreement.
+
+If you do not agree to the terms of this Agreement, do not click the "Download" button and do not download or use Demonsaw.
+
+Restrictions
+
+You agree not to, and you will not permit others to:
+a) license, sell, rent, lease, or otherwise commercially exploit Demonsaw.
+b) reverse-engineer, exploit, decompile, or make any attempts to view or gain knowledge of the underlying source code and intellectual property that constitutes "Demonsaw".
+
+Modifications to Demonsaw
+
+Demonsaw, LLC reserves the right to modify, suspend or discontinue, temporarily or permanently, Demonsaw or any service to which it connects, with or without notice and without liability to you.
+
+Terms and Termination
+
+This Agreement shall remain in effect until terminated by you or Demonsaw, LLC.
+
+Demonsaw, LLC may, in its sole discretion, at any time and for any or no reason, suspend or terminate this Agreement with or without prior notice.
+
+This Agreement will terminate immediately, without prior notice from Demonsaw, LLC, in the event that you fail to comply with any provision of this Agreement. You may also terminate this Agreement by deleting Demonsaw and all copies thereof from your computer(s) and server(s). Upon termination of this Agreement, you shall cease all use of Demonsaw and delete all copies of Demonsaw from your computer(s) and server(s).
+
+Severability
+
+If any provision of this Agreement is held to be unenforceable or invalid, such provision will be changed and interpreted to accomplish the objectives of such provision to the greatest extent possible under applicable law and the remaining provisions will continue in main force or effect.
+
+Amendments to this Agreement
+
+Demonsaw, LLC reserves the right, at its sole discretion, to modify or replace this Agreement at any time. If a revision is material we will provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
+
+Contact Information
+
+If you have any question about this Agreement, please contact eijah@demonsaw.com. 

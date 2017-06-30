@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  <title>Crypton Account Generation Example</title>
+  <style>
+  #progress {
+    display: none;
+  }
+  </style>
+</head>
+<body>
+<form id="userInput">
+  username: <input type="text" id="username" autocomplete="off" /><br />
+  password: <input type="password" id="password"><br />
+  <input type="submit" value="register" />
+</form>
+<div id="progress">
+  <span id="status">generating keys...</span>
+  <progress id="progBar" max="2048"></progress>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="crypton.js"></script>
+<script>
+$(document).ready(function () {
+  crypton.host = window.location.hostname;
+
+  $('#username').focus();
+  $('#userInput').submit(function (e) {
+    e.preventDefault();
+
+    $(this).hide();
+    $('#progress').show();
+
+    var progress = document.getElementById('progBar');
+    var status = document.getElementById('status');
+    var username = $('#username').val();
+    var password = $('#password').val()
+
+    crypton.generateAccount(username, password, function done (err, account) {
+      progress.value = 2048;
+      if (err) {
+        console.log(err);
+        status.innerHTML = err;
+      } else {
+        console.log(account);
+        status.innerHTML = 'done';
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

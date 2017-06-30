@@ -1,0 +1,1 @@
+../../../../server/lib/stores/postgres/sql/setup.sql

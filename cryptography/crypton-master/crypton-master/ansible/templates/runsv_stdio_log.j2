@@ -1,0 +1,3 @@
+#!/bin/bash
+
+exec chpst svlogd -ttt {{ runit_stdio_log.path }}/{{ item.1.name }}

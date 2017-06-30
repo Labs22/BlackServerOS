@@ -1,0 +1,29 @@
+begin;
+
+grant all on account to {{ item.1.db.user|default(item.1.user) }};
+grant all on base_keyring to {{ item.1.db.user|default(item.1.user) }};
+grant all on commitable_transaction to {{ item.1.db.user|default(item.1.user) }};
+grant all on container to {{ item.1.db.user|default(item.1.user) }};
+grant all on container_record to {{ item.1.db.user|default(item.1.user) }};
+grant all on container_session_key to {{ item.1.db.user|default(item.1.user) }};
+grant all on container_session_key_share to {{ item.1.db.user|default(item.1.user) }};
+grant all on first_pending_commit_per_avatar to {{ item.1.db.user|default(item.1.user) }};
+grant all on message to {{ item.1.db.user|default(item.1.user) }};
+grant all on readable_container_records_by_account to {{ item.1.db.user|default(item.1.user) }};
+grant all on transaction to {{ item.1.db.user|default(item.1.user) }};
+grant all on transaction_add_container to {{ item.1.db.user|default(item.1.user) }};
+grant all on transaction_add_container_record to {{ item.1.db.user|default(item.1.user) }};
+grant all on transaction_add_container_session_key to {{ item.1.db.user|default(item.1.user) }};
+grant all on transaction_add_container_session_key_share to {{ item.1.db.user|default(item.1.user) }};
+grant all on transaction_add_message to {{ item.1.db.user|default(item.1.user) }};
+grant all on transaction_delete_container to {{ item.1.db.user|default(item.1.user) }};
+grant all on transaction_delete_container_session_key_share to {{ item.1.db.user|default(item.1.user) }};
+grant all on transaction_delete_message to {{ item.1.db.user|default(item.1.user) }};
+grant all on version_identifier to {{ item.1.db.user|default(item.1.user) }};
+grant all on item to {{ item.1.db.user|default(item.1.user) }};
+grant all on item_history to {{ item.1.db.user|default(item.1.user) }};
+grant all on item_session_key to {{ item.1.db.user|default(item.1.user) }};
+grant all on item_session_key_share to {{ item.1.db.user|default(item.1.user) }};
+grant all on timeline to {{ item.1.db.user|default(item.1.user) }};
+
+commit;

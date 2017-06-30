@@ -1,0 +1,50 @@
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Crypton Integration Tests</title>
+    <link href="../node_modules/mocha/mocha.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div id="mocha"></div>
+
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/semver/semver.js"></script>
+    <script src="../../client/dist/crypton.js"></script>
+
+    <script>
+      mocha.ui('bdd');
+      assert = chai.assert;
+      mocha.checkLeaks();
+      mocha.globals(['jQuery', 'crypton']);
+      crypton.host = 'localhost';
+      crypton.port = 1026;
+    </script>
+
+    <script src="core.js"></script>
+    <!-- <script src="inbox.js"></script> -->
+    <!-- <script src="transaction.js"></script> -->
+    <!-- <script src="container.js"></script> -->
+    <!-- <script src="session.js"></script> -->
+    <!-- <script src="attack.js"></script> -->
+    <!-- <script src="encryptandsign.js"></script> -->
+    <!-- <script src="verification.js"></script> -->
+    <!-- <script src="changepassphrase.js"></script> -->
+    <!-- <script src="changePassphraseWithSharedContainers.js"></script> -->
+    <!-- <script src="item.js"></script> -->
+
+    <!-- Commented out non-working tests for now -->
+    <!-- <script src="itemSharing.js"></script> -->
+
+    <!-- version mismatch must be the last test to run -->
+    <!-- <script src="versionmismatch.js"></script> -->
+
+    <script>
+      mocha.run();
+    </script>
+
+  </body>
+
+</html>

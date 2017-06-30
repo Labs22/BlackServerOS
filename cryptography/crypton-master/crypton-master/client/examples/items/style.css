@@ -1,0 +1,11 @@
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font: 14px monospace;
+  padding: 50px;
+}
+
+#progress {
+  padding-bottom: 20px;
+  font-weight: bold;
+}

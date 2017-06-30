@@ -1,0 +1,193 @@
+body {
+  background: #6ab06e;
+  font-family: 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: all 0.1s ease;
+}
+
+#header {
+  position: fixed;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 50px;
+  line-height: 50px;
+  background: #59a75e;
+  transition: all 0.2s ease;
+}
+
+#header .logo {
+  color: #fff;
+  float: left;
+  padding: 0 15px;
+  font-weight: bold;
+}
+
+#header .status {
+  color: #fff;
+  float: left;
+  padding: 0 15px;
+}
+
+#nav {
+  list-style: none;
+  margin: 0;
+  float: right;
+}
+
+#nav li {
+  float: left;
+  color: #fff;
+}
+
+#nav a {
+  padding: 15px;
+  color: #fff;
+}
+
+#nav a:hover {
+  background: #1c6220;
+  cursor: pointer;
+}
+
+#sidebar {
+  background: #f5f5f5;
+  position: fixed;
+  top: 50px;
+  left: -350px;
+  bottom: 0;
+  width: 300px;
+  transition: all 0.2s ease;
+  padding: 1px;
+}
+
+#sidebar .no-conversations {
+  padding: 15px 0;
+  opacity: 0.5;
+  text-align: center;
+}
+
+#sidebar .conversation {
+  padding: 15px;
+  margin-bottom: 1px;
+  background: #fdfdfd;
+  color: #aaa;
+  cursor: pointer;
+}
+
+#sidebar .conversation.active,
+#sidebar .conversation:hover {
+  color: #000;
+}
+
+#sidebar .conversation span {
+  display: block;
+}
+
+#sidebar .conversation.active .username,
+#sidebar .conversation:hover .username {
+  font-weight: bold;
+}
+
+#sidebar .conversation .activity {
+  font-size: 0.9em;
+}
+
+.padding {
+  padding: 0 15px;
+}
+
+#container {
+  position: fixed;
+  top: 50px;
+  left: 10000px;
+  right: 0;
+  bottom: 0;
+  transition: all 0.2s ease;
+}
+
+#create-conversation {
+  display: none;
+  width: 400px;
+  margin: 100px auto;
+}
+
+#create-conversation input[type="text"] {
+  display: block;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 20px auto;
+  outline: 0;
+  font-family: 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+}
+
+#create-conversation input[type="text"]:focus {
+  box-shadow: 0 0 10px #ddd;
+}
+
+#create-conversation input[type="submit"] {
+  border: 0;
+  padding: 10px;
+  background: #59a75e;
+  color: #fff;
+  opacity: 0.7;
+  outline: 0;
+  font-family: 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  display: block;
+  margin: 0 auto;
+}
+
+#create-conversation input[type="submit"]:focus,
+#create-conversation input[type="submit"]:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+#conversation {
+  display: none;
+  position: fixed;
+  top: 50px;
+  left: 300px;
+  right: 0;
+  bottom: 0;
+  overflow-x: none;
+  overflow-y: scroll;
+}
+
+#conversation #messages {
+  padding: 10px 15px 70px;
+}
+
+#conversation .message {
+  padding: 0 0 5px;
+}
+
+#conversation .message .username {
+  opacity: 0.5;
+  padding-right: 15px;
+}
+
+#conversation .message .sent {
+  opacity: 0.5;
+  float: right;
+}
+
+#conversation #conversation-input input {
+  position: fixed;
+  bottom: 15px;
+  left: 315px;
+  right: 15px;
+  padding: 10px;
+  font-family: 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  outline: 0;
+  border: 1px solid #ddd;
+}
+
+#conversation #conversation-input input:focus {
+  box-shadow: 0 0 10px #ddd;
+}
+
+

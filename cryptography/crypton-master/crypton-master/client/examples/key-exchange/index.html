@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+  <title>Crypton User Discovery & Key Exchange: Alice </title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="jquery.min.js"></script>
+  <script src="crypton.js"></script>
+  <script src="main.js"></script>
+</head>
+<body>
+  <div id="login">
+    <strong>Crypton User Discovery & Verification</strong>
+    <span class="status"></span>
+    <form>
+      <div>
+        <input type="text" placeholder="Username" name="username" />
+      </div>
+      <div>
+        <input type="password" placeholder="Passphrase" name="passphrase" autocomplete="off" />
+      </div>
+      <div>
+        <button class="login">Login</button>
+        <button class="register">Register</button>
+      </div>
+    </form>
+  </div>
+  <div id="app">
+    <div id="header">
+      <span><strong>Crypton User Discovery & Verification</strong></span>
+      <a href="#" id="my-contacts" data-action="myContacts">My Verified Contacts</a>
+      <a href="#" id="fingerprint-instructions" data-action="fingerprintInstructions">My Fingerprint</a>
+    </div>
+    <div id="main">
+      <div id="search">
+        <input id="find-someone" placeholder="Enter a username" />
+        <button id="find-someone-btn">Find User</button>
+      </div>
+      <div id="contacts">	
+      </div>
+    </div>
+  </div>
+  <div id="hidden-qrcode"></div>
+
+</body>
+</html>

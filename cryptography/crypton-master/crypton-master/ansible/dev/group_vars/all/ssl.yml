@@ -1,0 +1,26 @@
+ssl_ciphers:
+- "kEECDH+ECDSA+AES128"  # cipher suits using ephemeral ECDH key agreement (includes anonymous ECDH) + Elliptic curve DSA authentication
+- "kEECDH+ECDSA+AES256"  # but prefer AES128 for performance
+- "kEECDH+AES128"        # same as above, but with any other authentication method
+- "kEECDH+AES256"        # but prefer AES128 for performance
+- "kEDH+AES128"          # cipher suites using ephemeral DH key agreements
+- "kEDH+AES256"          # but prefer AES128 for performance
+- "+SHA"          # push older suites to the end of the list
+- "!aNULL"        # permanently delete non authenticated suites
+- "!eNULL"        # permanently delete non encrypted suits
+- "!LOW"          # permanently delete low strength suites
+- "!3DES"         # permanently delete suites that use 3DES encryption
+- "!MD5"          # permanently delete suites that use MD5 hash
+- "!EXP"          # permanently delete obsolete export suites
+- "!DSS"          # permanently delete suites using DSS authentication
+- "!PSK"          # permanently delete suites using Pre-Shared Key authentication
+- "!SRP"          # permanently delete suites using Secure Remote Password authentication
+- "!kECDH"        # permanently delete suites using static ECDH key agreement
+- "!CAMELLIA"     # permanently delete suites using CAMELLIA cipher
+- "!IDEA"         # permanently delete suites using IDEA cipher
+- "!SEED"         # permanently delete suites using SEED cipher
+
+ssl_protocols:
+- TLSv1
+- TLSv1.1
+- TLSv1.2

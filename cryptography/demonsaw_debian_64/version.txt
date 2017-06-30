@@ -1,0 +1,94 @@
+[3.1.0]
+* statusbar
+* download queue
+* folder download
+* Download To...
+* anti-troll
+* OSX & Win32 builds
+* upload progress clamp to 0-100
+* browse download doesn't swarm, only search now
+* randomize client/router default wizard color
+* dupe file download should auto clear previous
+* group id should be calculated from cipher too
+* set transfer router prime at default levels
+* convert menubar into 2nd toolbar
+* CLI router build
+* help pane
+* EULA
+
+[3.0.5]
+* 1 thread for message routers
+* Display "Upgrade Now" message in chat when incompatible router found
+
+[3.0.4]
+* Restart ignores previous queued events
+* unable to write still doesn't timeout - it does, just takes 1 min
+* playing while downloading corrupted file, resume fixed?
+* 1 tunneled socket
+
+[3.0.3]
+* Stack crash was occurring on Linux due to 4K worker thread stacks
+* Increased stack size to 256K
+* Added twofish algorithm back
+* tooltip for dock widget
+* Added tooltips back
+* Updated retry to 1 sec (100 ms was DDOSing the router?)
+* retry is set to 0-1 sec now...
+* Add retries to services & acceptors
+* Remove unnecessary error messages
+* Unable to write needs to eventually time out?
+* retry should be 8
+* bring over random retry code from message acceptor to clients (0 - 1000)
+* tunnel sockets to 1
+
+[3.0.2]
+* queue unauthorized packets then emoty queue once re-authenticated with xfr router
+* transfer routers should not be overwritten when refreshing with msg router (keep in memory and replace only). msg router sends back all xfr routers to clients (not just success ones)
+* transfer service unauthorized will drop transfer request (to restart). Re-queue and/or don't restart, just re-group & handshake? Add to post-auth queue and then process upon successful re-connect?
+* restart of client should NOT restart transfer routers (allow transfers to continue)
+* turn yellow if you have 0 xfr routers
+* use transfer router as long as not error status
+* max/min transfer routers that are used in transfer? (1 - 8)
+* transfer router open fail should abort? Or.. use TTL and fail when we run out of retries?
+* right click download, Stop doesn't appear cross rows (if yes/no)
+* fix browse sort crash bug
+* wrap all service/acceptor handlers in exception handling
+* TwoFish crashes on linux??? (Just use AES for session?)
+* 5 sec progress update change from green to blue
+* removed early socket close function calls (should fix router crashes)
+* return 501 if router uses non AES for session 
+* router socket->close() - let destructor do it
+* porn's weird file parse issue - i think an exception is thrown tbh
+* Only allow folder browsing if folder size > 0
+* alpha 1 sets button at 255 alpha?
+* auto rejoin client to router if going from 0 -> 1 or 1 -> 0 shares
+* minus button remove all (download, upload, etc.)
+
+
+[3.0.1]
+* add md5 to group hash
+* add pm to main chat (always)
+* only go to valid upload routers?
+* If xfr router exists in client & router, use client version (don't duplicate) - this allows for groups
+* select inside a folder bug (porn)
+* fixed transfer router crash due to nullptr
+* check for nullptr on get_owner & get_parent() & self
+* fix transfer router weirdness on dload/uload. We are losing transfer routers.
+* file hash doesn't save out
+* threads should only be used for io_service stuff
+* service threads should match max sockets in msg & xfr service_comp (aren't doing this now). set_threads when reading in xfr toml & in join (msg xfr routers). remove service threads + 1?
+* xfr threads not saving to toml
+* switching groups should clear chat
+* remove client should quit router
+* 0 size files should still transfer
+* tabbed floating window UI distinction from upper right buttons
+* Fixed transfer router problem with matching & sorting
+* uploads that didn't start not timing out?. stuck-in-queue-at-0%-forever bug
+* Still an early upload timeout happening with lots of transfers
+* reset timeout on stopped transfers
+* fix resume on transfers
+* EXE doesn't close if transfers are going when trying to shutdown?
+* Fixed folder sort sizes
+
+[3.0]
+* N/A

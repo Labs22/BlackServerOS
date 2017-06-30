@@ -1,0 +1,45 @@
+{
+  "database": {
+    "type": "postgres",
+    "user": "{{ item.1.db.user|default(item.1.user) }}",
+    "password": "{{ item.1.db.password }}",
+    "database": "{{ item.1.db.name|default(item.1.name) }}",
+    "host": "{{ item.1.db.host }}",
+    "port": {{ item.1.db.port|default(5432) }}
+  },
+  "defaultKeySize": 32,
+  "id_translator": {
+    "key_file": "/dev/urandom"
+  },
+  "cookieSecretFile": "/home/{{ item.1.user }}/{{ item.1.name }}_cookie.key",
+  "privateKey": "/home/{{ item.1.user }}/{{ item.1.domain|default(crypton_domain) }}-wildcard.pem",
+  "certificate": "/home/{{ item.1.user }}/{{ item.1.domain|default(crypton_domain) }}-wildcard.pem",
+  "appPath": ".",
+  "redis": {
+    "host": "{{ item.1.redis.host }}",
+    "port": {{ item.1.redis.port|default(6379) }},
+    "pass": "{{ item.1.redis.password|default('') }}"
+  },
+  "commitStatusCheckDelay": 100,
+  "commitStatusCheckLimit": 100,
+  "securityHeaders": {
+    "csrf": false,
+    "csp": {
+      "policy": {
+        "default-src": "'self'",
+        "connect-src": "'self' wss://localhost:{{ item.1.local_port }}",
+        "script-src": "'self'",
+        "img-src": "'self'",
+        "style-src": "'self'",
+        "font-src": "'self'",
+        "object-src": "'self'"
+      }
+    },
+    "xframe": "SAMEORIGIN",
+    "hsts": {
+      "maxAge": 31536000
+    }
+  },
+  "port": {{ item.1.local_port }},
+  "logLevel": "debug"
+}

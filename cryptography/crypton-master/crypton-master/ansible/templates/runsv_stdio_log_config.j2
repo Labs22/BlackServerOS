@@ -1,0 +1,13 @@
+# {{ ansible_managed }}
+# log config for {{ item.1.name }} 
+# timeout on rotation of 1 day.
+t86400
+# rotate at 16 meg
+s16000000
+# keep up to 100 files (1.6 GB worth, before compression.)
+n100
+# min number to keep (will delete down to this many when fs is full)
+N1
+# compresse rotated log files.
+# play nice and use a lock file to avoid a thundering herd of gzip instances
+$!/usr/bin/chpst -n 5 -l /var/lock/bzip2_log_compress.lock /usr/bin/bzip2 -9

@@ -1,0 +1,47 @@
+#login {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 100px;
+  position: relative;
+  transition: all 0.1s ease;
+}
+
+#login input[type="text"],
+#login input[type="password"] {
+  border: 0;
+  padding: 10px;
+  display: block;
+  margin: 10px auto;
+  outline: 0;
+  font-family: 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+}
+
+#login input[type="text"]:focus,
+#login input[type="password"]:focus {
+  box-shadow: 0 0 10px #1c6220;
+}
+
+#login input[type="submit"] {
+  border: 0;
+  padding: 10px;
+  background: #1c6220;
+  color: #fff;
+  opacity: 0.7;
+  outline: 0;
+  font-family: 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+}
+
+#login input[type="submit"]:focus,
+#login input[type="submit"]:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+#login .status {
+  color: #fff;
+  height: 30px;
+  display: block;
+}

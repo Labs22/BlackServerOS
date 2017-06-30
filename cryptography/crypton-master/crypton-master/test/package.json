@@ -1,0 +1,28 @@
+{
+  "author": "SpiderOak (https://spideroak.com/)",
+  "name": "crypton",
+  "description": "A zero-knowledge application framework",
+  "version": "0.0.4",
+  "homepage": "https://spideroak.com/solutions/crypton-framework",
+  "license": "MPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SpiderOak/crypton.git"
+  },
+  "engines": {
+    "node": "4.2.x"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^2.3.3",
+    "chai": "^3.4.0",
+    "phantomjs": "^1.9.7",
+    "mocha-phantomjs": "^4.0.1",
+    "semver": "^5.0.3"
+  },
+  "optionalDependencies": {},
+  "scripts": {
+    "test": "make test"
+  }
+
+}

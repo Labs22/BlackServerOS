@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Crypton Chat Demo</title>
+<link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="crypton.js"></script>
+<script src="chat.js"></script>
+</head>
+<body class="login">
+  <div id="login">
+    <img src="crypton.png" alt="Crypton" />
+    <p class="center" id="status"></p>
+    <div class="center progressBar">
+      <div class="progress"></div>
+    </div>
+    <form>
+      <input type="text" name="username" placeholder="Username" /><br />
+      <input type="password" name="password" placeholder="Password" autocomplete="off" /><br />
+      <input type="submit" name="login" value="Login" />
+      <input type="submit" name="register" value="Register" />
+    </form>
+    <p class="center"><small>Don't forget your password! If lost, there is no way to reset it.</small></p>
+  </div>
+  <div id="app">
+    <div id="header" class="hiding">
+      <strong id="logo">Crypton Chat</strong>
+      <span></span>
+      <ul id="nav">
+        <li><a href="#" id="display"><img src="list.png" alt="" />Conversations</a></li>
+        <li><a href="#" id="create"><img src="create.png" alt="" />Create</a></li>
+      </ul>
+    </div>
+    <div id="conversationList"></div>
+    <div id="conversation">
+      <div id="controls">
+        <span id="date"></span>
+      </div>
+      <ul id="messages"></ul>
+      <input type="text" id="conversationInput" placeholder="enter text here and press enter to send" />
+    </div>
+  </div>
+</body>
+</html>

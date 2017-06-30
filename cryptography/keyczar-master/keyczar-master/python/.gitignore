@@ -1,0 +1,5 @@
+.settings/*
+build
+dist
+*pyc
+MANIFEST

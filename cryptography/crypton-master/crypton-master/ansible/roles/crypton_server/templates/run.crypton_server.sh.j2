@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# {{ ansible_managed }}
+
+SERVICE_USER={{ item.1.user }}
+
+export NODE_ENV={{ deployment_environment }}
+
+cd {{ item.1.src_checkout|default('/home/$SERVICE_USER/crypton') }}/server
+exec chpst -u $SERVICE_USER:$SERVICE_USER:www-data -o 20000 -p 2000 ./bin/cli.js \
+    --config /home/$SERVICE_USER/{{ item.1.name }}.conf.json run 2>&1

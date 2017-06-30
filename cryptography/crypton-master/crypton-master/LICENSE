@@ -1,0 +1,52 @@
+Crypton, Copyright 2013, 2015 SpiderOak, Inc.
+
+Crypton is comprised of a Client component and a Server component. Please see
+the individual LICENSE files within the client/ and server/ subdirectories for
+details.
+
+Crypton is free software: you can redistribute it and/or modify it under the
+terms specified in the LICENSE files contained in the client/ and server/
+subdirectories of this distribution.
+
+Crypton is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the individual license terms for the Client and Server
+components for details.
+
+You should have received a copies of the Mozilla Public License and the
+Affero GNU General Public License along with Crypton.  If not,
+see <https://www.mozilla.org/MPL/> and <http://www.gnu.org/licenses/>.
+
+A Crypton Client SDK for use with Crypton.io will be available with a
+free commercial and noncommercial license.  This is suitable for
+including SpiderOak hosted Crypton.IO storage options within another
+application.  This is similar to using the Dropbox SDK and API to store data
+within end users' Dropbox accounts.
+
+There are additional options if you want to build a zero knowledge application
+that is entirely self hosted.  In other words, it does not have any dependency
+on users having SpiderOak.com accounts.  Rather, you want to operate the
+server-side components of Cryton.IO yourself, letting clients connect to your
+own infrastructure.
+
+For this, there are two choices.  If your online service is also free and open
+source software like Crypton itself, then you may freely make use of the full
+Crypton code base including all server components under the terms of
+the [AGPL][1].  If making your product free and open source software is
+unpalatable, you may instead purchase a commercial server license from SpiderOak.
+
+Many people will say we should make Crypton server available under a more liberal
+license than AGPLv3.  Essentially, these people ask for the freedom to build
+closed source commercial online services with Crypton without contributing
+their own improvements back to the community, without giving credit to the
+community's efforts, and without financially supporting the cost of ongoing
+maintenance, development, and security review of Crypton.
+
+Such uses are more appropriate under a commercial license.  Early adopters may
+receive complimentary commercial licenses.  Contact us.  We have a history of
+making reasonable arrangements for startups.
+
+We also enjoy Zed Shaw's explanation of [why he chooses GPL][2].
+
+[1]: http://www.gnu.org/licenses/agpl-3.0.txt
+[2]: http://zedshaw.com/essays/why_i_gpl.html

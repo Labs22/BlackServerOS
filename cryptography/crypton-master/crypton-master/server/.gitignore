@@ -1,0 +1,4 @@
+node_modules
+lib/client.js
+logs
+config/config.production.json

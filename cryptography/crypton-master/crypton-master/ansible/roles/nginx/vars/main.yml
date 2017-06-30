@@ -1,0 +1,4 @@
+---
+
+nginx_proxy_cache_path: /var/cache/nginx_proxy_cache
+

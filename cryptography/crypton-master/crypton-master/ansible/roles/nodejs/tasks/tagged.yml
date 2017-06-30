@@ -1,0 +1,27 @@
+---
+
+- name: add the apt keys for nodesource provided DEBs
+  sudo: True
+  apt_key: >
+    state=present
+    id=68576280
+    data="{{ lookup('file', inventory_dir + '/../files/deb.nodesource.com_key_68576280.asc' ) }}"
+
+- name: add the apt source repo for nodesource DEBs
+  sudo: True
+  register: add_node_apt_result
+  apt_repository: >
+    repo="deb https://deb.nodesource.com/node_0.12 {{ ansible_distribution_release }} main"
+
+- name: update apt after adding nodesource repo
+  sudo: True
+  apt: update_cache=yes
+  when: >
+    add_node_apt_result is defined
+    and add_node_apt_result.changed
+
+- name: install nodejs
+  sudo: True
+  apt: pkg={{ item }} state=present
+  with_items:
+    - nodejs

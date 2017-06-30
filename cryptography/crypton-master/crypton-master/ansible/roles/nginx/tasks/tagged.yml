@@ -1,0 +1,66 @@
+---
+- name: install nginx
+  sudo: True
+  tags: nginx_pkg
+  apt: pkg=nginx-full state=installed
+
+- name: create nginx proxy cache dir
+  sudo: True
+  file: >
+    state=directory
+    path={{ nginx_proxy_cache_path }}
+    owner=www-data
+    group=root
+    mode=750
+
+- name: create /var/empty
+  sudo: True
+  file: >
+    state=directory
+    path=/var/empty
+    owner=root
+    group=root
+    mode=555
+
+- name: add /etc/nginx subdirectories
+  sudo: True
+  file: >
+    state=directory
+    path=/etc/nginx/{{ item }}
+    owner=root
+    group=root
+    mode=700
+  with_items:
+    - sites-enabled
+    - certs
+    - includes
+    - secrets
+
+- name: get rid of some unwanted stock nginx config files
+  sudo: True
+  file: >
+    state=absent
+    path=/etc/nginx/{{ item }}
+  with_items:
+    - sites-enabled/default
+
+- name: add params conf files
+  sudo: True
+  template: >
+    src={{ item }}
+    dest=/etc/nginx/includes/{{ item.rsplit('/', 1)[-1].rsplit('.', 1)[0] }}
+    owner=root
+    group=root
+    mode=644
+  with_fileglob:
+    - "../templates/*params*.conf.j2"
+
+- name: write nginx config file
+  sudo: True
+  template: >
+    src=nginx.conf.j2
+    dest=/etc/nginx/nginx.conf
+    owner=root
+    group=root
+    mode=644
+  notify: reload nginx

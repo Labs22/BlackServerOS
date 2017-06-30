@@ -1,0 +1,18 @@
+---
+
+- name: make role organizational dir
+  sudo: True
+  file: >
+    state=directory
+    path={{ role_org_dir }}
+    owner=postgres
+    group=postgres
+    mode=0700
+
+- include: master.yml tags=role_crypton_db,crypton_db_master
+  when: >
+    inventory_hostname in groups.database_master
+
+- include: slaves.yml tags=role_crypton_db,crypton_db_slaves
+  when: >
+    inventory_hostname in groups.database_slaves

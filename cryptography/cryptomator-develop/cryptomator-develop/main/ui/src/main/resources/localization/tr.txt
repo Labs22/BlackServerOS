@@ -1,0 +1,104 @@
+app.name = Cryptomator
+# main.fxml
+main.emptyListInstructions = Kasa eklemek için tıkla
+main.directoryList.contextMenu.remove = Listeden sil
+main.directoryList.contextMenu.changePassword = Şifreyi değiştir
+main.addDirectory.contextMenu.new = Yeni bir kasa yarat
+main.addDirectory.contextMenu.open = Var olan kasayı aç
+# welcome.fxml
+welcome.checkForUpdates.label.currentlyChecking = Güncellemeler kontrol ediliyor...
+welcome.newVersionMessage = Sürüm %1$s indirilebilir.\nŞu anki sürüm\: %2$s
+# initialize.fxml
+initialize.label.password = Şifre
+initialize.label.retypePassword = Şifre (tekrar)
+initialize.button.ok = Kasa oluştur
+initialize.messageLabel.alreadyInitialized = Kasa çoktan başlatıldı
+initialize.messageLabel.initializationFailed = Kasa başlatılamadı. Detaylar için log dosyasına bakın.
+# notfound.fxml
+notfound.label = Kasa bulunamadı. Yeri değişmiş olabilir mi ?
+# upgrade.fxml
+upgrade.button = Kasayı yükselt.
+upgrade.version3dropBundleExtension.msg = Bu kasanın yeni formata geçirilmesi gerekmekte. "%1$s" ismi "%2$s" olarak değiştirilecek. Devam etmeden önce senkronizasyonun bittiğine emin olun.
+upgrade.version3dropBundleExtension.err.alreadyExists = Otomatik format değiştirme sırasında hata. "%s" zaten bulunmakta.
+# unlock.fxml
+unlock.label.password = Şifre
+unlock.label.mountName = Sürücü ismi
+unlock.label.winDriveLetter = Sürücü konumu
+unlock.label.downloadsPageLink = Tüm Cryptomator sürümleri
+unlock.label.advancedHeading = Gelişmiş seçenekler
+unlock.button.unlock = Kasayı aç
+unlock.button.advancedOptions.show = Daha fazla seçenek
+unlock.button.advancedOptions.hide = Daha az seçenek
+unlock.choicebox.winDriveLetter.auto = Otomatik ata
+unlock.errorMessage.wrongPassword = Yanlış şifre
+unlock.errorMessage.unsupportedVersion.vaultOlderThanSoftware = Desteklenmeyen kasa. Bu kasa daha eski bir Cryptomator sürümü ile oluşturulmuş.
+unlock.errorMessage.unsupportedVersion.softwareOlderThanVault = Desteklenmeyen kasa. Bu kasa daha yeni bir Cryptomator sürümü ile oluşturulmuş.
+unlock.messageLabel.startServerFailed = WebDAV sunucu başlatma başarısız.
+# change_password.fxml
+changePassword.label.oldPassword = Eski şifre
+changePassword.label.newPassword = Yeni şifre
+changePassword.label.retypePassword = Yeni şifre (tekrar)
+changePassword.label.downloadsPageLink = Tüm Cryptomator sürümleri
+changePassword.button.change = Şifreyi değiştir
+changePassword.errorMessage.wrongPassword = Yanlış şifre
+changePassword.errorMessage.decryptionFailed = Şifre çözme başarısız
+# unlocked.fxml
+unlocked.button.lock = Kasayı kilitle
+unlocked.moreOptions.reveal = Sürücüyü göster
+unlocked.moreOptions.copyUrl = WebDAV URl'sini kopyala
+unlocked.label.revealFailed = Komut başarısız
+unlocked.label.unmountFailed = Sürücü çıkarma başarısız
+unlocked.label.statsEncrypted = şifrelenmiş
+unlocked.label.statsDecrypted = şifresi çözülmüş
+unlocked.ioGraph.yAxis.label = Veri hacmi (MiB/s)
+# settings.fxml
+settings.version.label = Sürüm %s
+settings.checkForUpdates.label = Güncellemeleri denetle
+settings.port.label = WebDAV Port *
+settings.port.prompt = 0 \= Otomatik seç
+settings.requiresRestartLabel = * Cryptomator yeniden başlatılması gerek
+# tray icon
+tray.menu.open = Aç
+tray.menu.quit = Çıkış
+tray.infoMsg.title = Hala çalışıyor
+tray.infoMsg.msg = Cryptomator hala çalışıyor. Bildirim simgesi ile çıkış yapın.
+tray.infoMsg.msg.osx = Cryptomator hala çalışıyor. Menü bar simgesi ile çıkış yapın.
+initialize.messageLabel.passwordStrength.0 = Çok zayıf
+initialize.messageLabel.passwordStrength.1 = Zayıf
+initialize.messageLabel.passwordStrength.2 = İyi
+initialize.messageLabel.passwordStrength.3 = Güçlü
+initialize.messageLabel.passwordStrength.4 = Çok güçlü
+initialize.label.doNotForget = ÖNEMLİ\: Şifrenizi unutursanız, geri almanın bir yolu olmayacaktır.
+main.directoryList.remove.confirmation.title = Kasayı Sil
+main.directoryList.remove.confirmation.header = Kasayı silmek istediğinize emin misiniz ?
+main.directoryList.remove.confirmation.content = Kasa yalnızca listeden silinecek. Tamamen silmek için dosya sisteminizden dosyaları elle siliniz.
+upgrade.version3to4.msg = Bu kasanın yeni formata geçirilmesi gerekmekte. Şifreli klasör isimleri güncellenecek. Devam etmeden önce senkronizasyonun bittiğine emin olun.
+upgrade.version3to4.err.io = Format değiştirme işlemi I/O Hatası dolayısı ile başarısız oldu. Detaylar için log dosyasına bakın
+settings.prefGvfsScheme.label = WebDAV Scheme
+# upgrade.fxml
+upgrade.confirmation.label = Yes, I've made sure that synchronization has finished
+initialize.messageLabel.notEmpty = Vault not empty
+unlock.label.savePassword = Save Password
+unlock.errorMessage.unauthenticVersionMac = Could not authenticate version MAC.
+unlocked.label.mountFailed = Connecting drive failed
+unlock.savePassword.delete.confirmation.title = Delete Saved Password
+unlock.savePassword.delete.confirmation.header = Do you really want to delete the saved password of this vault?
+unlock.savePassword.delete.confirmation.content = The saved password of this vault will be immediately deleted from your system keychain. If you'd like to save your password again, you'd have to unlock your vault with the "Save Password" option enabled.
+settings.debugMode.label = Debug Mode *
+upgrade.version3dropBundleExtension.title = Vault Version 3 Upgrade (Drop Bundle Extension)
+upgrade.version3to4.title = Vault Version 3 to 4 Upgrade
+upgrade.version4to5.title = Vault Version 4 to 5 Upgrade
+upgrade.version4to5.msg = This vault needs to be migrated to a newer format.\nEncrypted files will be updated.\nPlease make sure synchronization has finished before proceeding.\n\nNote\: Modification date of all files will be changed to the current date/time in the process.
+upgrade.version4to5.err.io = Migration failed due to an I/O Exception. See log file for details.
+settings.port.apply = Apply
+unlock.label.mountAfterUnlock = Mount Drive
+unlock.label.revealAfterMount = Reveal Drive
+unlocked.lock.force.confirmation.title = Locking of %1$s failed
+unlocked.lock.force.confirmation.header = Do you want to force locking?
+unlocked.lock.force.confirmation.content = This may be because other programs are still accessing files in the vault or because some other problem occurred.\n\nPrograms still accessing the files may not work correctly and data not already written by those programs may be lost.
+unlock.label.unlockAfterStartup = Auto-Unlock on Start (Experimental)
+unlock.errorMessage.unlockFailed = Unlock failed. See log file for details.
+unlocked.moreOptions.mount = Mount Drive
+unlocked.moreOptions.unmount = Eject Drive
+upgrade.version5toX.title = Vault Version Upgrade
+upgrade.version5toX.msg = This vault needs to be migrated to a newer format.\nPlease make sure synchronization has finished before proceeding.

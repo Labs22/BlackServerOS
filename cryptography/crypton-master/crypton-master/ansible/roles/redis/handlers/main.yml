@@ -1,0 +1,5 @@
+---
+
+- name: start redis-server
+  sudo: True
+  service: name=redis-server state=started

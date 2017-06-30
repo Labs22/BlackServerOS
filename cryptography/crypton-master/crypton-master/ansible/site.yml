@@ -1,0 +1,28 @@
+---
+
+- hosts: all
+  roles:
+    - base
+
+- hosts: database
+  roles:
+    - postgresql
+    - crypton_db
+
+- hosts: web
+  roles:
+    - nginx
+
+- hosts: redis
+  roles:
+    - redis
+
+- hosts: crypton
+  roles:
+    - postgresql
+    - nodejs
+    - crypton_server
+
+- hosts: dev_proxy
+  roles:
+   - dev_proxy

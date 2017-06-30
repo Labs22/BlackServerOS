@@ -1,0 +1,9 @@
+---
+
+- name: reload postgres
+  sudo: True
+  service: name=postgresql state=reloaded
+
+- name: sysctl update
+  sudo: True
+  command: /sbin/sysctl -p /etc/sysctl.d/30-postgresql-shm.conf

@@ -1,0 +1,142 @@
+{
+    // --------------------------------------------------------------------
+    // JSHint Configuration, Strict Edition
+    // --------------------------------------------------------------------
+    //
+    // This is a options template for JSHint[1], using JSHint example[2],
+    // Ory Band's example[3], and haschek's example[4] as basis and setting
+    // config values to be most strict:
+    //
+    // * set all enforcing options to true
+    // * set all relaxing options to false
+    // * set all environment options to false, except the browser value
+    // * set all JSLint legacy options to false
+    //
+    // NOTE: Certain exceptions were made for my own use. Understand what each
+    //       deviation from what is described just above means for your project
+    //
+    // [1]: http://www.jshint.com/
+    // [2]: https://github.com/jshint/jshint/blob/master/examples/.jshintrc
+    // [3]: https://github.com/oryband/dotfiles/blob/master/.jshintrc
+    //
+    // @author http://michael.haschke.biz/
+    // @author Michael Scheer <Michael.Scheer@hcahealthcare.com>
+    // @license http://unlicense.org/
+    //
+    //
+    // *******************
+    // NOTE: Modifications have been made to the original script found at:
+    //       https://gist.github.com/haschek/2595796
+    //       These modifications remove deprecated options and adding new
+    //       ones as of v2.8.0
+    // *******************
+    //
+    //
+    // == Enforcing Options ===============================================
+    //
+    // These options tell JSHint to be more strict towards your code. Use
+    // them if you want to allow only a safe subset of JavaScript, very
+    // useful when your codebase is shared with a big number of developers
+    // with different skill levels.
+
+    "bitwise"       : true,     // Prohibit bitwise operators (&, |, ^, etc.).
+    "curly"         : true,     // Require { for every new block or scope.
+    "eqeqeq"        : true,     // Require triple equals i.e. `===`.
+    "es3"           : false,     // adhere to ECMAScript 3 specification -- Unneeded now and conflicts with promises
+    "es5"           : true,     // enables syntax first defined in the ECMAScript 5.1 specification.
+    "forin"         : true,     // Tolerate `for in` loops without `hasOwnPrototype`.
+    "freeze"        : true,     // Prohibits overwriting prototypes of native objects such as Array, Date and so on.
+    "funcscope"     : false,    // This option suppresses warnings about declaring variables inside of control structures while accessing them later from the outside.
+    "futurehostile" : true,     // This option enables warnings about the use of identifiers which are defined in future versions of JavaScript.
+    "globals"       : true,     //
+    "iterator"      : false,    // This option suppresses warnings about the __iterator__ property. This property is not supported by all browsers so use it carefully.
+    "latedef"       : true,     // Prohibit variable use before definition.
+    "maxcomplexity" : 10,       // Lets you control cyclomatic complexity throughout your code
+    "maxdepth"      : 5,        // Lets you control how nested do you want your blocks to be
+    "maxerr"        : 20,       // Set the maximum amount of warnings JSHint will produce before giving up. Default is 50.
+    "maxparams"     : 4,        // Set the max number of formal parameters allowed per function
+    "maxstatements" : 50,       // Set the max number of statements allowed per function
+    "noarg"         : true,     // Prohibit use of `arguments.caller` and `arguments.callee`.
+    "nocomma"       : true,     // Prohibits the use of the comma operator.
+    "nonbsp"        : true,     // Warns about "non-breaking whitespace" characters.
+    "nonew"         : true,     // Prohibit use of constructors for side-effects.
+    "notypeof"      : false,    // suppresses warnings about invalid typeof operator values.
+    "shadow"        : false,    // suppresses warnings about variable shadowing
+    "singleGroups"  : true,    // This option prohibits the use of the grouping operator when it is not strictly required.
+    "strict"        : true,     // Require `use strict` pragma in every file.
+    "undef"         : true,     // Prohibits the use of explicitly undeclared variables.
+    "unused"        : true,     // warns when you define and never use your variables.
+    "varstmt"       : false,     // the use of VariableStatements are forbidden
+
+    // == Relaxing Options ================================================
+    //
+    // These options allow you to suppress certain types of warnings. Use
+    // them only if you are absolutely positive that you know what you are
+    // doing.
+    // ====================================================================
+
+    "asi"           : false,    // Tolerate Automatic Semicolon Insertion (no semicolons).
+    "boss"          : false,    // Tolerate assignments inside if, for & while. Usually conditions & loops are for comparison, not assignments.
+    "debug"         : false,    // Allow debugger statements e.g. browser breakpoints.
+    "eqnull"        : false,    // Tolerate use of `== null`.
+    "es5"           : false,    // Allow EcmaScript 5 syntax.
+    "esnext"        : true,     // Allow ES.next specific features such as `const` and `let`.
+    "evil"          : false,    // Tolerate use of `eval`.
+    "expr"          : true,     // Tolerate `ExpressionStatement` as Programs.
+    "funcscope"     : false,    // Tolerate declarations of variables inside of control structures while accessing them later from the outside.
+    "globalstrict"  : false,    // Allow global "use strict" (also enables 'strict').
+    "iterator"      : false,    // Allow usage of __iterator__ property.
+    "lastsemic"     : false,    // Tolerat missing semicolons when the it is omitted for the last statement in a one-line block.
+    "loopfunc"      : false,    // Allow functions to be defined within loops.
+    "onecase"       : false,    // Tolerate switches with just one case.
+    "proto"         : false,    // Tolerate __proto__ property. This property is deprecated.
+    "regexdash"     : false,    // Tolerate unescaped last dash i.e. `[-...]`.
+    "scripturl"     : false,    // Tolerate script-targeted URLs.
+    "smarttabs"     : false,    // Tolerate mixed tabs and spaces when the latter are used for alignmnent only.
+    "shadow"        : false,    // Allows re-define variables later in code e.g. `var x=1; x=2;`.
+    "supernew"      : false,    // Tolerate `new function () { ... ;` and `new Object;`.
+    "validthis"     : false,    // Tolerate strict violations when the code is running in strict mode and you use this in a non-constructor function.
+
+    // == Environments ====================================================
+    //
+    // These options pre-define global variables that are exposed by
+    // popular JavaScript libraries and runtime environmentsâ€”such as
+    // browser or node.js.
+    // ====================================================================
+
+    "mocha"         : true,     // Mocha testing suite
+    "browser"       : true,     // Standard browser globals e.g. `window`, `document`.
+    "couch"         : false,    // Enable globals exposed by CouchDB.
+    "devel"         : false,    // Allow development statements e.g. `console.log();`.
+    "dojo"          : false,    // Enable globals exposed by Dojo Toolkit.
+    "jquery"        : true,     // Enable globals exposed by jQuery JavaScript library.
+    "mootools"      : false,    // Enable globals exposed by MooTools JavaScript framework.
+    "node"          : true,     // Enable globals available when code is running inside of the NodeJS runtime environment.
+    "nonstandard"   : false,    // Define non-standard but widely adopted globals such as escape and unescape.
+    "prototypejs"   : false,    // Enable globals exposed by Prototype JavaScript framework.
+    "rhino"         : false,    // Enable globals available when your code is running inside of the Rhino runtime environment.
+    "wsh"           : false,    // Enable globals available when your code is running as a script for the Windows Script Host.
+
+    // == Undocumented Options ============================================
+    //
+    // While I've found these options in [example1][2] and [example2][3]
+    // they are not described in the [JSHint Options documentation][4].
+    //
+    // [4]: http://www.jshint.com/options/
+    // ====================================================================
+
+    "predef"        : [         // Extra globals.
+        "bcrypt",
+        "crypton",
+        "superagent",
+        "sjcl",
+        "SRPClient",
+        "isomerize",
+        "self",
+        "async",
+        "BigInteger",
+        "chai",
+        "logger"
+    ],
+    "indent"        : 2         // Specify indentation spacing
+}

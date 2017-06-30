@@ -1,0 +1,31 @@
+# simple example inventory for crypton dev.
+
+# this involves everything (HA, load balancing, ssl termination, crypton
+# node.js servers, postgres and redis databaases, and crypton apps) all on the
+# same machine.)  A production environment would involve separate tiers for
+# each of the above, and horizontally scalable sharded database servers.
+
+[dev]
+crypton1
+
+[web:children]
+dev
+
+[database_master:children]
+dev
+
+[database_slaves:children]
+dev
+
+[database:children]
+database_master
+database_slaves
+
+[redis:children]
+dev
+
+[crypton:children]
+dev
+
+[dev_proxy:children]
+dev

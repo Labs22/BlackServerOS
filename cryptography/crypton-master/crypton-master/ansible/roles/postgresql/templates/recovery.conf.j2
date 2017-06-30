@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+
+standby_mode = 'on'
+primary_conninfo = 'host={{ master }} port=5432 user={{ replication_user.name }} password={{ replication_user.password }}{% if production %} sslmode=require{% endif %}'
+trigger_file = '{{ pg_data_dir }}/trigger_promote_{{ inventory_hostname }}_to_master'

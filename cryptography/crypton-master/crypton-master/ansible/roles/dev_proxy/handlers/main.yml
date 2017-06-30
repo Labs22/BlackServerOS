@@ -1,0 +1,6 @@
+---
+
+- name: reload squid
+  sudo: True
+  tags: dev_proxy
+  service: name=squid3 state=reloaded

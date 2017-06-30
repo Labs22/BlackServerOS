@@ -1,0 +1,106 @@
+---
+- hosts: database_slaves
+
+  vars:
+    pg_data_dir: "/var/lib/postgresql/{{ pg_ver }}/main"
+    master: "{{ groups.database_master|first }}"
+    replication_user:
+      name: replication
+      password: >
+        {{ lookup('password',
+        inventory_dir + '/secrets/'
+        + '/postgresql/replication.passwd
+        chars=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') }}
+
+  tasks:
+    - name: stop postgresql server on slave
+      sudo: yes
+      service: name=postgresql state=stopped
+
+    - include: >
+        {{ inventory_dir }}/../tasks/create_temp_ssh_credentials.yml
+        from_host={{ inventory_hostname }} from_user=postgres
+        to_host={{ master }} to_user=postgres
+
+    - name: unstable rsync from master
+      sudo: yes
+      sudo_user: postgres
+      command: &id_pg_backup_rsync_cmd >
+        rsync -a -z --delete --delete-before --partial --inplace
+        --exclude *.pid
+        --exclude *.pem
+        --exclude postgresql.conf
+        --exclude postmaster.opts
+        --exclude recovery.conf
+        --exclude pg_notify
+        --exclude pg_xlog
+        --exclude backup_label
+        --rsh="ssh -o StrictHostKeyChecking=no -i /var/lib/postgresql/.ssh/temporary_id"
+        {{ master }}:{{ pg_data_dir }}/
+        {{ pg_data_dir }}/
+      with_items: [ one, two ]
+
+    - name: pg_start_backup on master
+      sudo: yes
+      sudo_user: postgres
+      command: >
+        psql -c "select pg_start_backup('create slave on {{ inventory_hostname }}', true)"
+      delegate_to: "{{ master }}"
+      when: >
+        inventory_hostname == groups.database_slaves|first
+
+    - name: stable rsync from master
+      sudo: yes
+      sudo_user: postgres
+      command: *id_pg_backup_rsync_cmd
+
+    - name: pg_stop_backup on master
+      sudo: yes
+      sudo_user: postgres
+      command: >
+        psql -c "select pg_stop_backup()"
+      delegate_to: "{{ master }}"
+      when: >
+        inventory_hostname == groups.database_slaves|first
+
+    - name: remove pg_xlog directory from slave
+      sudo: yes
+      file: >
+        state=absent
+        path={{ pg_data_dir }}/pg_xlog
+
+    - name: create pg_xlog directory on slave
+      sudo: yes
+      file: >
+        state=directory
+        path={{ pg_data_dir }}/pg_xlog
+        owner=postgres
+        group=postgres
+        mode=0700
+
+    - name: rsync pg_xlog from master
+      sudo: yes
+      sudo_user: postgres
+      command: >
+        rsync -a -z
+        --rsh="ssh -o StrictHostKeyChecking=no -i /var/lib/postgresql/.ssh/temporary_id"
+        {{ master }}:{{ pg_data_dir }}/pg_xlog/
+        {{ pg_data_dir }}/pg_xlog/
+
+    - include: >
+        {{ inventory_dir }}/../tasks/remove_temp_ssh_credentials.yml
+        from_host={{ inventory_hostname }} from_user=postgres
+        to_host={{ master }} to_user=postgres
+
+    - name: create recovery.conf file
+      sudo: yes
+      template: >
+        src={{ inventory_dir }}/../roles/postgresql/templates/recovery.conf.j2
+        dest={{ pg_data_dir }}/recovery.conf
+        owner=postgres
+        group=postgres
+        mode=0600
+
+    - name: start postgresql server on slave
+      sudo: yes
+      service: name=postgresql state=started
