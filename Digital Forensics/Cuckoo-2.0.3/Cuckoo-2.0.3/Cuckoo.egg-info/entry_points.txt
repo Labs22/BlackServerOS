@@ -1,0 +1,3 @@
+[console_scripts]
+cuckoo = cuckoo.main:main
+

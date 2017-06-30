@@ -1,0 +1,6 @@
+include README.txt
+
+recursive-include pyaff4 *
+
+recursive-exclude * *.pyc
+exclude .gitignore

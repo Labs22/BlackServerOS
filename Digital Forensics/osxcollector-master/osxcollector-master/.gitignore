@@ -1,0 +1,7 @@
+*.pyc
+.tox/
+*.egg-info/
+.DS_Store
+.idea/
+virtualenv_run/
+.coverage

@@ -1,0 +1,13 @@
+
+ MALHEUR - Automatic Analysis of Malware Behavior
+ Copyright (c) 2009-2015 Konrad Rieck (konrad@mlsec.org)
+ University of Goettingen, Berlin Institute of Technology
+ --
+
+ TODO (major stuff)
+ * Functionality for aging of prototypes (and auto-removal)
+ * Functionality to split or merge existing clusters
+
+ TODO (minor stuff)
+ * Debian/Ubuntu package generation?
+ * Fix for strange gzclose issue (valgrind)

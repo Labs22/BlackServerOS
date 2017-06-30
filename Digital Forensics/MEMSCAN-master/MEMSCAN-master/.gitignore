@@ -1,0 +1,7 @@
+_/
+*.deb
+obj/
+theos
+.theos/
+memscan
+.DS_STORE
