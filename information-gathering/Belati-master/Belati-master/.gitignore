@@ -1,0 +1,11 @@
+*.pyc
+lib/*.pyc
+plugins/*.pyc
+belatiFiles/*
+logs/*
+.directory
+lib/.directory
+plugins/.directory
+proxy.txt
+belati.conf
+beta/*

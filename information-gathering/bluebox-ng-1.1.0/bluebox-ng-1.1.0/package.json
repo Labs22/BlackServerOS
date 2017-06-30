@@ -1,0 +1,100 @@
+{
+  "name": "bluebox-ng",
+  "version": "1.1.0",
+  "description": "Pentesting framework using Node.js powers. Specially focused in VoIP/UC.",
+  "author": {
+    "name": "Jesus Perez <@jesusprubio>",
+    "email": "jesusprubio gmail com",
+    "url": "http://jesusprubio.name"
+  },
+  "contributors": [
+    "https://github.com/jesusprubio/bluebox-ng/graphs/contributors"
+  ],
+  "main": "index",
+  "bin": {
+    "bluebox-ng": "bin/client.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jesusprubio/bluebox-ng/bluebox-ng.git"
+  },
+  "keywords": [
+    "Node",
+    "security",
+    "tool",
+    "Pentesting",
+    "Exploiting",
+    "VoIP",
+    "SIP"
+  ],
+  "homepage": "https://github.com/jesusprubio/bluebox-ng",
+  "bugs": {
+    "url": "https://github.com/jesusprubio/bluebox-ng/issues"
+  },
+  "license": "GPL-3.0",
+  "scripts": {
+    "start": "./bin/client.js",
+    "test-unit": "tape test/unit/**/*.js | tap-diff",
+    "test-func": "tape test/functional/**/*.js | tap-diff",
+    "test": "npm run test-unit && npm run test-func",
+    "lint": "eslint .",
+    "dep-ok": "depcheck",
+    "dep-sec": "nsp check",
+    "dep-old": "ncu",
+    "cont-int": "npm run lint && npm run dep-ok && npm run dep-sec && npm test",
+    "release": "npm run cont-int && release-it"
+  },
+  "dependencies": {
+    "async": "^2.0.1",
+    "bluebird": "^3.4.1",
+    "cli-color": "^1.1.0",
+    "debug": "^2.2.0",
+    "dns-axfr": "^0.1.2",
+    "exploitsearch": "^1.0.9",
+    "handlebars": "^4.0.5",
+    "jsftp": "^1.5.1",
+    "ldapjs": "^1.0.0",
+    "libnmap": "jas-/node-libnmap",
+    "local-ip": "^1.0.1",
+    "lodash": "^4.14.1",
+    "moira": "^1.1.2",
+    "moment": "^2.14.1",
+    "mongodb": "^2.0.27",
+    "mysql": "^2.6.1",
+    "nami": "^0.7.1",
+    "native-dns": "^0.7.0",
+    "netmask": "^1.0.5",
+    "node-freegeoip": "0.0.1",
+    "node-wifiscanner": "^0.2.0",
+    "ping": "^0.1.9",
+    "prettyjson": "^1.1.0",
+    "request": "^2.55.0",
+    "require-directory": "^2.1.0",
+    "shelljs": "^0.7.3",
+    "shodan-client": "^2.0.0",
+    "sip-fake-stack": "jesusprubio/sip-fake-stack",
+    "snmp-native": "^1.0.18",
+    "ssh2": "^0.5.0",
+    "subquest": "^1.2.0",
+    "tape": "^4.6.0",
+    "tcp-ping": "^0.1.1",
+    "tftp-client": "^0.2.1",
+    "traceroute": "^1.0.0",
+    "whois": "^2.3.1"
+  },
+  "devDependencies": {
+    "depcheck": "^0.6.4",
+    "eslint": "^3.2.2",
+    "eslint-config-airbnb-base": "^5.0.1",
+    "eslint-plugin-import": "^1.10.0",
+    "eslint-plugin-json": "^1.2.0",
+    "npm-check-updates": "^2.8.0",
+    "nsp": "^2.6.1",
+    "release-it": "^2.4.3",
+    "tap-diff": "^0.1.1"
+  },
+  "engines": {
+    "node": "6.x.x",
+    "npm": "3.x.x"
+  }
+}

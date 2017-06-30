@@ -1,0 +1,5 @@
+tool/.idea/
+.idea/
+*~
+*.pyc
+*.hex

@@ -1,0 +1,963 @@
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
+from multiprocessing.dummy import Pool as ThreadPool 
+from bs4 import BeautifulSoup
+from termcolor import colored
+import dns.resolver
+import dns.query
+import dns.zone
+import sys
+import time
+import datetime
+import socket
+import os
+import math
+import requests
+import re
+import collections
+import threading
+import urllib2
+import hashlib
+import json
+import site
+import random
+import string
+import Queue
+import unicodedata
+import pythonwhois
+import traceback
+
+global clean_dump
+clean_dump = []
+targets = []
+prox = False
+default_s = False
+debug = True
+myResolver = dns.resolver.Resolver()
+myResolver.nameservers = ['8.8.8.8']
+version = "1.1.22"
+e_hunter = "2b0ab19df982a783877a6b59b982fdba4b6c3669"
+
+
+sites = site.getsitepackages()
+for item in sites:
+    if os.path.exists(item + "/Bluto/doc/subdomains-top1mil-20000.txt"):
+        path = item
+    else:
+        pass
+
+
+filename1 = path + "/Bluto/doc/subdomains-top1mil-20000.txt"
+filename2 = path + "/Bluto/doc/sub_interest.txt"
+useragent_f = path + "/Bluto/doc/user_agents.txt"
+countries_file = path + "/Bluto/doc/countries.txt"
+
+def action_output_vuln_zone(google_results, bing_true_results, linkedin_results):
+    global clean_dump
+    linkedin_evidence_results = []
+    email_evidence_results = []
+    email_results = []
+    email_seen = []
+    url_seen = []
+    person_seen = []
+    final_emails = []
+    
+    for email, url in google_results:
+        try:
+            e1, e2 = email.split(',')
+            if url not in email_seen:
+                email_seen.append(url)
+                email_evidence_results.append((str(e2).replace(' ',''),url))
+                email_evidence_results.append((str(e1).replace(' ',''),url))
+                email_results.append((str(e2).replace(' ','')))
+                email_results.append((str(e1).replace(' ','')))
+    
+        except ValueError:
+            if url not in email_seen:
+                email_seen.append(url)
+                email_evidence_results.append((str(email).replace(' ',''),url))
+                email_results.append(str(email).replace(' ',''))
+                   
+    for e, u in bing_true_results:
+        email_results.append(e)
+        if u not in url_seen:
+            email_evidence_results.append((e, u))        
+              
+    for url, person, description in linkedin_results:
+        if person not in person_seen:
+            person_seen.append(person)
+            linkedin_evidence_results.append((url, person, description))
+            
+    linkedin_evidence_results.sort(key=lambda tup: tup[1])   
+    sorted_email = set(sorted(email_results))
+    for email in sorted_email:
+        if email == '[]':
+            pass
+        elif email == '@' + domain:
+            pass
+        else:
+            final_emails.append(email)
+    email_count = len(final_emails)
+    staff_count = len(person_seen)
+    f_emails = sorted(final_emails)
+    
+    print '\nEmail Addresses:\n'
+    
+    if f_emails:
+        for email in f_emails:
+            
+            print str(email).replace("u'","").replace("'","").replace('[','').replace(']','')
+    else:
+        print '\tNo Data To Be Found'
+              
+    print '\nLinkedIn Results:\n'
+    
+    sorted_person = sorted(person_seen)
+    if sorted_person:
+        for person in sorted_person:
+            print person
+    else:
+        print '\tNo Data To Be Found'
+    
+    target_dict = dict((x.split(' ') for x in clean_dump))
+    clean_target = collections.OrderedDict(sorted(target_dict.items()))
+    print "\nProcessed Dump\n"
+    for item in clean_target:
+        if item in sub_intrest:
+            print colored(item, 'red'), colored("\t" + clean_target[item], 'red')
+        else:
+            print item, "\t" + target_dict[item]        
+    
+    print '\nStats and Evidence Report:'
+    print '\n\tEmail Evidence:\n'
+    if email_evidence_results:
+        for email, url in email_evidence_results:
+            print colored(email, 'red')
+            print colored(url, 'green')                    
+    else:
+        print '\tNo Data To Be Found'
+    
+    print '\n\tLinkedIn Evidence:\n'
+    if linkedin_evidence_results:
+        for url, person, clean in linkedin_evidence_results:
+            print colored(person, 'red')
+            print colored(clean, 'red')
+            print colored(url, 'grey')
+            print '\n'
+    else:
+        print '\tNo Data To Be Found'
+        
+    time_spent_email_f = str(datetime.timedelta(seconds=(time_spent_email))).split('.')[0]
+    time_spent_total_f = str(datetime.timedelta(seconds=(time_spent_total))).split('.')[0]
+    print '\nPotential Emails Found: {}' .format(str(email_count))
+    print 'Potential Staff Members Found: {}' .format(str(staff_count))
+    print "Email Enumeration:", time_spent_email_f
+    print "Total Time:", time_spent_total_f, '\n'  
+
+def action_output_wild_true(google_results, bing_true_results, linkedin_results):
+    linkedin_evidence_results = []
+    email_evidence_results = []
+    email_results = []
+    email_seen = []
+    url_seen = []
+    person_seen = []
+    final_emails = []
+    
+    for email, url in google_results:
+        try:
+            e1, e2 = email.split(',')
+            if url not in email_seen:
+                email_seen.append(url)
+                email_evidence_results.append((str(e2).replace(' ',''),url))
+                email_evidence_results.append((str(e1).replace(' ',''),url))
+                email_results.append((str(e2).replace(' ','')))
+                email_results.append((str(e1).replace(' ','')))
+    
+        except ValueError:
+            if url not in email_seen:
+                email_seen.append(url)
+                email_evidence_results.append((str(email).replace(' ',''),url))
+                email_results.append(str(email).replace(' ',''))
+    
+    for e, u in bing_true_results:
+        email_results.append(e)
+        if u not in url_seen:
+            email_evidence_results.append((e, u))        
+
+    for url, person, description in linkedin_results:
+        if person not in person_seen:
+            person_seen.append(person)
+            linkedin_evidence_results.append((url, person, description))
+
+    linkedin_evidence_results.sort(key=lambda tup: tup[1])   
+    sorted_email = set(sorted(email_results))
+    for email in sorted_email:
+        if email == '[]':
+            pass
+        elif email == '@' + domain:
+            pass
+        else:
+            final_emails.append(email)
+    email_count = len(final_emails)
+    staff_count = len(person_seen)
+    f_emails = sorted(final_emails)
+
+    print '\nEmail Addresses:\n'
+
+    for email in f_emails:
+
+        print str(email).replace("u'","").replace("'","").replace('[','').replace(']','')          
+
+    print '\nLinkedIn Results:\n'
+
+    sorted_person = sorted(person_seen)
+    if sorted_person:
+        for person in sorted_person:
+            print person
+    else:
+        print '\tNo Data To Be Found'
+    
+    print '\nStats and Evidence Report:'
+    print '\n\tEmail Evidence:\n'
+    if email_evidence_results:
+        for email, url in email_evidence_results:
+            if email == []:
+                pass
+            else:
+                print colored(email, 'red')
+                print colored(url, 'green')
+    else:
+        print '\tNo Data To Be Found'
+    
+    print '\n\tLinkedIn Evidence:\n'
+    if linkedin_evidence_results:
+        for url, person, description in linkedin_evidence_results:
+            print colored(person, 'red')
+            print colored(description, 'grey')
+            print colored(url, 'grey')
+            print '\n'
+    else:
+        print '\tNo Data To Be Found'
+        
+    time_spent_email_f = str(datetime.timedelta(seconds=(time_spent_email))).split('.')[0]
+    time_spent_total_f = str(datetime.timedelta(seconds=(time_spent_total))).split('.')[0]
+    print '\nPotential Emails Found: {}' .format(str(email_count))
+    print 'Potential Staff Members Found: {}' .format(str(staff_count))
+    print "Email Enumeration:", time_spent_email_f
+    print "Total Time:", time_spent_total_f, '\n'  
+    
+def action_output_wild_false(brute_results_dict, sub_intrest, google_results, bing_true_results, linkedin_results, check_count):
+    
+    linkedin_evidence_results = []
+    email_evidence_results = []
+    email_results = []
+    email_seen = []
+    url_seen = []
+    person_seen = []
+    final_emails = []
+    
+    for email, url in google_results:
+        try:
+            e1, e2 = email.split(',')
+            if url not in email_seen:
+                email_seen.append(url)
+                email_evidence_results.append((str(e2).replace(' ',''),url))
+                email_evidence_results.append((str(e1).replace(' ',''),url))
+                email_results.append((str(e2).replace(' ','')))
+                email_results.append((str(e1).replace(' ','')))
+    
+        except ValueError:
+            if url not in email_seen:
+                email_seen.append(url)
+                email_evidence_results.append((str(email).replace(' ',''),url))
+                email_results.append(str(email).replace(' ',''))
+                   
+    for e, u in bing_true_results:
+        email_results.append(e)
+        if u not in url_seen:
+            email_evidence_results.append((e, u))        
+              
+    for url, person, description in linkedin_results:
+        if person not in person_seen:
+            person_seen.append(person)
+            linkedin_evidence_results.append((url, person, description))
+            
+    linkedin_evidence_results.sort(key=lambda tup: tup[1])   
+    sorted_email = set(sorted(email_results))
+    for email in sorted_email:
+        if email == '[]':
+            pass
+        elif email == '@' + domain:
+            pass
+        else:
+            final_emails.append(email)
+    email_count = len(final_emails)
+    staff_count = len(person_seen)
+    f_emails = sorted(final_emails)
+    
+    print '\nEmail Addresses:\n'
+    
+    if f_emails:
+        
+        for email in f_emails:
+            
+            print str(email).replace("u'","").replace("'","").replace('[','').replace(']','')          
+    else:
+        print '\tNo Data To Be Found'
+        
+    print '\nLinkedIn Results:\n'
+    
+    sorted_person = sorted(person_seen)
+    if sorted_person:
+        for person in sorted_person:
+            print person
+    else:
+        print '\tNo Data To Be Found'
+    
+        
+    sorted_dict = collections.OrderedDict(sorted(brute_results_dict.items()))
+    print "\nBluto Results: \n"
+    for item in sorted_dict:
+        if item in sub_intrest:
+            print colored(item + "\t", 'red'), colored(sorted_dict[item], 'red')
+        else:
+            print item + "\t",sorted_dict[item]
+    
+    print '\nStats and Evidence Report:'
+    print '\n\tEmail Evidence:\n'
+    if email_evidence_results:
+        for email, url in email_evidence_results:
+            if email == []:
+                pass
+            else:
+                print colored(email, 'red')
+                print colored(url, 'green')
+    else:
+        print '\tNo Data To Be Found'
+    
+    print '\n\tLinkedIn Evidence:\n'
+    if linkedin_evidence_results:
+        for url, person, clean in linkedin_evidence_results:
+            print colored(person, 'red')
+            print colored(clean, 'red')
+            print colored(url, 'grey')
+            print '\n'
+    else:
+        print '\tNo Data To Be Found'
+        
+    time_spent_email_f = str(datetime.timedelta(seconds=(time_spent_email))).split('.')[0]
+    time_spent_brute_f = str(datetime.timedelta(seconds=(time_spent_brute))).split('.')[0]
+    time_spent_total_f = str(datetime.timedelta(seconds=(time_spent_total))).split('.')[0]
+    print '\nPotential Emails Found: {}' .format(str(email_count))
+    print 'Potential Staff Members Found: {}' .format(str(staff_count))
+    print "Email Enumeration:", time_spent_email_f
+    print "Requests executed:", str(check_count) + " in ", time_spent_brute_f
+    print "Total Time:", time_spent_total_f, '\n'    
+    
+                
+def action_zone_transfer(zn_list, domain):
+    global clean_dump
+    print "\nAttempting Zone Transfers"
+    zn_list.sort()
+    vuln = True
+    vulnerable_listT = []
+    vulnerable_listF = []
+    dump_list = []
+    for ns in zn_list:
+        try:
+            z = dns.zone.from_xfr(dns.query.xfr(ns, domain))
+            names = z.nodes.keys()
+            names.sort()
+            if vuln == True:
+                vulnerable_listT.append(ns)
+                            
+        except Exception as e:
+            error = str(e)
+            if error == 'Errno -2] Name or service not known':
+                pass            
+            if error == "[Errno 54] Connection reset by peer" or "No answer or RRset not for qname":
+                vuln = False
+                vulnerable_listF.append(ns)
+            else:
+                print "An unexpected error has occured. Please report the error and it's context to https://github.com/RandomStorm/Bluto/issues, thank you."
+                traceback.print_exc()
+                
+    
+    if vulnerable_listF:
+        print "\nNot Vulnerable:\n"
+        for ns in vulnerable_listF:
+            print colored(ns, 'green')
+    
+    if vulnerable_listT:
+        print "\nVulnerable:\n"
+        for ns in vulnerable_listT:
+            print colored(ns,'red'), colored("\t" + "TCP/53", 'red')
+
+   
+        z = dns.zone.from_xfr(dns.query.xfr(vulnerable_listT[0], domain))
+        names = z.nodes.keys()
+        names.sort()
+        print "\nRaw Zone Dump\n"
+        for n in names:
+            data1 = "{}.{}" .format(n,domain)
+            try:
+                addr = socket.gethostbyname(data1)
+                dump_list.append("{}.{} {}" .format(n, domain, addr))
+            
+            except Exception as e:
+                error = str(e)
+                if error == "[Errno -5] No address associated with hostname":
+                    pass
+                if error == 'Errno -2] Name or service not known':
+                    pass
+                else:
+                    print "An unexpected error has occured. Please report the error and it's context to https://github.com/RandomStorm/Bluto/issues, thank you."
+                    traceback.print_exc()
+            print z[n].to_text(n)
+            
+    clean_dump = sorted(set(dump_list))
+    return vulnerable_listT
+
+def get_dns_details(domain):
+    ns_list = []
+    zn_list =[]
+    mx_list = []        
+    try:
+        print "\nName Server:\n"
+        myAnswers = myResolver.query(domain, "NS")
+        for data in myAnswers.rrset:
+            data1 = str(data)
+            data2 = (data1.rstrip('.'))
+            addr = socket.gethostbyname(data2)
+            ns_list.append(data2 + '\t' + addr)
+            zn_list.append(data2)
+            list(set(ns_list))
+            ns_list.sort()
+        for i in ns_list:
+            print colored(i, 'green')
+    except:
+        e = str(sys.exc_info()[0])
+        print "\nCheck The Target Domain Is Correct!\n\nQuitting.."
+        sys.exit()
+        
+    try:    
+        print "\nMail Server:\n"
+        myAnswers = myResolver.query(domain, "MX")
+        for data in myAnswers:
+            data1 = str(data)
+            data2 = (data1.split(' ',1)[1].rstrip('.'))
+            addr = socket.gethostbyname(data2)
+            mx_list.append(data2 + '\t' + addr)
+            list(set(mx_list))
+            mx_list.sort()
+        for i in mx_list:
+            print colored(i, 'green')
+    except:
+        e = str(sys.exc_info()[0])
+        print "\tNo Mail Servers"   
+             
+    return zn_list
+
+def get_line_count(filename):
+    lines = 0
+    for line in open(filename):
+        lines += 1
+    return lines
+
+def action_wild_cards(domain):
+    try:
+        one = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(15))
+        myAnswers = myResolver.query(str(one) + '.' + str(domain))
+    
+    except dns.resolver.NoNameservers:
+        print '\n\tNo Name Servers'
+        pass
+    
+    except dns.resolver.NoAnswer:
+        pass    
+    
+    except dns.resolver.NXDOMAIN:
+        return False
+    else:
+        return True
+    
+    
+def action_brute(subdomain):
+    try:   
+        myAnswers = myResolver.query(subdomain)
+        for data in myAnswers:
+            targets.append(subdomain + ' ' + str(data))
+            
+    except Exception as e:
+        pass
+    
+    
+def get_subs(filename):
+    full_list = []
+    try:    
+        subs = [line.rstrip('\n') for line in open(filename)]
+        for sub in subs:
+            full_list.append(str(sub.lower() + "." + domain))
+    except Exception as e:
+        error = str(e)
+        print "An unexpected error has occured. Please report the error and it's context to https://github.com/RandomStorm/Bluto/issues, thank you."
+        traceback.print_exc()
+        sys.exit()
+        
+    return full_list    
+        
+def get_sub_interest(filename):
+    full_list = []
+    try:
+        subs = [line.rstrip('\n') for line in open(filename)]
+        for sub in subs:
+            full_list.append(str(sub.lower() + "." + domain))
+    
+    except Exception as e:
+        error = str(e)
+        print "An unexpected error has occured. Please report the error and it's context to https://github.com/RandomStorm/Bluto/issues, thank you."
+        traceback.print_exc()
+        sys.exit()
+        
+    return full_list
+
+
+def action_netcraft(domain):
+    netcraft_list = []
+    print "\nPassive Gatherings From NetCraft\n"
+    try:
+        link = "http://searchdns.netcraft.com/?restriction=site+contains&host=*.{}&lookup=wait..&position=limited" .format (domain)
+        response = requests.get(link)
+        soup = BeautifulSoup(response.content, 'lxml')
+        pattern = 'rel="nofollow">([a-z\.\-A-Z0-9]+)<FONT COLOR="#ff0000">'
+        sub_results = re.findall(pattern, response.content)
+        
+    except Exception as e:
+        traceback.print_exc
+    
+    if sub_results:
+        for item in sub_results:
+            netcheck = myResolver.query(item + '.' + domain)
+            for data in netcheck:
+                netcraft_list.append(item + '.' + domain + ' ' + str(data))            
+                print colored(item + '.' + domain, 'red')
+    else:
+        print '\tNo Results Found'
+            
+    return netcraft_list
+
+def get_user_agents(useragent_f):
+    uas = []
+    with open(useragent_f, 'rb') as uaf:
+        for ua in uaf.readlines():
+            if ua:
+                uas.append(ua.strip()[1:-1-1])
+    random.shuffle(uas)
+    return uas
+
+
+def action_whois(domain):
+
+    try:
+        whois_things = pythonwhois.get_whois(domain)
+        company = whois_things['contacts']['registrant']['name']
+    except Exception as e:
+        print colored('\nWhoisError: You may be behind a proxy or firewall preventing whois lookups. Please supply the registered company name, if left blank the domain name ' + '"' + domain + '"' +' will be used for the Linkedin search. The results may not be as accurate.','red')
+        temp_company = raw_input(colored('\nRegistered Company Name: ','green'))
+        if temp_company == '':
+            company = domain
+            who_error = True
+        else:
+            company = temp_company
+
+    return company
+
+def action_country_id():
+    userCountry = ''
+    userServer = ''
+    userIP = ''
+    userID = False
+    o = 0    
+    tcountries_dic = {}
+    country_list = []
+    
+    with open(countries_file) as fin:
+        for line in fin:
+            key, value = line.strip().split(';')
+            tcountries_dic.update({key: value})
+    
+    countries_dic = dict((k.lower(), v.lower()) for k,v in tcountries_dic.iteritems())
+
+    for country, server in countries_dic.items():
+        country_list.append(country)
+    
+    country_list = [item.capitalize() for item in country_list]
+    country_list.sort()
+    
+    while True:
+        try:
+            if prox == True:
+                proxy = {'http' : 'http://127.0.0.1:8080'}
+                r = requests.get(r'http://geoip.nekudo.com/api/', proxies=proxy)
+                ip = r.json()['ip']
+                originCountry = r.json()['country']['name'] 
+                
+            else:  
+                r = requests.get(r'http://geoip.nekudo.com/api/')
+                ip = r.json()['ip']
+                originCountry = r.json()['country']['name'] 
+                
+        except ValueError as e:
+            if o == 0:
+                print colored('\nUnable to connect to the CountryID, we will retry.', 'red')
+            if o > 0:
+                print '\nThis is {} of 3 attempts' .format(o)
+            time.sleep(2)
+            o += 1
+            if o == 4:
+                break
+            continue
+        break
+ 
+    if o == 4:
+        print colored('\nWe have been unable to connect to the CountryID service.\n','red')
+        print '\nPlease let Bluto know what country you hale from.\n'
+        print colored('Available Countries:\n', 'green')
+        
+        if len(country_list) % 2 != 0:
+            country_list.append(" ")
+        
+        split = len(country_list)/2
+        l1 = country_list[0:split]
+        l2 = country_list[split:]
+        
+        for key, value in zip(l1,l2):
+            print "{0:<20s} {1}".format(key, value)
+        
+        country_list = [item.lower() for item in country_list]
+        
+        while True:
+            originCountry = raw_input('\nCountry: ').lower()
+            if originCountry in country_list:
+                break
+            if originCountry == '':
+                print '\nYou have not selected a country so the default server will be used'
+                originCountry = 'United Kingdom'.lower()
+                break
+            else:
+                print '\nCheck your spelling and try again'
+                
+        for country, server in countries_dic.items():
+            if country == originCountry:
+                userCountry = country
+                userServer = server
+                userID = True
+            
+    else:                                   
+            
+        for country, server in countries_dic.items():
+            if country == originCountry.lower():
+                userCountry = country
+                userServer = server
+                userID = True      
+        if userID == False:
+            if default_s == True:
+                userCountry = 'DEAFULT'
+                pass
+            else:
+                print 'Bluto currently doesn\'t have your countries google server available.\nPlease navigate to "http://geoip.nekudo.com/api/" and post an issue to "https://github.com/RandomStorm/Bluto/issues"\nincluding the country value as shown in the json output\nYou have been assigned to http://www.google.com for now.'
+                userServer = 'https://www.google.co.uk'
+                userCountry = 'United Kingdom'
+    
+    print '\n\tSearching From: {0}\n\tGoogle Server: {1}\n' .format(userCountry.title(), userServer)
+    return (userCountry, userServer)
+
+def action_linkedin(domain, userCountry, q, company):
+    uas = get_user_agents(useragent_f)
+    entries_tuples = []
+    seen = set()
+    results = []
+    who_error = False    
+    searchfor = 'site:linkedin.com/in ' + '"' + company + '"'
+    ua = random.choice(uas)
+    for start in range(1,50,1):
+        if prox == True:
+            proxy = {'http' : 'http://127.0.0.1:8080'}
+        else:
+            pass
+        try:
+            headers = {"Connection" : "close", 
+                       "User-Agent" : ua,
+                       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8', 
+                       'Accept-Language': 'en-US,en;q=0.5',
+                       'Accept-Encoding': 'gzip, deflate'}
+            payload = { 'q': searchfor, 'first': start}
+            link = 'http://www.bing.com/search'
+            if prox == True:
+                response = requests.get(link, headers=headers, params=payload, proxies=proxy)
+            else:
+                response = requests.get(link, headers=headers, params=payload)
+                
+            response.text.encode('utf-8') 
+            soup = BeautifulSoup(response.text, "lxml")
+            
+            for div in soup.findAll('li', {'class': 'b_algo'}):
+                title_temp = div.find('a').text
+                url = div.find('cite').text.encode('utf-8')
+                person = str((title_temp.split(' | ')[0]))
+                description_temp = div.find('div', {'class': 'b_caption'})
+                description = description_temp.find('p').text.encode('utf-8').lstrip('View ').replace("’s","").replace("professional profile on LinkedIn. ... ","").replace(" professional profile on LinkedIn. LinkedIn is the world's largest business network, ...","").replace("’S","").replace("’","").replace("professional profile on LinkedIn.","").replace(person, '').lstrip(' ').lstrip('. ').replace("LinkedIn is the world's largest business network, helping professionals like  discover ...","").replace("LinkedIn is the world's largest business network, helping professionals like  discover inside ...","").replace("professional profile on ... • ","").replace("professional ... ","").replace("...","").lstrip('•').lstrip(' ')
+                
+                entries_tuples.append((url, person.title(), description))
+        
+        except Exception as e:
+            continue
+        
+    for urls in entries_tuples:
+        if urls[1] not in seen:
+            results.append(urls)
+            seen.add(urls[1])    
+
+    
+        
+    q.put(sorted(results))
+
+
+def action_google(domain, userCountry, userServer, q):
+    uas = get_user_agents(useragent_f)
+    searchfor = '@' + '"' + domain + '"'
+    entries_tuples = []
+    seen = set()
+    results = []    
+    for start in range(1,20,1):
+        ua = random.choice(uas)
+        try:
+            if prox == True:
+                proxy = {'http' : 'http://127.0.0.1:8080'}
+            else:
+                pass            
+            headers = {"Connection" : "close", 
+                       "User-Agent" : ua, 
+                       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8', 
+                       'Accept-Language': 'en-US,en;q=0.5',
+                       'Accept-Encoding': 'gzip, deflate',
+                       'Referer': 'http://www.google.com'}
+            payload = { 'nord':'1', 'q': searchfor, 'start': start*10}
+
+            link = '{0}/search?num=200' .format(userServer)
+            if prox == True:
+                response = requests.get(link, headers=headers, params=payload, proxies=proxy)
+            else:
+                response = requests.get(link, headers=headers, params=payload)
+            
+            response.raise_for_status()
+            response.text.encode('ascii', 'ignore').decode('ascii')
+            soup = BeautifulSoup(response.text, "lxml")       
+
+            for div in soup.select("div.g"):     
+            
+                for div in soup.select("div.g"):     
+
+                    email_temp = div.find("span", class_="st")
+                    clean = re.sub('<em>', '', email_temp.text)
+                    clean = re.sub('</em>', '', email_temp.text)                
+                    match = re.findall('[a-zA-Z0-9.]*' + '@' + domain, clean)
+                    try:
+                        if match:
+                            if match is not '@' or match is not '@' + domain:
+                                url = div.find('cite').text     
+                                email = str(match).replace("u'",'').replace('[','').replace(']','').replace("'",'')
+                                entries_tuples.append((email.lower(),str(url).replace("u'",'').replace("'","")))  
+                    except Exception, e:
+                        pass                    
+            time.sleep(3)
+            for urls in entries_tuples:
+                if urls[1] not in seen:
+                    results.append(urls)
+                    seen.add(urls[1])         
+        except requests.exceptions.HTTPError as e: 
+            if e.response.status_code == 503:
+                print colored('Google is responding with a Captcha, other searches will continue\n', 'red')
+                break        
+        except AttributeError as f:
+            #traceback.print_exc()
+            pass
+            
+    q.put(sorted(results))     
+
+def action_bing_true(domain,q):
+    emails = []
+    uas = get_user_agents(useragent_f)
+    searchfor = '@' + '"' + domain + '"'    
+    for start in range(0,50):
+        ua = random.choice(uas)
+        if prox == True:
+            proxy = {'http' : 'http://127.0.0.1:8080'}
+        else:
+            pass
+        try:
+            headers = {"Connection" : "close", 
+                       "User-Agent" : ua,
+                       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8', 
+                       'Accept-Language': 'en-US,en;q=0.5',
+                       'Accept-Encoding': 'gzip, deflate'}
+            payload = { 'q': searchfor, 'first': start}
+            link = 'http://www.bing.com/search'
+            if prox == True:
+                response = requests.get(link, headers=headers, params=payload, proxies=proxy)
+            else:
+                response = requests.get(link, headers=headers, params=payload)
+            reg_emails = re.compile('[a-zA-Z0-9.-]*' + '@' + '<strong>')
+            temp = reg_emails.findall(response.text)
+            time.sleep(1)
+            for item in temp:
+                clean = item.replace("<strong>", "")
+                email.append(clean + domain)  
+                
+        except Exception as e:
+            continue  
+    q.put(sorted(emails))
+        
+
+        
+print """
+BBBBBBBBBBBBBBBBB  lllllll                       tttt                          
+B::::::::::::::::B l:::::l                     ttt:::t                          
+B::::::BBBBBB:::::Bl:::::l                     t:::::t                          
+BB:::::B     B:::::l:::::l{6}              t:::::t                          
+  B::::B     B:::::Bl::::luuuuuu    uuuuuttttttt:::::ttttttt      ooooooooooo   
+  B::::B     B:::::Bl::::lu::::u    u::::t:::::::::::::::::t    oo:::::::::::oo 
+  B::::BBBBBB:::::B l::::lu::::u    u::::t:::::::::::::::::t   o:::::::::::::::o
+  B:::::::::::::BB  l::::lu::::u    u::::tttttt:::::::tttttt   o:::::ooooo:::::o
+  B::::BBBBBB:::::B l::::lu::::u    u::::u     t:::::t         o::::o     o::::o
+  B::::B     B:::::Bl::::lu::::u    u::::u     t:::::t         o::::o     o::::o
+  B::::B     B:::::Bl::::lu::::u    u::::u     t:::::t         o::::o     o::::o
+  B::::B     B:::::Bl::::lu:::::uuuu:::::u     t:::::t    ttttto::::o     o::::o
+BB:::::BBBBBB::::::l::::::u:::::::::::::::uu   t::::::tttt:::::o:::::ooooo:::::o
+B:::::::::::::::::Bl::::::lu:::::::::::::::u   tt::::::::::::::o:::::::::::::::o
+B::::::::::::::::B l::::::l uu::::::::uu:::u     tt:::::::::::ttoo:::::::::::oo 
+BBBBBBBBBBBBBBBBB  llllllll   uuuuuuuu  uuuu       ttttttttttt    ooooooooooo
+                                                                            
+     {2} | {3} | {4} | {7}
+                             {8}
+            {0}  |  {1}
+                 {5}
+""" . format (colored("Author: Darryl Lane", 'blue'),colored("Twitter: @darryllane101", 'blue'),colored("DNS Recon", 'green'),colored("Brute Forcer", 'green'),colored("DNS Zone Transfers", 'green'),colored("https://github.com/RandomStorm/Bluto", 'green'),colored("v" + version, 'red'),colored("Email Enumeration", 'green'),colored("User Enumeration", 'green'))
+
+if __name__ == "__main__":
+    if len(sys.argv) == 2:
+        if str(sys.argv[1]) == '-E':
+            filename1 = path + "/Bluto/doc/lots-of-spinach.txt"    
+    else:
+        pass  
+
+    domain = raw_input("\nTarget Domain: ")
+    emails = []
+#WhoisGet
+    company = action_whois(domain)
+#Detail Call
+    sub_intrest = get_sub_interest(filename2)
+    zn_list = get_dns_details(domain)
+#NetCraft Call
+    netcraft_list = action_netcraft(domain)
+#ZoneTrans Call    
+    vulnerable_list = action_zone_transfer(zn_list, domain)
+    if vulnerable_list == []:
+        print "\nNone of the Name Servers are vulnerable to Zone Transfers"
+#Bruting
+        print '\nTesting For Wild Cards'
+        value = action_wild_cards(domain)
+        if value == True:
+            print colored('\n\tWild Cards Are In Place','green')
+            email_address = []
+            print '\nGathering Data From Google, Bing And LinkedIn'
+            userCountry, userServer = action_country_id()
+            start_time_total = time.time()
+            start_time_email = time.time()
+            q1 = Queue.Queue()
+            q2 = Queue.Queue()
+            q3 = Queue.Queue()
+            t1 = threading.Thread(target=action_google, args=(domain, userCountry, userServer,q1))
+            t2 = threading.Thread(target=action_bing_true, args=(domain,q2))
+            t3 = threading.Thread(target=action_linkedin, args=(domain, userCountry, q3, company))
+            t1.start()
+            t2.start()
+            t3.start()
+            t1.join()
+            t2.join()
+            t3.join()
+            time_spent_email = time.time() - start_time_email
+            google_true_results = q1.get()
+            bing_true_results = q2.get()
+            linkedin_results = q3.get()
+            time_spent_total = time.time() - start_time_total
+#Outputing data
+            action_output_wild_true(google_true_results, bing_true_results, linkedin_results)
+        else:
+            print colored('\n\tWild Cards Are Not In Place','red')
+            email_address = []
+            check_count = get_line_count(filename1)
+            subs = get_subs(filename1)
+            pool = ThreadPool(12)
+            print '\nBrute Forcing Sub-Domains\n\n\tWhile you are waiting we will gather email addresses\n\tand LinkedIn users'
+            print '\nGathering Data From Google, Bing And LinkedIn'
+            userCountry, userServer = action_country_id()
+            start_time_total = time.time()
+            start_time_email = time.time()
+            q1 = Queue.Queue()
+            q2 = Queue.Queue()
+            q3 = Queue.Queue()
+            t1 = threading.Thread(target=action_google, args=(domain, userCountry, userServer,q1))
+            t2 = threading.Thread(target=action_bing_true, args=(domain,q2))
+            t3 = threading.Thread(target=action_linkedin, args=(domain, userCountry, q3, company))
+            t1.start()
+            t2.start()
+            t3.start()
+            t1.join()
+            t2.join()
+            t3.join()
+            time_spent_email = time.time() - start_time_email
+            google_true_results = q1.get()
+            bing_true_results = q2.get()
+            linkedin_results = q3.get()
+                      
+            start_time_brute = time.time()
+            pool.map(action_brute, subs)
+            time_spent_brute = time.time() - start_time_brute
+            pool.close()
+            time_spent_total = time.time() - start_time_total
+#Clean Brute Results           
+            if targets == []:
+                targets.append("temp-enter")
+            domains = list(set(targets + netcraft_list))
+            domains.sort()
+            if "temp-enter" in domains: domains.remove("temp-enter")
+            brute_results_dict = dict((x.split(' ') for x in domains))
+#Outputing data
+            action_output_wild_false(brute_results_dict, sub_intrest, google_true_results, bing_true_results, linkedin_results, check_count)
+    else:
+#Vuln Zone Trans
+        email_address = []
+        print '\nGathering Data From Google, Bing And LinkedIn'
+        userCountry, userServer = action_country_id()
+        start_time_total = time.time()
+        start_time_email = time.time()
+        q1 = Queue.Queue()
+        q2 = Queue.Queue()
+        q3 = Queue.Queue()
+        t1 = threading.Thread(target=action_google, args=(domain, userCountry, userServer,q1))
+        t2 = threading.Thread(target=action_bing_true, args=(domain,q2))
+        t3 = threading.Thread(target=action_linkedin, args=(domain, userCountry, q3, company))
+        t1.start()
+        t2.start()
+        t3.start()
+        t1.join()
+        t2.join()
+        t3.join()
+        time_spent_email = time.time() - start_time_email
+        google_true_results = q1.get()
+        bing_true_results = q2.get()
+        linkedin_results = q3.get()
+        time_spent_total = time.time() - start_time_total
+#Outputing data
+        action_output_vuln_zone(google_true_results, bing_true_results, linkedin_results)

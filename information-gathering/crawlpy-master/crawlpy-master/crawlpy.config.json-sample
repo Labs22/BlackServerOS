@@ -1,0 +1,30 @@
+{
+	"proto": "http",
+	"domain": "localhost",
+	"depth": 3,
+	"ignores": [
+		"/user/logout.php",
+		"/user/delete.php?id=1",
+		"/user/disable.php?id=1",
+	],
+	"httpstatus_list": [],
+	"login": {
+		"enabled": false,
+		"method": "post",
+		"action": "/login.php",
+		"failure": "Password is incorrect",
+		"fields": {
+			"username": "john",
+			"password": "doe"
+		},
+		"csrf": {
+			"enabled": false,
+			"field": "csrf"
+		}
+
+	},
+	"store": {
+		"enabled": false,
+		"path": "./data"
+	}
+}
