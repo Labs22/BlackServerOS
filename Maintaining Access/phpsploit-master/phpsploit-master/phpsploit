@@ -1,0 +1,180 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+VERSION = "2.2.0b"
+
+import sys
+import os
+
+# Make sure the script is not imported
+try:
+    from __main__ import __file__
+except:
+    sys.exit('[-] PhpSploit must be run with the provided script')
+del __file__
+
+# F*ck windows users
+if sys.platform.lower().startswith('win'):
+    sys.exit('[-] If you use Windows NT, you should be '
+             'a TARGET rather than an attacker ...')
+
+try:
+    import src  # spread phpsploit sources
+    
+    import random
+    import argparse
+    import subprocess as sp
+    
+    import core
+    import ui.input
+    import ui.output
+    import ui.interface
+    from datatypes import Path
+    from ui.color import colorize
+except KeyboardInterrupt:
+    sys.exit("\r[-] PhpSploit initialization interrupted")
+
+
+
+def help_format(prog):
+    kwargs = dict()
+    kwargs['width'] = ui.output.columns()
+    kwargs['max_help_position'] = 34
+    format = argparse.HelpFormatter(prog, **kwargs)
+    return (format)
+
+
+def run_process(cmd):
+    child = sp.Popen(cmd, stdout=sp.PIPE, stderr=sp.DEVNULL)
+    streamdata = child.communicate()[0]
+    if child.returncode != 0:
+        return ("")
+    return streamdata.decode("utf-8").strip()
+
+
+def rand_message():
+    msg_list = Path(core.basedir + "data/messages.lst").readlines()
+    return random.choice(msg_list).strip()
+
+
+# run `cmd` into `interface`, with syntax error handling
+def cmdrun(interface, cmdobj, show_err=False):
+    try:
+        retval = interface.interpret(cmdobj)
+        if retval != 0 and show_err:
+            interface.interpret("corectl stack-traceback")
+    except (SyntaxWarning, SyntaxError) as err:
+        retval = interface.onexception(err)
+    return retval
+
+
+# This makes phpsploit usable as shebang for scripting
+if len(sys.argv) == 2 and os.path.isfile(sys.argv[1]):
+    sys.argv.insert(1, "--source")
+
+
+# Parse argument list:
+parser = argparse.ArgumentParser()
+parser.formatter_class = help_format
+parser.description = "The stealth post-exploitation framework"
+parser.add_argument('-v', '--version',
+                    help="output version information and exit",
+                    action="store_true")
+parser.add_argument('-c', '--config',
+                    help="use alternative configuration file",
+                    metavar="<FILE>")
+parser.add_argument('-l', '--load',
+                    help="load the given session file",
+                    metavar="<SESSION>")
+parser.add_argument('-t', '--target',
+                    help="use the given URL as remote target",
+                    metavar="<URL>")
+parser.add_argument('-s', '--source',
+                    help="execute commands file (disables interactive mode)",
+                    metavar="<FILE>")
+parser.add_argument('-e', '--eval',
+                    help="run phpsploit command (disables interactive mode)",
+                    metavar="<CMD>")
+parser.add_argument('-i', '--interactive',
+                    help="force interactive mode if disabled by `-e` or `-s`",
+                    action="store_true")
+opt = vars(parser.parse_args())
+
+
+if opt['version']:
+    tmp = run_process(['git', '-C', core.basedir, 'describe'])
+    VERSION = (tmp + " (git)") if tmp else VERSION
+    msg = "PhpSploit Framework, version %s\n" % VERSION
+    msg += "License GPLv3+: GNU GPL version 3 or later"
+    msg += " <http://gnu.org/licenses/gpl.html>\n\n"
+    msg += "This is free software; you are free"
+    msg += " to change and redistribute it.\n"
+    msg += "There is NO WARRANTY, to the extent permitted by law."
+    print(msg)
+    sys.exit(0)
+
+# Enable stdout wrapper
+sys.stdout = ui.output.Wrapper(backlog=True)
+
+# determine if the interface would run in interactive mode
+interactive = False
+if ui.input.isatty():
+    if opt['eval'] is None and opt['source'] is None:
+        interactive = True
+    elif opt['interactive'] and ui.input.isatty():
+        interactive = True
+
+# make this variable accessible from phpsploit core
+ui.interface.interactive = interactive
+
+# Start shell interface
+interface = ui.interface.Shell()
+
+if opt['config'] is None:
+    opt['config'] = core.userdir + "config"
+
+if cmdrun(interface, "source -e '%s'" % opt['config'], show_err=True) != 0:
+    print()
+    parser.error("%r: couldn't load config file." % opt['config'])
+elif interactive and ui.output.isatty():
+    logo = Path(core.basedir + "data/logo.ascii").read()
+    cmdrun(interface, "clear")
+    print(logo + '\n\n')
+    print(colorize("%Bold", "# Stealth post-exploitation framework\n"))
+    print(colorize("%DimWhite", rand_message()))
+    cmdrun(interface, "help")
+
+interface.init()
+
+if opt['load']:
+    if cmdrun(interface, "session load '%s'" % opt['load']) != 0:
+        print()
+        parser.error("%r: couldn't load session file." % opt['load'])
+
+if opt['target']:
+    if cmdrun(interface, "set TARGET '%s'" % opt['target']) != 0:
+        print()
+        parser.error("%r: couldn't set target url." % opt['target'])
+
+if opt['source']:
+    if cmdrun(interface, "source '%s'" % opt['source']) != 0:
+        print()
+        parser.error("%r: couldn't read source file." % opt['source'])
+
+retval = 0
+
+if opt['eval']:
+    retval = cmdrun(interface, opt['eval'])
+
+if not ui.input.isatty():
+    lines = sys.stdin.read()
+    retval = cmdrun(interface, lines)
+    sys.exit(retval)
+
+if interactive:
+    interface.cmdloop()
+    if ui.output.isatty():
+        print(colorize("%DimWhite", '\n' + rand_message() + '\n'))
+
+del src  # make PEP8 syntax checker happy
+sys.exit(retval)
