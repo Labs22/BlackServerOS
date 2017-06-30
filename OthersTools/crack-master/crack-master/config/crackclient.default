@@ -1,0 +1,7 @@
+# Configuration file for crackserver.py
+#
+# Set default parameters
+
+# Default server IP & port to connect to
+SERVER_IP=127.0.0.1
+SERVER_PORT=8000

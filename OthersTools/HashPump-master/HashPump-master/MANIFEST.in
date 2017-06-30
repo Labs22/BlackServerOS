@@ -1,0 +1,3 @@
+# Specifies extra files to include in the python sdist tarball
+# which will not be installed on the user's system
+include *.h

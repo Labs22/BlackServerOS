@@ -1,0 +1,12 @@
+# Configuration file for crackserver.py
+#
+# Set default parameters
+
+# Listening address (set for 0.0.0.0 if you want to allow remote connection)
+SERVER_IP=127.0.0.1
+
+# Listening port (default 8000)
+SERVER_PORT=8000
+
+# Config file for password cracking parameters (default config/crack.cfg)
+CRACK_CONFIG=config/crack.cfg

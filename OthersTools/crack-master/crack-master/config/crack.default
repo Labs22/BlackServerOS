@@ -1,0 +1,114 @@
+# Configuration file for CrackManager
+#
+# Each line of the file defines the type of password to crack and the command
+# used to crack it. Multiple commands can be defined for each password type.
+# The commands will be tried in order from top to bottom. Each command line
+# should define include the {file} and {output} tags in the appropriate places.
+#
+# To simplify some of the code we define the following hash types:
+#	pwdump* (hash type must be either pwdump-lm or pwdump-nt)
+#	john* (hash type must start with 'john'; designed to work with filenames generated from
+#			metasploit, such as john_netntlm, john_netntlmv2, etc.; parser looks for "v2" at
+#			the end of the file name to correctly parse v1 vs. v2 files)
+#	ike
+#	dcc
+# Commands associated with the pwdump type must accept a file in pwdump format.
+# Commands associated with the ike type must accept a file in ike-scan psk-crack format.
+# Commands associated with dcc should accept a file in the username:hash format,
+# similar to hashcat.
+#
+# NOTE - ALL JTR commands must end with a separate john --show command to feed results
+# of john commands to stdout for parsing
+
+######################################################################################################
+# pwdump files
+######################################################################################################
+
+pwdump-lm|/usr/bin/rcracki_mt -f {file} -t 4 /opt/tables/rcracki_mt/lm_tables_all-space
+
+pwdump-nt|/usr/sbin/john --format=nt --single {file}
+#pwdump-nt|/usr/sbin/john --format=nt --rules --wordlist=/path/to/dicts/numbers.txt {file}
+#pwdump-nt|/usr/sbin/john --format=nt --rules --wordlist=/path/to/dicts/names.txt {file}
+#pwdump-nt|/usr/sbin/john --format=nt --rules --wordlist=/path/to/dicts/oxford_english_dictionary.txt {file}
+#pwdump-nt|/usr/sbin/john --format=nt --rules=single --wordlist=/path/to/dicts/names.txt {file}
+#pwdump-nt|/usr/sbin/john --format=nt --rules=single --wordlist=/path/to/dicts/oxford_english_dictionary.txt {file}
+
+#THIS LINE ALWAYS NEEDS TO BE ACTIVE TO PARSE JTR OUTPUT!!!
+pwdump-nt|/usr/sbin/john --format=nt --show {file}
+
+######################################################################################################
+# john the ripper files (e.g. metasploit netlm, netntlm, netlmv2, netntlmv2)
+#
+# TODO - build support for halflm + rainbow tables?
+#
+######################################################################################################
+john-netlm|/usr/sbin/john --format=netlm --single {file}
+#john-netlm|/usr/sbin/john --format=netlm --rules --wordlist=/path/to/dicts/numbers.txt {file}
+#john-netlm|/usr/sbin/john --format=netlm --rules --wordlist=/path/to/dicts/names.txt {file}
+#john-netlm|/usr/sbin/john --format=netlm --rules --wordlist=/path/to/dicts/oxford_english_dictionary.txt {file}
+#john-netlm|/usr/sbin/john --format=netlm --rules=single --wordlist=/path/to/dicts/names.txt {file}
+#john-netlm|/usr/sbin/john --format=netlm --rules=single --wordlist=/path/to/dicts//oxford_english_dictionary.txt {file}
+#THIS LINE ALWAYS NEEDS TO BE ACTIVE TO PARSE JTR OUTPUT!!!
+john-netlm|/usr/sbin/john --format=netlm --show {file}
+
+john-netntlm|/usr/sbin/john --format=netntlm --single {file}
+#john-netntlm|/usr/sbin/john --format=netntlm --rules --wordlist=/path/to/dicts/numbers.txt {file}
+#john-netntlm|/usr/sbin/john --format=netntlm --rules --wordlist=/path/to/dicts/names.txt {file}
+#john-netntlm|/usr/sbin/john --format=netntlm --rules --wordlist=/path/to/dicts/oxford_english_dictionary.txt {file}
+#john-netntlm|/usr/sbin/john --format=netntlm --rules=single --wordlist=/path/to/dicts/names.txt {file}
+#john-netntlm|/usr/sbin/john --format=netntlm --rules=single --wordlist=/path/to/dicts//oxford_english_dictionary.txt {file}
+#THIS LINE ALWAYS NEEDS TO BE ACTIVE TO PARSE JTR OUTPUT!!!
+john-netntlm|/usr/sbin/john --format=netntlm --show {file}
+
+john-netlmv2|/usr/sbin/john --format=netlmv2 --single {file}
+#john-netlmv2|/usr/sbin/john --format=netlmv2 --rules --wordlist=/path/to/dicts/numbers.txt {file}
+#john-netlmv2|/usr/sbin/john --format=netlmv2 --rules --wordlist=/path/to/dicts/names.txt {file}
+#john-netlmv2|/usr/sbin/john --format=netlmv2 --rules --wordlist=/path/to/dicts/oxford_english_dictionary.txt {file}
+#john-netlmv2|/usr/sbin/john --format=netlmv2 --rules=single --wordlist=/path/to/dicts/names.txt {file}
+#john-netlmv2|/usr/sbin/john --format=netlmv2 --rules=single --wordlist=/path/to/dicts//oxford_english_dictionary.txt {file}
+#THIS LINE ALWAYS NEEDS TO BE ACTIVE TO PARSE JTR OUTPUT!!!
+john-netlmv2|/usr/sbin/john --format=netlmv2 --show {file}
+
+john-netntlmv2|/usr/sbin/john --format=netntlmv2 --single {file}
+#john-netntlmv2|/usr/sbin/john --format=netntlmv2 --rules --wordlist=/path/to/dicts/numbers.txt {file}
+#john-netntlmv2|/usr/sbin/john --format=netntlmv2 --rules --wordlist=/path/to/dicts/names.txt {file}
+#john-netntlmv2|/usr/sbin/john --format=netntlmv2 --rules --wordlist=/path/to/dicts/oxford_english_dictionary.txt {file}
+#john-netntlmv2|/usr/sbin/john --format=netntlmv2 --rules=single --wordlist=/path/to/dicts/names.txt {file}
+#john-netntlmv2|/usr/sbin/john --format=netntlmv2 --rules=single --wordlist=/path/to/dicts//oxford_english_dictionary.txt {file}
+#THIS LINE ALWAYS NEEDS TO BE ACTIVE TO PARSE JTR OUTPUT!!!
+john-netntlmv2|/usr/sbin/john --format=netntlmv2 --show {file}
+
+######################################################################################################
+# wifi files (.pcap)
+######################################################################################################
+
+# Pyrit - batch attack; this attack will use precomputed keys for an ESSID if they are in there,
+#			otherwise will compute and add to the database for further use; still have to import the dictionary initially
+#				pyrit -i /path/to/dictionary/file.txt import_passwords
+wifi|/usr/bin/pyrit -r {file} attack_batch
+
+# Pyrit - no database (read passwords from dictionary file)
+#wifi|/usr/bin/pyrit -i /path/to/dictionary/file.txt -r {file} attack_passthrough
+
+# Pyrit - use database (same as batch but only uses database; does not compute keys if not present)
+#			have to import dictionary into database and generate PMKs for a given ESSID using the following commands:
+#				pyrit -i /path/to/dictionary/file.txt import_passwords
+#				pyrit -e <ESSID> create_essid
+#				pyrit batch
+#wifi|/usr/bin/pyrit -r {file} attack_db
+
+######################################################################################################
+# DCC files
+#
+# TODO: DCC is untested module from original source code; may or may not be broken!
+#
+######################################################################################################
+#dcc|hashcat/hashcat-cli64.bin -m 1100 {file} /path/to/dictionary/file -r rules/best64.rule
+#dcc|hashcat/hashcat-cli64.bin -m 1100 {file} /path/to/dictionary/file -r rules/passwordspro.rule
+#dcc|hashcat/hashcat-cli64.bin -m 1100 {file} /path/to/dictionary/file -r rules/d3ad0ne_23.8K.rule
+
+######################################################################################################
+# ike-scan psk-crack files
+######################################################################################################
+ike|/usr/bin/psk-crack -d /path/to/dictionary/file {file}
+

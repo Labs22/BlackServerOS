@@ -1,0 +1,9 @@
+.project
+.pydevproject
+*.pyc
+*.hash
+/config/*.cfg
+/config/*.bak
+/test
+/test.cfg
+/hashcat.pot

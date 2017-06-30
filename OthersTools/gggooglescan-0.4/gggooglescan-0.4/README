@@ -1,0 +1,149 @@
+ _______ _____ _____                       __                                   
+|     __|   __|   __|.-----..-----..-----.|  |.-----..-----..----..---.-..-----.
+|    |  |  |  |  |  ||  _  ||  _  ||  _  ||  ||  -__||__ --||  __||  _  ||     |
+|_______|_____|_____||_____||_____||___  ||__||_____||_____||____||___._||__|__|
+   G-G-Googlescan vo.4 (o4/2o1o)   |_____|  	    by urbanadventurer
+------------.-------------------------------------------------------------------
+ Description| Google scraper for automated searching. Returns URLs and hostnames
+ Homepage   | www.morningstarsecurity.com/research/gggooglescan
+ Author     | Andrew Horton (urbanadventurer) from Security-Assessment.com
+ License    | GPLv3
+ Version    | 0.4 April, 2011
+ Features   | Antibot avoidance, Search within a country, Horizontal searching,
+	      URL encoding and more
+
+| Contents
+'-------------------------------------------------------------------------------
+1. Introduction
+2. Antibot Avoidance Features
+3. Search within a country
+4. Using Proxies
+5. Troubleshooting
+6. Making a Wordlist
+
+
+| 1. Introduction
+'-------------------------------------------------------------------------------
+GGGooglescan is a Google scraper which performs automated searches and returns results of search queries in the form of URLs or hostnames. Datamining Google's search index is useful for many applications. Despite this, Google makes it difficult for researchers to perform automatic search queries. The aim of GGGooglescan is to make automated searches possible by avoiding the search activity that is detected as bot behaviour. Please note that using this software may be in violation of Google's terms of service.
+
+
+| 2. Antibot Avoidance Features
+'-------------------------------------------------------------------------------
+
+* To appear more like a human, it does not search beyond a page with the text: "In order to show you the most relevant results, we have omitted some entries very similar"
+
+* When Google detects bot-type activity, it redirects to this page which contains a captcha: http://sorry.google.com/sorry/?continue=. gggooglescan will detect this and wait for 60 minutes before re-attempting the search query.
+
+* Horizontal searching is a technique to harvest a large number of search results without appearing like a bot. Deep query searching is requesting high numbers of search result pages, eg. requesting result pages 1 through 50 which is detected as bot activity by Google. Horizontal searching allows you to query a large search result space without deep query searching. It works by combining your search query with each word in a word list to create a large quantity of shallow depth search queries. 
+
+For example, if you wanted to gather a list of forums powered by the myBB software you could use the following search query, "MyBB Group. Copyright".
+Google reports there are 79,500 results however it is not easy to obtain those results.
+Let's try the following command which searches 200 pages of 10 results which will hopefully net 2000 results.
+
+	./gggooglescan -l mybb-forum.log -d 200 '"powered by mybb"'
+
+After just 46 pages and 464 results Google does not display a link to the next page and reports "In order to show you the most relevant results, we have omitted some entries very similar to the 457 already displayed.". This query returned 374 unique hostnames. After this search completed, the IP address used was restricted from further searching due to bot detection.
+
+Using the horizontal search technique we can gain a larger list of mybb forums.
+	
+	./gggooglescan -l mybb-forum-horizontal.log -d 1 -e ./wordlist  '"powered by mybb"'
+
+This search was detected as bot activity after 47 combined dictionary words (a,aachen,aachen's,aaliyah,...) and obtained 8236 results and 1231 unique hostnames.
+
+	./gggooglescan -l mybb-forum-horizontal2.log -d 4 -e ./wordlist  '"powered by mybb"'
+
+This search got as far as 'abbreviates', the 62nd word in the list and yielded 2389 results, 721 unique hostnames
+
+Here are some results I got, your mileage may vary:
+
+./gggooglescan  -l mybb-forum-horizontal.log -d 1 -e ./wordlist  '"powered by mybb"'
+Detected as a bot. Got 8236 results
+
+./gggooglescan  -l mybb-forum-horizontal2.log -d 4 -e ./wordlist  '"powered by mybb"'
+Detected as a bot. Got 2389 results
+
+./gggooglescan -s 2 -l mybb-forum-horizontal3.log -d 1 -e ./wordlist " "
+Avoided detection. Got over 10,000 results before i stopped it.
+
+./gggooglescan -s 2 -l mybb-forum-horizontal4.log -d 1 -e ./wordlist " "
+Avoided detection. Got over 100,000 results before i stopped it
+
+./gggooglescan -s 2 -l mybb-forum-horizontal5.log -d 1 -e ./wordlist '"powered by mybb"'
+Detected as a bot. Got 4612 results.
+
+./gggooglescan -s 2 -l phpbb-forums2.log -d 1 -e ./wordlist "memberlist goto page"
+Avoided detection. Got over 6279 results.
+
+
+
+| 3. Search within a country
+'-------------------------------------------------------------------------------
+
+Are you only interested in results in Australia? You can restrict your searches to a country with the -c parameter
+
+	./gggooglescan -c au hello
+
+Perhaps you want a large set of Australian hostnames. Try the following:
+
+	./gggooglescan -c au -d 5 -v -l aussie.log -e ./wordlist a
+
+
+
+| 4. Using Proxies
+'-------------------------------------------------------------------------------
+
+Use the -x option to pass curl command line parameters.
+
+The following curl options control proxy usage:
+	 -x/--proxy <host[:port]> Use HTTP proxy on given port
+	    --proxy-anyauth Pick "any" proxy authentication method (H)
+	    --proxy-basic   Use Basic authentication on the proxy (H)
+	    --proxy-digest  Use Digest authentication on the proxy (H)
+	    --proxy-negotiate Use Negotiate authentication on the proxy (H)
+	    --proxy-ntlm    Use NTLM authentication on the proxy (H)
+	 -U/--proxy-user <user[:password]> Set proxy user and password
+	    --socks4 <host[:port]> SOCKS4 proxy on given host + port
+	    --socks4a <host[:port]> SOCKS4a proxy on given host + port
+	    --socks5 <host[:port]> SOCKS5 proxy on given host + port
+	    --socks5-hostname <host[:port]> SOCKS5 proxy, pass host name to proxy
+	    --socks5-gssapi-service <name> SOCKS5 proxy service name for gssapi
+	    --socks5-gssapi-nec  Compatibility with NEC SOCKS5 server
+
+For example:
+	gggooglescan -x "--socks5 localhost:1234" hax0r
+	gggooglescan -x "--proxy localhost:8080 --proxy-user bob:12345" hax0r
+
+You can also specify proxy settings with environment variables which will be used by curl, for example:
+
+	export ALL_PROXY=http://localhost:8118/
+	./gggooglescan foo
+
+
+| 5. Troubleshooting
+'-------------------------------------------------------------------------------
+
+Q. I'm getting detected as a bot, what can I do?
+A. Experiment with different (lower) values for -d depth.
+   Try combining searches with a wordlist.
+   Use proxies.
+
+Q. I can't see any output
+A. Try using -v for verbose output. You may be waiting for the bot captcha to timeout.
+
+Q. I'm using a custom user-agent and it fails to get results.
+A. Google responds differently depending on the user-agent provided. 
+   -c is incompatible with a user agent for a mobile device
+   User agents with MSIE 6.0 do not work with gggooglescan
+
+
+
+| 6. Making a Wordlist
+'-------------------------------------------------------------------------------
+
+You can make a wordlist on a Unix system with a command such as:
+
+	cat /usr/share/dict/words| tr '[:upper:]' '[:lower:]' | egrep "[a-z']" | sort -u > wordlist
+
+There are more wordlists at openwall.com
+
+
