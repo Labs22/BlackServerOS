@@ -1,0 +1,6 @@
+dsd
+*.[ao]
+*.so*
+*.dylib
+build
+.DS_Store

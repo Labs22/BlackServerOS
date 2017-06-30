@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><Module><Exploit NameXML="Microsoft-Windows---'SrvOs2FeaToNt'-SMB-Remote-Code-Execution-(MS17-010)-" CodeName="Microsoft-Windows---'SrvOs2FeaToNt'-SMB-Remote-Code-Execution-(MS17-010)-.py"  Platform="windows" Service="smb" Type="remote" RemotePort="445" LocalPort="" ShellcodeAvailable="E" ShellPort="4444" SpecialArgs=""></Exploit><Information Author="Juan Sacco" Date="2017-05-14 17:46:34.208" Vulnerability="2017-0143">
+# Description: SMBv1 SrvOs2FeaToNt OOB is prone to a remote code execution
+# vulnerability because the application fails to perform adequate
+# boundary-checks on user-supplied input. Srv.sys process SrvOs2FeaListSizeToNt 
+# and when the logic is not correct it leads to a cross-border copy. The vulnerability trigger point is as follows:</Information><Targets>Windows 2008 </Targets></Module>

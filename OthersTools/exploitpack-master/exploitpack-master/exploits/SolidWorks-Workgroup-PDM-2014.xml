@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><Module><Exploit NameXML="SolidWorks-Workgroup-PDM-2014" CodeName="SolidWorks-Workgroup-PDM-2014.py"  Platform="windows" Service="PDM" Type="clientside" RemotePort="30000" LocalPort="" ShellcodeAvailable="E" ShellPort="4444" SpecialArgs="none"></Exploit><Information Author="Mohamed Shetta" Date="2016-10-13 16:00:06.878" Vulnerability="N/A">
+Title: SolidWorks Workgroup PDM 2014 SP2 Arbitrary File Write Vulnerability
+Date: 2-21-2014
+Author: Mohamed Shetta
+Email: mshetta |at| live |dot| com
+Vendor Homepage: http://www.solidworks.com/sw/products/product-data-management/workgroup-pdm.htm
+Tested on: Windows 7
+Vulnerability type: Arbitrary File Write
+Vulnerable file: pdmwService.exe
+</Information><Targets>windows</Targets></Module>

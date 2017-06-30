@@ -1,0 +1,10 @@
+Binary
+C:\WINDOWS\system32\access.cpl
+C:\WINDOWS\system32\appwiz.cpl
+C:\WINDOWS\system32\logon.scr
+C:\Program Files\Common Files\Microsoft Shared\EQUATION\MTEXTRA.TTF
+
+ASCII
+
+Both
+C:\WINDOWS\system32\certmgr.msc

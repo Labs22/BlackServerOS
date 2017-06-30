@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><Module><Exploit NameXML="WinAxePlus-8.7" CodeName="WinAxePlus-8.7.py"  Platform="windows" Service="lpd" Type="remote" RemotePort="4444" LocalPort="" ShellcodeAvailable="RE" ShellPort="4444" SpecialArgs=""></Exploit><Information Author="Peter Baris" Date="2017-01-30 16:22:32.296" Vulnerability="">
+WinAxe server is prone to a remote buffer overflow that could allow a malicious suer to execute arbitrary code
+in the context of the affected application. The exploit has been tested in Windows platforms and currently there is no fix or patch available for this program.</Information><Targets>windows</Targets></Module>

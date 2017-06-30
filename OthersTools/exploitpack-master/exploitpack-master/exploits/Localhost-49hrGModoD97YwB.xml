@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><Module><Exploit NameXML="49hrGModoD97YwB" CodeName="Localhost-49hrGModoD97YwB.js"  Platform="xss" Service="RAT" Type="Browser Agent Connection" RemotePort="213.127.249.11" LocalPort="" ShellcodeAvailable="" ShellPort="Safari%20Browser" SpecialArgs="Mac"></Exploit><Information Author="Exploit Pack" Date="2016-04-01 19:37:34.394" Vulnerability="2016-04-01 19:37:34.394">
+A Remote Browser's Agent ( XSS ) is a piece of software that allows a remote "operator" to control a browser as if he has physical access to that system.
+While desktop sharing and remote administration have many legal uses, "XSS" software is usually associated with criminal or malicious activity.
+Malicious XSS agent software is typically injected without the victim's knowledge, often as payload on a website, and will try to hide its operation
+from the victim and from security software. </Information><Targets>Targets vulnerables</Targets></Module>

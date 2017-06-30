@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+    <Exploit NameXML="Agent-XSS" CodeName="Agent.js"  Platform="others" Service="null" Type="tool" RemotePort="80" LocalPort="" ShellcodeAvailable="" ShellPort="PuertoNum" SpecialArgs="">
+    </Exploit>
+
+    <Information Author="Juan Sacco" Date="Feb 26 2016" Vulnerability="N/A">
+An XSS Channel is an interactive communication channel between two systems
+which is opened by an XSS attack. At a technical level, it is a type of AJAX
+application which can obtain commands, send responses back and is able to talk
+cross-domain.
+</Information>
+    <Targets>
+       Works on all modern browsers  
+    </Targets>
+
+</Module>

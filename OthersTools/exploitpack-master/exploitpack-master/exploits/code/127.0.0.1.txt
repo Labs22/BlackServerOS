@@ -1,0 +1,77 @@
+# Pentest notes for: 127.0.0.1
+# Pentest notes for: 127.0.0.1
+# Pentest notes for: 127.0.0.1
+# Pentest notes for: 127.0.0.1
+# Pentest notes for: 127.0.0.1
+# Pentest notes for: 127.0.0.1
+# Pentest notes for: 127.0.0.1
+# Pentest notes for: 127.0.0.1
+# Pentest notes for: 127.0.0.1
+# Pentest notes for: 127.0.0.1
+# Pentest notes for: 127.0.0.1
+Protocol: tcp / Open port: 135 Service: 
+Protocol: tcp / Open port: 135 Service: 
+Protocol: tcp / Open port: 445 Service: 
+Protocol: tcp / Open port: 135 Service: 
+Protocol: tcp / Open port: 445 Service: 
+Protocol: tcp / Open port: 1025 Service: 
+Protocol: tcp / Open port: 135 Service: 
+Protocol: tcp / Open port: 445 Service: 
+Protocol: tcp / Open port: 1025 Service: 
+Protocol: tcp / Open port: 1026 Service: 
+Protocol: tcp / Open port: 135 Service: 
+Protocol: tcp / Open port: 445 Service: 
+Protocol: tcp / Open port: 1025 Service: 
+Protocol: tcp / Open port: 1026 Service: 
+Protocol: tcp / Open port: 1027 Service: 
+Protocol: tcp / Open port: 135 Service: 
+Protocol: tcp / Open port: 445 Service: 
+Protocol: tcp / Open port: 1025 Service: 
+Protocol: tcp / Open port: 1026 Service: 
+Protocol: tcp / Open port: 1027 Service: 
+Protocol: tcp / Open port: 1028 Service: 
+Protocol: tcp / Open port: 135 Service: 
+Protocol: tcp / Open port: 445 Service: 
+Protocol: tcp / Open port: 1025 Service: 
+Protocol: tcp / Open port: 1026 Service: 
+Protocol: tcp / Open port: 1027 Service: 
+Protocol: tcp / Open port: 1028 Service: 
+Protocol: tcp / Open port: 1029 Service: 
+Protocol: tcp / Open port: 135 Service: 
+Protocol: tcp / Open port: 445 Service: 
+Protocol: tcp / Open port: 1025 Service: 
+Protocol: tcp / Open port: 1026 Service: 
+Protocol: tcp / Open port: 1027 Service: 
+Protocol: tcp / Open port: 1028 Service: 
+Protocol: tcp / Open port: 1029 Service: 
+Protocol: tcp / Open port: 1032 Service: 
+Protocol: tcp / Open port: 135 Service: 
+Protocol: tcp / Open port: 445 Service: 
+Protocol: tcp / Open port: 1025 Service: 
+Protocol: tcp / Open port: 1026 Service: 
+Protocol: tcp / Open port: 1027 Service: 
+Protocol: tcp / Open port: 1028 Service: 
+Protocol: tcp / Open port: 1029 Service: 
+Protocol: tcp / Open port: 1032 Service: 
+Protocol: tcp / Open port: 1234 Service: 
+Protocol: tcp / Open port: 135 Service: 
+Protocol: tcp / Open port: 445 Service: 
+Protocol: tcp / Open port: 1025 Service: 
+Protocol: tcp / Open port: 1026 Service: 
+Protocol: tcp / Open port: 1027 Service: 
+Protocol: tcp / Open port: 1028 Service: 
+Protocol: tcp / Open port: 1029 Service: 
+Protocol: tcp / Open port: 1032 Service: 
+Protocol: tcp / Open port: 1234 Service: 
+Protocol: tcp / Open port: 2869 Service: 
+Protocol: tcp / Open port: 135 Service: 
+Protocol: tcp / Open port: 445 Service: 
+Protocol: tcp / Open port: 1025 Service: 
+Protocol: tcp / Open port: 1026 Service: 
+Protocol: tcp / Open port: 1027 Service: 
+Protocol: tcp / Open port: 1028 Service: 
+Protocol: tcp / Open port: 1029 Service: 
+Protocol: tcp / Open port: 1032 Service: 
+Protocol: tcp / Open port: 1234 Service: 
+Protocol: tcp / Open port: 2869 Service: 
+Protocol: tcp / Open port: 8000 Service: 

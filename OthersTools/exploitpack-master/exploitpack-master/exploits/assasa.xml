@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?><Module><Exploit NameXML="assasa" CodeName="assasa.py"  Platform="windows" Service="sasa" Type="clientside" RemotePort="" LocalPort="" ShellcodeAvailable="E" ShellPort="4444" SpecialArgs=""></Exploit><Information Author="sasasa" Date="2017-03-20 18:11:31.133" Vulnerability="">
+</Information><Targets></Targets></Module>

@@ -1,0 +1,7 @@
+dns-spoof.o
+dns-spoof-detector.o
+dns-spoof
+dns-spoof-detector
+extractor.o
+extractor
+*~

@@ -1,0 +1,46 @@
+
+        [ Doona - Network fuzzing tool ]
+
+.:: About  ::.
+
+  Doona is a fork of the Bruteforce Exploit Detector Tool (BED).
+  BED is a program which is designed to check daemons for
+  potential buffer overflows, format string bugs etc.
+
+  Doona is Australian for duvet. It adds a significant enough number
+  of features/changes to BED that I renamed it to avoid confusion.
+
+  I hope you'll find it useful.
+
+  @Wireghoul
+
+.:: Version ::.
+  1.0 - New command line switches, more fuzz data and fuzz cases
+  0.9 - Bugfixes, more fuzz cases and new modules
+  0.8 - Bugfixes and more fuzz cases
+  0.7 - Multi verb support, more fuzz cases and bug fixes
+  0.6 - First official doona release
+  0.5 - Fork from BED
+
+  See 'Docs/CHANGES' for the full changelog.
+
+.:: License ::.
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  any later version.
+
+
+  See 'Docs/gpl.txt' for more information.
+
+.:: Authors ::.
+
+  Doona:
+  Eldar Marcussen aka, 'Wireghoul'
+     http://www.justanotherhacker.com
+
+  BED was written by:
+  Eric Sesterhenn aka. 'Snakebyte'
+  Martin J. Muench aka. 'mjm'
+

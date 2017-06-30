@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><Module><Exploit NameXML="Symantec-PcAnywhere-12.5.0" CodeName="Symantec-PcAnywhere-12.5.0.py"  Platform="windows" Service="PcAnywhere" Type="clientside" RemotePort="80" LocalPort="" ShellcodeAvailable="E" ShellPort="4444" SpecialArgs=""></Exploit><Information Author="S2 Crew" Date="2016-10-13 15:44:23.04" Vulnerability="2011-3478">
+
+# Exploit Title: Symantec PcAnywhere login and password field buffer overflow
+# Date: 2012.06.27
+# Software Link: symantec.com
+# Version: 12.5.0
+# Tested on: Windows XP SP2</Information><Targets>Windows</Targets></Module>

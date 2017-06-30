@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<fuzz xmlns="http://www.idefense.com/filefuzz.xsd">
+    <test>
+		<name>bkf - ntbackup.exe</name>
+	    <file>
+	    	<fileName>BKF</fileName>
+	        <fileDescription>Windows Backup File</fileDescription>
+	    </file>
+	    <source>
+	        <sourceFile>test.bkf</sourceFile>
+	        <sourceDir>C:\Program Files\FileFuzz\Attack\</sourceDir>
+	    </source>
+	    <app>
+	        <appName>ntbackup.exe</appName>
+	        <appDescription>Windows Backup Utility</appDescription>
+			<appAction>open</appAction>
+	        <appLaunch>C:\WINDOWS\system32\ntbackup.exe</appLaunch>
+	        <appFlags>{0}</appFlags>
+	    </app>
+	    <target>
+	        <targetDir>c:\fuzz\bkf\</targetDir>
+	    </target>
+    </test>
+    <test>
+		<name>cbo - orun32.exe</name>
+	    <file>
+	    	<fileName>CBO</fileName>
+	        <fileDescription>Microsoft Interactive Training File</fileDescription>
+	    </file>
+	    <source>
+	        <sourceFile>StartMenu.cbo</sourceFile>
+	        <sourceDir>C:\WINDOWS\Help\SBSI\Training\</sourceDir>
+	    </source>
+	    <app>
+	        <appName>orun32.exe</appName>
+	        <appDescription>Microsoft Interactive Training</appDescription>
+			<appAction>open</appAction>
+	        <appLaunch>C:\WINDOWS\Help\SBSI\Training\orun32.exe</appLaunch>
+	        <appFlags>-f {0}</appFlags>
+	    </app>
+	    <target>
+	        <targetDir>c:\fuzz\cbo\</targetDir>
+	    </target>
+    </test>
+    <test>
+		<name>chm - hh.exe</name>
+	    <file>
+	    	<fileName>CHM</fileName>
+	        <fileDescription>Compiled HTML Help file</fileDescription>
+	    </file>
+	    <source>
+	        <sourceFile>iewebhlp.chm</sourceFile>
+	        <sourceDir>C:\WINDOWS\Help\</sourceDir>
+	    </source>
+	    <app>
+	        <appName>hh.exe</appName>
+	        <appDescription>Microsoft® HTML Help Executable</appDescription>
+			<appAction>open</appAction>
+	        <appLaunch>"C:\WINDOWS\hh.exe"</appLaunch>
+	        <appFlags>{0}</appFlags>
+	    </app>
+	    <target>
+	        <targetDir>c:\fuzz\chm\</targetDir>
+	    </target>
+    </test>
+    <test>
+		<name>hlp - winhlp32.exe</name>
+	    <file>
+	    	<fileName>HLP</fileName>
+	        <fileDescription>Help File</fileDescription>
+	    </file>
+	    <source>
+	        <sourceFile>newfeat2.hlp</sourceFile>
+	        <sourceDir>C:\WINDOWS\Help\</sourceDir>
+	    </source>
+	    <app>
+	        <appName>winhlp32.exe</appName>
+	        <appDescription>Windows Winhlp32 Stub</appDescription>
+			<appAction>open</appAction>
+	        <appLaunch>C:\WINDOWS\System32\winhlp32.exe</appLaunch>
+	        <appFlags>{0}</appFlags>
+	    </app>
+	    <target>
+	        <targetDir>c:\fuzz\hlp\</targetDir>
+	    </target>
+    </test>
+    <test>
+		<name>ht - winhlp32.exe</name>
+	    <file>
+	    	<fileName>HT</fileName>
+	        <fileDescription>HyperTerminal File</fileDescription>
+	    </file>
+	    <source>
+	        <sourceFile>test.ht</sourceFile>
+	        <sourceDir>C:\Program Files\FileFuzz\Attack\</sourceDir>
+	    </source>
+	    <app>
+	        <appName>hypertrm.exe</appName>
+	        <appDescription>HyperTerminal Applet</appDescription>
+			<appAction>open</appAction>
+	        <appLaunch>"C:\Program Files\Windows NT\HYPERTRM.EXE"</appLaunch>
+	        <appFlags>{0}</appFlags>
+	    </app>
+	    <target>
+	        <targetDir>c:\fuzz\ht\</targetDir>
+	    </target>
+    </test>
+    <test>
+		<name>jpg - iexplore.exe</name>
+		<file>
+		<fileName>JPG</fileName>
+			<fileDescription>JPEG Image</fileDescription>
+		</file>
+		<source>
+			<sourceFile>gradient.jpg</sourceFile>
+			<sourceDir>C:\WINDOWS\Help\Tours\htmlTour\</sourceDir>
+		</source>
+		<app>
+			<appName>iexplore.exe</appName>
+			<appDescription>Internet Explorer</appDescription>
+ 			<appAction>open</appAction>
+			<appLaunch>"C:\Program Files\Internet Explorer\iexplore.exe"</appLaunch>
+			<appFlags>{0}</appFlags>
+		</app>
+		<target>
+			<targetDir>c:\fuzz\jpg\</targetDir>
+		</target>
+    </test>
+    <test>
+		<name>jpg - shimgvw.dll</name>
+		<file>
+		<fileName>JPG</fileName>
+			<fileDescription>JPEG Image</fileDescription>
+		</file>
+		<source>
+			<sourceFile>gradient.jpg</sourceFile>
+			<sourceDir>C:\WINDOWS\Help\Tours\htmlTour\</sourceDir>
+		</source>
+		<app>
+			<appName>shimgvw.dll</appName>
+			<appDescription>Windows Picture and Fax Viewer</appDescription>
+ 			<appAction>open</appAction>
+			<appLaunch>rundll32.exe</appLaunch>
+			<appFlags>C:\WINDOWS\system32\shimgvw.dll,ImageView_Fullscreen {0}</appFlags>
+		</app>
+		<target>
+			<targetDir>c:\fuzz\jpg\</targetDir>
+		</target>
+    </test>
+    <test>
+		<name>pdf - acrord32.exe</name>
+		<file>
+		<fileName>PDF</fileName>
+			<fileDescription>Adobe Acrobat 7.0 Document</fileDescription>
+		</file>
+		<source>
+			<sourceFile>ENUtxt.pdf</sourceFile>
+			<sourceDir>C:\Program Files\Adobe\Acrobat 7.0\Resource\</sourceDir>
+		</source>
+		<app>
+			<appName>acrord32.exe</appName>
+			<appDescription>Adobe Reader 7.0</appDescription>
+ 			<appAction>open</appAction>
+			<appLaunch>"C:\Program Files\Adobe\Acrobat 7.0\Reader\AcroRd32.exe"</appLaunch>
+			<appFlags>"{0}"</appFlags>
+		</app>
+		<target>
+			<targetDir>c:\fuzz\pdf\</targetDir>
+		</target>
+    </test>
+    <test>
+		<name>rm - realplay.exe</name>
+		<file>
+		<fileName>RM</fileName>
+			<fileDescription>RealAudio / RealVideo</fileDescription>
+		</file>
+		<source>
+			<sourceFile>videotest.rm</sourceFile>
+			<sourceDir>C:\Program Files\Real\RealPlayer\</sourceDir>
+		</source>
+		<app>
+			<appName>realplay.exe</appName>
+			<appDescription>RealPlayer</appDescription>
+ 			<appAction>open</appAction>
+			<appLaunch>"C:\Program Files\Real\RealPlayer\RealPlay.exe"</appLaunch>
+			<appFlags>"{0}"</appFlags>
+		</app>
+		<target>
+			<targetDir>c:\fuzz\rm\</targetDir>
+		</target>
+    </test>
+    <test>
+		<name>vcf - outlook.exe</name>
+		<file>
+		<fileName>VCF</fileName>
+			<fileDescription>vCard File</fileDescription>
+		</file>
+		<source>
+			<sourceFile>test.vcf</sourceFile>
+			<sourceDir>C:\Program Files\FileFuzz\Attack\</sourceDir>
+		</source>
+		<app>
+			<appName>outlook.exe</appName>
+			<appDescription>Microsoft Office Outlook</appDescription>
+ 			<appAction>open</appAction>
+			<appLaunch>"C:\PROGRA~1\MICROS~2\OFFICE11\OUTLOOK.EXE"</appLaunch>
+			<appFlags>/v "{0}"</appFlags>
+		</app>
+		<target>
+			<targetDir>c:\fuzz\vcf\</targetDir>
+		</target>
+    </test>
+    <test>
+		<name>wab - outlook.exe</name>
+		<file>
+		<fileName>WAB</fileName>
+			<fileDescription>Address Book File</fileDescription>
+		</file>
+		<source>
+			<sourceFile>test.wab</sourceFile>
+			<sourceDir>C:\Program Files\FileFuzz\Attack\</sourceDir>
+		</source>
+		<app>
+			<appName>wab.exe</appName>
+			<appDescription>Address Book</appDescription>
+ 			<appAction>open</appAction>
+			<appLaunch>"C:\Program Files\Outlook Express\wab.exe"</appLaunch>
+			<appFlags>{0}</appFlags>
+		</app>
+		<target>
+			<targetDir>c:\fuzz\wab\</targetDir>
+		</target>
+    </test>
+    <test>
+		<name>wmf - shimgvw.dll</name>
+		<file>
+		<fileName>WMF</fileName>
+			<fileDescription>WMF Image</fileDescription>
+		</file>
+		<source>
+			<sourceFile>test.wmf</sourceFile>
+			<sourceDir>C:\Program Files\FileFuzz\Attack\</sourceDir>
+		</source>
+		<app>
+			<appName>shimgvw.dll</appName>
+			<appDescription>Windows Picture and Fax Viewer</appDescription>
+ 			<appAction>open</appAction>
+			<appLaunch>rundll32.exe</appLaunch>
+			<appFlags>C:\WINDOWS\system32\shimgvw.dll,ImageView_Fullscreen {0}</appFlags>
+		</app>
+		<target>
+			<targetDir>c:\fuzz\wmf\</targetDir>
+		</target>
+    </test>
+    <test>
+		<name>zip - zipfldr.dll</name>
+		<file>
+		<fileName>ZIP</fileName>
+			<fileDescription>ZIP Archive</fileDescription>
+		</file>
+		<source>
+			<sourceFile>test.zip</sourceFile>
+			<sourceDir>C:\Program Files\FileFuzz\Attack\</sourceDir>
+		</source>
+		<app>
+			<appName>zipfldr.dll</appName>
+			<appDescription>Microsoft Windows Compressed ZIP Folders</appDescription>
+ 			<appAction>open</appAction>
+			<appLaunch>rundll32.exe</appLaunch>
+			<appFlags>C:\WINDOWS\system32\zipfldr.dll,RouteTheCall {0}</appFlags>
+		</app>
+		<target>
+			<targetDir>c:\fuzz\zip\</targetDir>
+		</target>
+    </test>
+</fuzz>
+
+<!--
+    FileFuzz
+    Copyright (C) 2005 Michael Sutton <msutton@idefense.com,michaelawsutton@gmail.com>
+
+    This program is free software; you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the Free
+    Software Foundation; either version 2 of the License, or (at your option)
+    any later version.
+
+    This program is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+    FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+    more details.
+
+    You should have received a copy of the GNU General Public License along with
+    this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+    Place, Suite 330, Boston, MA 02111-1307 USA
+-->
