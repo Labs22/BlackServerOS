@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load django_th_extras %}
+{% block title %}{% trans "My Services" %} - {{ user.username }}{% endblock %}
+{% block content %}
+    <div class="col-md-12" id="trigger-content">
+        <h3>{% trans 'Deletion of your service' %}</h3>
+        <div class="alert alert-danger">
+            {% trans "Are your sure you want to remove this service ?" %} : <span class="label label-danger">{{ userservice.name|service_readable }}</span>
+        </div>
+        <form method="post" role="form" class="form-horizontal" action="">
+        {% csrf_token %}
+        <div class="form-actions">
+            <input class="btn btn-danger" name="ok" type="submit" value="{% trans 'Yes' %}" />
+            <a href="{% url 'user_services' %}" class="btn btn-primary">{% trans "No" %}</a>
+        </div>
+        </form>
+    </div>
+{% endblock %}

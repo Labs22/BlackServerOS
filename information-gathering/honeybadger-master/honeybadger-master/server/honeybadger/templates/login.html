@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class="row">
+        <div class="four columns offset-by-four login">
+            <img src="{{ url_for('static', filename='honeybadger.png') }}" />
+            <div class="form rounded shaded">
+                <form action="{{ url_for('login') }}" method="post">
+                    <label for="email">email</label>
+                    <input class="u-full-width" name="email" type="text" />
+                    <label for="password">password</label>
+                    <input class="u-full-width" name="password" type="password" />
+                    <input type="submit" value="login" onclick="this.form.submit();" />
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

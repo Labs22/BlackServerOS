@@ -1,0 +1,17 @@
+*~
+*.apk
+*.hg
+*.pyc
+.mercury_history
+.profile
+build/*
+dist/*
+drozer.egg-info
+log/*.log
+obj
+src/drozer/modules/**/*.class
+src/drozer/modules/**/*.apk
+src/drozer.egg-info
+mercury.log
+deb_dist/*
+*.tar.gz

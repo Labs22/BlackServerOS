@@ -1,0 +1,111 @@
+body {
+    padding-top: 70px;
+    padding-bottom: 30px;
+}
+
+h1 {
+    background-image: url('/static/images/glyphicons_061_keynote.png');
+    background-repeat: no-repeat;
+    background-position:left bottom;
+    text-indent: 30px;
+    height: 30px;
+}
+
+
+li {
+    list-style: none;
+}
+
+
+/****
+ * shared propery : trigger-record-* & profile-*
+ */
+
+
+.trigger-record, .service-record, .wizard-fieldset  {
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+    color: #6B6B6B;
+    font-size: 1.1em;
+    margin: 0.2em;
+    padding: 1em;
+    border: 1px solid #DDDDDD;
+}
+
+.trigger-disable {
+    border: 1px solid #AAA;
+    color: #AAA;
+}
+
+.trigger-record-user {
+    background-image: url('/static/images/glyphicons_003_user.png');
+}
+
+.trigger-record-user {
+    text-indent: 25px;
+    background-repeat: no-repeat;
+}
+
+/****
+ * History
+ */
+
+.trigger-record footer {
+    font-size: small;
+    display: block;
+}
+
+.trigger-record footer p {
+  padding-top: 5px;
+}
+
+.trigger-record .trigger-text {
+    word-wrap: break-word;
+}
+
+
+@media (max-width: 768px) {
+  .trigger-record .trigger-text .trigger-button {
+    padding-top: 0px;
+  }
+}
+
+
+.charWarning {
+    color:#600;
+}
+
+.charExceeded {
+    color:#e00;
+}
+
+#histo_text {
+    width: 90%;
+}
+
+/****
+ * wizard
+ */
+#trigger-content fieldset {
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #DDDDDD;
+    padding: 10px;
+}
+
+
+/****
+ * Menu
+ */
+
+/***
+ * put the icon in the "grey" light as they went white on white
+ */
+.nav-tabs > .active > a,
+.nav-tabs > .active > a:hover {
+  color: #555555;
+  cursor: default;
+  background-color: #eeeeee;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+}
+

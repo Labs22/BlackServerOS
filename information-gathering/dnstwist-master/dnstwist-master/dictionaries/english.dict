@@ -1,0 +1,37 @@
+// This dictionary (should) contain the most common words used in targeted
+// phishing campaigns. Feel free to adapt it to your needs.
+
+auth
+access
+account
+agree
+cdn
+confirm
+confirmation
+download
+find
+http
+https
+https-www
+install
+login
+my
+online
+payment
+payments
+recovery
+register
+ssl
+safe
+secure
+security
+service
+services
+signin
+support
+summary
+update
+verify
+verification
+ww
+www

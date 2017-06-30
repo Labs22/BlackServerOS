@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block body %}
+    <br/>
+    <div class="row">
+        <div class="u-full-width center-content beacons">
+        {% if beacons|length > 0 %}
+            <table class="sortable center">
+                <thead>
+                    <tr>
+                    {% for column in columns %}
+                        <th>{{ column }}</th>
+                    {% endfor %}
+                        <th>action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for beacon in beacons %}
+                    <tr>
+                    {% for column in columns %}
+                        <td>{{ beacon[column] }}</td>
+                    {% endfor %}
+                        <td>
+                        {% if g.user.is_admin %}
+                            <input type="button" onclick="if (confirm('Are you sure you want to delete this beacon?')) { window.location='{{ url_for('beacon_delete', id=beacon.id) }}' }" value="delete" />
+                        {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h5>No beacons.</h5>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

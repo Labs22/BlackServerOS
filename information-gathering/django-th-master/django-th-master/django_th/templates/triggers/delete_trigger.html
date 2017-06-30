@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans "My Triggers" %} - {{ user.username }}{% endblock %}
+{% block content %}
+    <div class="col-md-12" id="trigger-content">
+        <h3>{% trans 'Deletion of your service' %}</h3>
+        <div class="alert alert-danger">
+            {% trans "Are your sure you want to remove this trigger ?" %} : <span class="label label-danger">{{ triggerservice.description }}</span>
+        </div>
+        <form method="post" role="form" class="form-horizontal" action="">
+        {% csrf_token %}
+        <div class="form-actions">
+            <input type="hidden" name="next" value="{{ next }}" />
+            <input type="hidden" name="trigger_id" value="{{ trigger_id }}" />
+            <input class="btn btn-danger" name="ok" type="submit" value="{% trans 'Yes' %}" />
+            <a href="{% url 'base' %}" class="btn btn-primary">{% trans "No" %}</a>
+        </div>
+        </form>
+    </div> 
+{% endblock %}

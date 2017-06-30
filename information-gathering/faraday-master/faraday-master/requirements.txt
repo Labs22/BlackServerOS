@@ -1,0 +1,10 @@
+couchdbkit
+mockito
+whoosh
+argparse
+IPy
+restkit
+requests
+tornado
+flask
+colorama
