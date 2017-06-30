@@ -1,0 +1,6 @@
+[program:pcapdb_uwsgi]
+command=DESTDIR/bin/uwsgi --ini DESTDIR/etc/uwsgi.ini --uid capture --gid WWW_USER --logto DESTDIR/log/uwsgi.log
+autorestart=true
+user=root
+stopsignal=KILL
+

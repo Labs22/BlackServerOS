@@ -1,0 +1,20 @@
+language: c
+dist: trusty
+sudo: require
+compiler:
+  - clang
+  - gcc
+env:
+  - GEN="Unix Makefiles" BUILD_TYPE=Release
+  - GEN="Unix Makefiles" BUILD_TYPE=Debug
+addons:
+  apt:
+    packages:
+      - cmake3
+      - libseccomp-dev
+      - libjson-c-dev
+      - clang-tidy-3.9
+      - ninja
+      - libgtest-dev
+script:
+    - ./.travis.sh

@@ -1,0 +1,168 @@
+﻿=== Legend ===
+	+ : added
+	- : deleted
+	^ : bug fixed
+	* : optimization
+	. : information
+
+
+[ dev ]
+	. Cracker-ng 2015.mm-jj released
+
+[ february 03 2015 ]
+	. Cracker-ng 2015.02-03 released
+	. code refactoring
+	^ bugs pointed by cppcheck tool
+	. ZIP module:
+		* use of the patch provided by Mark Adler for the segfault into puff.cc
+		* huge optimizations of create_crc32() into crypt.h
+		* into puff.*
+		* remove define into crypt.h
+		. move crc32.h contents to crypt.h and shared/cracker.cc
+
+[ january 21 2013 ]
+	. Cracker-ng 2013.01-21 released
+	. shared functions:
+		^ avoid multiple definition of an option into argz_traitment()
+		^ multiple "Invalid read of size 1" for basename()
+		* more const, always more const
+    	+ add HEX representation of the password
+        + substr(), a special to cut too long strings, adding "..." at the beginning or into the middle
+        . change the way numbers are printed
+		. rename get_filename() to basename()
+		. separate Cracker class from main.*
+	. CPT module:
+		. updated to version 0.1-5
+	. ZIP module:
+		. updated to version 0.1-1
+		* avoid use of boost libraries; speed gain of about 50% for deflated files (use of puff.c from zlib project)
+		* decrease iterations number into find_central_directory() [divided by up to 50%]
+
+[ january 07 2013 ]
+	. Cracker-ng 2013.01-07 released
+	. all modules:
+		* add -march=native, -mmmx, -mfpmath=sse and -mno-ieee-fp options to gcc CLFAGS
+		* code review to follow Google C++ Style Guide
+		* code check with Cppcheck
+		+ -i (--infos) option to get debug informations about a file to crack (only for ZIP)
+		. review printed informations and update copyright date
+	. CPT module:
+		. updated to version 0.1-4
+		^ memory leaks into main.cc
+		. check crack against new ccrypt version (1.10): ok!
+	. ZIP module:
+		. updated to version 0.1a-9
+		* ability to select the best file to crack (check file size and compression method)
+		^ memory leaks into main.cc
+		^ segfault with some files, into main.cc
+	. shared functions:
+		^ memory still reachable into functions.cc
+		^ memory leak  for read_stdin() into functions.h
+		+ get_filename() to get the file name only (without its directory)
+		. change read_stdin to read_input() into functions.h
+		. move Stats::format_number() to functions_ng namespace
+
+[ september 14 2012 ]
+	. Cracker-ng 2012.09-14 released
+	. all modules:
+		* each module has its own Makefile and there is a Makefile to build them all
+		^ Never use double underscores in C/C++
+		+ -f (--file) option to specify which file to crack
+		+ -w (--wordlist) option to specify a dictionnaty instead of using stdin
+	. CPT module:
+		. updated to version 0.1-3
+		. is now oriented-object
+		. merge ccryptlib.c into ccryptlib.h
+		* code refactoring into ccryptlib.h and rijndael.* (speed-up process by 13,5%)
+		^ memory leak into main.cc
+	. ZIP module:
+		. updated to version 0.1a-7
+		. is now oriented-object
+		. merge crypt.c into crypt.h
+		. merge traditional_pkware.* into main.*
+		* read.*: create read_ng namespace to reduce code in main.*
+		* create_crc32() into crc32.h
+		^ warning: narrowing conversion inside { } is ill-formed in C++11
+	. shared functions:
+		. stats.* are now oriented-object (class Stats)
+		. change sleeping_time to 1 sec into stats.cc
+		* move total passwords out of statistics struct
+		+ functions.h: create the functions_ng namespace
+		- cracker-ng.* (few merges with functions.h)
+
+[ july 24 2012 ]
+	. Cracker-ng 2012.07-24 released
+	. all modules:
+		* use of char* instead of std::string (speed up process by 30%)
+		* few optimizations
+		+ PWD_MAX constant to define the maximum password length (as defined into official sources)
+	. CPT module:
+		. updated to version 0.1-2
+		* functions into ccryptlib.c
+	. ZIP module:
+		. updated to version 0.1a-6
+		* functions into crypt.cpp
+		+ print Boost libraries version used with -v (or --version) option
+	. shared functions:
+		* functions into functions-ng.cpp
+		+ read_stdin() to get line from STDIN
+
+[ february 29 2012 ]
+	. Cracker-ng 2012.02-29 released
+	* reordered structs to feet the good alignment
+	. added binaries for GNU/Linux (if you can manage to compile zipcracker-ng on Windows I give you a beer!)
+	. CPT module:
+		. updated to version 0.1-1
+		* optimize functions into ccryptlib.c
+	. ZIP module:
+		. updated to version 0.1a-5
+		^ segfault on few deflated archives into traditional_pkware()
+		* several optimizations
+	. shared functions:
+		^ use of Sleep() on Windows for stats()
+		* optimized native functions [see functions-ng.(c|h)pp]
+
+[ december 23 2011 ]
+	. Cracker-ng 2011.12-23 released
+	. ZIP module:
+		. updated to version 0.1a-4
+		^ use delete[] instead of delete for read_central_directory()
+		^ memory allocation into read_central_directory() and read_local_file_header()
+		^ block allocation into create_crc32()
+		* code refactored for traditional_pkware()
+		* find_central_directory() is now _really_ efficient
+	. shared functions:
+		. include ctime instead of time.h
+		. include cstring instead of string.h
+
+[ august 03 2011 ]
+	. Cracker-ng 2011.08-03 released
+	. ZIP module updated to version 0.1a-3 (still buggy)
+	+ CPT (ccrypt) module 0.1 released
+	^ avoid use of own stdint.hpp to use standart stdint.h
+	. shared functions:
+		+ good number format (123456789 => 123,456,789) for stats()
+
+[ july 05 2011 ]
+	. Cracker-ng 0.1a-2 released
+	. ZIP module:
+		* code review for create_crc32() and traditional_pkware()
+	. shared functions:
+		* use of core functions instead of boost::posix_time for stats
+		* using one thread for stats()
+		+ help(), usage() and version()
+
+[ june 24 2011 ]
+	. Cracker-ng 0.1a-1 released
+	+ display statistics (pwd/sec) each 5 secondes
+	. ZIP module:
+		* reduce iterations number by 25% into find_central_directory()
+		+ understand the Data Descriptor (local_file_header struct)
+		+ support stored file (when compression_method is 0)
+		^ string fields were not null terminated
+	. shared functions:
+		+ current_time() to get current time in microsec
+		+ elapsed_seconds() to get elapsed time between two moments
+
+[ june 22 2011 ]
+	. Cracker-ng 0.1a released with the only one module: ZIP

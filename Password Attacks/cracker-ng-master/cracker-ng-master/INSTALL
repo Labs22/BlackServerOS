@@ -1,0 +1,11 @@
+
+=== Compilation stage ==================================================
+
+make
+	print available modules
+
+make <module>
+	build the <module> binary into bin/
+
+make modules
+	build all available modules into bin/
