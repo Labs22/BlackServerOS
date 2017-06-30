@@ -1,0 +1,4 @@
+begin greet_html
+match ^(GET|POST)
+ignore ^GET [^ ?]+\.(jpg|jpeg|gif|png|tif|tiff)
+response content/greet_html

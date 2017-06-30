@@ -1,0 +1,207 @@
+/*
+ * Copyright (c) 2006-2017 Wade Alcorn - wade@bindshell.net
+ * Browser Exploitation Framework (BeEF) - http://beefproject.com
+ * See the file 'doc/COPYING' for copying permission
+ */
+
+#header .right-menu {
+	width: 300px;
+	float: right;
+	margin: 3px 3px 0 4px;
+	word-spacing: 5px;
+	font: 11px arial, tahoma, verdana, helvetica;
+	color:#000;
+}
+
+#header .left-menu {
+	width: 300px;
+	float: left;
+	margin: 10px 4px 0 20px;
+	word-spacing: 5px;
+	font: 11px arial, tahoma, verdana, helvetica;
+	font-weight: bolder;
+	color:red;
+}
+
+#header a:link,
+#header a:visited {
+	color:#000;
+	text-decoration:underline;
+}
+
+.x-grid3-cell-inner {
+  white-space: normal; /* changed from nowrap */
+}
+
+.x-grid-empty {
+	text-align:left;
+}
+
+.feed-icon {
+	display: none;
+}
+
+#zombie-tree-tabs-panel .x-tab-panel-header {
+	font: 11px tahoma,arial,helvetica,sans-serif;
+	padding: 0 0 0 0;
+	border-bottom: none;
+	text-align: center;
+}
+
+/*
+ * Status bar
+ ****************************************/
+.x-statusbar .x-status-busy,
+.x-statusbar .x-status-error,
+.x-statusbar .x-status-valid {
+	background: transparent no-repeat 3px 2px;
+	padding-left: 25px !important;
+	padding-bottom: 2px !important;
+}
+
+.x-statusbar .x-status-busy {
+    background-image: url(../images/statusbar/loading.gif);
+}
+
+.x-statusbar .x-status-error {
+    color: #C33;
+    background-image: url(../images/statusbar/exclamation.gif);
+}
+
+.x-statusbar .x-status-valid {
+    background-image: url(../images/statusbar/accept.png);
+}
+
+.zombie-tree-ctxMenu-proxy {
+   background-image: url(../images/icons/proxy.gif);
+}
+
+.zombie-tree-ctxMenu-xssrays {
+   background-image: url(../images/icons/xssrays.png);
+}
+
+.zombie-tree-ctxMenu-rtc {
+  background-image: url(../images/icons/network.png);
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+}
+
+.zombie-tree-ctxMenu-delete {
+   background-image: url(../images/icons/delete.png);
+   background-size: 32px 32px;
+   background-repeat: no-repeat;
+}
+
+.x-tree-node-leaf .x-tree-node-icon {
+	width: 13px;
+	height: 13px;
+	padding-left: 3px;
+	padding-top: 3px;
+}
+
+/*
+ * Network Panel
+ ****************************************/
+.network-host-ctxMenu-config {
+   background-image: url(../images/icons/tools.png);
+   background-size: 16px 16px;
+   background-repeat: no-repeat;
+}
+
+.network-host-ctxMenu-host {
+   background-image: url(../images/icons/pc.png);
+   background-size: 16px 16px;
+   background-repeat: no-repeat;
+}
+
+.network-host-ctxMenu-network {
+   background-image: url(../images/icons/network.png);
+   background-size: 16px 16px;
+   background-repeat: no-repeat;
+}
+
+.network-host-ctxMenu-web {
+   background-image: url(../images/icons/web.png);
+   background-size: 16px 16px;
+   background-repeat: no-repeat;
+}
+
+.network-host-ctxMenu-adapter {
+   background-image: url(../images/icons/adapter.png);
+   background-size: 16px 16px;
+   background-repeat: no-repeat;
+}
+
+.network-host-ctxMenu-router {
+   background-image: url(../images/icons/router.png);
+   background-size: 16px 16px;
+   background-repeat: no-repeat;
+}
+
+.network-host-ctxMenu-proxy {
+   background-image: url(../images/icons/proxy.png);
+   background-size: 16px 16px;
+   background-repeat: no-repeat;
+}
+
+.network-host-ctxMenu-fingerprint {
+   background-image: url(../images/icons/magnifier.png);
+   background-size: 16px 16px;
+   background-repeat: no-repeat;
+}
+
+.network-host-ctxMenu-cors {
+   background-image: url(../images/icons/cors.png);
+   background-size: 16px 16px;
+   background-repeat: no-repeat;
+}
+
+.network-host-ctxMenu-flash {
+   background-image: url(../images/icons/flash.png);
+   background-size: 16px 16px;
+   background-repeat: no-repeat;
+}
+
+.network-host-ctxMenu-shellshock {
+   background-image: url(../images/icons/shellshock.png);
+   background-size: 16px 16px;
+   background-repeat: no-repeat;
+}
+
+.network-host-ctxMenu-php {
+   background-image: url(../images/icons/php.png);
+   background-size: 16px 16px;
+   background-repeat: no-repeat;
+}
+
+
+/*
+ * Ext.beef.msg
+ ****************************************/
+.msg .x-box-mc {
+    font-size:14px;
+}
+
+#msg-div {
+    position:absolute;
+    left:35%;
+    top:20px;
+    width:250px;
+    z-index:20000;
+}
+
+/*
+ * Exploit Panel
+ ****************************************/
+.x-form-item-label, .x-form-element {
+	font: 11px tahoma,arial,helvetica,sans-serif;
+}
+
+.command-module-panel-description {
+	margin-bottom: 10px;
+	padding-top: 4px;
+}
+
+label {
+	font: 11px tahoma,arial,helvetica,sans-serif;
+}

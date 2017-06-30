@@ -1,0 +1,187 @@
+autopwn v1.0.0 - 20151115
+
+* autopwn API package created
+
+---
+
+autopwn v0.25.5 - 20151028
+
+* Bug fixes
+
+autopwn v0.25.4 - 20151006
+
+* Added aggressive full TCP nmap scan
+
+autopwn v0.25.3 - 20150921
+
+* Bug fix
+
+autopwn v0.25.2 - 20150921
+
+* Tool updates
+
+autopwn v0.25.1 - 20150821
+
+* Tool updates
+* Bug fixes
+
+autopwn v0.25.0 - 20150730
+
+* Tools directory global config option
+  (in preparation for docker instance)
+* Placeholders can be specified in dependencies
+
+autopwn v0.24.0 - 20150715
+
+* New tools
+* Bug fixes
+
+autopwn v0.23.0 - 20150715
+
+* target_list can now be specified.
+  With target_list, one target
+  definition can be run against
+  multiple targets
+* New tools
+
+autopwn v0.22.1 - 20150715
+
+* Bug fix
+
+autopwn v0.22.0 - 20150715
+
+* Replaced binary_name and binary_prepend
+  in tools with dependencies list
+* Added Lynis tool
+
+autopwn v0.21.2 - 20150714
+
+* Bug fixes
+
+autopwn v0.21.1 - 20150713
+
+* New tools
+* Bug fixes
+
+autopwn v0.21.0 - 20150616
+
+* New tools
+* Bug fixes
+
+autopwn v0.20.0 - 20150611
+
+* Added load ability. Can now load
+  target files while on the shell
+* Fixed tab completion for unset
+* Required field in 'show options' now shows
+  whether current field or others required
+* Modules can now be specified in targets file
+* Bug fixes
+
+autopwn v0.19.0 - 20150610
+
+* Fixed buggy tab completion
+* Added access to shell (e.g. ! ls OR shell ls)
+* Added new tools
+* 'show options' now shows user whether
+  the option is required and example values
+* Bug fixes
+
+autopwn v0.18.0 - 20150609
+
+* Tab completion
+
+autopwn v0.17.0 - 20150601
+
+* autopwn shell (similar to msfconsole)
+* Code rewrite (slightly cleaner now)
+
+autopwn v0.16.0 - 20150426
+
+* Documentation work
+* Code optimisations
+  (966 SLOC to 926 SLOC
+  in autopwn/__init__.py)
+* Tool config changes
+* Assessment config cleanup
+* Bug fixes
+
+autopwn v0.15.0 - 20150424
+
+* Addded ability to specify ip address lists
+* Modified ruleset code to allow for lists within
+  lists for target-parameter-exists. This means
+  that a user can specify that as long as *one*
+  of the items in the list exists, then no
+  rule violation occurred
+
+autopwn v0.14.0 - 20150421
+
+* Added cookie support to some tools
+
+autopwn v0.13.0 - 20150421
+
+* autopwn has been rewritten in python3
+
+autopwn v0.12.0 - 20150420 (with thanks to berdario)
+
+* This is the last version of autopwn which will be written
+  in Python2. No new features will be written for autopwn
+  on Python2, only bug fixes will be backported.
+* autopwn can now be installed by pip
+* Adopting semver (http://semver.org/)
+
+autopwn v0.11 - 20150417
+
+* Added experimental cookie support for tools. Currently
+  only the arachni tool configuration has been updated
+  to allow for cookie options
+
+autopwn v0.10 - 20150415
+
+* Added option to specify assessments directory
+* Added parallel command line option (overrides
+  all other parallel options specified)
+
+autopwn v0.9.3 - 20150415
+
+* Added timezone info to logs
+* Modified parallel option in tool configs to booleans
+
+autopwn v0.9.2 - 20150415
+
+* Greater than and less than rules now work
+
+autopwn v0.9.1 - 20150409
+
+* Fixed bad bug where redirection locations were being used as
+  targets (had to shell=True the Popen(), will fix properly
+  sometime)
+* Added stdout option to tool configs. If a stdout log should
+  be generated for a tool, then "stdout: True" should be specified,
+  if the tool output is being redirected to a file already,
+  "stdout: False" should be used so an empty stdout isn't created
+
+autopwn v0.9 - 20150408
+
+* autopwn global configuration file added
+ - parallel option (overrides assessment config option)
+ - scripts_directory (directory containing tools)
+   (currently does nothing)
+* screen support
+* Split tool stdout and stderr into logs
+ - Tools no longer require redirection nonsense
+
+autopwn v0.8 - 20150320
+
+* Changed target file format (had to happen)
+* Included URL path option
+* Bug fixes
+
+autopwn v0.7 - 20150320
+
+* Added rulesets to tools
+* Added pre and post tool execution options
+* Started work on (limited) Python code convention adherence
+* Added new tools and assessments
+* Various bug fixes

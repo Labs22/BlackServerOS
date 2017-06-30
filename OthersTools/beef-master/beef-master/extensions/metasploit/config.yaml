@@ -1,0 +1,49 @@
+#
+# Copyright (c) 2006-2017 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+
+# Enable MSF integration by changing beef.extension.metasploit.enable
+# to true in BeEF's main config.yaml file.
+#
+# Ensure you load the msgrpc interface in Metasploit before starting BeEF:
+# msf > load msgrpc ServerHost=127.0.0.1 Pass=abc123 SSL=y
+#
+# Ensure that the IP address supplied to Metasploit with the 'ServerHost'
+# parameter is the same IP address as specified in beef.extension.metasploit.host
+# 
+# Ensure that the IP address specified in beef.extension.metasploit.callback_host
+# is the publicly accessible IP address for victim connections to Metasploit.
+
+beef:
+    extension:
+        metasploit:
+            name: 'Metasploit'
+            enable: true
+            # Metasploit msgrpc connection options
+            host: "127.0.0.1"
+            port: 55552
+            user: "msf"
+            pass: "abc123"
+            uri: '/api'
+            ssl: true
+            ssl_version: 'TLS1'
+            ssl_verify: true
+            # Public connect back host IP address for victim connections to Metasploit
+            callback_host: "127.0.0.1"
+            # URIPATH from Metasploit Browser AutoPwn server module
+            autopwn_url: "autopwn"
+            # Start msfrpcd automatically with BeEF
+            auto_msfrpcd: false
+            auto_msfrpcd_timeout: 120
+            msf_path: [ 
+              {os: 'osx', path: '/opt/local/msf/'},
+              {os: 'livecd', path: '/opt/metasploit-framework/'},
+              {os: 'bt5r3', path: '/opt/metasploit/msf3/'},
+              {os: 'bt5', path: '/opt/framework3/msf3/'},
+              {os: 'backbox', path: '/opt/backbox/msf/'},
+              {os: 'kali', path: '/usr/share/metasploit-framework/'},
+              {os: 'pentoo', path: '/usr/lib/metasploit'},
+              {os: 'custom', path: ''}
+            ]

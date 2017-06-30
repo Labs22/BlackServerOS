@@ -1,0 +1,42 @@
+./" Arpoison -- Steve Buer
+./" ---------------------
+./" Jan 2003
+
+
+.TH arpoison "Jan 2003" "Arpoison"
+.SH NAME
+arpoison -- arp cache update utility
+.SH SYNOPSIS
+.BI "arpoison -i <device> -d <destIP> -s <sourceIP> -t <targMAC> -r <srcMAC> [-a] [-n number of packets] [-w time between packets]" 
+.SH DESCRIPTION
+.BI
+Arpoison constructs an ARP REQUEST or REPLY packet using the specified hardware and 
+protocol addresses and sends it out the specified interface.
+
+.TP
+.B \-i 
+Device e.g. eth0
+.TP
+.B \-d
+Destination IP address in dotted decimal notation.
+.TP
+.B \-s
+Source IP address in dotted decimal notation
+.TP
+.B \-t 
+Target MAC address e.g. 00:f3:b2:23:17:f5 
+.TP
+.B \-r 
+Source MAC address
+.TP
+.B \-a
+Send ARP REQUEST
+.TP
+.B \-n
+Number of packets to send
+.TP
+.B \-w
+Time in seconds between packets
+
+.SH AUTHOR
+Steve Buer <sabuer@mailbox.syr.edu>

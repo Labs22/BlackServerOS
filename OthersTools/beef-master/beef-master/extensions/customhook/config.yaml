@@ -1,0 +1,23 @@
+#
+# Copyright (c) 2006-2017 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    extension:
+        customhook:
+            enable: false
+            name: 'Custom Hook Points with iFrame Impersonation'
+            hooks:
+                changeme:
+                    path: "/changeme"
+                    target: "http://example.com"
+                    title: "Change Me!"
+                beef:
+                    path: "/beef"
+                    target: "http://beefproject.com"
+                    title: "BeEF - The Browser Exploitation Framework Project"
+                yougotchipmunked:
+                    path: "/yougotchipmunked"
+                    target: "http://www.chipmunks.com"
+                    title: "Alvin and the Chipmunks.."

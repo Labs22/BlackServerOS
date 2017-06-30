@@ -1,0 +1,96 @@
+#!/usr/bin/env ruby
+# dns - Example BeEF RESTful API script
+# Retrieves DNS rule set
+# Refer to the wiki for info: https://github.com/beefproject/beef/wiki/BeEF-RESTful-API
+##
+require 'rest-client'
+require 'json'
+require 'optparse'
+require 'pp'
+require './lib/string' # colored strings
+require './lib/print'  # print wrappers
+require './lib/beef_rest_api'
+
+if ARGV.length == 0
+  puts "#{$0}:"
+  puts "|  Example BeEF RESTful API script"
+  puts "|  Use --help for help"
+  puts "|_ Use verbose mode (-v) and debug mode (-d) for more output"
+  exit 1
+end
+
+# API config
+proto = 'http'
+host = '127.0.0.1'
+port = '3000'
+user = 'beef'
+pass = 'beef'
+
+# Command line options
+@debug = false
+@verbose = false
+OptionParser.new do |opts|
+  opts.on('-h', '--help', 'Shows this help screen') do
+    puts opts
+    exit 1
+  end
+  opts.on('--host HOST', "Set BeEF host (default: #{host})") do |h|
+    host = h
+  end
+  opts.on('--port PORT', "Set BeEF port (default: #{port})") do |p|
+    port = p
+  end
+  opts.on('--user USERNAME', "Set BeEF username (default: #{user})") do |u|
+    user = u
+  end
+  opts.on('--pass PASSWORD', "Set BeEF password (default: #{pass})") do |p|
+    pass = p
+  end
+  opts.on('--ssl', 'Use HTTPS') do
+    proto = 'https'
+  end
+  opts.on('-v', '--verbose', 'Enable verbose output') do
+    @verbose = true
+  end
+  opts.on('-d', '--debug', 'Enable debug output') do
+    @debug = true
+  end
+end.parse!
+
+@api = BeefRestAPI.new proto, host, port, user, pass
+
+# Retrieve the RESTful API token
+print_status "Authenticating to: #{proto}://#{host}:#{port}"
+@api.auth
+
+# Retrieve BeEF version
+@api.version
+
+# Add a rule
+print_status "Adding a DNS rule"
+pattern = 'beefproject.com'
+resource = 'A'
+response = ['127.0.0.1', '127.0.0.2']
+result = @api.dns_add_rule(pattern, resource, response)
+print_debug result
+id = result['id']
+
+# Retrieve ruleset
+print_status "Retrieving DNS rule set"
+rules = @api.dns_ruleset
+print_debug rules
+
+# Retrieve rule details
+print_status "Retrieving details for rule [id: #{id}]"
+rule = @api.dns_get_rule(id)
+print_debug rule
+
+print_status "Deleting rule [id: #{id}]"
+result = @api.dns_delete_rule(id)
+print_debug result
+
+# Retrieve ruleset
+print_status "Retrieving DNS rule set"
+rules = @api.dns_ruleset
+print_debug rules
+

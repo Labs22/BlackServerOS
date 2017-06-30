@@ -1,0 +1,4 @@
+begin js_html
+match ^(GET|POST)
+ignore ^GET [^ ?]+\.(jpg|jpeg|gif|png|tif|tiff)
+response content/js_html

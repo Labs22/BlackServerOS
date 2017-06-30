@@ -1,0 +1,15 @@
+#
+# Copyright (c) 2006-2017 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        test_dns_tunnel_client:
+            enable: true
+            category: "Debug"
+            name: "DNS Tunnel"
+            description: "This module sends data one way over DNS, client to server only. BeEF's DNS server is used to reconstruct chunks of data being extruded via DNS. <br> Make sure that: <br>- the DNS extension is enabled, <br>- the DNS server is listening on port 53,<br>- the hooked browser is resolving the domain you specified via BeEF's DNS server.<br><br>By default all DNS requests used to extrude data return NXDomain responses."
+            authors: ["antisnatchor", "wade", "bcoles"]
+            target:
+                working: "All"

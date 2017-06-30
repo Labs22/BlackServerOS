@@ -1,0 +1,266 @@
+#!/usr/bin/env ruby
+
+$VERBOSE = false
+$VERSION = '0.0.3'
+
+#
+# @note Ruby version check
+#
+if RUBY_VERSION =~ /^1\.[0-8]/
+  puts "Ruby version " + RUBY_VERSION + " is not supported. Please use Ruby 1.9 or newer."
+  exit 1
+end
+
+require 'uri'
+require 'getoptlong'
+require 'fileutils'
+require 'htmlentities'
+require 'cgi'
+require './lib/output'
+require './lib/module'
+
+#
+# @note usage
+#
+def usage
+  puts "CSRF to BeEF module tool v#{$VERSION}, create a BeEF CSRF module from file or URL."
+  puts
+  puts "Usage: ./csrf_to_beef [options] --name <NAME>  <--url=URL|--file=FILE>"
+  puts
+  puts "Options:"
+  puts "  -h, --help            Help"
+  puts "  -v, --verbose         Verbose output"
+  puts "  -n, --name NAME       BeEF module name"
+  puts "  -u, --url URL         CSRF URL"
+  puts "  -m, --method METHOD   CSRF HTTP method (GET/POST)"
+  puts "  -d, --post-data DATA  CSRF HTTP POST data"
+  puts "  -f, --file FILE       Burp CSRF PoC file"
+  puts
+  puts "Example Usage:"
+  puts
+  puts "  CSRF URL:"
+  puts "  ./csrf_to_beef --name \"example csrf\" --url \"http://example.com/index.html?param=value\""
+  puts
+  puts "  CSRF URL (POST):"
+  puts "  ./csrf_to_beef --name \"example csrf\" --url \"http://example.com/index.html\" --method POST --post-data \"param1=value&param2=value\""
+  puts
+  puts "  Burp Suite CSRF PoC file:"
+  puts "  ./csrf_to_beef --name \"example csrf\" --file sample.html"
+  puts 
+  exit 1
+end
+
+usage if ARGV.size < 2
+
+opts = GetoptLong.new(
+    ['-h', '--help', GetoptLong::NO_ARGUMENT],
+    ['-v', '--verbose', GetoptLong::NO_ARGUMENT],
+    ['-n', '--name', GetoptLong::REQUIRED_ARGUMENT],
+    ['-u', '--url', GetoptLong::REQUIRED_ARGUMENT],
+    ['-m', '--method', GetoptLong::REQUIRED_ARGUMENT],
+    ['-d', '--post-data', GetoptLong::REQUIRED_ARGUMENT],
+    ['-f', '--file', GetoptLong::REQUIRED_ARGUMENT]
+)
+
+#
+# @note handle args
+#
+def main(opts)
+  mname = nil
+  fname = nil
+  url = nil
+  method = 'GET'
+  postdata = nil
+  opts.each do |opt, arg|
+    case opt
+      when '-f', '--file'
+        fname=arg
+      when '-u', '--url'
+        url=arg
+      when '-m', '--method'
+        method=arg.upcase
+      when '-d', '--post-data'
+        postdata=arg
+      when '-n', '--name'
+        mname=arg
+      when '-h', '--help'
+        usage
+      when '-v', '--verbose'
+        $VERBOSE = true
+    end
+  end
+  if mname.nil?
+    print_error "You must specify module '--name' (-h for help)"
+    exit 1
+  end
+  if fname && url
+    print_error "Conflicting input types '--file' and '--url'. (-h for help)"
+  elsif fname.nil? && url.nil?
+    print_error "You must specify '--file' or '--url'. (-h for help)"
+    exit 1
+  end
+
+  @class_name = mname.gsub(/[^\w]/, '_').downcase
+
+  csrf_module = get_options_from_burp_file(fname, mname) unless fname.nil?
+  csrf_module = get_options_from_url(url, method, postdata, mname) unless url.nil?
+
+  write_module(csrf_module[:target_url], csrf_module[:method], csrf_module[:enctype], csrf_module[:options])
+
+end
+
+#
+# @note generate BeEF module from URL
+#
+def get_options_from_url(url, method, postdata, mname)
+
+  # validate HTTP method
+  if method !~ /^(GET|POST)$/i
+    print_error "Invalid method: #{method} - Method must be 'GET' or 'POST'"
+    exit 1
+  end
+
+  # parse module options
+  options = []
+  if method =~ /POST/i
+    target_url = url
+    enctype = nil
+    input_name = nil
+    input_value = nil
+    # parse POST params as module options
+    CGI::parse(URI.parse("http://beefproject.com/?#{postdata}").query).each do |k, v|
+      if k == 'submit'
+        print_error "Invalid POST parameter 'submit' - see: https://github.com/beefproject/beef/issues/1117"
+        exit 1
+      end
+      input_name = HTMLEntities.new.decode(k)
+      input_value = HTMLEntities.new.decode(v.first)
+      unless input_name.nil?
+        options << [input_name, input_value]
+      end
+    end
+  elsif method =~ /GET/i
+    target_url = URI.parse(url).to_s[/[^\?]+/] # drop query string
+    input_name = nil
+    input_value = nil
+    # parse query string as module options
+    CGI::parse(URI.parse(url).query).each do |k, v|
+      if k == 'submit'
+        print_error "Invalid GET parameter 'submit' - see: https://github.com/beefproject/beef/issues/1117"
+        exit 1
+      end
+      input_name = HTMLEntities.new.decode(k)
+      input_value = HTMLEntities.new.decode(v.first)
+      unless input_name.nil?
+        options << [input_name, input_value]
+      end
+    end
+  end
+  return {:target_url=>target_url, :method=>method, :enctype=>enctype, :options=>options}
+end
+
+#
+# @note generate BeEF module from Burp PoC file
+#
+def get_options_from_burp_file(fname, mname)
+
+  # read PoC file
+  print_status "Reading PoC from '#{fname}'"
+  begin
+    f = File.open(fname)
+    html = f.readlines()
+  rescue => e
+    print_error "Could not read PoC file - #{e.message}"
+    exit 1
+  end
+
+  # parse PoC file
+  if html.to_s =~ /var xhr = new XMLHttpRequest/
+    print_error "Could not parse PoC file - XMLHttpRequest is not yet supported."
+    exit 1
+  elsif html.to_s !~ /<form/
+    print_error "Could not parse PoC file - unrecognized format."
+    exit 1
+  end
+
+  method = 'GET'
+  enctype = nil
+  target_url = nil
+  options = []
+  html.each do |line|
+    case line
+      # parse form tag as request options
+      when /<form/
+        Hash[line.scan(/(\w+)="(.*?)"/)].each do |k, v|
+          case k
+            when 'action'
+              target_url = HTMLEntities.new.decode(v)
+            when 'method'
+              method = HTMLEntities.new.decode(v).upcase
+            when 'enctype'
+              enctype = HTMLEntities.new.decode(v)
+          end
+        end
+      # parse form input tags as module options
+      when /<input/
+        input_name = nil
+        input_value = nil
+        Hash[line.scan(/(\w+)="(.*?)"/)].each do |k, v|
+          case k
+            when 'type'
+              next
+            when 'name'
+              if v == 'submit'
+                print_error "Invalid POST parameter 'submit' - see: https://github.com/beefproject/beef/issues/1117"
+                exit 1
+              end
+              input_name = HTMLEntities.new.decode(v)
+            when 'value'
+              input_value = HTMLEntities.new.decode(v)
+          end
+        end
+        unless input_name.nil?
+          options << [input_name, input_value]
+        end
+    end
+  end
+  return {:target_url=>target_url, :method=>method, :enctype=>enctype, :options=>options}
+end
+
+#
+# @note write module files to disk
+#
+def write_module(target_url, method='GET', enctype, options)
+
+  # write module directory
+  print_status "Making directory '#{@class_name}'"
+  unless File.directory?(@class_name)
+    FileUtils.mkdir_p(@class_name)
+  end
+
+  # generate module config file and write 'config.yaml'
+  print_status "Generating module config file '#{@class_name}/config.yaml'"
+  cfg_file = ConfigFile.new.generate(@class_name)
+  print_debug cfg_file
+  File.open("#{@class_name}/config.yaml", 'w') { |file| file.write(cfg_file) }
+
+  # generate module class file and write 'module.rb'
+  print_status "Generating module class file '#{@class_name}/module.rb'"
+  mod_file = ModuleFile.new.generate(@class_name, target_url, options)
+  print_debug mod_file
+  File.open("#{@class_name}/module.rb", 'w') { |file| file.write(mod_file) }
+
+  # generate module javacript file and write 'command.js'
+  print_status "Generating module javascript file '#{@class_name}/command.js'"
+  com_file = CommandFile.new.generate(@class_name, method, enctype, options)
+  print_debug com_file
+  File.open("#{@class_name}/command.js", 'w') { |file| file.write(com_file) }
+
+  print_good "Complete!"
+  print_status "Now copy the '#{@class_name}' directory to the BeEF 'modules/exploits/' directory."
+  print_debug "cp \"#{@class_name}\" ../../modules/exploits/ -R"
+
+end
+
+main(opts)
+

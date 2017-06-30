@@ -1,0 +1,14 @@
+#
+# Copyright (c) 2006-2017 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    extension:
+        qrcode:
+            name: 'QR Code Generator'
+            enable: false
+            authors: ["xntrik", "bcoles"]
+            targets: ["/demos/basic.html", "http://beefproject.com/"]
+            qrsize: 3
+            qrborder: 1

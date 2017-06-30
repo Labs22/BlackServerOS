@@ -1,0 +1,36 @@
+<!--
+    Copyright (c) 2006-2017 Wade Alcorn - wade@bindshell.net
+    Browser Exploitation Framework (BeEF) - http://beefproject.com
+    See the file 'doc/COPYING' for copying permission
+-->
+<html>
+<head>
+
+	<title>BeEF Control Panel</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+	<%= script_tag 'ext-base.js' %>
+	<%= script_tag 'ext-all.js' %>
+        <%= script_tag 'vis.js/vis.min.js' %>
+	<%= script_tag_min 'web_ui_all.js' %>
+	<%= stylesheet_tag 'wterm.css' %>
+	<%= stylesheet_tag 'ext-all.css' %>
+	<%= stylesheet_tag 'base.css' %>
+</head>
+
+<body>
+	<%= nonce_tag %>	
+	<div id="header">
+		<div class="left-menu" id="header-right">
+		</div>
+		<div class="right-menu">
+			<img src="<%= base_path %>/media/images/favicon.png" />
+			BeEF <%= BeEF::Core::Configuration.instance.get('beef.version') %> | 
+			<a id='do-submit-bug-menu' href='https://github.com/beefproject/beef/issues/new' target='_blank'>Submit Bug</a> | 
+			<a id='do-logout-menu' href='#'>Logout</a>
+		</div>
+	</div>
+</body>
+
+</html>
