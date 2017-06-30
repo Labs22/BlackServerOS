@@ -1,0 +1,497 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: $roboto;
+  font-size: 14px;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: " ";
+}
+.clearfix:after {
+  clear: both;
+}
+
+.hide {
+  display: none;
+}
+
+#header {
+  h1 {
+    margin: 0;
+    line-height: $header-height;
+    padding-left: 20px;
+    font-size: 22px;
+    font-weight: normal;
+  }
+}
+
+.conversation-header button,
+.title-bar button {
+  width: $button-height;
+  height: $button-height;
+  line-height: $button-height;
+  padding: 0;
+  border: 0;
+  outline: 0;
+}
+
+button {
+  cursor: pointer;
+  font-size: inherit;
+}
+button.grey {
+  border-radius: $border-radius;
+  border: solid 1px #ccc;
+  cursor: pointer;
+  margin: 1em auto;
+  padding: 1em;
+  font-family: inherit;
+  color: $grey;
+  background: $grey_l;
+  box-shadow: 0 0 10px -5px rgba($grey, 0.5);
+
+  &:hover {
+    box-shadow: 0 0 10px -3px rgba($grey, 0.7);
+  }
+
+  &[disabled=disabled] {
+    &, &:hover {
+      opacity: 0.5;
+      box-shadow: none;
+      cursor: default;
+    }
+  }
+}
+
+a { color: $blue; }
+
+button.back {
+  @include header-icon-black('/images/back.svg');
+}
+button.clock {
+  @include header-icon-black('/images/clock.svg');
+}
+button.hamburger {
+  @include header-icon-black('/images/menu.svg');
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.15);
+  border-radius: $border-radius;
+
+  &:hover {
+    background: rgba(0,0,0,0.25);
+  }
+}
+
+.header-buttons {
+  &.left {
+    float: left;
+    padding-left: 10px;
+  }
+  &.right {
+    float: right;
+    padding-right: 10px;
+  }
+  height: 0;
+
+  .vertical-align {
+    height: $header-height;
+    vertical-align: middle;
+    display: table-cell;
+  }
+}
+
+.conversation-header .timer-menu {
+  margin-right: 10px;
+
+  &:before {
+    content: attr(data-time);
+    display: inline-block;
+    position: absolute;
+    bottom: -10px;
+    height: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 8px;
+    font-weight: bold;
+  }
+}
+
+.menu {
+  position: relative;
+  float: right;
+
+  .hamburger {
+    width: $button-height;
+    height: $button-height;
+    vertical-align: middle;
+  }
+  .menu-list {
+    display: none;
+    position: absolute;
+    color: $grey_d;
+    z-index: 50;
+    text-align: initial;
+
+    top: 100%;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    box-shadow: 0 0 1px 1px rgba(0,0,0, 0.2);
+
+    li {
+      display: block;
+      white-space: nowrap;
+      cursor: pointer;
+      padding: 5px 15px 5px 10px;
+
+      &:hover {
+        background-color: $grey_l;
+      }
+    }
+  }
+}
+
+.file-input {
+  position: relative;
+  .choose-file {
+    cursor: pointer;
+    padding-left: 10px;
+  }
+
+  .paperclip {
+    width: 36px;
+    height: 100%;
+    padding: 5px 0 0;
+    opacity: 0.5;
+    border: none;
+    background: transparent;
+
+    &:before {
+      content: '';
+      display: inline-block;
+      width: $button-height;
+      height: $button-height;
+      @include color-svg('/images/paperclip.svg', $grey);
+      transform: rotateZ(-45deg);
+    }
+
+    &:focus, &:hover {
+      opacity: 1.0;
+    }
+  }
+
+  input[type=file] {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    z-index: 1;
+  }
+}
+
+.dropoff {
+  outline: solid 1px #2090ea;
+}
+
+$avatar-size: 44px;
+
+.avatar {
+  display: inline-block;
+  height: $avatar-size;
+  width: $avatar-size;
+  border-radius: 50%;
+  background-size: cover;
+  vertical-align: middle;
+  text-align: center;
+  line-height: $avatar-size;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  color: white;
+  font-size: 18px;
+  @include avatar-colors;
+}
+
+.group-info-input {
+  background: white;
+
+  .group-avatar {
+    display: inline-block;
+    padding: 2px 0px 0px 2px;
+  }
+
+  .file-input .thumbnail, .thumbnail .avatar,
+  img {
+    height: 54px;
+    width: 54px;
+    border-radius: (54px / 2);
+  }
+
+  .thumbnail:after {
+    content: '';
+    position: absolute;
+    height: 0;
+    width: 0;
+    bottom: 0;
+    right: 0;
+    border-bottom: 10px solid $grey;
+    border-left: 10px solid transparent;
+  }
+
+  input.name {
+    padding: 0.5em;
+    border: solid 1px #ccc;
+    border-width: 0 0 1px 0;
+    width: calc(100% - 84px);
+  }
+}
+
+.group-member-list,
+.new-group-update {
+  .members .contact {
+    box-shadow: none;
+    border-bottom: 1px solid #eee;
+    .last-message, .last-timestamp {
+      display: none;
+    }
+  }
+}
+.conversation-list-item {
+  cursor: pointer;
+  &:hover {
+    background: #f8f8f8;
+  }
+
+  .number {
+    display: none;
+  }
+
+  .unread-count {
+    float: right;
+    margin: 3px 10px 0 20px;
+    display: inline-block;
+    padding: 0 3px;
+    min-width: $unread-badge-size;
+    height: $unread-badge-size;
+    line-height: $unread-badge-size;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: $border-radius;
+    background-color: $blue;
+    color: white;
+    border: solid 1px rgba(255,255,255,0.6);
+  }
+}
+.inactive .contact.selected {
+  padding-left: 8px;
+  border-left: 4px solid $blue;
+}
+.contact {
+  padding: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  background: rgba(255,255,255,0.6);
+  margin: 1px;
+
+  &.selected {
+    background: rgb(236, 243, 252);
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child::after {
+    display: none;
+  }
+}
+.contact-details {
+  $left-margin: 8px;
+
+  vertical-align: middle;
+  display: inline-block;
+  margin: 0 0 0 $left-margin;
+  width: calc(100% - #{$avatar-size} - #{$left-margin} - #{(4/14) + em});
+  text-align: left;
+
+  p {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .name {
+    display: block;
+    margin: 0;
+    font-size: 1em;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    text-align: left;
+  }
+
+  .number {
+    color: $grey;
+    font-size: $font-size-small;
+  }
+}
+
+
+.recipients-input {
+  position: relative;
+
+  .recipients-container {
+    background-color: white;
+    padding: 2px;
+    border-bottom: 1px solid #f2f2f2;
+    line-height: 24px;
+  }
+
+  .recipient {
+    display: inline-block;
+    margin: 0 2px 2px 0;
+    padding: 0 5px;
+    border-radius: 10px;
+    background-color: $blue;
+    color: white;
+
+    &.error {
+      background-color: #f00;
+    }
+
+    .remove {
+      margin-left: 5px;
+      padding: 0 2px;
+    }
+  }
+
+  .results {
+    position: absolute;
+    z-index: 10;
+    margin: 0 0 0 20px;
+    width: calc(100% - 30px);
+    max-width: 300px;
+    max-height: 55px * 3;
+    overflow-y: auto;
+    box-shadow: 0px 0px 1px rgba(#aaa, 0.8);
+
+    .contact {
+      cursor: pointer;
+    }
+  }
+}
+
+.attachment-preview {
+  display: inline-block;
+  position: relative;
+  img {
+    max-width: 100%;
+  }
+
+}
+.new-conversation .recipients-input .recipients::before {
+  content: 'To: ';
+}
+.new-group-update .recipients-input .recipients::before {
+  content: 'Add: ';
+}
+
+.loading {
+  position: relative;
+  &::before {
+    display: block;
+    margin: 0px auto;
+    content: " ";
+    height: $loading-height;
+    width: $loading-height;
+    border-radius: 2 * $loading-height;
+    border: solid 3px;
+    border-color: $blue_l $blue_l $grey_l $grey_l !important;
+    animation: rotate 1s linear infinite;
+  }
+
+  @keyframes rotate {
+    to { transform: rotate(360deg); }
+  }
+}
+
+.x {
+  display: inline-block;
+  float: right;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  padding: 3px;
+  background: $grey;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    @include color-svg('/images/x.svg', white);
+  }
+}
+
+input[type=text], input[type=search], textarea {
+  &:active, &:focus {
+    outline: 1px solid $blue;
+  }
+}
+
+.expiredAlert {
+  background: #F3F3A7;
+  padding: 10px;
+  line-height: 36px;
+
+  button {
+    float: right;
+    border: none;
+    border-radius: $border-radius;
+    color: white;
+    font-weight: bold;
+    line-height: 36px;
+    padding: 0 20px;
+    background: $blue;
+    margin-left: 20px;
+  }
+}
+
+//yellow border fix
+.inbox:focus {
+    outline: none;
+}
+
+.text-security .inbox {
+  .name, .body, .last-message, .sender, .conversation-title, .number {
+      -webkit-text-security: square;
+  }
+}

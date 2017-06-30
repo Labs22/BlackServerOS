@@ -1,0 +1,56 @@
+---
+### Used by the common role ###
+ssh_users: ""
+dns_server: "8.8.8.8"
+daily_reboot_time: 4 # An integer between 0 and 23
+
+# TODO Should use ansible to gather this info
+monitor_ip: ""
+monitor_hostname: ""
+app_hostname: ""
+app_ip: ""
+
+### Used by the app role ###
+# The securedrop_header_image has to be in the install_files/ansible-base/ or
+# the install_files/ansible-base/roles/app/files/ directory
+# Leave set to empty to use the SecureDrop logo.
+securedrop_header_image: ""
+# The app GPG public key has to be in the install_files/ansible-base/ or
+# install_files/ansible-base/roles/app/files/ directory
+#
+# The format of the app GPG public key can be binary or ASCII-armored,
+# the extension also doesn't matter
+#
+# The format of the app gpg fingerprint needs to be all capital letters
+# and zero spaces, e.g. "B89A29DB2128160B8E4B1B4CBADDE0C7FC9F6818"
+securedrop_app_gpg_public_key: ""
+securedrop_app_gpg_fingerprint: ""
+
+### Used by the mon role ###
+# The OSSEC alert GPG public key has to be in the install_files/ansible-base/ or
+# install_files/ansible-base/roles/app/files/ directory
+#
+# The format of the OSSEC alert GPG public key can be binary or
+# ASCII-armored, the extension also doesn't matter
+#
+# The format of the OSSEC alert GPG fingerprint needs to be all capital letters
+# and zero spaces, e.g. "B89A29DB2128160B8E4B1B4CBADDE0C7FC9F6818"
+ossec_alert_gpg_public_key: ""
+ossec_gpg_fpr: ""
+ossec_alert_email: ""
+smtp_relay: ""
+smtp_relay_port: ""
+sasl_username: ""
+sasl_domain: ""
+sasl_password: ""
+
+### Use for backup restores ###
+# If the `restore_file` variable is defined, Ansible will overwrite the state of
+# the app server with the state from the restore file, which should have been
+# created by a previous invocation of the "backup" role.
+# To use uncomment the following line and enter the filename between the quotes.
+# e.g. restore_file: "sd-backup-2015-01-15--21-03-32.tar.gz"
+#restore_file: ""
+
+# Custom text that will appear on the source interface
+custom_notification_text: ""

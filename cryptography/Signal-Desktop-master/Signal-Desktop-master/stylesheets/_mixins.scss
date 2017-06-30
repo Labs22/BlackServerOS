@@ -1,0 +1,63 @@
+@mixin color-svg($svg, $color) {
+    -webkit-mask: url($svg) no-repeat center;
+    -webkit-mask-size: 100%;
+    background-color: $color;
+}
+@mixin header-icon-white($svg) {
+  @include color-svg($svg, rgba(255,255,255, 0.8));
+  &:focus, &:hover {
+    @include color-svg($svg, white);
+  }
+}
+@mixin header-icon-black($svg) {
+  @include color-svg($svg, rgba(0,0,0, 0.5));
+  &:focus, &:hover {
+    @include color-svg($svg, black);
+  }
+}
+@mixin avatar-colors {
+  &.red         { background-color: $material_red         ; }
+  &.pink        { background-color: $material_pink        ; }
+  &.purple      { background-color: $material_purple      ; }
+  &.deep_purple { background-color: $material_deep_purple ; }
+  &.indigo      { background-color: $material_indigo      ; }
+  &.blue        { background-color: $material_blue        ; }
+  &.light_blue  { background-color: $material_light_blue  ; }
+  &.cyan        { background-color: $material_cyan        ; }
+  &.teal        { background-color: $material_teal        ; }
+  &.green       { background-color: $material_green       ; }
+  &.light_green { background-color: $material_light_green ; }
+  &.orange      { background-color: $material_orange      ; }
+  &.deep_orange { background-color: $material_deep_orange ; }
+  &.amber       { background-color: $material_amber       ; }
+  &.blue_grey   { background-color: $material_blue_grey   ; }
+  &.grey        { background-color: #999999               ; }
+  &.default     { background-color: $blue                 ; }
+}
+@mixin dark-avatar-colors {
+  &.red         { background-color: $dark_material_red         ; }
+  &.pink        { background-color: $dark_material_pink        ; }
+  &.purple      { background-color: $dark_material_purple      ; }
+  &.deep_purple { background-color: $dark_material_deep_purple ; }
+  &.indigo      { background-color: $dark_material_indigo      ; }
+  &.blue        { background-color: $dark_material_blue        ; }
+  &.light_blue  { background-color: $dark_material_light_blue  ; }
+  &.cyan        { background-color: $dark_material_cyan        ; }
+  &.teal        { background-color: $dark_material_teal        ; }
+  &.green       { background-color: $dark_material_green       ; }
+  &.light_green { background-color: $dark_material_light_green ; }
+  &.orange      { background-color: $dark_material_orange      ; }
+  &.deep_orange { background-color: $dark_material_deep_orange ; }
+  &.amber       { background-color: $dark_material_amber       ; }
+  &.blue_grey   { background-color: $dark_material_blue_grey   ; }
+  &.grey        { background-color: #666666               ; }
+  &.default     { background-color: $blue                 ; }
+}
+@mixin invert-text-color {
+  color: white;
+
+  &::selection {
+    background: white;
+    color: $grey_d;
+  }
+}

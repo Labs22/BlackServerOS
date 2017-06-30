@@ -1,0 +1,580 @@
+{
+    "timerOption_10_seconds": {
+        "message": "10 segundos",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "lastSynced": {
+        "message": "Última importação em ",
+        "description": "Label for date and time of last sync operation"
+    },
+    "attemptingReconnection": {
+        "message": "Tentativa de ligação em $reconnect_duration_in_seconds$ segundos",
+        "description": "",
+        "placeholders": {
+            "reconnect_duration_in_seconds": {
+                "content": "$1",
+                "example": "10"
+            }
+        }
+    },
+    "unsupportedAttachment": {
+        "message": "Anexo com tipo não suportado. Clique para guardar.",
+        "description": "Displayed for incoming unsupported attachment"
+    },
+    "verifySafetyNumbers": {
+        "message": "Verificar número de segurança",
+        "description": ""
+    },
+    "youChangedTheTimer": {
+        "message": "Definiu o temporizador para $time$",
+        "description": "Message displayed when you change the message expiration timer in a conversation.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "10m"
+            }
+        }
+    },
+    "settings": {
+        "message": "Definições",
+        "description": "Menu item and header for global settings"
+    },
+    "incomingKeyConflict": {
+        "message": "Recebeu mensagem com um novo número de segurança. Clique para mostrar.",
+        "description": ""
+    },
+    "timerOption_5_seconds_abbreviated": {
+        "message": "5s",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "installComputerName": {
+        "message": "O nome deste computador será",
+        "description": "Text displayed before the input where the user can enter the name for this device."
+    },
+    "timestamp_m": {
+        "message": "1 minuto",
+        "description": "Brief timestamp for messages sent about one minute ago. Displayed in the conversation list and message bubble."
+    },
+    "gotIt": {
+        "message": "Ok!",
+        "description": "Label for a button that dismisses a dialog. The user clicks it to confirm that they understand the message in the dialog."
+    },
+    "disappearingMessages": {
+        "message": "Destruição de mensagens",
+        "description": "Conversation menu option to enable disappearing messages"
+    },
+    "showMore": {
+        "message": "Detalhes",
+        "description": "Displays the details of a key change"
+    },
+    "timerOption_5_minutes_abbreviated": {
+        "message": "5m",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "unsupportedFileType": {
+        "message": "Tipo de ficheiro não suportado",
+        "description": "Displayed for outgoing unsupported attachment"
+    },
+    "clickToSave": {
+        "message": "Clique para guardar",
+        "description": "Hover text for attachment filenames"
+    },
+    "installGeneratingKeys": {
+        "message": "A gerar chaves",
+        "description": ""
+    },
+    "resetSession": {
+        "message": "Reiniciar sessão",
+        "description": "This is a menu item for resetting the session, using the imperative case, as in a command."
+    },
+    "offline": {
+        "message": "Desligado",
+        "description": ""
+    },
+    "welcomeToSignal": {
+        "message": "Bem-vindo ao Signal",
+        "description": ""
+    },
+    "checkNetworkConnection": {
+        "message": "Verifique a sua ligação de rede.",
+        "description": "Obvious instructions for when a user's computer loses its network connection"
+    },
+    "notificationSettingsDialog": {
+        "message": "Quando receber uma mensagem, as notificações irão revelar:",
+        "description": "Explain the purpose of the notification settings"
+    },
+    "members": {
+        "message": "Membros",
+        "description": ""
+    },
+    "timestamp_h": {
+        "message": "1 hora",
+        "description": "Brief timestamp for messages sent about one minute ago. Displayed in the conversation list and message bubble."
+    },
+    "timerOption_0_seconds_abbreviated": {
+        "message": "desligado",
+        "description": "Short format indicating current timer setting in the conversation list snippet"
+    },
+    "syncExplanation": {
+        "message": "Importar todos os grupos e contactos do Signal a partir do seu dispositivo móvel.",
+        "description": "Explanatory text for sync settings"
+    },
+    "restartSignal": {
+        "message": "Reiniciar",
+        "description": "Menu item for restarting the program."
+    },
+    "youLeftTheGroup": {
+        "message": "Saiu do grupo",
+        "description": "Displayed when a user can't send a message because they have left the group"
+    },
+    "deleteMessages": {
+        "message": "Apagar mensagens",
+        "description": "Menu item for deleting messages, title case."
+    },
+    "incomingError": {
+        "message": "Erro a receber mensagem.",
+        "description": ""
+    },
+    "selectAContact": {
+        "message": "Seleccione um contacto ou grupo para trocar mensagens.",
+        "description": ""
+    },
+    "installConnecting": {
+        "message": "A ligar...",
+        "description": "Displayed when waiting for the QR Code"
+    },
+    "verifyContact": {
+        "message": "Poderá querer $tag_start$ verificar $tag_end$ o número de segurança com este contacto.",
+        "description": "Use $tag_start$ and $tag_end$ to wrap the word or phrase in this sentence that the user should click on in order to navigate to the verification screen. These placeholders will be replaced with appropriate HTML code.",
+        "placeholders": {
+            "tag_start": {
+                "content": "<a class='verify' href='#'>"
+            },
+            "tag_end": {
+                "content": "</a>"
+            }
+        }
+    },
+    "sent": {
+        "message": "Enviada",
+        "description": "Label for the time a message was sent"
+    },
+    "theyChangedTheTimer": {
+        "message": "$name$ definiu o temporizador para $time$",
+        "description": "Message displayed when someone else changes the message expiration timer in a conversation.",
+        "placeholders": {
+            "name": {
+                "content": "$1",
+                "example": "Bob"
+            },
+            "time": {
+                "content": "$2",
+                "example": "10m"
+            }
+        }
+    },
+    "timestamp_s": {
+        "message": "agora",
+        "description": "Brief timestamp for messages sent less than a minute ago. Displayed in the conversation list and message bubble."
+    },
+    "timerOption_1_day": {
+        "message": "1 dia",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "reportIssue": {
+        "message": "Denunciar um problema",
+        "description": "Link to open the issue tracker"
+    },
+    "newMessage": {
+        "message": "Nova mensagem",
+        "description": "Displayed in notifications for only 1 message"
+    },
+    "nameOnly": {
+        "message": "Apenas remetente",
+        "description": "Label for setting notifications to display sender name only"
+    },
+    "from": {
+        "message": "De",
+        "description": "Label for the sender of a message"
+    },
+    "deleteConversationConfirmation": {
+        "message": "Deseja apagar esta conversa definitivamente?",
+        "description": "Confirmation dialog text that asks the user if they really wish to delete the conversation. Answer buttons use the strings 'ok' and 'cancel'. The deletion is permanent, i.e. it cannot be undone."
+    },
+    "unlinkedWarning": {
+        "message": "Relink Signal Desktop to your mobile device to continue messaging.",
+        "description": ""
+    },
+    "debugLogExplanation": {
+        "message": "Este relatório será publicado online para os contribuidores o analisarem. É possível examiná-lo e editá-lo antes de o submeter.",
+        "description": ""
+    },
+    "newPhoneNumber": {
+        "message": "Introduza um número de telefone para adicionar como contacto.",
+        "description": "Placeholder for adding a new number to a contact"
+    },
+    "searchForPeopleOrGroups": {
+        "message": "Procurar...",
+        "description": "Placeholder text in the search input"
+    },
+    "noNameOrMessage": {
+        "message": "Nem o remetente nem mensagem",
+        "description": "Label for setting notifications to display no name and no message text"
+    },
+    "syncNow": {
+        "message": "Importar agora",
+        "description": "Label for a button that syncs contacts and groups from your phone"
+    },
+    "syncFailed": {
+        "message": "Falha na importação. Por favor verifique que o seu computador e o seu dispositivos estão ligados à Internet.",
+        "description": "Informational text displayed if a sync operation times out."
+    },
+    "unlinked": {
+        "message": "Unlinked",
+        "description": ""
+    },
+    "installFollowUs": {
+        "message": "<a $a_params$> Siga-nos </a> para actualizações sobre o suporte multi-dispositivo para iOS.",
+        "description": "",
+        "placeholders": {
+            "a_params": {
+                "content": "$1",
+                "example": "href='http://example.com'"
+            }
+        }
+    },
+    "learnMore": {
+        "message": "Saiba mais sobre os números de segurança",
+        "description": "Text that links to a support article on verifying safety numbers"
+    },
+    "safetyNumbersSettingHeader": {
+        "message": "Aprovação dos Números de Segurança",
+        "description": "Header for safety numbers setting"
+    },
+    "installTooManyDevices": {
+        "message": "Existem demasiados dispositivos sincronizados. Tente remover alguns.",
+        "description": ""
+    },
+    "installSignalLinks": {
+        "message": "Primeiro, instale o Signal no seu <a $play_store$>Android</a> ou <a $app_store$>iPhone</a>. <br /> Vamos associar os seus dispositivos e manter as suas mensagens sincronizadas.",
+        "description": "Prompt the user to install Signal on their phone before linking",
+        "placeholders": {
+            "play_store": {
+                "content": "$1",
+                "example": "href='http://example.com'"
+            },
+            "app_store": {
+                "content": "$2",
+                "example": "href='http://example.com'"
+            }
+        }
+    },
+    "installSyncingGroupsAndContacts": {
+        "message": "A sincronizar grupos e contactos",
+        "description": ""
+    },
+    "timerOption_30_minutes_abbreviated": {
+        "message": "30m",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "themeAndroidDark": {
+        "message": "Android (escuro)",
+        "description": "Label text for dark Android theme"
+    },
+    "timerOption_1_minute_abbreviated": {
+        "message": "1m",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "upgrade": {
+        "message": "Actualizar",
+        "description": "Label text for button to upgrade the app to the latest version"
+    },
+    "yourSafetyNumberWith": {
+        "message": "Verificar número de segurança com $name$",
+        "description": "Heading for safety number view",
+        "placeholders": {
+            "name": {
+                "content": "$1",
+                "example": "John"
+            }
+        }
+    },
+    "showLess": {
+        "message": "Esconder detalhes",
+        "description": "Hides the details of a key change"
+    },
+    "theme": {
+        "message": "Tema",
+        "description": "Header for theme settings"
+    },
+    "newIdentity": {
+        "message": "Novo número de segurança",
+        "description": "Header for a key change dialog"
+    },
+    "installTagline": {
+        "message": "Privacidade é possível. Signal torna-a mais fácil.",
+        "description": "Tagline displayed under installWelcome on the install page"
+    },
+    "audioNotificationDescription": {
+        "message": "Reproduzir notificação áudio",
+        "description": "Description for audio notification setting"
+    },
+    "disconnected": {
+        "message": "Desligado",
+        "description": ""
+    },
+    "syncing": {
+        "message": "A importar...",
+        "description": "Label for a disabled sync button while sync is in progress."
+    },
+    "acceptNewKey": {
+        "message": "Aceitar",
+        "description": "Label for a button to accept a new safety number"
+    },
+    "timerOption_12_hours_abbreviated": {
+        "message": "12h",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "timestampFormat_M": {
+        "message": "D MMM ",
+        "description": "Timestamp format string for displaying month and day (but not the year) of a date within the current year, ex: use 'MMM D' for 'Aug 8', or 'D MMM' for '8 Aug'."
+    },
+    "timerOption_6_hours_abbreviated": {
+        "message": "6h",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "unregisteredUser": {
+        "message": "Número não registado",
+        "description": "Error message displayed when sending to an unregistered user."
+    },
+    "timerOption_1_day_abbreviated": {
+        "message": "1d",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "sync": {
+        "message": "Contactos",
+        "description": "Label for contact and group sync settings"
+    },
+    "timerOption_1_week": {
+        "message": "1 semana",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "installGotIt": {
+        "message": "Ok",
+        "description": "Button for the user to confirm that they have Signal installed."
+    },
+    "received": {
+        "message": "Recebida",
+        "description": "Label for the time a message was received"
+    },
+    "timerOption_30_seconds": {
+        "message": "30 segundos",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "sendMessage": {
+        "message": "Enviar mensagem",
+        "description": "Placeholder text in the message entry field"
+    },
+    "mediaMessage": {
+        "message": "Mensagem de média",
+        "description": "Description of a message that has an attachment and no text, displayed in the conversation list as a preview."
+    },
+    "expiredWarning": {
+        "message": "Esta versão do Signal Desktop expirou. Para poder continuar a enviar mensagens, actualize para a última versão .",
+        "description": "Warning notification that this version of the app has expired"
+    },
+    "outgoingKeyConflict": {
+        "message": "O seu número de segurança com este contacto foi alterado. Clique para mostrar.",
+        "description": ""
+    },
+    "fileSizeWarning": {
+        "message": "Lamentamos, o ficheiro seleccionado excede o tamanho máximo permitido.",
+        "description": ""
+    },
+    "timerOption_0_seconds": {
+        "message": "desligado",
+        "description": "Label for option to turn off message expiration in the timer menu"
+    },
+    "installAndroidInstructions": {
+        "message": "Abra o Signal no seu telemóvel e vá até Definições > Dispositivos associados. Pressione o botão para adicionar um novo dispositivo, de seguida scaneie o código QR apresentado.",
+        "description": ""
+    },
+    "invalidNumberError": {
+        "message": "Número inválido",
+        "description": "When a person inputs a number that is invalid"
+    },
+    "installWelcome": {
+        "message": "Bem-vindo ao Signal Desktop",
+        "description": "Welcome title on the install page"
+    },
+    "installConnectionFailed": {
+        "message": "Falha na ligação ao servidor",
+        "description": "Displayed when we can't connect to the server."
+    },
+    "messageNotSent": {
+        "message": "Mensagem não enviada.",
+        "description": "Informational label, appears on messages that failed to send"
+    },
+    "disableNotifications": {
+        "message": "Desactivar notificações",
+        "description": "Label for disabling notifications"
+    },
+    "cancel": {
+        "message": "Cancelar",
+        "description": ""
+    },
+    "unblockToSend": {
+        "message": "Desbloqueie este contacto para enviar mensagens.",
+        "description": "Brief message shown when trying to message a blocked number"
+    },
+    "installIHaveSignalButton": {
+        "message": "Eu tenho o Signal para o Android.",
+        "description": "Button for the user to confirm that they have Signal for Android"
+    },
+    "unnamedFile": {
+        "message": "Unnamed File",
+        "description": "Hover text for attachment filenames"
+    },
+    "connecting": {
+        "message": "A ligar",
+        "description": ""
+    },
+    "sessionEnded": {
+        "message": "Sessão segura reiniciada",
+        "description": "This is a past tense, informational message. In other words, your secure session has been reset."
+    },
+    "installGetStartedButton": {
+        "message": "Começar",
+        "description": ""
+    },
+    "relink": {
+        "message": "Relink",
+        "description": ""
+    },
+    "timerOption_1_week_abbreviated": {
+        "message": "1 sem",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "timerOption_5_seconds": {
+        "message": "5 segundos",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "installSignalLink": {
+        "message": "Primeiro, instale o <a $a_params$> Signal </a> no seu telefone. <br /> Vamos associar os seus dispositivos e manter as suas mensagens sincronizadas.",
+        "description": "Prompt the user to install Signal on Android before linking",
+        "placeholders": {
+            "a_params": {
+                "content": "$1",
+                "example": "href='http://example.com'"
+            }
+        }
+    },
+    "installLinkingWithNumber": {
+        "message": "Associado com ",
+        "description": "Text displayed before the phone number that the user is in the process of linking with"
+    },
+    "newMessages": {
+        "message": "Novas mensagens",
+        "description": "Displayed in notifications for multiple messages"
+    },
+    "newContact": {
+        "message": "Clique para criar novo contacto",
+        "description": ""
+    },
+    "theirIdentityUnknown": {
+        "message": "Ainda não trocou mensagens com este contacto. O seu número de segurança estará disponível a partir da primeira mensagem.",
+        "description": ""
+    },
+    "voiceMessage": {
+        "message": "Mensagem de voz",
+        "description": "Name for a voice message attachment"
+    },
+    "submit": {
+        "message": "Enviar",
+        "description": ""
+    },
+    "keychanged": {
+        "message": "O número de segurança com $name$ foi alterado.",
+        "description": "",
+        "placeholders": {
+            "name": {
+                "content": "$1",
+                "example": "John"
+            }
+        }
+    },
+    "safetyNumbersSettingDescription": {
+        "message": "Requerer aprovação quando os números de segurança forem alterados",
+        "description": "Description for safety numbers setting"
+    },
+    "to": {
+        "message": "Para",
+        "description": "Label for the receiver of a message"
+    },
+    "timerOption_1_hour_abbreviated": {
+        "message": "1h",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "installFinalButton": {
+        "message": "Parece correcto",
+        "description": "The final button for the install process, after the user has entered a name for their device"
+    },
+    "messageDetail": {
+        "message": "Detalhes da mensagem",
+        "description": ""
+    },
+    "verify": {
+        "message": "Verificar",
+        "description": ""
+    },
+    "timerOption_10_seconds_abbreviated": {
+        "message": "10s",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "nameAndMessage": {
+        "message": "Remetente e mensagem",
+        "description": "Label for setting notifications to display name and message text"
+    },
+    "failedToSend": {
+        "message": "Falha ao enviar para alguns destinatários. Verifique a sua ligação à rede",
+        "description": ""
+    },
+    "ok": {
+        "message": "OK",
+        "description": ""
+    },
+    "identityChanged": {
+        "message": "O número de segurança com este contacto foi alterado. Isto pode significar que alguém está a tentar interceptar a sua comunicação, o que o seu contacto simplesmente reinstalou o Signal. Poderá querer verificar o seu novo número de segurança abaixo.",
+        "description": ""
+    },
+    "submitDebugLog": {
+        "message": "Enviar relatório de erros",
+        "description": "Menu item and header text for debug log modal, title case."
+    },
+    "error": {
+        "message": "Erro",
+        "description": ""
+    },
+    "timerSetTo": {
+        "message": "Temporizador definido para $time$",
+        "description": "Displayed in the conversation list when the timer is updated.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "1w"
+            }
+        }
+    },
+    "timerOption_30_seconds_abbreviated": {
+        "message": "30s",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "notifications": {
+        "message": "Notificações",
+        "description": "Header for notification settings"
+    },
+    "resend": {
+        "message": "Reenviar",
+        "description": ""
+    }
+}

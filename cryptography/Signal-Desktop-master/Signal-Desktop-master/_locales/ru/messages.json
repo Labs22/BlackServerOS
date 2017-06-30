@@ -1,0 +1,606 @@
+{
+    "scrollDown": {
+        "message": "Перейти в конец беседы",
+        "description": "Alt text for button to take user down to bottom of conversation, shown when user scrolls up"
+    },
+    "timerOption_10_seconds": {
+        "message": "10 секунд",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "lastSynced": {
+        "message": "Последний импорт",
+        "description": "Label for date and time of last sync operation"
+    },
+    "attemptingReconnection": {
+        "message": "Попытка переподключения через $reconnect_duration_in_seconds$ секунд",
+        "description": "",
+        "placeholders": {
+            "reconnect_duration_in_seconds": {
+                "content": "$1",
+                "example": "10"
+            }
+        }
+    },
+    "unsupportedAttachment": {
+        "message": "Неподдерживаемый формат вложения. Нажмите, чтобы сохранить.",
+        "description": "Displayed for incoming unsupported attachment"
+    },
+    "verifySafetyNumbers": {
+        "message": "Подтвердить код безопасности",
+        "description": ""
+    },
+    "youChangedTheTimer": {
+        "message": "Вы установили таймер на $time$.",
+        "description": "Message displayed when you change the message expiration timer in a conversation.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "10m"
+            }
+        }
+    },
+    "settings": {
+        "message": "Настройки",
+        "description": "Menu item and header for global settings"
+    },
+    "incomingKeyConflict": {
+        "message": "Получено сообщение с новым кодом безопасности. Нажмите, чтобы продолжить.",
+        "description": ""
+    },
+    "timerOption_5_seconds_abbreviated": {
+        "message": "5с",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "installComputerName": {
+        "message": "Имя этого компьютера будет ",
+        "description": "Text displayed before the input where the user can enter the name for this device."
+    },
+    "timestamp_m": {
+        "message": "1 минута",
+        "description": "Brief timestamp for messages sent about one minute ago. Displayed in the conversation list and message bubble."
+    },
+    "gotIt": {
+        "message": "Понятно!",
+        "description": "Label for a button that dismisses a dialog. The user clicks it to confirm that they understand the message in the dialog."
+    },
+    "disappearingMessages": {
+        "message": "Исчезающие сообщения",
+        "description": "Conversation menu option to enable disappearing messages"
+    },
+    "showMore": {
+        "message": "Подробнее",
+        "description": "Displays the details of a key change"
+    },
+    "timerOption_5_minutes_abbreviated": {
+        "message": "5м",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "unsupportedFileType": {
+        "message": "Неподдерживаемый формат файла",
+        "description": "Displayed for outgoing unsupported attachment"
+    },
+    "clickToSave": {
+        "message": "Нажмите, чтобы сохранить",
+        "description": "Hover text for attachment filenames"
+    },
+    "messagesBelow": {
+        "message": "Новые сообщения ниже",
+        "description": "Alt text for button to take user down to bottom of conversation with more than one message out of screen"
+    },
+    "installGeneratingKeys": {
+        "message": "Создание ключей",
+        "description": ""
+    },
+    "resetSession": {
+        "message": "Сбросить сессию",
+        "description": "This is a menu item for resetting the session, using the imperative case, as in a command."
+    },
+    "offline": {
+        "message": "Оффлайн",
+        "description": "Displayed when the desktop client has no network connection."
+    },
+    "welcomeToSignal": {
+        "message": "Добро пожаловать в Signal",
+        "description": ""
+    },
+    "checkNetworkConnection": {
+        "message": "Проверьте сетевое соединение.",
+        "description": "Obvious instructions for when a user's computer loses its network connection"
+    },
+    "notificationSettingsDialog": {
+        "message": "При получении сообщения, всплывающие уведомления будут содержать:",
+        "description": "Explain the purpose of the notification settings"
+    },
+    "members": {
+        "message": "Участники",
+        "description": ""
+    },
+    "timestamp_h": {
+        "message": "1 час",
+        "description": "Brief timestamp for messages sent about one minute ago. Displayed in the conversation list and message bubble."
+    },
+    "timerOption_0_seconds_abbreviated": {
+        "message": "выкл",
+        "description": "Short format indicating current timer setting in the conversation list snippet"
+    },
+    "syncExplanation": {
+        "message": "Импортировать все группы и контакты Signal с вашего мобильного устройства.",
+        "description": "Explanatory text for sync settings"
+    },
+    "restartSignal": {
+        "message": "Перезапустить Signal",
+        "description": "Menu item for restarting the program."
+    },
+    "youLeftTheGroup": {
+        "message": "Вы покинули группу",
+        "description": "Displayed when a user can't send a message because they have left the group"
+    },
+    "deleteMessages": {
+        "message": "Удалить сообщения",
+        "description": "Menu item for deleting messages, title case."
+    },
+    "incomingError": {
+        "message": "Ошибка обработки входящего сообщения.",
+        "description": ""
+    },
+    "selectAContact": {
+        "message": "Выберите контакт или группу для начала общения.",
+        "description": ""
+    },
+    "installConnecting": {
+        "message": "Соединение...",
+        "description": "Displayed when waiting for the QR Code"
+    },
+    "verifyContact": {
+        "message": "Возможно, вы хотите $tag_start$ подтвердить код безопасности $tag_end$ для данного контакта.",
+        "description": "Use $tag_start$ and $tag_end$ to wrap the word or phrase in this sentence that the user should click on in order to navigate to the verification screen. These placeholders will be replaced with appropriate HTML code.",
+        "placeholders": {
+            "tag_start": {
+                "content": "<a class='verify' href='#'>"
+            },
+            "tag_end": {
+                "content": "</a>"
+            }
+        }
+    },
+    "sent": {
+        "message": "Отправлено",
+        "description": "Label for the time a message was sent"
+    },
+    "theyChangedTheTimer": {
+        "message": "$name$ установил(а) таймер на $time$.",
+        "description": "Message displayed when someone else changes the message expiration timer in a conversation.",
+        "placeholders": {
+            "name": {
+                "content": "$1",
+                "example": "Bob"
+            },
+            "time": {
+                "content": "$2",
+                "example": "10m"
+            }
+        }
+    },
+    "timestamp_s": {
+        "message": "только что",
+        "description": "Brief timestamp for messages sent less than a minute ago. Displayed in the conversation list and message bubble."
+    },
+    "timerOption_1_day": {
+        "message": "1 день",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "reportIssue": {
+        "message": "Сообщить о проблеме",
+        "description": "Link to open the issue tracker"
+    },
+    "newMessage": {
+        "message": "Новое сообщение",
+        "description": "Displayed in notifications for only 1 message"
+    },
+    "nameOnly": {
+        "message": "Только имя отправителя",
+        "description": "Label for setting notifications to display sender name only"
+    },
+    "from": {
+        "message": "От",
+        "description": "Label for the sender of a message"
+    },
+    "deleteConversationConfirmation": {
+        "message": "Удалить этот разговор без возможности восстановления?",
+        "description": "Confirmation dialog text that asks the user if they really wish to delete the conversation. Answer buttons use the strings 'ok' and 'cancel'. The deletion is permanent, i.e. it cannot be undone."
+    },
+    "unlinkedWarning": {
+        "message": "Привяжите Signal Desktop к вашему мобильному устройству для продолжения общения.",
+        "description": ""
+    },
+    "debugLogExplanation": {
+        "message": "Этот лог будет открыто опубликован для разработчиков. Вы можете проверить и изменить его перед отправкой.",
+        "description": ""
+    },
+    "newPhoneNumber": {
+        "message": "Введите номер телефона собеседника.",
+        "description": "Placeholder for adding a new number to a contact"
+    },
+    "searchForPeopleOrGroups": {
+        "message": "Поиск...",
+        "description": "Placeholder text in the search input"
+    },
+    "noNameOrMessage": {
+        "message": "Не показывать ни имени, ни сообщения",
+        "description": "Label for setting notifications to display no name and no message text"
+    },
+    "syncNow": {
+        "message": "Импортировать",
+        "description": "Label for a button that syncs contacts and groups from your phone"
+    },
+    "syncFailed": {
+        "message": "Ошибка импорта. Убедитесь, что компьютер и мобильное устройство подключены к интернету.",
+        "description": "Informational text displayed if a sync operation times out."
+    },
+    "unlinked": {
+        "message": "Отвязан",
+        "description": ""
+    },
+    "installFollowUs": {
+        "message": "<a $a_params$>Следите за информацией</a> об обновлениях для iOS устройств.",
+        "description": "",
+        "placeholders": {
+            "a_params": {
+                "content": "$1",
+                "example": "href='http://example.com'"
+            }
+        }
+    },
+    "learnMore": {
+        "message": "Узнать больше о подтверждении кодов безопасности",
+        "description": "Text that links to a support article on verifying safety numbers"
+    },
+    "safetyNumbersSettingHeader": {
+        "message": "Подтверждение кодов безопасности",
+        "description": "Header for safety numbers setting"
+    },
+    "unreadMessages": {
+        "message": "$count$ непрочитанных сообщений",
+        "description": "Text for unread message separator, with count",
+        "placeholders": {
+            "count": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "installTooManyDevices": {
+        "message": "Извините, вы привязали слишком много устройств. Попробуйте удалить неиспользуемые устройства.",
+        "description": ""
+    },
+    "installSignalLinks": {
+        "message": "Сначала установите Signal на <a $play_store$>Android</a> или <a $app_store$>iPhone</a>.<br /> Мы свяжем ваши устройства и синхронизируем сообщения между ними.",
+        "description": "Prompt the user to install Signal on their phone before linking",
+        "placeholders": {
+            "play_store": {
+                "content": "$1",
+                "example": "href='http://example.com'"
+            },
+            "app_store": {
+                "content": "$2",
+                "example": "href='http://example.com'"
+            }
+        }
+    },
+    "installSyncingGroupsAndContacts": {
+        "message": "Синхронизация групп и контактов",
+        "description": ""
+    },
+    "timerOption_30_minutes_abbreviated": {
+        "message": "30м",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "themeAndroidDark": {
+        "message": "Android (темная)",
+        "description": "Label text for dark Android theme"
+    },
+    "timerOption_1_minute_abbreviated": {
+        "message": "1м",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "upgrade": {
+        "message": "Обновить",
+        "description": "Label text for button to upgrade the app to the latest version"
+    },
+    "yourSafetyNumberWith": {
+        "message": "Ваш код безопасности c $name$:",
+        "description": "Heading for safety number view",
+        "placeholders": {
+            "name": {
+                "content": "$1",
+                "example": "John"
+            }
+        }
+    },
+    "showLess": {
+        "message": "Скрыть детали",
+        "description": "Hides the details of a key change"
+    },
+    "theme": {
+        "message": "Тема",
+        "description": "Header for theme settings"
+    },
+    "newIdentity": {
+        "message": "Новый код безопасности",
+        "description": "Header for a key change dialog"
+    },
+    "installTagline": {
+        "message": "Приватное общение возможно. Signal помогает его упростить.",
+        "description": "Tagline displayed under installWelcome on the install page"
+    },
+    "audioNotificationDescription": {
+        "message": "Звуковые уведомления",
+        "description": "Description for audio notification setting"
+    },
+    "disconnected": {
+        "message": "Соединение разорвано",
+        "description": "Displayed when the desktop client cannot connect to the server."
+    },
+    "syncing": {
+        "message": "Импортирую...",
+        "description": "Label for a disabled sync button while sync is in progress."
+    },
+    "acceptNewKey": {
+        "message": "Принять",
+        "description": "Label for a button to accept a new safety number"
+    },
+    "timerOption_12_hours_abbreviated": {
+        "message": "12ч",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "timestampFormat_M": {
+        "message": "D MMM",
+        "description": "Timestamp format string for displaying month and day (but not the year) of a date within the current year, ex: use 'MMM D' for 'Aug 8', or 'D MMM' for '8 Aug'."
+    },
+    "timerOption_6_hours_abbreviated": {
+        "message": "6ч",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "unregisteredUser": {
+        "message": "Номер не зарегистрирован",
+        "description": "Error message displayed when sending to an unregistered user."
+    },
+    "timerOption_1_day_abbreviated": {
+        "message": "1д",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "sync": {
+        "message": "Контакты",
+        "description": "Label for contact and group sync settings"
+    },
+    "timerOption_1_week": {
+        "message": "1 неделя",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "installGotIt": {
+        "message": "Понятно",
+        "description": "Button for the user to confirm that they have Signal installed."
+    },
+    "received": {
+        "message": "Получено",
+        "description": "Label for the time a message was received"
+    },
+    "timerOption_30_seconds": {
+        "message": "30 секунд",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "sendMessage": {
+        "message": "Отправить сообщение",
+        "description": "Placeholder text in the message entry field"
+    },
+    "mediaMessage": {
+        "message": "Медиа-сообщение",
+        "description": "Description of a message that has an attachment and no text, displayed in the conversation list as a preview."
+    },
+    "unreadMessage": {
+        "message": "1 непрочитанное сообщение",
+        "description": "Text for unread message separator, just one message"
+    },
+    "expiredWarning": {
+        "message": "Данная версия приложения устарела. Пожалуйста, обновите Signal Desktop до последней версии для дальнейшей отправки сообщений.",
+        "description": "Warning notification that this version of the app has expired"
+    },
+    "outgoingKeyConflict": {
+        "message": "Код безопасности данного контакта изменился. Нажмите, чтобы продолжить.",
+        "description": ""
+    },
+    "fileSizeWarning": {
+        "message": "Извините, размер выбранного файла превышает допустимый.",
+        "description": ""
+    },
+    "timerOption_0_seconds": {
+        "message": "выключить",
+        "description": "Label for option to turn off message expiration in the timer menu"
+    },
+    "installAndroidInstructions": {
+        "message": "Откройте Signal на вашем телефоне и перейдите в Настройки > Привязанные устройства. Коснитесь кнопки добавления нового устройства и отсканируйте QR-код указанный выше.",
+        "description": ""
+    },
+    "invalidNumberError": {
+        "message": "Неверный номер",
+        "description": "When a person inputs a number that is invalid"
+    },
+    "installWelcome": {
+        "message": "Добро пожаловать в Signal Desktop",
+        "description": "Welcome title on the install page"
+    },
+    "messageBelow": {
+        "message": "Новое сообщение ниже",
+        "description": "Alt text for button to take user down to bottom of conversation with a new message out of screen"
+    },
+    "installConnectionFailed": {
+        "message": "Не удалось подключиться к серверу.",
+        "description": "Displayed when we can't connect to the server."
+    },
+    "messageNotSent": {
+        "message": "Сообщение не отправлено.",
+        "description": "Informational label, appears on messages that failed to send"
+    },
+    "disableNotifications": {
+        "message": "Отключить уведомления",
+        "description": "Label for disabling notifications"
+    },
+    "cancel": {
+        "message": "Отменить",
+        "description": ""
+    },
+    "unblockToSend": {
+        "message": "Разблокируйте этот контакт, чтобы отправить сообщение.",
+        "description": "Brief message shown when trying to message a blocked number"
+    },
+    "installIHaveSignalButton": {
+        "message": "У меня установлен Signal для Android-смартфона",
+        "description": "Button for the user to confirm that they have Signal for Android"
+    },
+    "unnamedFile": {
+        "message": "Безымянный файл",
+        "description": "Hover text for attachment filenames"
+    },
+    "connecting": {
+        "message": "Соединение",
+        "description": "Displayed when the desktop client is currently connecting to the server."
+    },
+    "sessionEnded": {
+        "message": "Защищённая сессия перезапущена",
+        "description": "This is a past tense, informational message. In other words, your secure session has been reset."
+    },
+    "installGetStartedButton": {
+        "message": "Начать",
+        "description": ""
+    },
+    "relink": {
+        "message": "Привязать",
+        "description": ""
+    },
+    "timerOption_1_week_abbreviated": {
+        "message": "1нед.",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "timerOption_5_seconds": {
+        "message": "5 секунд",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "installSignalLink": {
+        "message": "Сначала установите <a $a_params$>Signal</a> на Android смартфоне.<br /> Мы свяжем ваши устройства и синхронизируем сообщения между ними.",
+        "description": "Prompt the user to install Signal on Android before linking",
+        "placeholders": {
+            "a_params": {
+                "content": "$1",
+                "example": "href='http://example.com'"
+            }
+        }
+    },
+    "installLinkingWithNumber": {
+        "message": "Связать с ",
+        "description": "Text displayed before the phone number that the user is in the process of linking with"
+    },
+    "newMessages": {
+        "message": "Новые сообщения",
+        "description": "Displayed in notifications for multiple messages"
+    },
+    "newContact": {
+        "message": "Нажмите для создания нового диалога",
+        "description": ""
+    },
+    "theirIdentityUnknown": {
+        "message": "Вы еще не обменивались сообщениями с данным собеседником. Код безопасности станет доступен после отправки первого сообщения.",
+        "description": ""
+    },
+    "voiceMessage": {
+        "message": "Голосовое сообщение",
+        "description": "Name for a voice message attachment"
+    },
+    "submit": {
+        "message": "Отправить",
+        "description": ""
+    },
+    "keychanged": {
+        "message": "Ваш код безопасности c пользователем $name$ изменился. Нажмите, чтобы подтвердить.",
+        "description": "",
+        "placeholders": {
+            "name": {
+                "content": "$1",
+                "example": "John"
+            }
+        }
+    },
+    "safetyNumbersSettingDescription": {
+        "message": "Требовать подтверждение кодов безопасности при их изменении",
+        "description": "Description for safety numbers setting"
+    },
+    "to": {
+        "message": "Кому",
+        "description": "Label for the receiver of a message"
+    },
+    "timerOption_1_hour_abbreviated": {
+        "message": "1ч",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "installFinalButton": {
+        "message": "Отлично",
+        "description": "The final button for the install process, after the user has entered a name for their device"
+    },
+    "messageDetail": {
+        "message": "Детали сообщения",
+        "description": ""
+    },
+    "verify": {
+        "message": "Подтвердить",
+        "description": ""
+    },
+    "timerOption_10_seconds_abbreviated": {
+        "message": "10с",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "nameAndMessage": {
+        "message": "Как имя отправителя, так и текст сообщения",
+        "description": "Label for setting notifications to display name and message text"
+    },
+    "failedToSend": {
+        "message": "Не удалось отправить некоторым получателям. Проверьте сетевое соединение.",
+        "description": ""
+    },
+    "ok": {
+        "message": "OK",
+        "description": ""
+    },
+    "identityChanged": {
+        "message": "Ваш код безопасности с этим контактом изменился. Это может означать, что кто-то пытается перехватить ваши сообщения, или собеседник попросту переустановил Signal. Вы можете подтвердить новый код безопасности указанный ниже.",
+        "description": ""
+    },
+    "submitDebugLog": {
+        "message": "Отправить журнал отладки",
+        "description": "Menu item and header text for debug log modal, title case."
+    },
+    "error": {
+        "message": "Ошибка",
+        "description": ""
+    },
+    "timerSetTo": {
+        "message": "Таймер установлен на $time$",
+        "description": "Displayed in the conversation list when the timer is updated.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "1w"
+            }
+        }
+    },
+    "timerOption_30_seconds_abbreviated": {
+        "message": "30с",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "notifications": {
+        "message": "Уведомления",
+        "description": "Header for notification settings"
+    },
+    "resend": {
+        "message": "Отправить ещё раз",
+        "description": ""
+    }
+}

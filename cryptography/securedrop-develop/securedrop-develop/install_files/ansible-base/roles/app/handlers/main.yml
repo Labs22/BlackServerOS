@@ -1,0 +1,25 @@
+---
+## Tor section
+- name: restart tor
+  service:
+    name: tor
+    state: restarted
+
+- name: reload iptables rules
+  shell: iptables-restore < /etc/network/iptables/rules_v4
+
+## App/securedrop section
+- name: restart apache2
+  service:
+    name: apache2
+    state: restarted
+
+- name: reload supervisor
+  supervisorctl:
+    name: securedrop_worker
+    state: present
+
+- name: restart haveged
+  service:
+    name: haveged
+    state: restarted

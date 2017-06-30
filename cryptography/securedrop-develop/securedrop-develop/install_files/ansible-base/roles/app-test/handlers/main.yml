@@ -1,0 +1,6 @@
+---
+## SecureDrop Interfaces
+- name: start xvfb
+  service:
+    name: xvfb
+    state: started

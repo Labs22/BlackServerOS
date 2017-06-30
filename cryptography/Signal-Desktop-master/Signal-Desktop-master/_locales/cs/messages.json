@@ -1,0 +1,576 @@
+{
+    "timerOption_10_seconds": {
+        "message": "10 sekund",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "lastSynced": {
+        "message": "Poslední import",
+        "description": "Label for date and time of last sync operation"
+    },
+    "attemptingReconnection": {
+        "message": "Attempting reconnect in $reconnect_duration_in_seconds$ seconds",
+        "description": "",
+        "placeholders": {
+            "reconnect_duration_in_seconds": {
+                "content": "$1",
+                "example": "10"
+            }
+        }
+    },
+    "unsupportedAttachment": {
+        "message": "Nepodporovaný typ přílohy. Klikněte pro uložení.",
+        "description": "Displayed for incoming unsupported attachment"
+    },
+    "verifySafetyNumbers": {
+        "message": "Ověřit bezpečnostní číslo",
+        "description": ""
+    },
+    "youChangedTheTimer": {
+        "message": "Nastavili jste časovač na $time$.",
+        "description": "Message displayed when you change the message expiration timer in a conversation.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "10m"
+            }
+        }
+    },
+    "settings": {
+        "message": "Nastavení",
+        "description": "Menu item and header for global settings"
+    },
+    "incomingKeyConflict": {
+        "message": "Přijata zpráva s novým bezpečnostním číslem. Klikněte pro zpracování a zobrazení.",
+        "description": ""
+    },
+    "timerOption_5_seconds_abbreviated": {
+        "message": "5 s",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "installComputerName": {
+        "message": "Jméno tohoto počítače bude",
+        "description": "Text displayed before the input where the user can enter the name for this device."
+    },
+    "timestamp_m": {
+        "message": "1 minuta",
+        "description": "Brief timestamp for messages sent about one minute ago. Displayed in the conversation list and message bubble."
+    },
+    "gotIt": {
+        "message": "Rozumím!",
+        "description": "Label for a button that dismisses a dialog. The user clicks it to confirm that they understand the message in the dialog."
+    },
+    "disappearingMessages": {
+        "message": "Mizející zprávy",
+        "description": "Conversation menu option to enable disappearing messages"
+    },
+    "showMore": {
+        "message": "Podrobnosti",
+        "description": "Displays the details of a key change"
+    },
+    "timerOption_5_minutes_abbreviated": {
+        "message": "5 min",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "unsupportedFileType": {
+        "message": "Nepodporovaný typ souboru",
+        "description": "Displayed for outgoing unsupported attachment"
+    },
+    "clickToSave": {
+        "message": "Click to save",
+        "description": "Hover text for attachment filenames"
+    },
+    "installGeneratingKeys": {
+        "message": "Generují se klíče",
+        "description": ""
+    },
+    "resetSession": {
+        "message": "Resetovat sezení",
+        "description": "This is a menu item for resetting the session, using the imperative case, as in a command."
+    },
+    "offline": {
+        "message": "Offline",
+        "description": ""
+    },
+    "welcomeToSignal": {
+        "message": "Vítejte v Signalu",
+        "description": ""
+    },
+    "checkNetworkConnection": {
+        "message": "Check your network connection.",
+        "description": "Obvious instructions for when a user's computer loses its network connection"
+    },
+    "notificationSettingsDialog": {
+        "message": "V oznámeních o nově přijatých zprávách ukázat:",
+        "description": "Explain the purpose of the notification settings"
+    },
+    "members": {
+        "message": "Členové",
+        "description": ""
+    },
+    "timestamp_h": {
+        "message": "1 hodina",
+        "description": "Brief timestamp for messages sent about one minute ago. Displayed in the conversation list and message bubble."
+    },
+    "timerOption_0_seconds_abbreviated": {
+        "message": "vyp.",
+        "description": "Short format indicating current timer setting in the conversation list snippet"
+    },
+    "syncExplanation": {
+        "message": "Importovat všechny skupiny a kontakty Signalu z mobilního zařízení.",
+        "description": "Explanatory text for sync settings"
+    },
+    "restartSignal": {
+        "message": "Restartovat Signal",
+        "description": "Menu item for restarting the program."
+    },
+    "deleteMessages": {
+        "message": "Smazat zprávy",
+        "description": "Menu item for deleting messages, title case."
+    },
+    "incomingError": {
+        "message": "Chyba při zpracování příchozí zprávy",
+        "description": ""
+    },
+    "selectAContact": {
+        "message": "Vyberte si kontakt nebo skupinu a začněte si povídat.",
+        "description": ""
+    },
+    "installConnecting": {
+        "message": "Připojuje se…",
+        "description": "Displayed when waiting for the QR Code"
+    },
+    "verifyContact": {
+        "message": "Mohli byste si chtít u tohoto kontaktu $tag_start$ ověřit $tag_end$ bezpečnostní číslo.",
+        "description": "Use $tag_start$ and $tag_end$ to wrap the word or phrase in this sentence that the user should click on in order to navigate to the verification screen. These placeholders will be replaced with appropriate HTML code.",
+        "placeholders": {
+            "tag_start": {
+                "content": "<a class='verify' href='#'>"
+            },
+            "tag_end": {
+                "content": "</a>"
+            }
+        }
+    },
+    "sent": {
+        "message": "Odeslána",
+        "description": "Label for the time a message was sent"
+    },
+    "theyChangedTheTimer": {
+        "message": "$name$ nastavil/a časovač na $time$.",
+        "description": "Message displayed when someone else changes the message expiration timer in a conversation.",
+        "placeholders": {
+            "name": {
+                "content": "$1",
+                "example": "Bob"
+            },
+            "time": {
+                "content": "$2",
+                "example": "10m"
+            }
+        }
+    },
+    "timestamp_s": {
+        "message": "nyní",
+        "description": "Brief timestamp for messages sent less than a minute ago. Displayed in the conversation list and message bubble."
+    },
+    "timerOption_1_day": {
+        "message": "1 den",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "reportIssue": {
+        "message": "Nahlásit problém",
+        "description": "Link to open the issue tracker"
+    },
+    "newMessage": {
+        "message": "Nová zpráva",
+        "description": "Displayed in notifications for only 1 message"
+    },
+    "nameOnly": {
+        "message": "Jen jméno odesílatele",
+        "description": "Label for setting notifications to display sender name only"
+    },
+    "from": {
+        "message": "Od",
+        "description": "Label for the sender of a message"
+    },
+    "deleteConversationConfirmation": {
+        "message": "Trvale smazat tuto konverzaci?",
+        "description": "Confirmation dialog text that asks the user if they really wish to delete the conversation. Answer buttons use the strings 'ok' and 'cancel'. The deletion is permanent, i.e. it cannot be undone."
+    },
+    "unlinkedWarning": {
+        "message": "Relink Signal Desktop to your mobile device to continue messaging.",
+        "description": ""
+    },
+    "debugLogExplanation": {
+        "message": "Tento záznam bude přispěvatelům veřejně zpřístupněn k prohlížení. Můžete si jej před odesláním zkontrolovat a upravit.",
+        "description": ""
+    },
+    "newPhoneNumber": {
+        "message": "Zadejte telefonní číslo přidat kontakt.",
+        "description": "Placeholder for adding a new number to a contact"
+    },
+    "searchForPeopleOrGroups": {
+        "message": "Hledat…",
+        "description": "Placeholder text in the search input"
+    },
+    "noNameOrMessage": {
+        "message": "Ani jméno ani zprávu",
+        "description": "Label for setting notifications to display no name and no message text"
+    },
+    "syncNow": {
+        "message": "Importovat nyní",
+        "description": "Label for a button that syncs contacts and groups from your phone"
+    },
+    "syncFailed": {
+        "message": "Import selhal. Zkontrolujte, zda jsou počítač i telefon připojeny k internetu.",
+        "description": "Informational text displayed if a sync operation times out."
+    },
+    "unlinked": {
+        "message": "Unlinked",
+        "description": ""
+    },
+    "installFollowUs": {
+        "message": "Pro novinky o podpoře více zařízení na iOS <a $a_params$>nás sledujte</a>.",
+        "description": "",
+        "placeholders": {
+            "a_params": {
+                "content": "$1",
+                "example": "href='http://example.com'"
+            }
+        }
+    },
+    "learnMore": {
+        "message": "Dozvědět se více o ověřování bezpečnostních čísel",
+        "description": "Text that links to a support article on verifying safety numbers"
+    },
+    "safetyNumbersSettingHeader": {
+        "message": "Schvalování bezpečnostních čísel",
+        "description": "Header for safety numbers setting"
+    },
+    "installTooManyDevices": {
+        "message": "Promiňte, ale máte už příliš mnoho propojených zařízení. Zkuste některá odstranit.",
+        "description": ""
+    },
+    "installSignalLinks": {
+        "message": "Nejprve si nainstalujte Signal do <a $play_store$>Androidu</a> nebo <a $app_store$>iPhonu</a>.<br />Propojíme vaše zařízení a budeme synchronizovat zprávy.",
+        "description": "Prompt the user to install Signal on their phone before linking",
+        "placeholders": {
+            "play_store": {
+                "content": "$1",
+                "example": "href='http://example.com'"
+            },
+            "app_store": {
+                "content": "$2",
+                "example": "href='http://example.com'"
+            }
+        }
+    },
+    "installSyncingGroupsAndContacts": {
+        "message": "Synchronizují se skupiny a kontakty",
+        "description": ""
+    },
+    "timerOption_30_minutes_abbreviated": {
+        "message": "30 min",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "themeAndroidDark": {
+        "message": "Android (tmavý)",
+        "description": "Label text for dark Android theme"
+    },
+    "timerOption_1_minute_abbreviated": {
+        "message": "1 min",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "upgrade": {
+        "message": "Aktualizovat",
+        "description": "Label text for button to upgrade the app to the latest version"
+    },
+    "yourSafetyNumberWith": {
+        "message": "Vaše bezpečnostní číslo s $name$",
+        "description": "Heading for safety number view",
+        "placeholders": {
+            "name": {
+                "content": "$1",
+                "example": "John"
+            }
+        }
+    },
+    "showLess": {
+        "message": "Skrýt podrobnosti",
+        "description": "Hides the details of a key change"
+    },
+    "theme": {
+        "message": "Motiv",
+        "description": "Header for theme settings"
+    },
+    "newIdentity": {
+        "message": "Nové bezpečnostní číslo",
+        "description": "Header for a key change dialog"
+    },
+    "installTagline": {
+        "message": "Soukromí je možné. Signal jej usnadňuje.",
+        "description": "Tagline displayed under installWelcome on the install page"
+    },
+    "audioNotificationDescription": {
+        "message": "Přehrát zvukové upozornění",
+        "description": "Description for audio notification setting"
+    },
+    "disconnected": {
+        "message": "Odpojen",
+        "description": ""
+    },
+    "syncing": {
+        "message": "Importuje se…",
+        "description": "Label for a disabled sync button while sync is in progress."
+    },
+    "acceptNewKey": {
+        "message": "Přijmout",
+        "description": "Label for a button to accept a new safety number"
+    },
+    "timerOption_12_hours_abbreviated": {
+        "message": "12 h",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "timestampFormat_M": {
+        "message": "D MMM",
+        "description": "Timestamp format string for displaying month and day (but not the year) of a date within the current year, ex: use 'MMM D' for 'Aug 8', or 'D MMM' for '8 Aug'."
+    },
+    "timerOption_6_hours_abbreviated": {
+        "message": "6 h",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "unregisteredUser": {
+        "message": "Číslo není registrováno",
+        "description": "Error message displayed when sending to an unregistered user."
+    },
+    "timerOption_1_day_abbreviated": {
+        "message": "1 d",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "sync": {
+        "message": "Kontakty",
+        "description": "Label for contact and group sync settings"
+    },
+    "timerOption_1_week": {
+        "message": "1 týden",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "installGotIt": {
+        "message": "Rozumím",
+        "description": "Button for the user to confirm that they have Signal installed."
+    },
+    "received": {
+        "message": "Přijata",
+        "description": "Label for the time a message was received"
+    },
+    "timerOption_30_seconds": {
+        "message": "30 sekund",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "sendMessage": {
+        "message": "Poslat zprávu",
+        "description": "Placeholder text in the message entry field"
+    },
+    "mediaMessage": {
+        "message": "Multimediální zpráva",
+        "description": "Description of a message that has an attachment and no text, displayed in the conversation list as a preview."
+    },
+    "expiredWarning": {
+        "message": "Tato verze aplikace Signal Desktop je zastaralá. Abyste mohli dále komunikovat, aktualizujte ji prosím na nejnovější verzi.",
+        "description": "Warning notification that this version of the app has expired"
+    },
+    "outgoingKeyConflict": {
+        "message": "Bezpečnostní číslo k tomuto kontaktu se vám změnilo. Klikněte pro zpracování a zobrazení.",
+        "description": ""
+    },
+    "fileSizeWarning": {
+        "message": "Omlouváme se, vybraný soubor překročil limit velikosti zprávy.",
+        "description": ""
+    },
+    "timerOption_0_seconds": {
+        "message": "vyp.",
+        "description": "Label for option to turn off message expiration in the timer menu"
+    },
+    "installAndroidInstructions": {
+        "message": "Otevřete si Signal na telefonu a přejděte do Nastavení > Propojená zařízení. Stisknutím tlačítka přidejte nové zařízení, pak naskenujte kód nahoře.",
+        "description": ""
+    },
+    "invalidNumberError": {
+        "message": "Neplatné číslo",
+        "description": "When a person inputs a number that is invalid"
+    },
+    "installWelcome": {
+        "message": "Vítejte v aplikaci Signal Desktop",
+        "description": "Welcome title on the install page"
+    },
+    "installConnectionFailed": {
+        "message": "Připojení k serveru selhalo.",
+        "description": "Displayed when we can't connect to the server."
+    },
+    "messageNotSent": {
+        "message": "Zpráva neodeslána.",
+        "description": "Informational label, appears on messages that failed to send"
+    },
+    "disableNotifications": {
+        "message": "Vypnout oznámení",
+        "description": "Label for disabling notifications"
+    },
+    "cancel": {
+        "message": "Zrušit",
+        "description": ""
+    },
+    "unblockToSend": {
+        "message": "Pro odeslání zprávy tento kontakt odblokujte.",
+        "description": "Brief message shown when trying to message a blocked number"
+    },
+    "installIHaveSignalButton": {
+        "message": "Mám aplikaci Signal pro Android",
+        "description": "Button for the user to confirm that they have Signal for Android"
+    },
+    "unnamedFile": {
+        "message": "Unnamed File",
+        "description": "Hover text for attachment filenames"
+    },
+    "connecting": {
+        "message": "Connecting",
+        "description": ""
+    },
+    "sessionEnded": {
+        "message": "Bezpečné sezení resetováno",
+        "description": "This is a past tense, informational message. In other words, your secure session has been reset."
+    },
+    "installGetStartedButton": {
+        "message": "Začněte",
+        "description": ""
+    },
+    "relink": {
+        "message": "Relink",
+        "description": ""
+    },
+    "timerOption_1_week_abbreviated": {
+        "message": "1 týd.",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "timerOption_5_seconds": {
+        "message": "5 sekund",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "installSignalLink": {
+        "message": "Nejprve si nainstalujte <a $a_params$>Signal</a> na telefon s Androidem.<br /> Propojíme vaše zařízení a budeme synchronizovat zprávy.",
+        "description": "Prompt the user to install Signal on Android before linking",
+        "placeholders": {
+            "a_params": {
+                "content": "$1",
+                "example": "href='http://example.com'"
+            }
+        }
+    },
+    "installLinkingWithNumber": {
+        "message": "Propojuji s",
+        "description": "Text displayed before the phone number that the user is in the process of linking with"
+    },
+    "newMessages": {
+        "message": "Nové zprávy",
+        "description": "Displayed in notifications for multiple messages"
+    },
+    "newContact": {
+        "message": "Kliknutím vytvoříte nový kontakt",
+        "description": ""
+    },
+    "theirIdentityUnknown": {
+        "message": "S tímto kontaktem jste si ještě nevyměnili žádné zprávy. Bezpečnostní číslo k němu bude dostupné po první zprávě.",
+        "description": ""
+    },
+    "voiceMessage": {
+        "message": "Voice Message",
+        "description": "Name for a voice message attachment"
+    },
+    "submit": {
+        "message": "Odeslat",
+        "description": ""
+    },
+    "keychanged": {
+        "message": "Změnilo se vám bezpečnostní číslo s $name$.",
+        "description": "",
+        "placeholders": {
+            "name": {
+                "content": "$1",
+                "example": "John"
+            }
+        }
+    },
+    "safetyNumbersSettingDescription": {
+        "message": "Vyžadovat schválení nových bezpečnostních čísel, když se změní",
+        "description": "Description for safety numbers setting"
+    },
+    "to": {
+        "message": "Komu",
+        "description": "Label for the receiver of a message"
+    },
+    "timerOption_1_hour_abbreviated": {
+        "message": "1 h",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "installFinalButton": {
+        "message": "To by šlo",
+        "description": "The final button for the install process, after the user has entered a name for their device"
+    },
+    "messageDetail": {
+        "message": "Podrobnosti zprávy",
+        "description": ""
+    },
+    "verify": {
+        "message": "Ověřit",
+        "description": ""
+    },
+    "timerOption_10_seconds_abbreviated": {
+        "message": "10 s",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "nameAndMessage": {
+        "message": "Jméno odesílatele i zprávu",
+        "description": "Label for setting notifications to display name and message text"
+    },
+    "failedToSend": {
+        "message": "Selhalo odeslání některým příjemcům. Zkontrolujte si síťové připojení.",
+        "description": ""
+    },
+    "ok": {
+        "message": "OK",
+        "description": ""
+    },
+    "identityChanged": {
+        "message": "Bezpečnostní číslo k tomuto kontaktu se vám změnilo. Může to znamenat buď to, že se někdo snaží vaši komunikaci odposlouchávat, nebo si kontakt prostě znovu nainstaloval Signal. Možná si budete chtít bezpečnostní číslo níže ověřit.",
+        "description": ""
+    },
+    "submitDebugLog": {
+        "message": "Odeslat chybový záznam",
+        "description": "Menu item and header text for debug log modal, title case."
+    },
+    "error": {
+        "message": "Chyba",
+        "description": ""
+    },
+    "timerSetTo": {
+        "message": "Časovač nastaven na $time$",
+        "description": "Displayed in the conversation list when the timer is updated.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "1w"
+            }
+        }
+    },
+    "timerOption_30_seconds_abbreviated": {
+        "message": "30 s",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "notifications": {
+        "message": "Oznámení",
+        "description": "Header for notification settings"
+    },
+    "resend": {
+        "message": "Znovu odeslat",
+        "description": ""
+    }
+}

@@ -1,0 +1,576 @@
+{
+    "timerOption_10_seconds": {
+        "message": "10 detik",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "lastSynced": {
+        "message": "Impor terakhir pada",
+        "description": "Label for date and time of last sync operation"
+    },
+    "attemptingReconnection": {
+        "message": "Attempting reconnect in $reconnect_duration_in_seconds$ seconds",
+        "description": "",
+        "placeholders": {
+            "reconnect_duration_in_seconds": {
+                "content": "$1",
+                "example": "10"
+            }
+        }
+    },
+    "unsupportedAttachment": {
+        "message": "Jenis lampiran tidak didukung. Klik untuk menyimpan.",
+        "description": "Displayed for incoming unsupported attachment"
+    },
+    "verifySafetyNumbers": {
+        "message": "Verifikasi nomor keamanan",
+        "description": ""
+    },
+    "youChangedTheTimer": {
+        "message": "Anda memasang pewaktu ke $time$",
+        "description": "Message displayed when you change the message expiration timer in a conversation.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "10m"
+            }
+        }
+    },
+    "settings": {
+        "message": "Pengaturan",
+        "description": "Menu item and header for global settings"
+    },
+    "incomingKeyConflict": {
+        "message": "Terima pesan dengan sebuah nomor keamanan baru. Klik untuk memproses dan tampilkan.",
+        "description": ""
+    },
+    "timerOption_5_seconds_abbreviated": {
+        "message": "5d",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "installComputerName": {
+        "message": "Nama komputer ini akan menjadi",
+        "description": "Text displayed before the input where the user can enter the name for this device."
+    },
+    "timestamp_m": {
+        "message": "1 menit",
+        "description": "Brief timestamp for messages sent about one minute ago. Displayed in the conversation list and message bubble."
+    },
+    "gotIt": {
+        "message": "Saya mengerti!",
+        "description": "Label for a button that dismisses a dialog. The user clicks it to confirm that they understand the message in the dialog."
+    },
+    "disappearingMessages": {
+        "message": "Menghilangkan pesan",
+        "description": "Conversation menu option to enable disappearing messages"
+    },
+    "showMore": {
+        "message": "Detail",
+        "description": "Displays the details of a key change"
+    },
+    "timerOption_5_minutes_abbreviated": {
+        "message": "5m",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "unsupportedFileType": {
+        "message": "Jenis berkas tidak didukung",
+        "description": "Displayed for outgoing unsupported attachment"
+    },
+    "clickToSave": {
+        "message": "Click to save",
+        "description": "Hover text for attachment filenames"
+    },
+    "installGeneratingKeys": {
+        "message": "Sedang Membuat Kunci",
+        "description": ""
+    },
+    "resetSession": {
+        "message": "Mengatur ulang sesi",
+        "description": "This is a menu item for resetting the session, using the imperative case, as in a command."
+    },
+    "offline": {
+        "message": "Offline",
+        "description": ""
+    },
+    "welcomeToSignal": {
+        "message": "Selamat datang di Signal",
+        "description": ""
+    },
+    "checkNetworkConnection": {
+        "message": "Check your network connection.",
+        "description": "Obvious instructions for when a user's computer loses its network connection"
+    },
+    "notificationSettingsDialog": {
+        "message": "Saat pesan sampai, tampilkan pemberitahun yang menampilkan:",
+        "description": "Explain the purpose of the notification settings"
+    },
+    "members": {
+        "message": "Anggota",
+        "description": ""
+    },
+    "timestamp_h": {
+        "message": "1 jam",
+        "description": "Brief timestamp for messages sent about one minute ago. Displayed in the conversation list and message bubble."
+    },
+    "timerOption_0_seconds_abbreviated": {
+        "message": "padam",
+        "description": "Short format indicating current timer setting in the conversation list snippet"
+    },
+    "syncExplanation": {
+        "message": "Impor semua grup Signal dan kontak dari semua perangkat mobile anda.",
+        "description": "Explanatory text for sync settings"
+    },
+    "restartSignal": {
+        "message": "Restart Signal",
+        "description": "Menu item for restarting the program."
+    },
+    "deleteMessages": {
+        "message": "Hapus pesan",
+        "description": "Menu item for deleting messages, title case."
+    },
+    "incomingError": {
+        "message": "Kesalahan dalam penanganan pesan baru.",
+        "description": ""
+    },
+    "selectAContact": {
+        "message": "Pilih kontak atau grup untuk mulai mengobrol",
+        "description": ""
+    },
+    "installConnecting": {
+        "message": "Menyambungkan...",
+        "description": "Displayed when waiting for the QR Code"
+    },
+    "verifyContact": {
+        "message": "Anda mungkin ingin nomor keamanan anda untuk $tag_start$ memverifikasi $tag_end$ dengan kontak ini.",
+        "description": "Use $tag_start$ and $tag_end$ to wrap the word or phrase in this sentence that the user should click on in order to navigate to the verification screen. These placeholders will be replaced with appropriate HTML code.",
+        "placeholders": {
+            "tag_start": {
+                "content": "<a class='verify' href='#'>"
+            },
+            "tag_end": {
+                "content": "</a>"
+            }
+        }
+    },
+    "sent": {
+        "message": "Terkirim",
+        "description": "Label for the time a message was sent"
+    },
+    "theyChangedTheTimer": {
+        "message": "$name$ mengubah pewaktu ke $time$.",
+        "description": "Message displayed when someone else changes the message expiration timer in a conversation.",
+        "placeholders": {
+            "name": {
+                "content": "$1",
+                "example": "Bob"
+            },
+            "time": {
+                "content": "$2",
+                "example": "10m"
+            }
+        }
+    },
+    "timestamp_s": {
+        "message": "sekarang",
+        "description": "Brief timestamp for messages sent less than a minute ago. Displayed in the conversation list and message bubble."
+    },
+    "timerOption_1_day": {
+        "message": "1 hari",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "reportIssue": {
+        "message": "Laporkan isu",
+        "description": "Link to open the issue tracker"
+    },
+    "newMessage": {
+        "message": "Pesan Baru",
+        "description": "Displayed in notifications for only 1 message"
+    },
+    "nameOnly": {
+        "message": "Nama pengirim saja",
+        "description": "Label for setting notifications to display sender name only"
+    },
+    "from": {
+        "message": "Dari",
+        "description": "Label for the sender of a message"
+    },
+    "deleteConversationConfirmation": {
+        "message": "Hapus obrolan ini selamanya?",
+        "description": "Confirmation dialog text that asks the user if they really wish to delete the conversation. Answer buttons use the strings 'ok' and 'cancel'. The deletion is permanent, i.e. it cannot be undone."
+    },
+    "unlinkedWarning": {
+        "message": "Relink Signal Desktop to your mobile device to continue messaging.",
+        "description": ""
+    },
+    "debugLogExplanation": {
+        "message": "Catatan ini akan diunggah secara publik agar kontributor dapat melihat. Anda dapat memeriksa kembali dan menyunting ini sebelum mengunggahnya.",
+        "description": ""
+    },
+    "newPhoneNumber": {
+        "message": "Masukkan nomor telepon untuk menambahkan kontak.",
+        "description": "Placeholder for adding a new number to a contact"
+    },
+    "searchForPeopleOrGroups": {
+        "message": "Cari...",
+        "description": "Placeholder text in the search input"
+    },
+    "noNameOrMessage": {
+        "message": "Nama atau pesan saja",
+        "description": "Label for setting notifications to display no name and no message text"
+    },
+    "syncNow": {
+        "message": "Impor sekarang",
+        "description": "Label for a button that syncs contacts and groups from your phone"
+    },
+    "syncFailed": {
+        "message": "Impor gagal. Pastikan komputer atau perangkat anda tersambung jaringan internet.",
+        "description": "Informational text displayed if a sync operation times out."
+    },
+    "unlinked": {
+        "message": "Unlinked",
+        "description": ""
+    },
+    "installFollowUs": {
+        "message": "<a $a_params$>Ikuti kami</a> untuk pemutakhiran dukungan banyak perangkat di iOS",
+        "description": "",
+        "placeholders": {
+            "a_params": {
+                "content": "$1",
+                "example": "href='http://example.com'"
+            }
+        }
+    },
+    "learnMore": {
+        "message": "Pelajari lebih jauh tentang verifikasi nomor keamanan",
+        "description": "Text that links to a support article on verifying safety numbers"
+    },
+    "safetyNumbersSettingHeader": {
+        "message": "Penerimaan nomor keamanan",
+        "description": "Header for safety numbers setting"
+    },
+    "installTooManyDevices": {
+        "message": "Maaf, Anda menautkan perangkat terlalu banyak. Coba hapus beberapa.",
+        "description": ""
+    },
+    "installSignalLinks": {
+        "message": "Pertama, pasang Signal pada <a $play_store$>Android atau <a $app_store$>iPhone</a> anda. <br /> Kami akan menyambungkan perangat anda dan menyelaraskan pesan anda selalu.",
+        "description": "Prompt the user to install Signal on their phone before linking",
+        "placeholders": {
+            "play_store": {
+                "content": "$1",
+                "example": "href='http://example.com'"
+            },
+            "app_store": {
+                "content": "$2",
+                "example": "href='http://example.com'"
+            }
+        }
+    },
+    "installSyncingGroupsAndContacts": {
+        "message": "Sinkronasi grup dan kontak",
+        "description": ""
+    },
+    "timerOption_30_minutes_abbreviated": {
+        "message": "30m",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "themeAndroidDark": {
+        "message": "Android (gelap)",
+        "description": "Label text for dark Android theme"
+    },
+    "timerOption_1_minute_abbreviated": {
+        "message": "1m",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "upgrade": {
+        "message": "Pemutahiran",
+        "description": "Label text for button to upgrade the app to the latest version"
+    },
+    "yourSafetyNumberWith": {
+        "message": "Nomor keamanan anda dengan $name$",
+        "description": "Heading for safety number view",
+        "placeholders": {
+            "name": {
+                "content": "$1",
+                "example": "John"
+            }
+        }
+    },
+    "showLess": {
+        "message": "Sembunyikan detail",
+        "description": "Hides the details of a key change"
+    },
+    "theme": {
+        "message": "Tema",
+        "description": "Header for theme settings"
+    },
+    "newIdentity": {
+        "message": "Nomor keamanan baru",
+        "description": "Header for a key change dialog"
+    },
+    "installTagline": {
+        "message": "Privasi itu mungkin. Signal membuatnya lebih mudah.",
+        "description": "Tagline displayed under installWelcome on the install page"
+    },
+    "audioNotificationDescription": {
+        "message": "Mainkan suara notifikasi",
+        "description": "Description for audio notification setting"
+    },
+    "disconnected": {
+        "message": "Luring",
+        "description": ""
+    },
+    "syncing": {
+        "message": "Impor ...",
+        "description": "Label for a disabled sync button while sync is in progress."
+    },
+    "acceptNewKey": {
+        "message": "Terima",
+        "description": "Label for a button to accept a new safety number"
+    },
+    "timerOption_12_hours_abbreviated": {
+        "message": "12j",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "timestampFormat_M": {
+        "message": "MMM D",
+        "description": "Timestamp format string for displaying month and day (but not the year) of a date within the current year, ex: use 'MMM D' for 'Aug 8', or 'D MMM' for '8 Aug'."
+    },
+    "timerOption_6_hours_abbreviated": {
+        "message": "6j",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "unregisteredUser": {
+        "message": "Nomor tidak terdaftarkan",
+        "description": "Error message displayed when sending to an unregistered user."
+    },
+    "timerOption_1_day_abbreviated": {
+        "message": "1h",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "sync": {
+        "message": "Kontak",
+        "description": "Label for contact and group sync settings"
+    },
+    "timerOption_1_week": {
+        "message": "1 minggu",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "installGotIt": {
+        "message": "Dimengerti",
+        "description": "Button for the user to confirm that they have Signal installed."
+    },
+    "received": {
+        "message": "Menerima",
+        "description": "Label for the time a message was received"
+    },
+    "timerOption_30_seconds": {
+        "message": "30 detik",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "sendMessage": {
+        "message": "Mengirim pesan",
+        "description": "Placeholder text in the message entry field"
+    },
+    "mediaMessage": {
+        "message": "Pesan berisi media",
+        "description": "Description of a message that has an attachment and no text, displayed in the conversation list as a preview."
+    },
+    "expiredWarning": {
+        "message": "Versi dari Signal Desktop ini telah kadaluarsa. Mohom memutahirkan ke versi terbaru untuk melanjutkan pengiriman pesan.",
+        "description": "Warning notification that this version of the app has expired"
+    },
+    "outgoingKeyConflict": {
+        "message": "Nomor keamanan anda dengan kontak ini telah berubah. Klik untuk memproses dan tampilkan.",
+        "description": ""
+    },
+    "fileSizeWarning": {
+        "message": "Maaf, berkas tersebut melebihi batas ukuran pesan.",
+        "description": ""
+    },
+    "timerOption_0_seconds": {
+        "message": "padam",
+        "description": "Label for option to turn off message expiration in the timer menu"
+    },
+    "installAndroidInstructions": {
+        "message": "Buka Signal di telepon anda dan arahkan ke Pengaturan -> perangkan tersambung. Tekan tombol untuk menambahkan perangkat baru, lalu pindai kode diatas.",
+        "description": ""
+    },
+    "invalidNumberError": {
+        "message": "Nomor salah",
+        "description": "When a person inputs a number that is invalid"
+    },
+    "installWelcome": {
+        "message": "Selamat datang di Signal Desktop",
+        "description": "Welcome title on the install page"
+    },
+    "installConnectionFailed": {
+        "message": "Gagal menyambungkan ke server.",
+        "description": "Displayed when we can't connect to the server."
+    },
+    "messageNotSent": {
+        "message": "Pesan tidak terkirim.",
+        "description": "Informational label, appears on messages that failed to send"
+    },
+    "disableNotifications": {
+        "message": "Matikan pemberitahuan",
+        "description": "Label for disabling notifications"
+    },
+    "cancel": {
+        "message": "Batal",
+        "description": ""
+    },
+    "unblockToSend": {
+        "message": "Lepaskan blokir kontak ini untuk mengirim pesan",
+        "description": "Brief message shown when trying to message a blocked number"
+    },
+    "installIHaveSignalButton": {
+        "message": "Saya memiliki Signal for Android",
+        "description": "Button for the user to confirm that they have Signal for Android"
+    },
+    "unnamedFile": {
+        "message": "Unnamed File",
+        "description": "Hover text for attachment filenames"
+    },
+    "connecting": {
+        "message": "Connecting",
+        "description": ""
+    },
+    "sessionEnded": {
+        "message": "Sesi aman berakhir",
+        "description": "This is a past tense, informational message. In other words, your secure session has been reset."
+    },
+    "installGetStartedButton": {
+        "message": "Memulai",
+        "description": ""
+    },
+    "relink": {
+        "message": "Relink",
+        "description": ""
+    },
+    "timerOption_1_week_abbreviated": {
+        "message": "1mg",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "timerOption_5_seconds": {
+        "message": "5 detik",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "installSignalLink": {
+        "message": "Pertama, pasang <a $a_params$>Signal</a> di ponsel Android Anda.<br/> Kami akan menautkan perangkat-perangkat Anda dan menjaga pesan-pesan Anda tetap tersinkronisasi.",
+        "description": "Prompt the user to install Signal on Android before linking",
+        "placeholders": {
+            "a_params": {
+                "content": "$1",
+                "example": "href='http://example.com'"
+            }
+        }
+    },
+    "installLinkingWithNumber": {
+        "message": "Tautkan dengan",
+        "description": "Text displayed before the phone number that the user is in the process of linking with"
+    },
+    "newMessages": {
+        "message": "Pesan Baru",
+        "description": "Displayed in notifications for multiple messages"
+    },
+    "newContact": {
+        "message": "Klik untuk membuat kontak baru",
+        "description": ""
+    },
+    "theirIdentityUnknown": {
+        "message": "Anda belum mengirim pesan apapun dengan kontak ini. Nomor keamanan anda dengan kontak ini akan tersedia sesaat setelah pesan pertama.",
+        "description": ""
+    },
+    "voiceMessage": {
+        "message": "Voice Message",
+        "description": "Name for a voice message attachment"
+    },
+    "submit": {
+        "message": "Kirim",
+        "description": ""
+    },
+    "keychanged": {
+        "message": "Nomor keamanan anda dengan $name$ telah berubah.",
+        "description": "",
+        "placeholders": {
+            "name": {
+                "content": "$1",
+                "example": "John"
+            }
+        }
+    },
+    "safetyNumbersSettingDescription": {
+        "message": "Dibutuhkan penerimaan untuk nomor keamanan baru setelah berubah",
+        "description": "Description for safety numbers setting"
+    },
+    "to": {
+        "message": "Kepada",
+        "description": "Label for the receiver of a message"
+    },
+    "timerOption_1_hour_abbreviated": {
+        "message": "1j",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "installFinalButton": {
+        "message": "Terlihat baik",
+        "description": "The final button for the install process, after the user has entered a name for their device"
+    },
+    "messageDetail": {
+        "message": "Detail Pesan",
+        "description": ""
+    },
+    "verify": {
+        "message": "Verifikasi",
+        "description": ""
+    },
+    "timerOption_10_seconds_abbreviated": {
+        "message": "10d",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "nameAndMessage": {
+        "message": "nama pengirim dan pesannya",
+        "description": "Label for setting notifications to display name and message text"
+    },
+    "failedToSend": {
+        "message": "Gagal mengirim. Cek sambungan jaringan Anda.",
+        "description": ""
+    },
+    "ok": {
+        "message": "OK",
+        "description": ""
+    },
+    "identityChanged": {
+        "message": "Nomor keamanan anda dengan kontak ini telah berubah. Ini bisa berarti ada seseorang mencoba menyadap komunikasi anda, atau kontak telah menghapus aplikasi Signal. Anda mungkin ingin memverifikasi nomor keamanan baru dibawah.",
+        "description": ""
+    },
+    "submitDebugLog": {
+        "message": "Kirim log debug",
+        "description": "Menu item and header text for debug log modal, title case."
+    },
+    "error": {
+        "message": "Galat",
+        "description": ""
+    },
+    "timerSetTo": {
+        "message": "Pewaktu set ke $time$",
+        "description": "Displayed in the conversation list when the timer is updated.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "1w"
+            }
+        }
+    },
+    "timerOption_30_seconds_abbreviated": {
+        "message": "30d",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "notifications": {
+        "message": "Pemberitahuan",
+        "description": "Header for notification settings"
+    },
+    "resend": {
+        "message": "Kirim ulang",
+        "description": ""
+    }
+}

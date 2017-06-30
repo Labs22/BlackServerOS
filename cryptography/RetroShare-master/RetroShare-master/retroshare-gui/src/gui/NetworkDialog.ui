@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>NetworkDialog</class>
+ <widget class="QWidget" name="NetworkDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>825</width>
+    <height>567</height>
+   </rect>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="filterLabel">
+       <property name="text">
+        <string>Filter:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="LineEditClear" name="filterLineEdit">
+       <property name="toolTip">
+        <string>Search Network</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="onlyTrustedKeys">
+       <property name="text">
+        <string>Trusted keys only</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <widget class="QSplitter" name="splitter">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <widget class="QTreeWidget" name="connectTreeWidget">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::CustomContextMenu</enum>
+      </property>
+      <property name="acceptDrops">
+       <bool>false</bool>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="lineWidth">
+       <number>20</number>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>16</width>
+        <height>16</height>
+       </size>
+      </property>
+      <property name="uniformRowHeights">
+       <bool>true</bool>
+      </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
+      <property name="animated">
+       <bool>true</bool>
+      </property>
+      <property name="allColumnsShowFocus">
+       <bool>true</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <attribute name="headerCascadingSectionResizes">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="headerDefaultSectionSize">
+       <number>200</number>
+      </attribute>
+      <attribute name="headerStretchLastSection">
+       <bool>true</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string/>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Profile</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Did I authenticated peer</string>
+       </property>
+       <property name="toolTip">
+        <string>Did I sign his PGP key</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Has signed my key</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Cert Id</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Last used</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+  <action name="actionClearLog">
+   <property name="text">
+    <string>Clear</string>
+   </property>
+  </action>
+  <action name="actionTabsright">
+   <property name="text">
+    <string>Set Tabs Right</string>
+   </property>
+  </action>
+  <action name="actionTabsnorth">
+   <property name="text">
+    <string>Set Tabs North</string>
+   </property>
+  </action>
+  <action name="actionTabssouth">
+   <property name="text">
+    <string>Set Tabs South</string>
+   </property>
+  </action>
+  <action name="actionTabswest">
+   <property name="text">
+    <string>Set Tabs Left</string>
+   </property>
+  </action>
+  <action name="actionTabsRounded">
+   <property name="text">
+    <string>Set Tabs Rounded</string>
+   </property>
+  </action>
+  <action name="actionTabsTriangular">
+   <property name="text">
+    <string>Set Tabs Triangular</string>
+   </property>
+  </action>
+  <action name="actionAddFriend">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/user/add_user16.png</normaloff>:/images/user/add_user16.png</iconset>
+   </property>
+   <property name="text">
+    <string>Add Friend</string>
+   </property>
+  </action>
+  <action name="actionCopyKey">
+   <property name="text">
+    <string>Copy My Key to Clipboard</string>
+   </property>
+  </action>
+  <action name="actionExportKey">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/exportpeers_16x16.png</normaloff>:/images/exportpeers_16x16.png</iconset>
+   </property>
+   <property name="text">
+    <string>Export My Key</string>
+   </property>
+  </action>
+  <action name="actionCreate_New_Profile">
+   <property name="text">
+    <string>Create New Profile</string>
+   </property>
+   <property name="toolTip">
+    <string>Create a new Profile</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>LineEditClear</class>
+   <extends>QLineEdit</extends>
+   <header location="global">gui/common/LineEditClear.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,43 @@
+<html>
+
+<head>
+  <title>libTextSecure test runner</title>
+  <link rel="stylesheet" href="../../components/mocha/mocha.css" />
+</head>
+<body>
+
+  <div id="mocha">
+  </div>
+  <div id="tests">
+  </div>
+
+  <script type="text/javascript" src="test.js"></script>
+  <script type="text/javascript" src="blanket_mocha.js"></script>
+  <script type="text/javascript" src="in_memory_signal_protocol_store.js"></script>
+
+  <script type="text/javascript" src="../components.js"></script>
+  <script type="text/javascript" src="../libsignal-protocol.js"></script>
+  <script type="text/javascript" src="../crypto.js"></script>
+  <script type="text/javascript" src="../protobufs.js" data-cover></script>
+  <script type="text/javascript" src="../errors.js" data-cover></script>
+  <script type="text/javascript" src="../storage.js" data-cover></script>
+  <script type="text/javascript" src="../protocol_wrapper.js" data-cover></script>
+
+  <script type="text/javascript" src="../websocket-resources.js" data-cover></script>
+  <script type="text/javascript" src="../helpers.js" data-cover></script>
+  <script type="text/javascript" src="../stringview.js" data-cover></script>
+  <script type="text/javascript" src="../api.js"></script>
+  <script type="text/javascript" src="../sendmessage.js" data-cover></script>
+  <script type="text/javascript" src="../event_target.js" data-></script>
+  <script type="text/javascript" src="../account_manager.js" data-></script>
+  <script type="text/javascript" src="../contacts_parser.js"></script>
+
+  <script type="text/javascript" src="fake_api.js"></script>
+  <script type="text/javascript" src="helpers_test.js"></script>
+  <script type="text/javascript" src="storage_test.js"></script>
+  <script type="text/javascript" src="protocol_wrapper_test.js"></script>
+  <script type="text/javascript" src="contacts_parser_test.js"></script>
+  <script type="text/javascript" src="generate_keys_test.js"></script>
+  <script type="text/javascript" src="websocket-resources_test.js"></script>
+</body>
+</html>

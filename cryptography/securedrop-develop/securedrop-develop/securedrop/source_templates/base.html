@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SecureDrop | Protecting Journalists and Sources</title>
+
+    <link rel="stylesheet" href="/static/css/source.css" />
+    <link rel="icon" type="image/png" href="/static/i/favicon.png" >
+    {% block extrahead %}{% endblock %}
+  </head>
+  <body>
+    {% include 'banner_warning_flashed.html' %}
+
+    <div class="content">
+      {% block header %}
+      <div id="header">
+        <a href="{% if 'logged_in' in session %}{{ url_for('lookup') }}{% else %}{{ url_for('index') }}{% endif %}"><img src="/static/i/{{ header_image }}" class="logo small" alt="SecureDrop" width="250px"></a>
+        {% if use_custom_header_image %}
+        <div class="powered">
+          Powered by<br/>
+          <img src="/static/i/securedrop_small.png" alt="SecureDrop">
+        </div>
+        {% endif %}
+      </div>
+      {% endblock %}
+
+      <div class="panel selected">
+      {% if 'logged_in' in session %}
+        <a href="{{ url_for('logout') }}" class="sd-button btn pull-right" id="logout">EXIT</a>
+      {% endif %}
+        <hr class="no-line" />
+
+        {% block body %}{% endblock %}
+
+      </div>
+
+      {% block footer %}
+      <footer>
+        Like all software, SecureDrop may contain security bugs. Use at your own risk. Powered by SecureDrop {{ version }}.
+      </footer>
+      {% endblock %}
+    </div>
+  </body>
+</html>

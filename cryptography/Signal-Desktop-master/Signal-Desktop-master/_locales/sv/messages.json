@@ -1,0 +1,610 @@
+{
+    "scrollDown": {
+        "message": "Rulla till botten av konversationen",
+        "description": "Alt text for button to take user down to bottom of conversation, shown when user scrolls up"
+    },
+    "timerOption_10_seconds": {
+        "message": "10 sekunder",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "lastSynced": {
+        "message": "Senaste import",
+        "description": "Label for date and time of last sync operation"
+    },
+    "attemptingReconnection": {
+        "message": "Försöker återansluta om $reconnect_duration_in_seconds$  sekunder",
+        "description": "",
+        "placeholders": {
+            "reconnect_duration_in_seconds": {
+                "content": "$1",
+                "example": "10"
+            }
+        }
+    },
+    "unsupportedAttachment": {
+        "message": "Okänd filtyp på bilaga. Klicka för att spara.",
+        "description": "Displayed for incoming unsupported attachment"
+    },
+    "androidMessageLengthWarning": {
+        "message": "Androidklienter kommer bara ta emot de första 2000 tecknen av detta meddelande.",
+        "description": "Warning that long messages could not get received completely by Android clients."
+    },
+    "verifySafetyNumbers": {
+        "message": "Verifiera säkerhetsnummer",
+        "description": ""
+    },
+    "youChangedTheTimer": {
+        "message": "Du satte timern på $time$.",
+        "description": "Message displayed when you change the message expiration timer in a conversation.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "10m"
+            }
+        }
+    },
+    "settings": {
+        "message": "Inställningar",
+        "description": "Menu item and header for global settings"
+    },
+    "incomingKeyConflict": {
+        "message": "Mottaget meddelande med ett nytt säkerhetsnummer. Klicka för att hantera och visa.",
+        "description": ""
+    },
+    "timerOption_5_seconds_abbreviated": {
+        "message": "5s",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "installComputerName": {
+        "message": "Datornamnet kommer att vara",
+        "description": "Text displayed before the input where the user can enter the name for this device."
+    },
+    "timestamp_m": {
+        "message": "1 minut",
+        "description": "Brief timestamp for messages sent about one minute ago. Displayed in the conversation list and message bubble."
+    },
+    "gotIt": {
+        "message": "Uppfattat!",
+        "description": "Label for a button that dismisses a dialog. The user clicks it to confirm that they understand the message in the dialog."
+    },
+    "disappearingMessages": {
+        "message": "Försvinnande meddelanden",
+        "description": "Conversation menu option to enable disappearing messages"
+    },
+    "showMore": {
+        "message": "Info",
+        "description": "Displays the details of a key change"
+    },
+    "timerOption_5_minutes_abbreviated": {
+        "message": "5m",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "unsupportedFileType": {
+        "message": "Filtypen stöds ej",
+        "description": "Displayed for outgoing unsupported attachment"
+    },
+    "clickToSave": {
+        "message": "Klicka för att spara",
+        "description": "Hover text for attachment filenames"
+    },
+    "messagesBelow": {
+        "message": "Nya meddelanden nedanför",
+        "description": "Alt text for button to take user down to bottom of conversation with more than one message out of screen"
+    },
+    "installGeneratingKeys": {
+        "message": "Genererar nycklar",
+        "description": ""
+    },
+    "resetSession": {
+        "message": "Återställ session",
+        "description": "This is a menu item for resetting the session, using the imperative case, as in a command."
+    },
+    "offline": {
+        "message": "Ej ansluten",
+        "description": "Displayed when the desktop client has no network connection."
+    },
+    "welcomeToSignal": {
+        "message": "Välkommen till Signal",
+        "description": ""
+    },
+    "checkNetworkConnection": {
+        "message": "Kontrollera din nätverksanslutning",
+        "description": "Obvious instructions for when a user's computer loses its network connection"
+    },
+    "notificationSettingsDialog": {
+        "message": "När du får meddelanden, visa aviseringar som visar:",
+        "description": "Explain the purpose of the notification settings"
+    },
+    "members": {
+        "message": "Medlemmar",
+        "description": ""
+    },
+    "timestamp_h": {
+        "message": "1 timme",
+        "description": "Brief timestamp for messages sent about one minute ago. Displayed in the conversation list and message bubble."
+    },
+    "timerOption_0_seconds_abbreviated": {
+        "message": "av",
+        "description": "Short format indicating current timer setting in the conversation list snippet"
+    },
+    "syncExplanation": {
+        "message": "Importera alla grupper och kontakter från Signal-appen på din mobil.",
+        "description": "Explanatory text for sync settings"
+    },
+    "restartSignal": {
+        "message": "Starta om Signal",
+        "description": "Menu item for restarting the program."
+    },
+    "youLeftTheGroup": {
+        "message": "Du lämnade gruppen",
+        "description": "Displayed when a user can't send a message because they have left the group"
+    },
+    "deleteMessages": {
+        "message": "Radera meddelanden",
+        "description": "Menu item for deleting messages, title case."
+    },
+    "incomingError": {
+        "message": "Kunde inte ta emot meddelande.",
+        "description": ""
+    },
+    "selectAContact": {
+        "message": "Välj en kontakt eller grupp för att börja prata.",
+        "description": ""
+    },
+    "installConnecting": {
+        "message": "Ansluter...",
+        "description": "Displayed when waiting for the QR Code"
+    },
+    "verifyContact": {
+        "message": "Du kanske vill $tag_start$ verifiera $tag_end$ ditt säkerhetsnummer med den här kontakten.",
+        "description": "Use $tag_start$ and $tag_end$ to wrap the word or phrase in this sentence that the user should click on in order to navigate to the verification screen. These placeholders will be replaced with appropriate HTML code.",
+        "placeholders": {
+            "tag_start": {
+                "content": "<a class='verify' href='#'>"
+            },
+            "tag_end": {
+                "content": "</a>"
+            }
+        }
+    },
+    "sent": {
+        "message": "Skickat",
+        "description": "Label for the time a message was sent"
+    },
+    "theyChangedTheTimer": {
+        "message": "$name$ satte timern på $time$.",
+        "description": "Message displayed when someone else changes the message expiration timer in a conversation.",
+        "placeholders": {
+            "name": {
+                "content": "$1",
+                "example": "Bob"
+            },
+            "time": {
+                "content": "$2",
+                "example": "10m"
+            }
+        }
+    },
+    "timestamp_s": {
+        "message": "nyss",
+        "description": "Brief timestamp for messages sent less than a minute ago. Displayed in the conversation list and message bubble."
+    },
+    "timerOption_1_day": {
+        "message": "1 dag",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "reportIssue": {
+        "message": "Anmäl ett programfel",
+        "description": "Link to open the issue tracker"
+    },
+    "newMessage": {
+        "message": "Nytt meddelande",
+        "description": "Displayed in notifications for only 1 message"
+    },
+    "nameOnly": {
+        "message": "Enbart sändarens namn",
+        "description": "Label for setting notifications to display sender name only"
+    },
+    "from": {
+        "message": "Från",
+        "description": "Label for the sender of a message"
+    },
+    "deleteConversationConfirmation": {
+        "message": "Vill du radera denna konversation för alltid?",
+        "description": "Confirmation dialog text that asks the user if they really wish to delete the conversation. Answer buttons use the strings 'ok' and 'cancel'. The deletion is permanent, i.e. it cannot be undone."
+    },
+    "unlinkedWarning": {
+        "message": "Återkoppla Signal Desktop till din mobila enhet för att fortsätta skicka meddelanden.",
+        "description": ""
+    },
+    "debugLogExplanation": {
+        "message": "Den här loggen kommer att bli postad publikt på internet så att våra medarbetare kan kolla igenom den. Du kan gå igenom och ändra på den innan du skickar in den.",
+        "description": ""
+    },
+    "newPhoneNumber": {
+        "message": "Skriv in ett telefonnummer för att lägga till en kontakt.",
+        "description": "Placeholder for adding a new number to a contact"
+    },
+    "searchForPeopleOrGroups": {
+        "message": "Sök...",
+        "description": "Placeholder text in the search input"
+    },
+    "noNameOrMessage": {
+        "message": "Varken namn eller meddelande",
+        "description": "Label for setting notifications to display no name and no message text"
+    },
+    "syncNow": {
+        "message": "Importera nu",
+        "description": "Label for a button that syncs contacts and groups from your phone"
+    },
+    "syncFailed": {
+        "message": "Importen misslyckades. Kontrollera att din dator och din telefon har en fungerande internetuppkoppling.",
+        "description": "Informational text displayed if a sync operation times out."
+    },
+    "unlinked": {
+        "message": "Olänkad",
+        "description": ""
+    },
+    "installFollowUs": {
+        "message": "<a $a_params$>Följ oss</a> för uppdateringar om iOS stöd för fler enheter.",
+        "description": "",
+        "placeholders": {
+            "a_params": {
+                "content": "$1",
+                "example": "href='http://example.com'"
+            }
+        }
+    },
+    "learnMore": {
+        "message": "Lär dig mer om att verifiera säkerhetsnummer",
+        "description": "Text that links to a support article on verifying safety numbers"
+    },
+    "safetyNumbersSettingHeader": {
+        "message": "Godkännande av säkerhetssiffror",
+        "description": "Header for safety numbers setting"
+    },
+    "unreadMessages": {
+        "message": "$count$ olästa meddelanden",
+        "description": "Text for unread message separator, with count",
+        "placeholders": {
+            "count": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "installTooManyDevices": {
+        "message": "Tyvärr har du för många enheter redan länkade. Försök att ta bort några.",
+        "description": ""
+    },
+    "installSignalLinks": {
+        "message": "Börja med att installera Signal på din <a $play_store$>Android-enhet</a> eller <a $app_store$>iPhone</a>.<br /> Vi länkar då ihop dina enheter och synkar dina meddelanden.",
+        "description": "Prompt the user to install Signal on their phone before linking",
+        "placeholders": {
+            "play_store": {
+                "content": "$1",
+                "example": "href='http://example.com'"
+            },
+            "app_store": {
+                "content": "$2",
+                "example": "href='http://example.com'"
+            }
+        }
+    },
+    "installSyncingGroupsAndContacts": {
+        "message": "Synkroniserar grupper och kontakter",
+        "description": ""
+    },
+    "timerOption_30_minutes_abbreviated": {
+        "message": "30m",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "themeAndroidDark": {
+        "message": "Android (mörk)",
+        "description": "Label text for dark Android theme"
+    },
+    "timerOption_1_minute_abbreviated": {
+        "message": "1m",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "upgrade": {
+        "message": "Uppgradera",
+        "description": "Label text for button to upgrade the app to the latest version"
+    },
+    "yourSafetyNumberWith": {
+        "message": "Ditt säkerhetsnummer med $name$:",
+        "description": "Heading for safety number view",
+        "placeholders": {
+            "name": {
+                "content": "$1",
+                "example": "John"
+            }
+        }
+    },
+    "showLess": {
+        "message": "Göm info",
+        "description": "Hides the details of a key change"
+    },
+    "theme": {
+        "message": "Tema",
+        "description": "Header for theme settings"
+    },
+    "newIdentity": {
+        "message": "Nytt säkerhetsnummer",
+        "description": "Header for a key change dialog"
+    },
+    "installTagline": {
+        "message": "Integritet är möjligt. Signal gör det lätt.",
+        "description": "Tagline displayed under installWelcome on the install page"
+    },
+    "audioNotificationDescription": {
+        "message": "Spela ljudavisering",
+        "description": "Description for audio notification setting"
+    },
+    "disconnected": {
+        "message": "Frånkopplad",
+        "description": "Displayed when the desktop client cannot connect to the server."
+    },
+    "syncing": {
+        "message": "Importerar...",
+        "description": "Label for a disabled sync button while sync is in progress."
+    },
+    "acceptNewKey": {
+        "message": "Godkänn",
+        "description": "Label for a button to accept a new safety number"
+    },
+    "timerOption_12_hours_abbreviated": {
+        "message": "12t",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "timestampFormat_M": {
+        "message": "D MMM",
+        "description": "Timestamp format string for displaying month and day (but not the year) of a date within the current year, ex: use 'MMM D' for 'Aug 8', or 'D MMM' for '8 Aug'."
+    },
+    "timerOption_6_hours_abbreviated": {
+        "message": "6t",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "unregisteredUser": {
+        "message": "Numret kunde inte hittas",
+        "description": "Error message displayed when sending to an unregistered user."
+    },
+    "timerOption_1_day_abbreviated": {
+        "message": "1d",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "sync": {
+        "message": "Kontakter",
+        "description": "Label for contact and group sync settings"
+    },
+    "timerOption_1_week": {
+        "message": "1 vecka",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "installGotIt": {
+        "message": "OK",
+        "description": "Button for the user to confirm that they have Signal installed."
+    },
+    "received": {
+        "message": "Mottagit",
+        "description": "Label for the time a message was received"
+    },
+    "timerOption_30_seconds": {
+        "message": "30 sekunder",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "sendMessage": {
+        "message": "Skicka ett meddelande",
+        "description": "Placeholder text in the message entry field"
+    },
+    "mediaMessage": {
+        "message": "Mediameddelande",
+        "description": "Description of a message that has an attachment and no text, displayed in the conversation list as a preview."
+    },
+    "unreadMessage": {
+        "message": "1 oläst meddelande",
+        "description": "Text for unread message separator, just one message"
+    },
+    "expiredWarning": {
+        "message": "Den här versionen av Signal-Desktop har utgått. Vänligen uppgradera till den senaste versionen för att fortsätta chatta.",
+        "description": "Warning notification that this version of the app has expired"
+    },
+    "outgoingKeyConflict": {
+        "message": "Ditt säkerhetsnummer med den här kontakten har ändrats. Klicka för att hantera och visa.",
+        "description": ""
+    },
+    "fileSizeWarning": {
+        "message": "Tyvärr, filen du har valt överstiger maximalt tillåten filstorlek.",
+        "description": ""
+    },
+    "timerOption_0_seconds": {
+        "message": "av",
+        "description": "Label for option to turn off message expiration in the timer menu"
+    },
+    "installAndroidInstructions": {
+        "message": "Öppna Signal-appen på din telefon och gå till Settings > Linked devices. Tryck på knappen för att lägga en ny enhet och skanna sedan kodan ovan.",
+        "description": ""
+    },
+    "invalidNumberError": {
+        "message": "Felaktigt nummer",
+        "description": "When a person inputs a number that is invalid"
+    },
+    "installWelcome": {
+        "message": "Välkommen till Signal Desktop",
+        "description": "Welcome title on the install page"
+    },
+    "messageBelow": {
+        "message": "Nytt meddelande nedanför",
+        "description": "Alt text for button to take user down to bottom of conversation with a new message out of screen"
+    },
+    "installConnectionFailed": {
+        "message": "Kunde inte kontakta servern.",
+        "description": "Displayed when we can't connect to the server."
+    },
+    "messageNotSent": {
+        "message": "Meddelandet kunde ej skickas.",
+        "description": "Informational label, appears on messages that failed to send"
+    },
+    "disableNotifications": {
+        "message": "Stäng av aviseringar",
+        "description": "Label for disabling notifications"
+    },
+    "cancel": {
+        "message": "Avbryt",
+        "description": ""
+    },
+    "unblockToSend": {
+        "message": "Avblockera denna kontakt för att skicka meddelanden.",
+        "description": "Brief message shown when trying to message a blocked number"
+    },
+    "installIHaveSignalButton": {
+        "message": "Jag har Signal för Android",
+        "description": "Button for the user to confirm that they have Signal for Android"
+    },
+    "unnamedFile": {
+        "message": "Namnlös fil",
+        "description": "Hover text for attachment filenames"
+    },
+    "connecting": {
+        "message": "Ansluter",
+        "description": "Displayed when the desktop client is currently connecting to the server."
+    },
+    "sessionEnded": {
+        "message": "Återställning av säkerhetssession",
+        "description": "This is a past tense, informational message. In other words, your secure session has been reset."
+    },
+    "installGetStartedButton": {
+        "message": "Komma igång",
+        "description": ""
+    },
+    "relink": {
+        "message": "Återkoppla",
+        "description": ""
+    },
+    "timerOption_1_week_abbreviated": {
+        "message": "1v",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "timerOption_5_seconds": {
+        "message": "5 sekunder",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "installSignalLink": {
+        "message": "Börja med att installera <a $a_params$>Signal</a> på din Android telefon.<br /> Vi kommer att länka dina enheter och hålla dina meddelanden synkroniserade.",
+        "description": "Prompt the user to install Signal on Android before linking",
+        "placeholders": {
+            "a_params": {
+                "content": "$1",
+                "example": "href='http://example.com'"
+            }
+        }
+    },
+    "installLinkingWithNumber": {
+        "message": "Länkar till",
+        "description": "Text displayed before the phone number that the user is in the process of linking with"
+    },
+    "newMessages": {
+        "message": "Nya meddelanden",
+        "description": "Displayed in notifications for multiple messages"
+    },
+    "newContact": {
+        "message": "Tryck för att skapa en ny kontakt",
+        "description": ""
+    },
+    "theirIdentityUnknown": {
+        "message": "Du har inte utbytt några meddelanden med denna kontakt ännu. Ditt säkerhetsnummer med dem kommer att vara tillgängliga efter det första meddelandet.",
+        "description": ""
+    },
+    "voiceMessage": {
+        "message": "Röstmeddelande",
+        "description": "Name for a voice message attachment"
+    },
+    "submit": {
+        "message": "Skicka",
+        "description": ""
+    },
+    "keychanged": {
+        "message": "Ditt säkerhetsnummer med $name$ har ändrats. Klicka för att verifiera.",
+        "description": "",
+        "placeholders": {
+            "name": {
+                "content": "$1",
+                "example": "John"
+            }
+        }
+    },
+    "safetyNumbersSettingDescription": {
+        "message": "Kräver godkännande av nya säkerhetsnummer när de ändrar",
+        "description": "Description for safety numbers setting"
+    },
+    "to": {
+        "message": "Till",
+        "description": "Label for the receiver of a message"
+    },
+    "timerOption_1_hour_abbreviated": {
+        "message": "1t",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "installFinalButton": {
+        "message": "Ser bra ut",
+        "description": "The final button for the install process, after the user has entered a name for their device"
+    },
+    "messageDetail": {
+        "message": "Meddelandedetaljer",
+        "description": ""
+    },
+    "verify": {
+        "message": "Verifiera",
+        "description": ""
+    },
+    "timerOption_10_seconds_abbreviated": {
+        "message": "10s",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "nameAndMessage": {
+        "message": "Både sändarens namn och meddelande",
+        "description": "Label for setting notifications to display name and message text"
+    },
+    "failedToSend": {
+        "message": "Kunde inte skicka till vissa mottagare. Kontrollera din internetuppkoppling.",
+        "description": ""
+    },
+    "ok": {
+        "message": "OK",
+        "description": ""
+    },
+    "identityChanged": {
+        "message": "Ditt säkerhetsnummer med den här kontakten har ändrats. Detta kan antingen innebära att någon försöker avlyssna din kommunikation, eller denna kontakt bara ominstallerade signal. Du kanske vill verifiera det nya säkerhetsnumret nedan.",
+        "description": ""
+    },
+    "submitDebugLog": {
+        "message": "Skicka debug-logg",
+        "description": "Menu item and header text for debug log modal, title case."
+    },
+    "error": {
+        "message": "Fel",
+        "description": ""
+    },
+    "timerSetTo": {
+        "message": "Tidsgräns inställt till $time$",
+        "description": "Displayed in the conversation list when the timer is updated.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "1w"
+            }
+        }
+    },
+    "timerOption_30_seconds_abbreviated": {
+        "message": "30s",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "notifications": {
+        "message": "Aviseringar",
+        "description": "Header for notification settings"
+    },
+    "resend": {
+        "message": "Skicka igen",
+        "description": ""
+    }
+}

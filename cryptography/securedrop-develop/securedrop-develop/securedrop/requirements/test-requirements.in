@@ -1,0 +1,10 @@
+beautifulsoup4
+blinker
+coveralls
+Flask-Testing
+mock
+pip-tools
+py
+pytest
+pytest-cov
+selenium < 3

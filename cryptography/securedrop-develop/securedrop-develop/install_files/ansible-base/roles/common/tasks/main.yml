@@ -1,0 +1,22 @@
+---
+- include: create_users.yml
+
+- include: setup_etc_hosts.yml
+
+- include: harden_dns.yml
+
+- include: install_tmux.yml
+
+- include: install_ntp.yml
+
+- include: cron_apt.yml
+  tags:
+    - reboot
+
+- include: apt_upgrade.yml
+
+- include: sysctl.yml
+
+- include: disable_swap.yml
+
+- include: remove_kernel_modules.yml

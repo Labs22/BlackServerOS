@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AvatarWidget</class>
+ <widget class="QLabel" name="AvatarWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>116</width>
+    <height>116</height>
+   </rect>
+  </property>
+  <property name="scaledContents">
+   <bool>true</bool>
+  </property>
+  <property name="alignment">
+   <set>Qt::AlignCenter</set>
+  </property>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

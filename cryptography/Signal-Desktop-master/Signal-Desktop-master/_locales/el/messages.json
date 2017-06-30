@@ -1,0 +1,576 @@
+{
+    "timerOption_10_seconds": {
+        "message": "10 δευτερόλεπτα",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "lastSynced": {
+        "message": "Τελευταία εισαγωγή στις",
+        "description": "Label for date and time of last sync operation"
+    },
+    "attemptingReconnection": {
+        "message": "Attempting reconnect in $reconnect_duration_in_seconds$ seconds",
+        "description": "",
+        "placeholders": {
+            "reconnect_duration_in_seconds": {
+                "content": "$1",
+                "example": "10"
+            }
+        }
+    },
+    "unsupportedAttachment": {
+        "message": "Μη υποστηριζόμενος τύπος συνημμένου. Πατήστε για αποθήκευση.",
+        "description": "Displayed for incoming unsupported attachment"
+    },
+    "verifySafetyNumbers": {
+        "message": "Επαλήθευση κωδικού ασφαλείας",
+        "description": ""
+    },
+    "youChangedTheTimer": {
+        "message": "Ρύθμισες την αντίστροφη μέτρηση ίση με  $time$",
+        "description": "Message displayed when you change the message expiration timer in a conversation.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "10m"
+            }
+        }
+    },
+    "settings": {
+        "message": "Ρυθμίσεις",
+        "description": "Menu item and header for global settings"
+    },
+    "incomingKeyConflict": {
+        "message": "Ελήφθη μήνυμα με καινούργιου κωδικό ασφαλείας. Κάντε κλίκ για προβολή.",
+        "description": ""
+    },
+    "timerOption_5_seconds_abbreviated": {
+        "message": "5δ",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "installComputerName": {
+        "message": "Το όνομα αυτού του υπολογιστή θα είναι",
+        "description": "Text displayed before the input where the user can enter the name for this device."
+    },
+    "timestamp_m": {
+        "message": "1 λεπτό",
+        "description": "Brief timestamp for messages sent about one minute ago. Displayed in the conversation list and message bubble."
+    },
+    "gotIt": {
+        "message": "Κατάλαβα!",
+        "description": "Label for a button that dismisses a dialog. The user clicks it to confirm that they understand the message in the dialog."
+    },
+    "disappearingMessages": {
+        "message": "Εξαφανιζόμενα μηνύματα",
+        "description": "Conversation menu option to enable disappearing messages"
+    },
+    "showMore": {
+        "message": "Λεπτομέρειες",
+        "description": "Displays the details of a key change"
+    },
+    "timerOption_5_minutes_abbreviated": {
+        "message": "5λ",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "unsupportedFileType": {
+        "message": "Μη υποστηριζόμενος τύπος αρχείου",
+        "description": "Displayed for outgoing unsupported attachment"
+    },
+    "clickToSave": {
+        "message": "Click to save",
+        "description": "Hover text for attachment filenames"
+    },
+    "installGeneratingKeys": {
+        "message": "Δημιουργούνται Κλειδιά",
+        "description": ""
+    },
+    "resetSession": {
+        "message": "Επαναφορά συνεδρίας",
+        "description": "This is a menu item for resetting the session, using the imperative case, as in a command."
+    },
+    "offline": {
+        "message": "Offline",
+        "description": ""
+    },
+    "welcomeToSignal": {
+        "message": "Καλώς ήρθατε στο Signal",
+        "description": ""
+    },
+    "checkNetworkConnection": {
+        "message": "Check your network connection.",
+        "description": "Obvious instructions for when a user's computer loses its network connection"
+    },
+    "notificationSettingsDialog": {
+        "message": "Κατά την λήψη μηνυμάτων, εμφάνιση ειδοποιήσεων που αποκαλύπτουν:",
+        "description": "Explain the purpose of the notification settings"
+    },
+    "members": {
+        "message": "Μέλη",
+        "description": ""
+    },
+    "timestamp_h": {
+        "message": "1 ώρα",
+        "description": "Brief timestamp for messages sent about one minute ago. Displayed in the conversation list and message bubble."
+    },
+    "timerOption_0_seconds_abbreviated": {
+        "message": "Σβησμένο",
+        "description": "Short format indicating current timer setting in the conversation list snippet"
+    },
+    "syncExplanation": {
+        "message": "Εισαγωγή όλων των Signal ομάδων και επαφών από την φορητή συσκευή σου.",
+        "description": "Explanatory text for sync settings"
+    },
+    "restartSignal": {
+        "message": "Επανεκκίνηση του Signal",
+        "description": "Menu item for restarting the program."
+    },
+    "deleteMessages": {
+        "message": "Διαγραφή μηνυμάτων",
+        "description": "Menu item for deleting messages, title case."
+    },
+    "incomingError": {
+        "message": "Σφάλμα κατά την διαχείριση εισερχόμενου μηνύματος.",
+        "description": ""
+    },
+    "selectAContact": {
+        "message": "Επιλέξτε μία επαφή ή ομάδα για να ξεκινήσετε συζήτηση.",
+        "description": ""
+    },
+    "installConnecting": {
+        "message": "Σύνδεση...",
+        "description": "Displayed when waiting for the QR Code"
+    },
+    "verifyContact": {
+        "message": "Ίσως επιθυμείς να $tag_start$ επιβεβαιώσεις $tag_end$ τον κωδικό ασφαλείας σου με αυτή την επαφή.",
+        "description": "Use $tag_start$ and $tag_end$ to wrap the word or phrase in this sentence that the user should click on in order to navigate to the verification screen. These placeholders will be replaced with appropriate HTML code.",
+        "placeholders": {
+            "tag_start": {
+                "content": "<a class='verify' href='#'>"
+            },
+            "tag_end": {
+                "content": "</a>"
+            }
+        }
+    },
+    "sent": {
+        "message": "Στάλθηκε",
+        "description": "Label for the time a message was sent"
+    },
+    "theyChangedTheTimer": {
+        "message": "$name$ ρύθμισε την αντίστροφη μέτρηση ίση με $time$",
+        "description": "Message displayed when someone else changes the message expiration timer in a conversation.",
+        "placeholders": {
+            "name": {
+                "content": "$1",
+                "example": "Bob"
+            },
+            "time": {
+                "content": "$2",
+                "example": "10m"
+            }
+        }
+    },
+    "timestamp_s": {
+        "message": "τώρα",
+        "description": "Brief timestamp for messages sent less than a minute ago. Displayed in the conversation list and message bubble."
+    },
+    "timerOption_1_day": {
+        "message": "1 ημέρα",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "reportIssue": {
+        "message": "Υποβολή παραπόνου",
+        "description": "Link to open the issue tracker"
+    },
+    "newMessage": {
+        "message": "Νέο Μήνυμα",
+        "description": "Displayed in notifications for only 1 message"
+    },
+    "nameOnly": {
+        "message": "Μόνο το όνομα του αποστολέα",
+        "description": "Label for setting notifications to display sender name only"
+    },
+    "from": {
+        "message": "Απο",
+        "description": "Label for the sender of a message"
+    },
+    "deleteConversationConfirmation": {
+        "message": "Οριστική διαγραφή αυτής της συζήτησης;",
+        "description": "Confirmation dialog text that asks the user if they really wish to delete the conversation. Answer buttons use the strings 'ok' and 'cancel'. The deletion is permanent, i.e. it cannot be undone."
+    },
+    "unlinkedWarning": {
+        "message": "Relink Signal Desktop to your mobile device to continue messaging.",
+        "description": ""
+    },
+    "debugLogExplanation": {
+        "message": "Αυτό το αρχείο καταγραφής συμβάντων θα δημοσιευτεί στο internet ώστε να το εξετάσουν εθελοντές. Μπορείς να το μελετήσεις και να το αλλάξεις πριν το υποβάλλεις.",
+        "description": ""
+    },
+    "newPhoneNumber": {
+        "message": "Βάλτε νούμερο τηλεφώνου για να προσθέσετε επαφή",
+        "description": "Placeholder for adding a new number to a contact"
+    },
+    "searchForPeopleOrGroups": {
+        "message": "Αναζήτηση...",
+        "description": "Placeholder text in the search input"
+    },
+    "noNameOrMessage": {
+        "message": "Ούτε το όνομα αποστολέα, ούτε το μήνυμα",
+        "description": "Label for setting notifications to display no name and no message text"
+    },
+    "syncNow": {
+        "message": "Εισαγωγή τώρα",
+        "description": "Label for a button that syncs contacts and groups from your phone"
+    },
+    "syncFailed": {
+        "message": "Η εισαγωγή απέτυχε. Βεβαιώσου ότι ο υπολογιστής και το κινητό σου είναι συνδεδεμένα στο διαδίκτυο.",
+        "description": "Informational text displayed if a sync operation times out."
+    },
+    "unlinked": {
+        "message": "Unlinked",
+        "description": ""
+    },
+    "installFollowUs": {
+        "message": "<a $a_params$>Ακολουθήστε μας</a> για ενημερώσεις σχετικά με την υποστήριξη πολλαπλών συσκευών στο iOS.",
+        "description": "",
+        "placeholders": {
+            "a_params": {
+                "content": "$1",
+                "example": "href='http://example.com'"
+            }
+        }
+    },
+    "learnMore": {
+        "message": "Πληροφορίες για την επαλήθευση κωδικών ασφαλείας",
+        "description": "Text that links to a support article on verifying safety numbers"
+    },
+    "safetyNumbersSettingHeader": {
+        "message": "Έγκριση κωδικού ασφαλείας",
+        "description": "Header for safety numbers setting"
+    },
+    "installTooManyDevices": {
+        "message": "Δυστυχώς έχετε ήδη πολλές συνδεδεμένες συσκευές. Προσπαθήστε να αφαιρέσετε μερικές.",
+        "description": ""
+    },
+    "installSignalLinks": {
+        "message": "Πρώτα εγκατάστησε το Signal στο <a $play_store$>Android</a> ή στο <a $app_store$>iPhone</a><br /> Θα συνδέσουμε τις συσκευές σου και θα κρατήσουμε τα μηνύματα συγχρονισμένα.",
+        "description": "Prompt the user to install Signal on their phone before linking",
+        "placeholders": {
+            "play_store": {
+                "content": "$1",
+                "example": "href='http://example.com'"
+            },
+            "app_store": {
+                "content": "$2",
+                "example": "href='http://example.com'"
+            }
+        }
+    },
+    "installSyncingGroupsAndContacts": {
+        "message": "Συγχρονισμός ομάδων και επαφών",
+        "description": ""
+    },
+    "timerOption_30_minutes_abbreviated": {
+        "message": "30λ",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "themeAndroidDark": {
+        "message": "Android (Σκοτεινό)",
+        "description": "Label text for dark Android theme"
+    },
+    "timerOption_1_minute_abbreviated": {
+        "message": "1λ",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "upgrade": {
+        "message": "Αναβάθμιση",
+        "description": "Label text for button to upgrade the app to the latest version"
+    },
+    "yourSafetyNumberWith": {
+        "message": "Ο κωδικός ασφαλείας σου με τον/την $name$",
+        "description": "Heading for safety number view",
+        "placeholders": {
+            "name": {
+                "content": "$1",
+                "example": "John"
+            }
+        }
+    },
+    "showLess": {
+        "message": "Απόκρυψη λεπτομερειών",
+        "description": "Hides the details of a key change"
+    },
+    "theme": {
+        "message": "Θέμα",
+        "description": "Header for theme settings"
+    },
+    "newIdentity": {
+        "message": "Νέος κωδικός ασφαλείας",
+        "description": "Header for a key change dialog"
+    },
+    "installTagline": {
+        "message": "Η ιδιωτικότητα είναι εφικτή. Το Signal την κάνει εύκολη.",
+        "description": "Tagline displayed under installWelcome on the install page"
+    },
+    "audioNotificationDescription": {
+        "message": "Ενεργοποίηση ήχου ειδοποίησης",
+        "description": "Description for audio notification setting"
+    },
+    "disconnected": {
+        "message": "Αποσυνδεδεμένος/η",
+        "description": ""
+    },
+    "syncing": {
+        "message": "Εισάγονται...",
+        "description": "Label for a disabled sync button while sync is in progress."
+    },
+    "acceptNewKey": {
+        "message": "Αποδοχή",
+        "description": "Label for a button to accept a new safety number"
+    },
+    "timerOption_12_hours_abbreviated": {
+        "message": "12ω",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "timestampFormat_M": {
+        "message": "MMM D",
+        "description": "Timestamp format string for displaying month and day (but not the year) of a date within the current year, ex: use 'MMM D' for 'Aug 8', or 'D MMM' for '8 Aug'."
+    },
+    "timerOption_6_hours_abbreviated": {
+        "message": "6ω",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "unregisteredUser": {
+        "message": "Ο αριθμός δεν είναι καταχωρημένος",
+        "description": "Error message displayed when sending to an unregistered user."
+    },
+    "timerOption_1_day_abbreviated": {
+        "message": "1η",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "sync": {
+        "message": "Επαφές",
+        "description": "Label for contact and group sync settings"
+    },
+    "timerOption_1_week": {
+        "message": "1 εβδομάδα",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "installGotIt": {
+        "message": "Κατάλαβα!",
+        "description": "Button for the user to confirm that they have Signal installed."
+    },
+    "received": {
+        "message": "Λήφθηκε",
+        "description": "Label for the time a message was received"
+    },
+    "timerOption_30_seconds": {
+        "message": "30 δευτερόλεπτα",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "sendMessage": {
+        "message": "Νέο Μήνυμα",
+        "description": "Placeholder text in the message entry field"
+    },
+    "mediaMessage": {
+        "message": "Μήνυμα πολυμέσων",
+        "description": "Description of a message that has an attachment and no text, displayed in the conversation list as a preview."
+    },
+    "expiredWarning": {
+        "message": "Η τρέχουσα έκδοση του Signal Desktop έχει λήξει. Παρακαλούμε αναβάθμισε στην τελευταία έκδοση για να συνεχίσεις την επικοινωνία σου.",
+        "description": "Warning notification that this version of the app has expired"
+    },
+    "outgoingKeyConflict": {
+        "message": "Ο κωδικός ασφαλείας σας με αυτή την επαφή έχει αλλάξει. Κάντε κλικ για προβολή.",
+        "description": ""
+    },
+    "fileSizeWarning": {
+        "message": "Δυστυχώς το επιλεγμένο αρχείο υπερβαίνει τα όρια μεγέθους μηνυμάτων.",
+        "description": ""
+    },
+    "timerOption_0_seconds": {
+        "message": "Σβησμένο",
+        "description": "Label for option to turn off message expiration in the timer menu"
+    },
+    "installAndroidInstructions": {
+        "message": "Ανοίξτε το Signal στο κινητό σας και πηγαίνετε στις Ρυθμίσεις > Συνδεδεμένες συσκευές. Πιέστε το πλήκτρο προσθήκης νέας συσκευής και σαρώστε το παραπάνω γραφικό.",
+        "description": ""
+    },
+    "invalidNumberError": {
+        "message": "Λάθος νούμερο",
+        "description": "When a person inputs a number that is invalid"
+    },
+    "installWelcome": {
+        "message": "Καλώς ήρθατε στο Signal Desktop",
+        "description": "Welcome title on the install page"
+    },
+    "installConnectionFailed": {
+        "message": "Αδυναμία σύνδεσης με τον διακομιστή.",
+        "description": "Displayed when we can't connect to the server."
+    },
+    "messageNotSent": {
+        "message": "Το μήνυμα δεν στάλθηκε.",
+        "description": "Informational label, appears on messages that failed to send"
+    },
+    "disableNotifications": {
+        "message": "Απενεργοποίηση ειδοποιήσεων",
+        "description": "Label for disabling notifications"
+    },
+    "cancel": {
+        "message": "Άκυρο",
+        "description": ""
+    },
+    "unblockToSend": {
+        "message": "Ξεκλείδωσε αυτή την επαφή για να στείλεις ένα μήνυμα",
+        "description": "Brief message shown when trying to message a blocked number"
+    },
+    "installIHaveSignalButton": {
+        "message": "Έχω το Signal στο Android",
+        "description": "Button for the user to confirm that they have Signal for Android"
+    },
+    "unnamedFile": {
+        "message": "Unnamed File",
+        "description": "Hover text for attachment filenames"
+    },
+    "connecting": {
+        "message": "Connecting",
+        "description": ""
+    },
+    "sessionEnded": {
+        "message": "Η ασφαλής σύνδεση επανεκκινήθηκε",
+        "description": "This is a past tense, informational message. In other words, your secure session has been reset."
+    },
+    "installGetStartedButton": {
+        "message": "Πρώτα βήματα",
+        "description": ""
+    },
+    "relink": {
+        "message": "Relink",
+        "description": ""
+    },
+    "timerOption_1_week_abbreviated": {
+        "message": "1ε",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "timerOption_5_seconds": {
+        "message": "5 δευτερόλεπτα",
+        "description": "Label for a selectable option in the message expiration timer menu"
+    },
+    "installSignalLink": {
+        "message": "Πρώτα εγκατάστησε το <a $a_params$>Signal</a> στο Android κινητό σου.<br /> Θα συνδέσουμε τις συσκευές σου και θα διατηρήσουμε τα μηνύματά σου συγχρονισμένα.",
+        "description": "Prompt the user to install Signal on Android before linking",
+        "placeholders": {
+            "a_params": {
+                "content": "$1",
+                "example": "href='http://example.com'"
+            }
+        }
+    },
+    "installLinkingWithNumber": {
+        "message": "Σύνδεση με",
+        "description": "Text displayed before the phone number that the user is in the process of linking with"
+    },
+    "newMessages": {
+        "message": "Νέα Μηνύματα",
+        "description": "Displayed in notifications for multiple messages"
+    },
+    "newContact": {
+        "message": "Πατήστε για να προσθέσετε καινούρια επαφή",
+        "description": ""
+    },
+    "theirIdentityUnknown": {
+        "message": "Δεν έχετε ανταλλάξει μηνύματα με αυτή την επαφή ακόμα. Ο κωδικός ασφαλείας σας με αυτή την επαφή θα είναι διαθέσιμος μετά το πρώτο μήνυμα.",
+        "description": ""
+    },
+    "voiceMessage": {
+        "message": "Voice Message",
+        "description": "Name for a voice message attachment"
+    },
+    "submit": {
+        "message": "Υποβολή",
+        "description": ""
+    },
+    "keychanged": {
+        "message": "Ο κωδικός ασφαλείας σας με τον/την $name$ έχει αλλάξει.",
+        "description": "",
+        "placeholders": {
+            "name": {
+                "content": "$1",
+                "example": "John"
+            }
+        }
+    },
+    "safetyNumbersSettingDescription": {
+        "message": "Απαιτείται επιβεβαίωση του νέου κωδικού ασφαλείας όταν αλλάξει.",
+        "description": "Description for safety numbers setting"
+    },
+    "to": {
+        "message": "Προς",
+        "description": "Label for the receiver of a message"
+    },
+    "timerOption_1_hour_abbreviated": {
+        "message": "1ω",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "installFinalButton": {
+        "message": "Όλα δείχνουν να είναι εντάξει",
+        "description": "The final button for the install process, after the user has entered a name for their device"
+    },
+    "messageDetail": {
+        "message": "Λεπτομέρειες μηνύματος",
+        "description": ""
+    },
+    "verify": {
+        "message": "Επιβεβαίωση",
+        "description": ""
+    },
+    "timerOption_10_seconds_abbreviated": {
+        "message": "10δ",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "nameAndMessage": {
+        "message": "Όνομα αποστολέα και μήνυμα",
+        "description": "Label for setting notifications to display name and message text"
+    },
+    "failedToSend": {
+        "message": "Αποτυχία αποστολής σε κάποιους παραλήπτες. Ελέγξτε την σύνδεση του δικτύου σας.",
+        "description": ""
+    },
+    "ok": {
+        "message": "Εντάξει",
+        "description": ""
+    },
+    "identityChanged": {
+        "message": "Ο κωδικός ασφαλείας με αυτή την επαφή έχει αλλάξει. Αυτό σημαίνει ότι είτε κάποιος προσπαθεί να υποκλέψει την συνομιλία σας είτε αυτή απλά επανεγκατέστησε  το Signal. Ίσως επιθυμείτε να επαληθεύσετε το νέο κωδικό ασφαλείας παρακάτω.",
+        "description": ""
+    },
+    "submitDebugLog": {
+        "message": "Υποβολή καταχωρήσεων αποσφαλμάτωσης",
+        "description": "Menu item and header text for debug log modal, title case."
+    },
+    "error": {
+        "message": "Σφάλμα",
+        "description": ""
+    },
+    "timerSetTo": {
+        "message": "Η ρύθμιση της αντίστροφης μέτρησης είναι ίση με $time$",
+        "description": "Displayed in the conversation list when the timer is updated.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "1w"
+            }
+        }
+    },
+    "timerOption_30_seconds_abbreviated": {
+        "message": "30δ",
+        "description": "Very short format indicating current timer setting in the conversation header"
+    },
+    "notifications": {
+        "message": "Ειδοποιήσεις",
+        "description": "Header for notification settings"
+    },
+    "resend": {
+        "message": "Ξαναστείλτε",
+        "description": ""
+    }
+}
