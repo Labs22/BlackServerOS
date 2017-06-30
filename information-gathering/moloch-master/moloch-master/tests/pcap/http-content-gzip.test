@@ -1,0 +1,212 @@
+{
+   "sessions" : [
+      {
+         "body" : {
+            "hmd5cnt" : 1,
+            "db" : 895,
+            "hh2cnt" : 10,
+            "mac2-term-cnt" : 2,
+            "by" : 2093,
+            "p2" : 80,
+            "lpd" : 1407242225628,
+            "hckey-term" : [
+               "xxxxxxxxxx"
+            ],
+            "db1" : 417,
+            "sl" : 916,
+            "g2" : "CAN",
+            "mac2-term" : [
+               "00:00:5e:00:01:01",
+               "00:26:88:d8:bf:c2"
+            ],
+            "fpd" : 1407242224712,
+            "us" : [
+               "//xxxxxxxxxxx.xxxxxxx.xxx/crossdomain.xml"
+            ],
+            "g1" : "RUS",
+            "uscnt" : 1,
+            "fp" : 1407242224,
+            "uacnt" : 1,
+            "fb2" : "485454502f312e31",
+            "as1" : "AS0000 This is neat",
+            "portDst" : 80,
+            "pa2" : 5,
+            "p1" : 50638,
+            "mac1-term-cnt" : 1,
+            "prot-term" : [
+               "http",
+               "tcp"
+            ],
+            "a2" : "10.0.0.2",
+            "pa1" : 7,
+            "test" : {
+               "ip-geo" : [
+                  "RUS"
+               ],
+               "string" : [
+                  "16777226:50638,33554442:80"
+               ],
+               "ip-asn" : [
+                  "AS0000 This is neat"
+               ],
+               "ip-rir" : [
+                  ""
+               ],
+               "number" : [
+                  33554442
+               ],
+               "ip" : [
+                  167772161
+               ]
+            },
+            "ps" : [
+               24,
+               106,
+               188,
+               264,
+               751,
+               827,
+               1375,
+               1923,
+               1999,
+               2081,
+               2157,
+               2233
+            ],
+            "hh1" : [
+               "http:header:accept",
+               "http:header:accept-encoding",
+               "http:header:accept-language",
+               "http:header:connection",
+               "http:header:cookie",
+               "http:header:host",
+               "http:header:if-none-match",
+               "http:header:referer",
+               "http:header:user-agent"
+            ],
+            "prot-term-cnt" : 2,
+            "fs" : [],
+            "mac1-term" : [
+               "00:0a:f3:31:90:00"
+            ],
+            "tcpflags" : {
+               "syn" : 1,
+               "ack" : 5,
+               "rst" : 0,
+               "syn-ack" : 1,
+               "urg" : 0,
+               "fin" : 2,
+               "psh" : 3
+            },
+            "hdver" : [
+               "1.1"
+            ],
+            "hcval-term-cnt" : 1,
+            "hcval-term" : [
+               "xxx"
+            ],
+            "ipDst" : "10.0.0.2",
+            "ta" : [
+               "dstip",
+               "srcip"
+            ],
+            "hpathcnt" : 1,
+            "as2" : "AS0001 Cool Beans!",
+            "ipSrc" : "10.0.0.1",
+            "rir2" : "TEST",
+            "hh2" : [
+               "http:header:age",
+               "http:header:alternate-protocol",
+               "http:header:cache-control",
+               "http:header:content-encoding",
+               "http:header:content-length",
+               "http:header:content-type",
+               "http:header:date",
+               "http:header:etag",
+               "http:header:expires",
+               "http:header:server"
+            ],
+            "by1" : 843,
+            "tacnt" : 2,
+            "hh1cnt" : 9,
+            "http" : {
+               "method-term-cnt" : 1,
+               "statuscode" : [
+                  200
+               ],
+               "method-term" : [
+                  "GET"
+               ],
+               "statuscode-cnt" : 1,
+               "bodymagic-term-cnt" : 1,
+               "bodymagic-term" : [
+                  "application/x-gzip"
+               ]
+            },
+            "hdvercnt" : 1,
+            "db2" : 478,
+            "hsvercnt" : 1,
+            "psl" : [
+               82,
+               82,
+               76,
+               487,
+               76,
+               548,
+               548,
+               76,
+               82,
+               76,
+               76,
+               76
+            ],
+            "lp" : 1407242225,
+            "ss" : 1,
+            "timestamp" : "SET",
+            "ua" : [
+               "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36"
+            ],
+            "no" : "test",
+            "pa" : 12,
+            "hpath" : [
+               "/crossdomain.xml"
+            ],
+            "hmd5" : [
+               "5ff7b2c69c3b22826a717cd5ea4c9f32"
+            ],
+            "a1" : "10.0.0.1",
+            "hckey-term-cnt" : 1,
+            "portSrc" : 50638,
+            "ho" : [
+               "xxxxxxxxxxx.xxxxxxx.xxx"
+            ],
+            "firstPacket" : 1407242224712,
+            "tags-term" : [
+               "srcip",
+               "dstip"
+            ],
+            "by2" : 1250,
+            "pr" : 6,
+            "hocnt" : 1,
+            "fb1" : "474554202f63726f",
+            "hdrs" : {
+               "hreq-referercnt" : 1,
+               "hreq-referer" : [
+                  "http://xx.xxxxx.xxx/xx?id=xxxxxxx&cb=xxxxxxxxxxxxx&referrer=xxxxxxx.xxx"
+               ]
+            },
+            "lastPacket" : 1407242225628,
+            "hsver" : [
+               "1.1"
+            ]
+         },
+         "header" : {
+            "index" : {
+               "_type" : "session",
+               "_index" : "tests_sessions-140805"
+            }
+         }
+      }
+   ]
+}
+

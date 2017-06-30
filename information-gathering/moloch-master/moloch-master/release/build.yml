@@ -1,0 +1,206 @@
+---
+# Requires running: sudo ansible-galaxy install rvm_io.ruby
+# NOTE: Vagrant 1.9.0 works, 1.9.2 has issues on some platforms
+# vagrant up
+# To rebuild either: vagrant provision
+#  OR
+# ansible-playbook --private-key=~/.vagrant.d/insecure_private_key -u vagrant -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory build.yml -t rebuild
+- hosts: all
+  become: true
+  become_method: sudo
+  vars:
+    - node_version: 4.8.1
+    - rvm1_rubies:
+      - ruby-1.9.3
+    - rvm1_user: root
+    - rvm1_bundler_install: True
+    - rvm1_install_path: /usr/local/rvm
+    - rvm1_install_flags: '--auto-dotfiles'
+    - moloch_name: moloch
+    - fpm_url: "http://molo.ch"
+    - fpm_description: "Moloch Full Packet System"
+    - iteration: 1
+
+# Tasks before roles install software
+  pre_tasks:
+    - block:
+        - name: ntop repo
+          get_url: url=http://packages.ntop.org/centos-stable/ntop.repo dest=/etc/yum.repos.d/ntop.repo
+
+        - name: epel repo
+          yum: name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ansible_distribution_major_version}}.noarch.rpm state=installed
+
+        # On Centos 6 need to upgrade kernel so we get TPACKET_V3.  User doesn't have to have new kernel, but should
+        - block:
+          - name: remove old kernel headers
+            yum: state=absent name=kernel-headers
+
+          - name: install new kernel headers
+            yum: state=present name={{item}}
+            with_items:
+              - "http://files.molo.ch/kernel-ml-headers-4.4.0-1.el6.elrepo.x86_64.rpm"
+              - centos-release-scl
+
+          - name: install devtoolset centos 6
+            yum: state=present name=devtoolset-3-toolchain
+
+          # TPACKET_V3 block end
+          when: ansible_distribution_major_version == "6"
+          tags: kernel
+
+        - yum: name={{item}} state=installed
+          with_items:
+            - git
+            - rpm-build
+            - unzip
+            - xz
+            - pfring
+
+      # Block end
+      when: ansible_distribution=='CentOS'
+
+
+    - block:
+        #- apt: deb=http://packages.ntop.org/apt-stable/{{ansible_distribution_version}}/all/apt-ntop-stable.deb
+        - name: ntop deb
+          apt: deb=http://apt-stable.ntop.org/{{ansible_distribution_version}}/all/apt-ntop-stable.deb
+
+        - apt: update_cache=yes name={{item}} state=installed
+          with_items:
+            - git
+            - pfring
+
+      # Block end
+      when: ansible_distribution == 'Ubuntu'
+
+# Wackiness is happening where it doesn't always resolve and stuff
+    - name: keys.gnupg.net hosts entry hack
+      lineinfile: dest=/etc/hosts line="178.32.66.144 keys.gnupg.net"
+
+# Install ruby
+  roles:
+    - {role: rvm_io.ruby}
+
+# Tasks after roles
+  tasks:
+    - name: install fpm
+      gem: name=fpm user_install=no state=latest executable=/usr/local/bin/gem
+
+
+# Prepare prereqs
+    - name: Download Packages
+      get_url: url={{item}} dest=. validate_certs=no
+      with_items:
+        - https://nodejs.org/download/release/v{{node_version}}/node-v{{node_version}}-linux-x64.tar.xz
+
+# Only install snf if it exists locally.
+    - name: Check for remote snf
+      stat: path=/opt/snf
+      register: remotesnf
+
+    - name: Check for local snf
+      become: false
+      local_action: stat path=snf.tgz
+      register: localsnf
+      tags:
+        - rebuild
+
+    - name: unarchive snf
+      unarchive: src=snf.tgz dest=/opt
+      when: localsnf.stat.exists == True and remotesnf.stat.exists == False
+
+    - name: rename snf
+      command: mv /opt/myri_snf-3.0.9.50782_d4d3de8ea-3342.x86_64 /opt/snf
+      when: localsnf.stat.exists == True and remotesnf.stat.exists == False
+
+# Prepare build
+    - name: Remove old dest directory
+      file: dest=/data/{{moloch_name}} state=absent
+
+    - name: Create dest directory
+      file: dest=/data/{{moloch_name}}/{{item}} state=directory owner=nobody
+      with_items:
+        - etc
+        - bin
+        - logs
+
+    - name: Create raw directory
+      file: dest=/data/{{moloch_name}}/raw state=directory owner=nobody mode=0700
+
+    - name: Unarchive node
+      unarchive: src=~vagrant/node-v{{node_version}}-linux-x64.tar.xz dest=/data/{{moloch_name}} copy=no
+
+    - name: node link
+      file: state=link src=/data/{{moloch_name}}/node-v{{node_version}}-linux-x64/bin/{{item}} dest=/data/{{moloch_name}}/bin/{{item}}
+      with_items:
+        - node
+        - npm
+
+# Actually build 
+    - block: 
+      - name: git clone
+        git: repo=https://github.com/aol/moloch dest={{moloch_name}} update=yes force=yes
+
+      - name: build
+        shell: cd {{moloch_name}}; make clean; ./easybutton-build.sh -d /data/{{moloch_name}} --daq
+
+      - name: install centos 6
+        shell: cd {{moloch_name}}; scl enable devtoolset-3 "make install"
+        environment:
+          PATH: "/data/{{moloch_name}}/bin:{{ansible_env.PATH}}"
+        when: ansible_distribution_major_version == "6"
+
+      - name: install not centos 6
+        shell: cd {{moloch_name}}; make install
+        environment:
+          PATH: "/data/{{moloch_name}}/bin:{{ansible_env.PATH}}"
+        when: ansible_distribution_major_version != "6"
+
+      # Block End
+      tags:
+        - rebuild
+
+    - set_fact:
+        moloch_version: "stoperrors"
+
+# CentOS package
+    - block:
+      - name: get moloch version
+        shell: sed 's/.*\"\(.*\)\".*$/\1/' {{moloch_name}}/viewer/version.js | tr "-" "_"
+        register: moloch_version_cmd_centos
+
+      - set_fact:
+          moloch_version: "{{moloch_version_cmd_centos.stdout}}"
+
+      - name: fpm centos
+        shell: bash -lc "{{item}}"
+        become: false
+        with_items:
+          - fpm -s dir -t rpm -n {{moloch_name}} -v {{moloch_version}} --iteration {{iteration}} --template-scripts --after-install "{{moloch_name}}/release/afterinstall.sh" --url \"{{fpm_url}}\" --description \"{{fpm_description}}\" -d perl-libwww-perl -d perl-JSON -d ethtool /data/{{moloch_name}}
+
+      - name: copy centos back
+        fetch: src={{moloch_name}}-{{moloch_version}}-{{iteration}}.x86_64.rpm dest=./builds
+      # Block end
+      when: ansible_distribution=='CentOS'
+      tags: package
+
+# Ubuntu package
+    - block:
+      - name: get moloch version
+        shell: sed 's/.*\"\(.*\)\".*$/\1/' {{moloch_name}}/viewer/version.js
+        register: moloch_version_cmd_ubuntu
+
+      - set_fact:
+          moloch_version: "{{moloch_version_cmd_ubuntu.stdout}}"
+
+      - name: fpm ubuntu
+        shell: bash -lc "{{item}}"
+        become: false
+        with_items:
+          - fpm -s dir -t deb -n {{moloch_name}} -v {{moloch_version}} --iteration {{iteration}} --template-scripts --after-install "{{moloch_name}}/release/afterinstall.sh" --url \"{{fpm_url}}\" --description \"{{fpm_description}}\" -d libwww-perl -d libjson-perl -d ethtool /data/{{moloch_name}}
+
+      - name: copy ubuntu back
+        fetch: src={{moloch_name}}_{{moloch_version}}-{{iteration}}_amd64.deb dest=./builds
+      # Block end
+      when: ansible_distribution=='Ubuntu'
+      tags: package

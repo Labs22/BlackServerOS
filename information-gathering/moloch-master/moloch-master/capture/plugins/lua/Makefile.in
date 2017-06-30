@@ -1,0 +1,19 @@
+INCLUDE_OTHER = -I../.. -I../../thirdparty \
+                @GLIB2_CFLAGS@
+
+install_sh = @install_sh@
+mkdir_p = @mkdir_p@
+INSTALL = @INSTALL@
+PLUGINDIR = @prefix@/plugins
+LUA_CFLAGS = @LUA_CFLAGS@
+LUA_LIBS = @LUA_LIBS@
+
+SRCS=$(wildcard *.c)
+
+../lua.so : $(SRCS) ../../moloch.h ../../hash.h ../../dll.h
+	$(CC) @SHARED_FLAGS@ -o $@ @CFLAGS@ -Wall -Wextra -D_GNU_SOURCE -fPIC $(INCLUDE_OTHER) $(LUA_CFLAGS) $(SRCS) $(LUA_LIBS)
+
+all:$(SOS)
+
+distclean realclean clean:
+	rm -f *.o *.so

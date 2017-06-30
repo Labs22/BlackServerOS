@@ -1,0 +1,30 @@
+INCLUDE_PCAP  = @PCAP_CFLAGS@
+
+INCLUDE_OTHER = -I.. -I../thirdparty \
+                @GLIB2_CFLAGS@
+
+install_sh = @install_sh@
+mkdir_p = @mkdir_p@
+INSTALL = @INSTALL@
+PLUGINDIR = @prefix@/plugins
+WISEDIR = @prefix@/wiseService
+BINDIR = @prefix@/bin
+
+SRCS=$(wildcard *.c)
+SOS=$(SRCS:.c=.so)
+
+%.so : %.c ../moloch.h ../hash.h ../dll.h
+	$(CC) @SHARED_FLAGS@ -o $@ @CFLAGS@ -Wall -Wextra -D_GNU_SOURCE -fPIC $(INCLUDE_PCAP) $(INCLUDE_OTHER) $<
+
+all:$(SOS)
+
+install:
+	$(INSTALL) taggerUpload.pl $(BINDIR)
+	@mkdir -p "$(PLUGINDIR)"
+	$(INSTALL) *.so *.jade *.js $(PLUGINDIR)
+	@mkdir -p "$(WISEDIR)"
+	$(INSTALL) wiseService/*.js wiseService/wiseService.ini.sample wiseService/package.json $(WISEDIR)
+	(cd $(WISEDIR) ; npm update)
+
+distclean realclean clean:
+	rm -f *.o *.so

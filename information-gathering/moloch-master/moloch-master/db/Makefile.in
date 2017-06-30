@@ -1,0 +1,14 @@
+install_sh = @install_sh@
+mkdir_p = @mkdir_p@
+INSTALL = @INSTALL@
+DBDIR = @prefix@/db
+
+
+all:
+
+install:
+	@mkdir -p "$(DBDIR)"
+	$(INSTALL) daily.sh db.pl elasticsearch.yml.sample runes.sh.sample $(DBDIR)
+
+distclean realclean clean:
+

@@ -1,0 +1,203 @@
+{
+   "sessions" : [
+      {
+         "header" : {
+            "index" : {
+               "_index" : "tests_sessions-131206",
+               "_type" : "session"
+            }
+         },
+         "body" : {
+            "fb2" : "3232302078787878",
+            "esub" : [
+               "test å é î ø ü"
+            ],
+            "esrc" : [
+               "xxxxxxxxx@xxxxxxx.com"
+            ],
+            "g2" : "USA",
+            "sl" : 518,
+            "p2" : 25,
+            "mac2-term-cnt" : 1,
+            "no" : "test",
+            "tags-term" : [
+               "smtp:statuscode:250"
+            ],
+            "ectcnt" : 1,
+            "timestamp" : "SET",
+            "pr" : 6,
+            "fs" : [],
+            "eid" : [
+               "CEC7902D.1A0ED%xxxxxxxxx@xxxxxxx.com"
+            ],
+            "mac2-term" : [
+               "00:25:90:a2:c2:52"
+            ],
+            "ss" : 1,
+            "a2" : "64.236.55.18",
+            "db1" : 1666,
+            "as2" : "AS1668 AOL Transit Data Network",
+            "lp" : 1386358271,
+            "emvcnt" : 1,
+            "ipSrc" : "10.180.121.109",
+            "rireip" : [
+               "",
+               "",
+               "ARIN"
+            ],
+            "edstcnt" : 1,
+            "eua" : [
+               "Microsoft-MacOutlook/14.3.9.131030"
+            ],
+            "eipcnt" : 3,
+            "ect" : [
+               "multipart/alternative; boundary=\"_000_CEC7902D1A0EDxxxxxxxxxxxxxxxxxx_\""
+            ],
+            "fpd" : 1386358271061,
+            "eip" : [
+               "10.0.0.4",
+               "10.180.121.108",
+               "169.254.4.195"
+            ],
+            "mac1-term" : [
+               "00:00:0c:07:ac:02",
+               "00:0b:5f:6b:5c:00"
+            ],
+            "ta" : [
+               "smtp:statuscode:250"
+            ],
+            "portDst" : 25,
+            "geip" : [
+               "---",
+               "USA",
+               "---"
+            ],
+            "tcpflags" : {
+               "ack" : 7,
+               "fin" : 2,
+               "urg" : 0,
+               "rst" : 0,
+               "syn-ack" : 1,
+               "syn" : 1,
+               "psh" : 12
+            },
+            "pa2" : 12,
+            "db" : 2151,
+            "db2" : 485,
+            "a1" : "10.180.121.109",
+            "ps" : [
+               24,
+               106,
+               188,
+               264,
+               405,
+               510,
+               586,
+               830,
+               975,
+               1084,
+               1160,
+               1269,
+               1345,
+               1461,
+               2991,
+               3145,
+               3221,
+               3322,
+               3398,
+               3553,
+               3629,
+               3705,
+               3781
+            ],
+            "psl" : [
+               82,
+               82,
+               76,
+               141,
+               105,
+               76,
+               244,
+               145,
+               109,
+               76,
+               109,
+               76,
+               116,
+               1530,
+               154,
+               76,
+               101,
+               76,
+               155,
+               76,
+               76,
+               76,
+               76
+            ],
+            "esubcnt" : 1,
+            "fp" : 1386358271,
+            "firstPacket" : 1386358271061,
+            "by" : 3465,
+            "prot-term-cnt" : 2,
+            "pa" : 23,
+            "mac1-term-cnt" : 2,
+            "ipDst" : "64.236.55.18",
+            "fb1" : "45484c4f20787878",
+            "prot-term" : [
+               "smtp",
+               "tcp"
+            ],
+            "aseip" : [
+               "---",
+               "---",
+               "---"
+            ],
+            "by2" : 1169,
+            "euacnt" : 1,
+            "emv" : [
+               "1.0"
+            ],
+            "rir2" : "ARIN",
+            "edst" : [
+               "xxxxxxxx@gmail.com"
+            ],
+            "lpd" : 1386358271580,
+            "tacnt" : 1,
+            "ehocnt" : 2,
+            "pa1" : 11,
+            "ehh" : [
+               "content-type",
+               "message-id",
+               "mime-version",
+               "from",
+               "to",
+               "user-agent",
+               "x-ms-tnef-correlator",
+               "received",
+               "thread-index",
+               "date",
+               "subject",
+               "content-language",
+               "x-originating-ip",
+               "x-ms-has-attach",
+               "accept-language",
+               "thread-topic"
+            ],
+            "p1" : 11084,
+            "ehhcnt" : 16,
+            "esrccnt" : 1,
+            "eidcnt" : 1,
+            "lastPacket" : 1386358271580,
+            "portSrc" : 11084,
+            "by1" : 2296,
+            "g1" : "USA",
+            "eho" : [
+               "xxxxxxxxxxxxxxxxx2.xxxxx.net",
+               "xxxxxxxxxxxxxxxxx1.xxxxx.net"
+            ]
+         }
+      }
+   ]
+}
+
