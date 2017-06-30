@@ -1,0 +1,78 @@
+===================================================
+LMAP - Linux Physical Memory acquisition tool
+===================================================
+Author: Johannes Stuettgen (johannes.stuettgen@gmail.com)
+
+Summary:
+========
+This is a collection of tools to load a memory acquisition driver without having
+to build anything on the target system.
+
+Available Tools:
+================
+1.) lmap
+  This is the end-user tool. It works by injecting a minimal acquisition driver
+  into a compatible kernel module on the running system and then loading that.
+  It is statically linked and should work on any Linux x86-64 system from kernel
+  2.6 to 3.X [1].
+2.) elfrelink
+  The functionality of lmap requires relinking and modification of ELF64 files,
+  as well as their relocation and symbol tables. Elfrelink is the library that
+  provides this functionality.
+3.) kohook
+  The kohook program allows use of the elfrelink library from the command line.
+  It is meant to allow users to script the relinking functionality from the
+  shell or even a make-file. Check the build target "hooked_pmem" for an
+  example.
+4.) minpmem
+  The minpmem kernel module is a stripped down version of the Linux pmem driver,
+  utilizing pte remapping to access physical memory [2].
+
+Usage:
+======
+See the README file in 'release/' for details (generated during build).
+
+Compatibility:
+==============
+The entire tool suite is only compatible with x86-64 processors and binaries.
+32 Bit x86 and ARM support is still in development.
+
+Building from Source:
+=====================
+The 'build.sh' file automates the build process for your convenience. It
+creates a CMake build environment in 'build/' and builds all relevant drivers
+and libraries. It then generates the lmap binary and places it in the 'release/'
+folder together with the generated documentation.
+
+You can also manually create and modify the build environment with CMake.
+1. Change to the 'build/' directory and verify it is empty.
+  (You can always 'rm -r *' in 'build/' to clean it up.)
+2 Use CMake to generate a makefile in the 'build' directory by calling
+  'cmake ..'.
+3. Call 'make' and it will build all the binaries and place them into their
+  respective subfolders in 'build/'.
+  
+There are no external dependencies except the kernel headers, gcc, cmake, make
+and libc. On Ubuntu systems you need to install the packages 'build-essential',
+'cmake' and 'linux-headers-`uname -r`'.
+
+IMPORTANT:
+==========
+Never build LMAP with ftrace enabled in your build environment. This will
+introduce a symbol dependency on certain ftrace symbols and the resulting
+module will not be loadable on non-ftrace kernels.
+
+The CMake scripts create a copy of your kernel headers and config in
+'build/kernel_headers'. Any FTRACE options enabled in your original kernel
+config will be disabled there and the pmem module will be compiled with this
+config to guarantee an FTRACE free build.
+
+References:
+===========
+[1] Stüttgen, Johannes, and Michael Cohen.
+  "Robust Linux Memory Acquisition with Minimal Target Impact"
+  Digital Investigation 11 (2014): P112-P119.
+[2] Stüttgen, Johannes, and Michael Cohen.
+  "Anti-forensic resilient memory acquisition"
+  Digital Investigation 10 (2013): P105-P115.
+

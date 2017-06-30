@@ -1,0 +1,34 @@
+Game Conqueror
+==============
+Game Conqueror is a graphical game cheating tool under Linux, as a frontend of scanmem.
+
+
+Requirements
+============
+libscanmem (latest version)
+Python (2.x / 3.x)
+PyGObject
+GTK+ 3
+policykit
+
+
+Usage
+=====
+You are supposed to be familiar with cheating tools like CheatEngine
+
+- Search for a value in the Value entry, then press Enter or the scan buttons
+  * Check supported syntax via the '?' mark 
+  * You scan enable/disable searching for integer/float using the checkboxes.
+  * Pay attention to 'Found: XX' at topleft 
+  * Results will be displayed in the left list if there are not too many 
+- Add a candidate address to the list below by double-click on it or use the context-menu
+- There you can edit description, value, and lock it.
+
+Author
+======
+WANG Lu  <coolwanglu(a)gmail.com>
+
+
+License
+=======
+GPLv3

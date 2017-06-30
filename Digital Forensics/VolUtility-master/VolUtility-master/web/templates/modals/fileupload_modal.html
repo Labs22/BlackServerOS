@@ -1,0 +1,44 @@
+{% load template_dict %}
+<div class="modal fade" id="fileUploadModal" tabindex="-1" role="dialog" aria-labelledby="fileUploadModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="fileUploadModal">Files</h4>
+            </div>
+            <div class="modal-body">
+
+                <div id="fileupload-block">
+                     {% include "file_upload_table.html" %}
+                </div>
+
+
+
+
+                <hr>
+
+
+                <div class="col-lg-6">
+                <form id="file-form" class="form-inline">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <span class="btn btn-primary btn-file">
+                                    Browse&hellip; <input type="file" id="file-select" name="files[]" multiple/>
+                                </span>
+                            </span>
+                            <input type="text" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default" id="upload-button">Upload</button>
+                        </div>
+                </form>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

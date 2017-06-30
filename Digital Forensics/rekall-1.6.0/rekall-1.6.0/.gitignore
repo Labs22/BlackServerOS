@@ -1,0 +1,53 @@
+# Files to ignore by git
+
+*~
+
+# Generic auto-generated build files
+*.pyc
+*.pyo
+*.o
+
+# Specific auto-generated build files
+/py27
+build/
+dist/
+rekall.egg-info
+rekall_gui.egg-info
+rekall_core.egg-info
+*.egg-info
+
+# Xcode & OS X-related stuff
+.DS_Store
+xcshareddata
+xcuserdata
+
+# Other
+*.sln
+*.swp
+buildchk_wnet_*
+objchk_wnet_*
+.scons*
+*.swp
+release
+test_data/*/*.img*
+test_data/*.raw*
+test_data/*.dmp*
+test_data/*.hiber*
+test_data/*/Test*
+
+rekal.spec
+
+node_modules
+emacs.desktop
+.#*
+lock
+
+rekall-forensic*
+
+.idea
+
+*BACKUP*
+*BASE*
+*LOCAL*
+*REMOTE*
+.dir-locals.el

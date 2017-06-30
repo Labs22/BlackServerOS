@@ -1,0 +1,10 @@
+pexpect
+django
+distorm3
+geoip2
+pycrypto
+pymongo
+python-registry
+virustotal-api
+yara-python
+git+https://github.com/smarnach/pyexiftool.git#egg=pyexiftool

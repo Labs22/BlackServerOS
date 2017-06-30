@@ -1,0 +1,7 @@
+recursive-exclude .git *
+recursive-exclude build *
+include README.md
+recursive-include manuskript/static *
+recursive-include rekall_gui/plugins/webconsole/static *
+exclude .gitignore
+exclude *.pyc

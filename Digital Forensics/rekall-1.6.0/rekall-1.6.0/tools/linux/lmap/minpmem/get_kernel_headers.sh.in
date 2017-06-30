@@ -1,0 +1,20 @@
+#usr/bin/env bash
+
+RELEASE=@KERNEL_VERSION@
+KBUILD="/lib/modules/$RELEASE/build";
+NEW_KBUILD=@KERNEL_HEADERS@
+
+# link all contents of kbuild, but copy Makefile
+for FILE in `ls -AHL $KBUILD`
+do
+  if [ $FILE == "Makefile" ]
+  then
+    # Copy the Makefile, we need to modify this later
+    cp $KBUILD/$FILE $NEW_KBUILD
+  else
+    ln -s $KBUILD/$FILE $NEW_KBUILD
+  fi
+done
+
+# disable the ftrace gcc option
+sed -i "s/^ifdef CONFIG_FUNCTION_TRACER$/ifdef THIS_OPTION_HAS_BEEN_DISABLED/g" $NEW_KBUILD/Makefile

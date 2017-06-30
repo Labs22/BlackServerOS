@@ -1,0 +1,110 @@
+{% load staticfiles %}
+{%  load template_dict %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>VolUtility - {% block title %}{% endblock %}</title>
+<meta charset="UTF-8">
+<meta name="description" content="Volutility">
+<meta name="keywords" content="yara,rules">
+<link id="bootswatch" href="{% static 'css/'|theme:"theme" %}" rel="stylesheet">
+<link href="{% static 'css/datatables.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+<link href="{% static 'css/treeview.css' %}" rel="stylesheet">
+
+
+</head>
+ 
+<body>
+<!-- Nav Bar -->
+
+<nav class="navbar" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand"><img class="logo" src="{% static 'img/VolUtility.png' %}" height="60"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+          <li><a href="/logout/">Logout</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#pluginModal">Add Plugins</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#aboutModal">About</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Help <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="https://github.com/kevthehermit/VolUtility/wiki">Wiki</a></li>
+            <li><a href="https://github.com/kevthehermit/VolUtility/issues">Issues</a></li>
+            <li class="divider"></li>
+            <li><a href="#" data-toggle="modal" data-target="#aboutModal">About</a></li>
+            <li><a href="#" onclick="spinnerControl('open', 'Loading Results')">Loading page</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- End Nav -->
+
+{% if error_line %}
+<!-- Error Line -->
+<div class="alert alert-danger alert-dismissible text-center" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Doh!</strong> {{error_line}}.
+</div>
+{% endif %}
+
+
+<div class="container-fluid">
+    <!-- End Header  -->
+    {% block content %}{% endblock %}
+</div>
+
+<div id="spinnerdiv" class="spinner">
+    <a href="javascript:void(0)" class="closebtn" onclick="spinnerControl('close')">&times;</a>
+  <!-- Overlay content -->
+  <div class="spinner-content">
+      <h2 id="loadingtext"></h2>
+    <img src="{% static 'img/'|theme:"spinner" %}">
+
+  </div>
+</div>
+
+
+  
+<div class="footer">
+    <div class="container">
+        <div align="center">
+            <p class="muted credit"><a href="https://github.com/kevthehermit/VolUtility">VolUtility</a> Copyright &copy; 2016. Created by <a href="http://techanarchy.net/">Kevin Breen</a>.</p>
+        </div>
+    </div>
+</div>
+
+{% include 'about_modal.html' %}
+
+<!-- include libries(jQuery, bootstrap, fileview) -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/pagination.js' %}"></script>
+<script src="{% static 'js/datatables.min.js' %}"></script>
+<script src="{% static 'js/volutility.js' %}"></script>
+<!-- <script src="{% static 'js/viz.js' %}"></script> -->
+
+<script src="{% static 'js/d3.min.js' %}"></script>
+<script src="{% static 'js/graphlib-dot.min.js' %}"></script>
+<script src="{% static 'js/dagre-d3.min.js' %}"></script>
+
+</body>
+</html>

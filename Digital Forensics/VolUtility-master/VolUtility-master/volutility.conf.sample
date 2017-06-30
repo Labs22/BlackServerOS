@@ -1,0 +1,31 @@
+[database]
+mongo_uri = mongodb://localhost
+
+[virustotal]
+api_type = public
+api_key = None
+
+[autorun]
+#
+# Volutility will try to run these plugins as soon as the image is loaded.
+#
+enable = False
+plugins = pslist,psscan
+
+[update]
+update = True
+
+[extensions]
+disabled = cuckoosandbox
+
+[cuckoo]
+# set modified to True for brads fork
+modified = False
+host = http://192.168.1.200:8000
+
+[style]
+theme = slate.min.css
+spinner = cat_spinner.gif
+
+[auth]
+enable = False

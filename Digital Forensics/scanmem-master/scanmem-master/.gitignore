@@ -1,0 +1,56 @@
+# Compiled program
+/scanmem
+
+# Auto-generated files
+*.o
+*.lo
+*.la
+.deps
+.libs
+m4
+autom4te.cache
+config.h*
+configure
+Makefile
+Makefile.in
+aclocal.m4
+compile
+config.guess
+config.log
+config.status
+config.sub
+depcomp
+install-sh
+libtool
+ltmain.sh
+missing
+py-compile
+stamp-h1
+tags
+
+# GameConqueror
+gui/GameConqueror.appdata.xml
+gui/GameConqueror.desktop
+gui/consts.py
+gui/*.pyc
+gui/*.pyo
+gui/__pycache__
+gui/gameconqueror
+gui/org.freedesktop.gameconqueror.policy
+gui/org.freedesktop.gameconqueror.policy.in
+
+# Translations
+po/.intltool-merge-cache
+po/GameConqueror.pot
+po/Makefile.in.in
+po/POTFILES
+po/ja.gmo
+po/ru.gmo
+po/stamp-it
+
+# Android builds
+# libreadline and ncurses downloads and links
+readline-*
+ncurses-*
+readline
+ncurses

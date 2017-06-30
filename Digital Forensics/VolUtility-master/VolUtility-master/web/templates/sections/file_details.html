@@ -1,0 +1,88 @@
+ {% load template_dict %}
+
+
+
+<div class="modal modal-wide fade" id="fileModal" tabindex="-1" role="dialog" aria-labelledby="fileModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="fileModal">File Details - {{file_details.filename}}</h4>
+            </div>
+            <div class="modal-body">
+
+<div class="row">
+    <div class="col-lg-3">
+  <ul class="nav nav-pills nav-stacked">
+    <li class="active"><a data-toggle="pill" href="#home">Details</a></li>
+    {% for inc in includes %}
+        <li><a data-toggle="pill" href="#{{ inc.1 }}">{{ inc.1 }}</a></li>
+
+    {% endfor %}
+
+
+    <!-- <li><a data-toggle="pill" href="#" onclick="ajaxHandler('HiveViewer', {'file_id':'{{file_id}}', 'key': 'root', 'reset': true, 'extension':true}, false )">Registry</a></li> -->
+  </ul>
+    </div>
+
+    <div class="col-lg-9">
+
+
+
+
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h3>Details</h3>
+
+            <table class="table table-striped table-bordered table-hover">
+                <tr>
+                    <th>FileName</th>
+                    <td>{{file_details.filename}}</td>
+                </tr>
+                <tr>
+                    <th>FileSize</th>
+                    <td>{{file_details.length}} bytes</td>
+                </tr>
+                <tr>
+                    <th>MD5</th>
+                    <td>{{ file_details.md5}}</td>
+                </tr>
+                <tr>
+                    <th>SHA256</th>
+                    <td>{{file_details.sha256}}</td>
+                </tr>
+                <tr>
+                    <th>Download</th>
+                    <td><a href="/download/file/{{file_id}}">Download</a></td>
+                </tr>
+                <tr>
+                    <th>Delete</th>
+                    <td><span class="clickable"> <a class="text-danger" href="#" onclick="ajaxHandler('deleteobject', {'file_id':'{{file_id}}', 'droptype':'dumpfiles', 'session_id':'{{session_details|get:"_id"}}'}, false )">  <span class="glyphicon glyphicon-trash"></span></a></span></td>
+
+                </tr>
+
+
+            </table>
+    </div>
+
+{% for inc in includes %}
+    <div id="{{ inc.1 }}" class="tab-pane fade">
+    {% include ""|add:inc.0|stringformat:"s" %}
+    </div>
+
+{% endfor %}
+
+
+  </div>
+
+    </div>
+</div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+DATADIR=@PKGDATADIR@
+
+PKEXEC=$(command -v "pkexec")
+if [ -n "$PKEXEC" ]; then
+    $PKEXEC $DATADIR/GameConqueror.py "$@"
+else
+    echo "install policykit!"
+fi

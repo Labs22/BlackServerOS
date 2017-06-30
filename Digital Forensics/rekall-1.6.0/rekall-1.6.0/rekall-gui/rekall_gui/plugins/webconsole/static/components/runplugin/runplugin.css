@@ -1,0 +1,166 @@
+.cell .runplugin .panel-plugin-selection {
+    margin-top: 5px;
+    height: 300px;
+    overflow: auto;
+    position: relative;
+}
+
+.cell .runplugin .panel-plugin-description {
+    max-height: 300px;
+    overflow:auto
+}
+
+.cell .runplugin .plugin-title {
+    padding-top: 0.4em;
+    padding-left: 0.1em;
+}
+
+.cell .runplugin .plugin-1line-description {
+    font-size: 70%;
+    color: #999;
+}
+
+.runplugin .freeFormat {
+    font-family: monospace;
+}
+
+.runplugin .interactiveTableCell, .runplugin .freeFormatArgument {
+    background-color: #efefef;
+}
+
+.runplugin .interactiveTableCell:hover, .runplugin .freeFormatArgument:hover {
+    background-color: #cecece;
+}
+
+.runplugin ul.context-menu {
+    position: fixed;
+    display: block;
+}
+
+.infinite-scroll {
+    height: 120px;
+    overflow-y: auto;
+    border-radius: 4px;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.8);
+    display: flex;
+    flex-direction: row;
+}
+
+.panel-body.minimized {
+    height: 500px;
+    overflow-y: auto;
+    border-radius: 4px;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.8);
+}
+
+.infinite-scroll .CodeMirror {
+    background: transparent;
+}
+
+.infinite-scroll table {
+    width: auto;
+}
+
+.table-handler {
+    min-width: 11ex;
+    padding: 0.4em;
+    padding-top:0;
+    padding-bottom:0;
+    height: 100%;
+}
+
+.scroll-table-container {
+    position: relative;
+}
+
+.table-handler:hover {
+    -webkit-box-shadow: inset 0 0 1px #000;
+    -moz-box-shadow: inset 0 0 1px #000;
+    box-shadow: inset 0 0 1px #000;
+    background: rgba(240,240,240,0.5);
+    cursor: ns-resize;
+}
+
+.bool-true {
+    background-color: #99FFCC !important;
+}
+
+.bool-false {
+    background-color: #FF9999 !important;
+}
+
+.actionable {
+    color: blue;
+    cursor: context-menu;
+}
+
+modal.table {
+    word-break: break-all;
+}
+
+addrpad {
+   word-break: normal;
+   text-align: right;
+}
+
+.modal-lg {
+    width: 80%;
+}
+
+.rekall-input.ng-invalid {
+    color:white;
+    background: red;
+}
+
+.rekall-logo img {
+    opacity: 0.4;
+}
+
+.rekall-logo {
+    text-align: center;
+}
+
+.rekall-tree {
+
+}
+
+.wide-modal .modal-dialog {
+    width: 90%;
+}
+
+samp.pre {
+ white-space: pre;
+}
+
+.btn {
+    font-weight: bold;
+}
+
+.horizontally-padded {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.plugin-content {
+    width: 100%;
+}
+
+.expand-table-control {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.expand-table-control li, .expand-table-control button {
+    height: 34px;
+};
+
+.table-nav {
+    margin: 0px;
+    min-height: 0px;
+}
+
+.table-nav .pager {
+    margin-bottom: 0px;
+}

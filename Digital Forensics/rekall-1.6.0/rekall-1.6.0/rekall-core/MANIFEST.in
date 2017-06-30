@@ -1,0 +1,13 @@
+include README.rst
+recursive-exclude .git *
+recursive-exclude build *
+
+#recursive-include contrib *
+recursive-exclude rekall *.pyc
+recursive-exclude tools *.a *.la *.lo *.o
+
+exclude .gitignore
+exclude *.pyc
+
+# Drivers for OSX and windows.
+recursive-include resources *

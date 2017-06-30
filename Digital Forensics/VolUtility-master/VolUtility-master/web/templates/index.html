@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% load template_dict %}
+
+{% block title %}VolUI{% endblock %}
+
+
+{% block content %}
+
+    {% if reqauth %}
+
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Authentication Required.</h3>
+    </div>
+
+    <div class="panel-body">
+        <p>The Administrator of the platform has enabled authentication.</p>
+            <form class="form-inline center-block" action="/login/" method="post">
+              <div class="form-group">
+                <input type="text" class="form-control" id="username" name="username" placeholder="UserName">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+              </div>
+              <button type="submit" class="btn btn-default">Sign in</button>
+              {% csrf_token %}
+            </form>
+    </div>
+    </div>
+
+    {%  else %}
+
+    <!-- Search All -->
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Filter Sessions</h3>
+    </div>
+
+    <div class="panel-body">
+        <form class="form-inline center">
+          <div class="form-group">
+            <label for="pluginname">Plugin Name</label>
+            <input type="text" class="form-control" id="pluginname" placeholder="pslist">
+          </div>
+          <div class="form-group">
+            <label for="searchterm">Value</label>
+            <input type="text" class="form-control" id="searchterm" placeholder="cmd.exe">
+          </div>
+          <a href="#" onclick="ajaxHandler('filtersessions', {}, true ); return false" class="btn btn-info" role="button">Filter Sessions</a>
+        </form>
+    </div>
+    </div>
+
+
+<!-- List Sessions -->
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Showing {{ session_counts.1 }} to {{ session_counts.0 }} of {{ session_counts.2 }} Sessions</h3>
+        <span class="pull-right clickable"> <a class="text-success" href="#" data-toggle="modal" data-target="#sessionModal"><span class="glyphicon glyphicon-plus">New</span></a> </span>
+    </div>
+
+    <table class="table table-striped table-bordered table-hover">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Profile</th>
+            <th>Created</th>
+            <th>Modified</th>
+            <th>Delete</th>
+        </tr>
+        {% for row in session_list %}
+        <tr>
+            <td class="clickable col1" onclick="document.location = '/session/{{row|get:"_id"}}/';">{{row|get:"_id"}}</td>
+            <td class="clickable" onclick="document.location = '/session/{{row|get:"_id"}}/';"><a href="/session/{{row|get:"_id"}}/">{{row.session_name}}</a></td>
+            {% if 'status' in row %}
+            <td class="clickable" onclick="document.location = '/session/{{row|get:"_id"}}/';">{{row.status|default:'Completed'}}</td>
+            {% else %}
+            <td class="clickable" onclick="document.location = '/session/{{row|get:"_id"}}/';">Completed</td>
+            {% endif %}
+            <td class="clickable" onclick="document.location = '/session/{{row|get:"_id"}}/';">{{row.session_profile}}</td>
+            <td class="clickable" onclick="document.location = '/session/{{row|get:"_id"}}/';">{{row.created|date:"m M y H:i:s"}}</td>
+            <td class="clickable" onclick="document.location = '/session/{{row|get:"_id"}}/';">{{row.modified|date:"m M y H:i:s"}}</td>
+            <td><span class="clickable"> <a class="text-danger" href="#" onclick="ajaxHandler('deleteobject', {'session_id':'{{row|get:"_id"}}', 'droptype':'session'}, false )">  <span class="glyphicon glyphicon-trash"></span></a></span></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+<div class="text-center">
+    <nav>
+        <ul class="pagination">
+            {% if session_list.has_previous %}
+            <li><a href="?page={{ session_list.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+            <li class="disabled"><span><span aria-hidden="true">&laquo;</span></span></li>
+            {% endif %}
+
+            {% for page in session_list.paginator.page_range %}
+            {% spaceless %}
+            <li
+            {% if page == session_list.number %}
+            class="active"
+            {% endif %}
+            ><a href="?page={{ page }}">{{ page }}</a></li>
+            {% endspaceless %}
+            {% endfor %}
+
+            {% if session_list.has_next %}
+            <li><a href="?page={{ session_list.next_page_number }}">&raquo;</a></li>
+            {% else %}
+            <li class="disabled"><span><span aria-hidden="true">&raquo;</span></span></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+
+{% include "add_session_modal.html" %}
+{% include "add_plugin_modal.html" %}
+<script type="text/javascript">
+  //setTimeout(function () { location.reload(true); }, 30000);
+</script>
+
+    {% endif %}
+
+{% endblock %}

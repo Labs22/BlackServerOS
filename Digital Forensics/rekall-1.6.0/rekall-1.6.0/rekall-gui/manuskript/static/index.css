@@ -1,0 +1,71 @@
+body {
+    padding-top: 70px;
+}
+
+.CodeMirror {
+    border: 1px solid #eee;
+    height: auto;
+}
+
+.CodeMirror-scroll {
+    overflow-y: hidden;
+    overflow-x: auto;
+    height: auto;
+}
+
+.right-padded {
+    padding-right: 1em;
+}
+
+.vertically-padded-xl {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+.cell {
+    margin-left: 0;
+    margin-right: 0;
+    border-width: 0px;
+    border-radius: 4px 4px 0 0;
+    box-shadow: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 1em;
+    cursor: default;
+}
+
+.cell pre {
+    cursor: default;
+}
+
+.cell .well {
+    margin-bottom: 0;
+}
+
+.cell.selected {
+    background-color: #fcf8e3;
+}
+
+.cell .cell-toolbar {
+    opacity: 0.25;
+}
+
+.cell:hover .cell-toolbar {
+    opacity: 1;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.pre-line-whitespace {
+    white-space: pre-line;
+}
+
+button.btn.btn-default[disabled] {
+    opacity: 0.25;
+}
+
+#main {
+    padding-bottom: 50px;
+}

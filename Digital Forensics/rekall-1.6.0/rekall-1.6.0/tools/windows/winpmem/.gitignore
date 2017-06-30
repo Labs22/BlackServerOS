@@ -1,0 +1,5 @@
+buildchk*
+objchk*
+*.sys
+*.exe
+*.log

@@ -1,0 +1,71 @@
+<div class="paged-table-container">
+  <div class="navbar navbar-default table-nav">
+    <div class="pull-left btn-group expand-table-control">
+      <button class="btn btn-default"
+              tooltip="Toggle Table Size."
+              ng-click="toggleMinimize()"
+              >
+        <span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>
+      </button>
+    </div>
+
+
+    <nav class="">
+      <ul class="btn-group pull-right pagination expand-table-control">
+        <li ng-class="{'disabled': paginationSelectedPage==1}">
+          <a href="#"
+             ng-click="selectPage(paginationSelectedPage-1)"
+             >Prev
+          </a>
+        </li>
+
+        <li class="btn btn-info disabled">
+          {{paginationSelectedPage}} / {{totalPages}}
+        </li>
+
+        <li ng-class="{'disabled': paginationSelectedPage==totalPages}">
+          <a href="#"
+             ng-click="selectPage(paginationSelectedPage+1)"
+             >Next
+          </a>
+        </li>
+      </div>
+    </nav>
+  </div>
+
+  <table class="table table-condensed table-striped table-hover">
+    <thead>
+      <tr>
+        <th ng-repeat="column in ::headers">
+          <span>{{::column.name}}</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="row in pageRows" ng-if="row.visible">
+        <td ng-repeat="item in ::row.data" style="font-size: 90%" >
+          <span ng-if="::item.tree"
+                ng-style="::{'margin-left': row.depth + 'em'}"
+                class="rekall-tree">
+            <span ng-if="::row.branch === undefined"
+                  style="margin-left: 15px" />
+            <a ng-if="::row.branch !== undefined"
+               ng-click="toggleTreeNode(row)" >
+              <span ng-class="{'glyphicon-expand': !row.opened,
+                              'glyphicon-collapse-down': row.opened}"
+                    class="glyphicon" />
+            </a>
+          </span>
+          <rekall-object object="::item.data" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="text-center" ng-if="rowGroups.length > pageSize">
+    <pagination total-items="rowGroups.length" items-per-page="pageSize"
+                max-size="10" rotate="false" boundary-links="true"
+                page="paginationSelectedPage"
+                on-select-page="selectPage(page)" />
+  </div>
+</div>

@@ -1,0 +1,502 @@
+.TH scanmem 1 "2017-04-15" "scanmem-0.17"
+.SH NAME
+scanmem - locate and modify a variable in an executing process.
+
+.SH SYNOPSIS
+.B scanmem
+.RB [options]
+.IR [target-program-pid]
+
+
+.SH DESCRIPTION
+.B scanmem
+is an interactive debugging utility that can be used to isolate the address of a variable
+in an executing process by successively scanning the process' address space looking for
+matching values. By informing
+.B scanmem
+how the value of the variable changes over time, it can determine the actual location (or
+locations) of the variable by successively eliminating non-matches.
+.B scanmem
+determines where to look by searching for mappings with
+.I read
+/
+.I write
+permission, these are referred to as regions. Users can eliminate regions they believe are
+likely unrelated to the target variable (for example, located in a shared library unrelated to
+the variable in question), this will improve the speed of the scan, which can initially be quite
+slow in large programs.
+
+Once a variable has been found,
+.B scanmem
+can monitor the variable, or change it to a user specified value, either once, or continually
+over a period of time.
+
+.B scanmem
+.RI "works similarly to the \(dq" pokefinders "\(dq once commonly used to cheat at video games,"
+this function is a good demonstration of how to use
+.BR scanmem ", and is used in the documentation."
+
+.SH USAGE
+.B scanmem
+should be invoked with the process id of the program you wish to debug as an argument. Once
+started,
+.B scanmem
+accepts interactive commands. These are described below, however entering
+.IR help
+at the
+.B >
+prompt will allow you to access
+.BR scanmem "'s"
+online documentation.
+
+The
+.IR target-program-pid
+can be specified in decimal, hexadecimal, or octal using the standard C language notation
+(leading 0x for hexadecimal, leading 0 for octal, anything else is assumed to be decimal).
+
+.BI "\-p, \-\-pid=" pid
+
+Set the
+.IR "target-program-pid".
+
+.B "\-v, \-\-version"
+
+Print version and exit.
+
+.B "\-h, \-\-help"
+
+Print a short description of command line options then exit.
+
+.B "\-d, \-\-debug"
+
+Run in debug mode, more information will be outputted.
+
+.SH COMMANDS
+
+While in interactive mode,
+.BR scanmem " prints a decimal number followed by " > ", the number is the current number of"
+possible candidates for the target variable that are known. 0 indicates that no possible variables
+have been eliminated yet.
+The default scan data type is "int".
+.RB "It can be changed with the " option " command."
+
+.B n
+
+Where
+.B n
+represents any number in decimal, octal or hexadecimal, this command tells
+.B scanmem
+that the current value of the target variable is exactly
+.BR n "."
+.B scanmem
+will begin a search of the entire address space, or the existing known matches (if any),
+eliminating any variable that does not have this value.
+
+.B n..m
+
+This is like the
+.B n
+command but
+.B scanmem
+searches for a range of numbers between
+.B n
+and
+.B m
+inclusive instead.
+
+.BR ">", " <", " =", " !=" ", ..."
+
+The following commands are extremely useful for locating a variable where we cannot see its
+exact value but we can see for example how it changes over time like with a health bar. These
+commands usually cannot be used for the first scan but there are some exceptions:
+.BR "> " n, " < " n, " = " "n and" " != " n.
+
+.BI "> " [n]
+
+.RI "If " n " is given, match values that are greater than " n "."
+.RB "Otherwise match all values that have increased."
+
+.BI "< " [n]
+
+.RI "If " n " is given, match values that are less than " n "."
+.RB "Otherwise match all values that have decreased."
+
+.BI "+ " [n]
+
+.RI "If " n " is given, match values that have been increased by " n "."
+.RB "Otherwise match all values that have increased (same as " > ")."
+
+.BI "- " [n]
+
+.RI "If " n " is given, match values that have been decreased by " n "."
+.RB "Otherwise match all values that have decreased (same as " < ")."
+
+.BI "= " [n]
+
+.RI "If " n " is given, match values that are equal to " n " (same as " n ")."
+.RB "Otherwise match all values that have not changed."
+
+.BI "!= " [n]
+
+.RI "If " n " is given, match values that are different from " n "."
+.RB "Otherwise match all values that have changed."
+
+.B snapshot
+
+Match any value. This is useful when an initial value or range is not known for
+subsequent scans with
+.BR > ", " < ", " + ", " - ", " = ", and " != "."
+
+.BI "\(dq " text
+
+Search for the provided
+.I text
+in memory if the scan data type is set to "string".
+
+.B update
+
+Scans the current process, getting the current values of all matches. These values can be viewed with
+.BR list ", and are also the old values that " scanmem " compares to when using"
+.BR > ", " < ", or " = "."
+This command is equivalent to a search command that all current results match.
+
+.B list
+
+List all the possible candidates currently known, including their address, region id, match offset,
+region type, last known value and possible value types.
+The value in the first column is the match id, and can be used in conjunction with the
+.B delete
+command to eliminate matches.
+
+For experts: The match offset is determined by subtracting the load address of the associated
+ELF file or region from the address. It can be used to bypass Address Space Layout Randomization
+(ASLR).
+
+.B delete
+.I match-id
+
+Delete match
+.IR match-id ", which can be found from the output of the"
+.B list
+command. To delete all matches, see the
+.B reset
+command, or to delete all matches associated with a particular library, see the
+.B dregion
+command, which also removes any associated matches. Please note that match-ids may be
+recalculated after matches are removed or added.
+
+.B watch
+.I match-id
+
+Monitor the value of
+.IR match-id ", and print its value as it changes. Every change is printed along with a timestamp,"
+you can interrupt this command with ^C to stop monitoring.
+
+.B set
+.I [match-id][,match-id,...]=]value[/delay] [...]
+
+Set the value
+.IR value " into the match numbers " match-id ", or if just "
+.IR value " is specified, all known matches."
+.I value
+can be specified in standard C language notation. All known matches, along with their
+match-id's can be displayed using the
+.B list
+command. Multiple
+.IR match-id's " can be specified, separated with commas and terminated with an "
+.IR = " sign. To set a value continually, suffix the command with " /
+followed by the number of seconds to wait between sets. You can interrupt the set command
+with ^C to return to the
+.B scanmem
+prompt. This can be used to sustain the value of a variable which decreases overtime, for
+example a timer that is decremented every second can be set to 100 every 10 seconds to
+prevent some property from ever changing.
+
+This command is used to change the value of the variable(s) once found by elimination.
+Please note, some applications will store values in multiple locations.
+
+.B write
+.I value_type address value
+
+Manually set the value of the variable at the specified address.
+
+Names of
+.I value_type
+are subject to change in different versions of
+.BR scanmem ","
+see more info using the `help write` command.
+
+.B dump
+.I address length [filename]
+
+Dump the memory region starting from
+.I address
+of length
+.I length
+in a human-readable format.
+
+If
+.I filename
+is given, data will be saved into the file, otherwise data will be displayed on stdout.
+
+.B pid
+.I [new-pid]
+
+Print out the process id of the current target program, or change the target to
+.IR new-pid ", which will reset existing regions and matches."
+
+.B reset
+
+Forget all known regions and matches and start again.
+
+.B lregions
+
+List all the known regions, this can be used in combination with the
+.B dregion
+command to eliminate regions that the user believes are not related to the variable in question,
+thus reducing the address space required to search in. The value in the first column is the
+.I region-id
+which must be passed to the
+.B dregion
+command. Besides the start address, the size and path (if applicable) are also printed. This can be
+used to eliminate regions located in shared libraries that are unlikely to be relevant to the
+variable required.
+
+For experts: Also the region type and the load address are displayed. The types are "exe" (executable)
+"code" (library), "heap", "stack" or "misc" (everything else). The load address is the memory location
+where an ELF file (exe/lib) has been loaded to. This helps to convert between the addresses in memory
+and in the associated ELF file. If the region does not belong to an ELF file, then it is the same as
+the start address.
+
+.B dregion
+.I [!]region-id[,region-id][,...]
+
+Delete the region
+.IR region-id ", along with any matches from the match list. The"
+.I region-id
+can be found in the output of the
+.B lregions
+command. A leading
+.I !
+indicates the list should be inverted.
+
+.B option
+.I name value
+
+Change options at runtime. E.g. the scan data type can be changed.
+See `help option` for all possible names/values.
+
+.B shell
+.I shell-command
+
+Execute
+.I shell-command
+using /bin/sh, then return.
+
+.B show
+.I info
+
+Display information relating to
+.I info
+- see `help show` for details.
+
+.B version
+
+Print the version of
+.B scanmem
+in use.
+
+.B help
+
+Print a short summary of available commands.
+
+.BR exit
+
+Detach from the target program and exit immediately.
+
+.SH EXAMPLES
+Cheat at nethack, on systems where nethack is not installed sgid.
+
+.B ATTENTION: scanmem
+usually requires root privileges. See
+.B BUGS
+for details.
+
+.nf
+$ sudo scanmem `pgrep nethack`
+info: maps file located at /proc/14658/maps opened.
+info: 9 suitable regions found.
+Please enter current value, or "help" for other commands.
+>
+.fi
+
+I enter how much gold I currently have (58 pieces) and let
+.B scanmem
+find the potential candidates.
+
+
+.nf
+> 58
+01/09 searching   0x79f000 -   0x7b0000..........ok
+02/09 searching   0x7b0000 -   0x7cc000..........ok
+03/09 searching  0x24d2000 -  0x24f3000..........ok
+04/09 searching 0x7fcc04baa000 - 0x7fcc04bae000..........ok
+05/09 searching 0x7fcc04de1000 - 0x7fcc04de2000..........ok
+06/09 searching 0x7fcc051f7000 - 0x7fcc051fb000..........ok
+07/09 searching 0x7fcc05227000 - 0x7fcc0522a000..........ok
+08/09 searching 0x7fcc0522c000 - 0x7fcc0522d000..........ok
+09/09 searching 0x7ffc8c113000 - 0x7ffc8c134000..........ok
+info: we currently have 16 matches.
+16> list
+[ 0]       7b09e0,  1 +       3b09e0,   exe, 58, [I64 I32 I16 I8 ]
+[ 1]       7b907a,  1 +       3b907a,   exe, 58, [I8 ]
+[ 2]      24d4b6c,  2 +         2b6c,  heap, 58, [I16 I8 ]
+[ 3]      24d567e,  2 +         367e,  heap, 58, [I16 I8 ]
+[ 4]      24d5740,  2 +         3740,  heap, 58, [I8 ]
+[ 5] 7fcc05229951,  6 +         2951,  misc, 58, [I8 ]
+[ 6] 7ffc8c12ee28,  8 +        1be28, stack, 58, [I16 I8 ]
+[ 7] 7ffc8c132381,  8 +        1f381, stack, 58, [I8 ]
+[ 8] 7ffc8c132389,  8 +        1f389, stack, 58, [I8 ]
+[ 9] 7ffc8c132391,  8 +        1f391, stack, 58, [I8 ]
+[10] 7ffc8c132399,  8 +        1f399, stack, 58, [I8 ]
+[11] 7ffc8c1323a1,  8 +        1f3a1, stack, 58, [I8 ]
+[12] 7ffc8c1323a9,  8 +        1f3a9, stack, 58, [I8 ]
+[13] 7ffc8c1331a3,  8 +        201a3, stack, 58, [I8 ]
+[14] 7ffc8c13325f,  8 +        2025f, stack, 58, [I8 ]
+[15] 7ffc8c133264,  8 +        20264, stack, 58, [I8 ]
+16>
+.fi
+
+16 potential matches were found. This is also displayed in the prompt.
+Many of them are quite unrelated, as they are part of the stack, belong to libraries
+or miscellaneous memory-mapped files. Even the heap is unlikely for a very old command
+line game. We could make
+.B scanmem
+eliminate these manually using the
+.B delete
+command, however just waiting until the amount of gold changes and telling
+.B scanmem
+the new value should be enough. I find some more gold, and tell
+.B scanmem
+the new value, 83.
+
+.nf
+16> 83
+\[char46].........info: we currently have 1 matches.
+info: match identified, use "set" to modify value.
+info: enter "help" for other commands.
+1> list
+[ 0]       7b09e0,  1 +       3b09e0,   exe, 83, [I64 I32 I16 I8 ]
+.fi
+
+Only one of the 16 original candidates now has the value 83, so this must be where the
+amount of gold is stored. I'll try setting it to 10,000 pieces.
+
+.nf
+1> set 10000
+info: setting *0x7b09e0 to 0x2710...
+1> 
+.fi
+
+The resulting nethack status:
+
+.nf
+Dlvl:1  $:10000 HP:15(15) Pw:2(2) AC:7  Exp:1
+.fi
+
+Conclusion: We've found and modified the gold value as I32 in static memory of the executable
+at virtual memory address 0x7b09e0. This address belongs to the region with id 1.
+
+Now it is important to know if this is a position-independent executable (PIE). We list the
+regions for this and check the load address of the executable.
+
+.nf
+1> lregions
+[ 0]       79f000,   69632 bytes,   exe,       400000, rw-, /usr/lib/nethack/nethack.tty
+[ 1]       7b0000,  114688 bytes,   exe,       400000, rw-, unassociated
+[ 2]      24d2000,  135168 bytes,  heap,      24d2000, rw-, [heap]
+[ 3] 7fcc04baa000,   16384 bytes,  misc, 7fcc04baa000, rw-, unassociated
+[ 4] 7fcc04de1000,    4096 bytes,  misc, 7fcc04de1000, rw-, unassociated
+[ 5] 7fcc051f7000,   16384 bytes,  misc, 7fcc051f7000, rw-, unassociated
+[ 6] 7fcc05227000,   12288 bytes,  misc, 7fcc05227000, rw-, unassociated
+[ 7] 7fcc0522c000,    4096 bytes,  misc, 7fcc0522c000, rw-, unassociated
+[ 8] 7ffc8c113000,  135168 bytes, stack, 7ffc8c113000, rw-, [stack]
+.fi
+
+We are on x86_64 and 0x400000 is the static load address for executables there. This means
+that this is not a PIE and the gold is always stored at 0x7b09e0. This makes it easy to
+use a game trainer like GameConqueror which refills the gold value periodically.
+
+With a PIE we have to use the match offset (0x3b09e0 here) instead and an advanced game trainer
+with PIE support has to determine and add the current load address to it to get the current
+memory address of the gold value of the current game run.
+
+.SH NOTES
+
+.B scanmem
+has been tested on multiple large programs, including the 3d shoot-em-up quake3 linux.
+.B scanmem
+is also tested on ARM platforms and comes with Android support since version 0.16.
+
+Obviously,
+.B scanmem
+can crash your program if used incorrectly.
+
+Some programs store values in multiple locations, this is why
+.B set
+will change all known matches.
+
+Address Space Layout Randomization (ASLR) together with position-independent executables
+(PIE), position-independent code (PIC) or dynamic memory on the heap causes variables to
+be loaded to different memory addresses at every game start. Advanced game trainers like
+ugtrain are required to periodically refill variables is such memory regions.
+
+.SH BUGS
+
+.B scanmem
+usually requires root privileges for
+.BR ptrace (2)
+because security modules control ptrace() capabilities. On x86 and x86_64 there is usually
+the
+.B Yama
+security module providing the file
+.IR /proc/sys/kernel/yama/ptrace_scope "."
+It is available since Linux 3.4. If this file contains "1", then only parents may ptrace()
+their children without root privileges. This means that
+.B scanmem
+would have to run the game. This is not possible as this would require major design
+changes. So we run
+.B scanmem
+as root.
+
+The first scan can be very slow on large programs, this is not a problem for subsequent 
+scans as huge portions of the address space are usually eliminated. This could be improved
+in future, perhaps by assuming all integers are aligned by default. Suggestions welcome.
+
+The
+.B snapshot
+command uses memory inefficiently, and should probably not be used on large programs.
+In future this will use a more intelligent format.
+
+.SH HOMEPAGE
+
+https://github.com/scanmem/scanmem
+
+.SH AUTHORS
+
+Tavis Ormandy <taviso(a)sdf.lonestar.org> http://taviso.decsystem.org/
+.br
+Eli   Dupree  <elidupree(a)charter.net> 
+.br 
+WANG  Lu      <coolwanglu(a)gmail.com>
+.br
+Sebastian Parschauer <s.parschauer(a)gmx.de>
+
+All bug reports, suggestions or feedback welcome.
+
+.SH SEE ALSO
+gameconqueror(1)
+gdb(1)
+ptrace(2)
+nethack(6)
+pidof(8)
