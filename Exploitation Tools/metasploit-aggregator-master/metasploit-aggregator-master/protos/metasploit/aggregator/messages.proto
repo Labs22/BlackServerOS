@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package metasploit.aggregator.message;
+
+message No_params {}
+
+message Request {
+  repeated string headers = 1;
+  bytes body = 2;
+}
+
+message Cable_def {
+  string type = 1;
+  string host = 2;
+  int32 port = 3;
+  bytes pem = 4;
+}
+
+message Register {
+  string uuid = 1;
+  repeated string payloads = 2;
+}
+
+message Response {
+  string uuid = 1;
+  Request response = 2;
+}
+
+message Result_map {
+  map<string,string> map = 1;
+}
+
+message String_array {
+  repeated string value = 1;
+}
+
+message Result {
+  bool answer = 1;
+}

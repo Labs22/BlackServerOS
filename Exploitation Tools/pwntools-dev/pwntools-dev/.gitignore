@@ -1,0 +1,17 @@
+*.o
+*.hi
+*.pyc
+*~
+*.swp
+.ropeproject
+*.pdf
+*/auto/*
+*/bin/*
+docs/build
+build
+MANIFEST
+dist
+*.egg-info
+*.core
+.coverage
+.tox

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd $HERCULES_PATH
+cd SOURCE
+./HERCULES

@@ -1,0 +1,54 @@
+
+ == HEXINJECT ==
+
+HexInject is a very versatile packet injector and sniffer,
+that provide a command-line framework for raw network access.
+
+It's designed to work together with others command-line utilities,
+and for this reason it facilitates the creation of powerful shell scripts
+capable of reading, intercepting and modifying network traffic in a transparent manner.
+
+ == TOOLS ==
+
+hexinject:
+The main sniffer and injector.
+
+prettypacket:
+Disassemble raw packets (received on its standard input) and print their field.
+Can also print example packets (useful if you want to know the structure of an header).
+
+hex2raw:
+Convert hexstring (the textual format used by hexinject) to raw data,
+and vice-versa.
+
+packets.tcl:
+Experimental packet forger, written in TCL.
+It uses a simple packet representation format based on APD (http://wiki.hping.org/26).
+
+ == COMPILE ==
+
+HexInject is based only on the pcap libraries, so it's should be easy to compile
+on systems that supports them.
+
+Dependencies:
+libpcap-dev
+tcl (for packets.tcl)
+
+Compile:
+To compile the tools just type "make" and cross your fingers... :)
+
+ == INFO ==
+
+Website:
+http://hexinject.sourceforge.net/
+
+Guide:
+http://hexinject.sourceforge.net/hexinject_introduction.pdf
+
+Author:
+Emanuele Acri <crossbower@tuta.io>
+
+License:
+BSD License (2017)
+
+

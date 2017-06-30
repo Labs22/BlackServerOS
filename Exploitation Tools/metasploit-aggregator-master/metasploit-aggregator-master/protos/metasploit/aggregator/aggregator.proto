@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+import "metasploit/aggregator/messages.proto";
+
+package metasploit.aggregator;
+
+service Pb {
+  rpc available(metasploit.aggregator.message.No_params) returns (metasploit.aggregator.message.Result);
+
+  rpc version(metasploit.aggregator.message.No_params) returns (metasploit.aggregator.message.String_array);
+
+  rpc sessions(metasploit.aggregator.message.No_params) returns (metasploit.aggregator.message.Result_map);
+
+  rpc cables(metasploit.aggregator.message.No_params) returns (metasploit.aggregator.message.String_array);
+
+  rpc obtain_session(metasploit.aggregator.message.String_array) returns (metasploit.aggregator.message.Result);
+
+  rpc release_session(metasploit.aggregator.message.String_array) returns (metasploit.aggregator.message.Result);
+
+  rpc session_details(metasploit.aggregator.message.String_array) returns (metasploit.aggregator.message.Result_map);
+
+  rpc add_cable(metasploit.aggregator.message.Cable_def) returns (metasploit.aggregator.message.Result);
+
+  rpc remove_cable(metasploit.aggregator.message.String_array) returns (metasploit.aggregator.message.Result);
+
+  rpc register_default(metasploit.aggregator.message.Register) returns (metasploit.aggregator.message.Result);
+
+  rpc default(metasploit.aggregator.message.No_params) returns (metasploit.aggregator.message.String_array);
+
+  rpc available_addresses(metasploit.aggregator.message.No_params) returns (metasploit.aggregator.message.String_array);
+
+  rpc process(stream metasploit.aggregator.message.Response) returns (stream metasploit.aggregator.message.Request);
+}
