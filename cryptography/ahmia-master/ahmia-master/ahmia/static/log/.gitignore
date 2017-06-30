@@ -1,0 +1,4 @@
+# Ignore any file in this directory
+*
+!onion_site_history/
+!/.gitignore

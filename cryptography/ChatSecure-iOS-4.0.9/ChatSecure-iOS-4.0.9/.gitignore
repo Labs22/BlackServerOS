@@ -1,0 +1,14 @@
+.DS_Store
+build
+*.mode1v3
+*.pbxuser
+project.xcworkspace
+xcuserdata
+.svn
+DerivedData
+*.orig
+*.xccheckout
+
+/Pods/
+Carthage/
+Secrets.plist
