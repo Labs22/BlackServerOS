@@ -1,0 +1,63 @@
+#! /bin/bash
+#
+# pcapsipdump          Start/Stop the PCAP SIP network logging daemon
+#
+# chkconfig: 2345 90 60
+# description: 	pcapsipdump is a tool for dumping SIP sessions (+RTP
+#		traffic, if available) to disk in a fashion similar
+#		to "tcpdump -w" (format is exactly the same), but one
+#		file per sip session (even if there is thousands of
+#		concurrent SIP sessions).
+# processname: pcalsipdump
+# pidfile: /var/run/pcapsipdump.pid
+
+# Source function library.
+. /etc/init.d/functions
+
+# Load service arguments
+. /etc/sysconfig/pcapsipdump
+
+prog="pcapsipdump"
+
+start() {
+	echo -n $"Starting $prog: "	
+	daemon pcapsipdump -f -d $SPOOLDIR -i $DEVICE
+	RETVAL=$?
+	echo
+	return $RETVAL
+}
+
+stop() {
+	echo -n $"Stopping $prog: "
+	killproc pcapsipdump
+	RETVAL=$?
+	echo
+	return $RETVAL
+}	
+
+rhstatus() {
+	status pcapsipdump
+}	
+
+restart() {
+  	stop
+	start
+}	
+
+case "$1" in
+  start)
+  	start
+	;;
+  stop)
+  	stop
+	;;
+  restart)
+  	restart
+	;;
+  status)
+  	rhstatus
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|status|restart}"
+	exit 1
+esac

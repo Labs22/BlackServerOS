@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inspeckage - Package Inspector</title>
+
+    <link rel="icon" href="img/favicon-16.png" sizes="16x16">
+    <link rel="icon" href="img/favicon-32.png" sizes="32x32">
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-switch.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/bootstrap-table.min.css" rel="stylesheet">
+    <link href="css/normalize.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet" />
+    <link href="css/animate.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-editable.css" rel="stylesheet" />
+
+    <style>
+        #myModal4 .modal-dialog
+        {
+          width: 80%;
+        }
+        .demo { overflow:auto; border:1px solid silver; min-height:100px; }
+        #myModal5 .modal-dialog
+        {
+          width: 80%;
+        }
+        .demo { overflow:auto; border:1px solid silver; min-height:100px; }
+
+    </style>
+
+</head>
+
+<body>
+
+<script  type="text/javascript">
+        function logcat() {
+          var win = window.open('/logcat.html', '_blank');
+          win.focus();
+        }
+</script>
+<script>
+        (function (global) {
+            global.console && global.console.log && global.console.log(
+'  _____                           _                    \n ' +
+'|_   _|                         | |                   \n ' +
+'  | |  _ __  ___ _ __   ___  ___| | ____ _  __ _  ___ \n ' +
+'  | | |  _ \\/ __|  _ \\ / _ \\/ __| |/ / _` |/ _` |/ _ \\ \n ' +
+' _| |_| | | \\__ \\ |_) |  __/ (__|   < (_| | (_| |  __/ \n ' +
+'|_____|_| |_|___/ .__/ \\___|\\___|_|\\_\\__,_|\\__, |\\___| \n ' +
+'                | |                         __/ |     \n ' +
+'                |_|                        |___/      \n\n\n '
+            );
+        }(this));
+    </script>
+<!--NEW-->
+<div id="wrapper">
+
+    <div class="overlay"></div>
+    <!-- Sidebar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+        <ul class="nav sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="/">
+                    Inspeckage v#inspeckageVersion#
+                </a>
+            </li>
+            <li>
+                <a href="#" id="nav_tbs"><i class="fa fa-fw fa-home"></i> Tabs</a>
+            </li>
+            <li>
+                <a href="#" id="nav_replaces"><i class="fa fa-fw fa-exchange"></i> Replaces</a>
+            </li>
+
+                        <li>
+                            <a href="#" id="nav_location"><i class="fa fa-fw fa-location-arrow"></i> Location</a>
+                        </li>
+                        <li>
+                            <a href="#" id="nav_config"><i class="fa fa-fw fa-cogs"></i> Fingerprint</a>
+                        </li>
+
+            <li>
+                <a href="#" id="nav_howto"><i class="fa fa-fw fa-lightbulb-o"></i> Tips</a>
+            </li>
+            <!--
+            <li>
+                <a href="#" id="nav_source"><i class="fa fa-fw fa-file-code-o"></i> Source (decompile)</a>
+            </li>
+-->
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-share-alt"></i> Share</a>
+                <ul class="dropdown-menu" role="menu">
+                    <li></li>
+                    <li><a class="facebook customer share" href="http://www.facebook.com/sharer.php?u=http://ac-pm.github.io/Inspeckage/" title="Facebook share" target="_blank">Facebook</a></li>
+                    <li><a class="twitter customer share" href="http://twitter.com/share?url=http://ac-pm.github.io/Inspeckage/&amp;text=Android Package Inspector &amp;hashtags=inspeckage" title="Twitter share" target="_blank">Twitter</a></li>
+                    <li><a class="google_plus customer share" href="https://plus.google.com/share?url=http://ac-pm.github.io/Inspeckage/" title="Google Plus Share" target="_blank">Google +</a></li>
+                </ul>
+                <br><br>
+                <center><img src="img/azul.png" width="200"></center>
+            </li>
+        </ul>
+    </nav>
+    <!-- /#sidebar-wrapper -->
+
+    <div id="page-content-wrapper">
+<div class="container-fluid">
+
+    <!--header navbar-->
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+
+                        </button>
+
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+                                    <span class="hamb-top"></span>
+                                    <span class="hamb-middle"></span>
+                                    <span class="hamb-bottom"></span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                        <ul class="nav navbar-nav">
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-download" aria-hidden="true"></i> Download <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                     <a href="#" onclick="download_apk();">
+                                        <i class="fa fa-android" aria-hidden="true"></i> APK
+                                    </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="download_all();">
+                                            <i class="fa fa-file-archive-o" aria-hidden="true"></i> All Files
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                        <form class="navbar-form navbar-left" role="search">
+
+
+                            <button type="button" onclick="screenshot();" class="btn btn-default" data-toggle="tooltip" title="Screenshot">
+
+                                <i class="fa fa-camera" aria-hidden="true"></i>
+
+                            </button>
+
+
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" title="Settings">
+                                <i class="fa fa-wrench" aria-hidden="true"></i>
+                            </button>
+
+
+                            <input type='checkbox' data-label-text='<i class="fa fa-refresh" aria-hidden="true" data-toggle="tooltip" title="Auto Refresh"></i>' name='refresh' data-size='small' unchecked>
+                        </form>
+
+
+                        <ul class="nav navbar-nav">
+
+                            <li class="active"><a href="#" onclick="logcat();" >
+                                <i class="fa fa-external-link" aria-hidden="true"></i>
+                                LogCat
+                            </a>
+                            </li>
+                        </ul>
+
+                        <form class="navbar-form navbar-left">
+                            <div class="form-group">
+                                <input type="text" id="clipboard" class="form-control" placeholder="clipboard">
+                            </div>
+                        </form>
+
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li> <a href="https://github.com/ac-pm/"> Module enable: #moduleEnable# </a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="showGeneralInfo()">
+                                    <i id="general-info-icon" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="#"><div id="checkapp1"></div></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+        </div>
+    </div>
+    <div id="general-content">
+    <!--dados da app-->
+    <div id="general-info">
+        <div class="row">
+            <div class="col-md-1">
+                #appIcon#
+            </div>
+            <div class="col-md-2">
+                <h3>#appName# <span class="label label-default" data-toggle="tooltip" title="Version">#appVersion#</span></h3>
+            </div>
+            <div class="col-md-3">
+                <h5>UID: #uid# | Debuggable: #isdebuggable# </h5>
+                <h5>GIDs: #gids# </h5>
+                <h5>Allow Backup: #allowbackup#</h5>
+
+            </div>
+            <div class="col-md-6">
+                <h5>Package: #package# </h5>
+                <h5>Data dir: #data_dir#
+                    <button type="button" class="btn btn-default btn-xs" onclick="fileTree();" data-toggle="modal" data-target="#myModal3">
+                        Tree View
+                    </button>
+
+                </h5>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <!--tabs-->
+    <div id="tbs" class="row">
+
+        <div id="tbs-content" class="col-md-12">
+
+
+        </div>
+    </div>
+    </div>
+    <!--fim div tabs-->
+</div>
+
+<!-- Modal1 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Settings</h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="btn-group" data-toggle="buttons">
+                                    #flags# Disable FLAG_SECURE
+
+                                    </br>
+                                    #sslunpinning# SSL uncheck
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <!--FORM-->
+                                <form class="form-horizontal " role="form">
+                                    <div class="form-group">
+                                        #proxy#
+                                        <button type="button" onclick="setProxy();" class="btn btn-default btn-sm pull-right">Add Proxy</button>
+                                    </div>
+                                </form>
+                            </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-7">
+                                <form class="form-horizontal " role="form">
+                                    <button type="button" onclick="restartApp();" class="btn btn-default btn-sm">
+                                        Restart App
+                                    </button>
+
+                                    <button type="button" onclick="finishApp();" class="btn btn-default btn-sm">
+                                        Finish App
+                                    </button>
+
+                                    <button type="button" onclick="startApp();" class="btn btn-default btn-sm">
+                                        Start App
+                                    </button>
+
+                                </form>
+                                </div>
+                                <div class="col-md-5">
+
+                                <form class="form-horizontal " role="form">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control input-sm" id="ip" value="" placeholder="192.168.1.1">
+                                        <input type="text" class="form-control input-sm" id="mac" value="" placeholder="01:23:45:67:89:ab">
+                                        <button type="button" onclick="setARP();" class="btn btn-default btn-sm pull-right">Set ARP Entry</button>
+                                        <!--
+sudo iptables -t nat -A PREROUTING -p tcp -d TARGET_HOST --dport 80 -j REDIRECT --to-ports PROXY_PORT
+
+sudo iptables -t nat -A PREROUTING -p tcp -d TARGET_HOST --dport 443 -j REDIRECT --to-ports PROXY_PORT
+-->
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <form class="form-horizontal" role="form">
+
+                                        <!-- Form Name -->
+                                        <legend>Disable/Enable</legend>
+
+                                        #tab_scheckbox#
+
+                                </form>
+
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+</div>
+<!-- Fim Modal1 -->
+
+<!-- Modal2 -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel1">
+                    <a data-toggle="collapse" href="#collapseIntent" aria-expanded="false" aria-controls="collapseIntent">
+                    Intent
+                    </a>
+                </h4>
+                <div class="collapse" id="collapseIntent">
+                    <div class="well">
+                        <p>
+                            When the system receives an implicit intent to start an activity, it searches for the
+                            best activity for the intent by comparing the intent to intent filters based on three aspects:
+                        </p>
+                        <ul>
+                            <li>The intent action</li>
+                            <li>The intent data (both URI and data type)</li>
+                            <li>The intent category</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!--FORM-->
+                                <form class="form-horizontal " role="form">
+                                    <div class="form-group">
+
+                                        <div class="input-group">
+
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Activity <span class="caret"></span></button>
+                                                <ul class="dropdown-menu">
+                                                    #activities_list#
+                                                </ul>
+                                            </div><!-- /btn-group -->
+                                            <input type="text" class="form-control" aria-label="..." id="txt_activity">
+
+                                        </div><!-- /input-group -->
+                                        </br>
+                                        <div class="input-group">
+
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#" onclick="selectAction('');">-NONE-</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.ALL_APPS</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.ANSWER</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.APP_ERROR</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.ASSIST</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.ATTACH_DATA</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.BUG_REPORT</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.CALL</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.CALL_BUTTON</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.CHOOSER</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.CREATE_DOCUMENT</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.CREATE_LIVE_FOLDER</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.CREATE_SHORTCUT</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.DELETE</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.DIAL</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.EDIT</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.EVENT_REMINDER</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.GET_CONTENT</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.INSERT</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.INSERT_OR_EDIT</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.INSTALL_PACKAGE</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.MAIN</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.MANAGE_NETWORK_USAGE</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.MEDIA_SEARCH</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.MUSIC_PLAYER</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.OPEN_DOCUMENT</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.OPEN_DOCUMENT_TREE</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.PASTE</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.PICK</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.PICK_ACTIVITY</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.POWER_USAGE_SUMMARY</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.RESPOND_VIA_MESSAGE</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.RINGTONE_PICKER</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.RUN</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.SEARCH</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.SEARCH_LONG_PRESS</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.SEND</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.SENDTO</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.SEND_MULTIPLE</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.SET_ALARM</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.SET_TIMER</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.SET_WALLPAPER</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.SHOW_ALARMS</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.SYNC</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.SYSTEM_TUTORIAL</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.UNINSTALL_PACKAGE</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.VIEW</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.VIEW_DOWNLOADS</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.VOICE_COMMAND</a></li>
+                                                    <li><a href="#" onclick="selectAction(this.innerHTML);">android.intent.action.WEB_SEARCH</a></li>
+                                                </ul>
+                                            </div><!-- /btn-group -->
+
+                                            <input type="text" class="form-control" aria-label="..." id="txt_action">
+
+                                        </div><!-- /input-group -->
+
+                                        </br>
+
+                                        <div class="input-group">
+
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category <span class="caret"></span></button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#" onclick="selectCategory('');">-NONE-</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.ALTERNATIVE</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.APP_BROWSER</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.APP_CALCULATOR</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.APP_CALENDAR</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.APP_CONTACTS</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.APP_EMAIL</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.APP_GALLERY</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.APP_MAPS</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.APP_MARKET</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.APP_MESSAGING</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.APP_MUSIC</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.BROWSABLE</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.CAR_DOCK</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.CAR_MODE</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.DEFAULT</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.DESK_DOCK</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.DEVELOPMENT_PREFERENCE</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.EMBED</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.HE_DESK_DOCK</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.HOME</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.INFO</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.LAUNCHER</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.LEANBACK_LAUNCHER</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.LE_DESK_DOCK</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.MONKEY</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.NOTIFICATION_PREFERENCES</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.OPENABLE</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.PREFERENCE</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.SELECTED_ALTERNATIVE</a></li>
+                                                    <li><a href="#" onclick="selectCategory(this.innerHTML);">android.intent.category.TAB</a></li>
+                                                </ul>
+                                            </div><!-- /btn-group -->
+                                            <input type="text" class="form-control" aria-label="..." id="txt_category">
+
+                                        </div><!-- /input-group -->
+
+                                        </br>
+                                        <input placeholder="DATA_URI ex: content://contacts/people/1" type="text" class="form-control" aria-label="..."  id="txt_datauri">
+                                        </br>
+                                        <input placeholder="Extras ex: type,key,value ; string,color,red ; boolean,hasColor,true" type="text" class="form-control" aria-label="..." id="txt_extra">
+                                        </br>
+                                        <div class="input-group">
+
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Flag <span class="caret"></span></button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_ACTIVITY_NEW_TASK</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_GRANT_READ_URI_PERMISSION</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_GRANT_WRITE_URI_PERMISSION</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_GRANT_PERSISTABLE_URI_PERMISSION</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_GRANT_PREFIX_URI_PERMISSION</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_DEBUG_LOG_RESOLUTION</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_FROM_BACKGROUND</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_ACTIVITY_BROUGHT_TO_FRONT</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_ACTIVITY_CLEAR_TASK</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_ACTIVITY_CLEAR_TOP</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_ACTIVITY_FORWARD_RESULT</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_ACTIVITY_MULTIPLE_TASK</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_ACTIVITY_NEW_DOCUMENT</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_ACTIVITY_NO_ANIMATION</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_ACTIVITY_NO_HISTORY</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_ACTIVITY_NO_USER_ACTION</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_ACTIVITY_PREVIOUS_IS_TOP</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_ACTIVITY_RESET_TASK_IF_NEEDED</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_ACTIVITY_REORDER_TO_FRONT</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_ACTIVITY_SINGLE_TOP</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_ACTIVITY_TASK_ON_HOME</a></li>
+                                                    <li><a href="#" onclick="selectFlag(this.innerHTML);">FLAG_RECEIVER_REGISTERED_ONLY</a></li>
+                                                </ul>
+                                            </div><!-- /btn-group -->
+                                            <input placeholder="For more than one, add manually. ex: a,b,c... Default value: FLAG_ACTIVITY_NEW_TASK" type="text" class="form-control" aria-label="..."  id="txt_flags">
+
+                                        </div><!-- /input-group -->
+
+                                        </br>
+                                        <input placeholder="Mimetype" type="text" class="form-control" aria-label="..." id="txt_mimetype">
+                                        </br>
+                                        <button type="button" onclick="startComplexActivity();" class="btn btn-default btn-sm pull-right">Start Activity</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--modal2-->
+
+<!-- Modal3 -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">
+                    <a data-toggle="collapse" href="#collapseIntent1" aria-expanded="false" aria-controls="collapseIntent1">
+                        Provider
+                    </a>
+                </h4>
+                <div class="collapse" id="collapseIntent1">
+                    <div class="well">
+                        <p>
+                            A <strong>content URI</strong> is a URI that identifies data in a provider. Content URIs
+                            include the symbolic name of the entire provider (its <strong>authority</strong>) and a
+                            name that points to a table (a <strong>path</strong>). When you call
+                            a client method to access a table in a provider, the content URI for the table is one of
+                            the arguments.
+                        </p>
+                        <p>
+                            The <code><a href="http://developer.android.com/reference/android/content/ContentProvider.html" target="_blank">ContentProvider</a></code> uses the path part of the content URI to choose the
+                            table to access. A provider usually has a <strong>path</strong> for each table it exposes.
+                        </p>
+                        <p>
+                            For example, the full URI for the "words" table is:
+                        </p>
+                        <pre class="prettyprint"><span class="pln">content</span><span class="pun">:</span><span class="com">//br.com.appname.authority/words</span></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!--FORM-->
+                                <form class="form-horizontal " role="form">
+                                    <div class="form-group">
+                                        Content URI: <input type="text" class="form-control" aria-label="..." id="txt_uri">
+                                        <button type="button" onclick="queryProvider();" class="btn btn-default btn-sm pull-right">Retrieve</button>
+                                    </div>
+                                    View the result in "SQLite" tab.
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--modal3-->
+
+<!-- Modal4 -->
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel3">
+
+                    <h4>Data dir: #data_dir#/</h4>
+
+                </h4>
+
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="fileTree1">#filetree#</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--modal4-->
+
+<!--Modal5-->
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modalLabel">Create Hooks</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-4">
+
+                                <div id="jstree-classes" class="demo"></div>
+
+                                </div>
+                            <div class="col-md-8">
+                    <div class="row">
+                        <div class="bootstrap-iso">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="form-horizontal">
+                                            <div class="form-group form-group-sm">
+                                                <label class="control-label col-sm-2" for="className">Class</label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" id="className" name="className" placeholder="com.package.className" type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-group-sm">
+                                                <label class="control-label col-sm-2" for="method">Method</label>
+                                                <div class="col-sm-10">
+                                                    <div class="input-group">
+                                                        <input class="form-control" id="method" name="method" placeholder="method" type="text" />
+                                                            <span class="input-group-addon">
+                                                            <input type="checkbox" id="hookConstructor"> Hook constructors too?
+                                                            </span>
+                                                    </div>
+                                                        <span class="help-block" id="hint_method">
+                                                        leave blank for all
+                                                        </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-10 col-sm-offset-10">
+                                                    <button id="buttonInsertHook" class="btn btn-primary btn-sm" name="submit">
+                                                        Add hook
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /#row top -->
+                    <div id="list" class="row">
+                        <div class="table-responsive col-md-12">
+
+                            <table id="hooktable" data-toggle="table" class="table table-striped" data-toolbar="#toolbar" data-height="360"
+                                   data-side-pagination="client" data-pagination="true" data-unique-id="id" data-url="/?type=getuserhooks">
+                                <thead>
+                                <tr>
+                                    <th data-field="state" data-checkbox="true"></th>
+                                    <th data-field="className">Class Name</th>
+                                    <th data-field="method">Method</th>
+                                    <th data-field="constructor">Constructor</th>
+                                    <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents">Del</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /#list -->
+                                </div>
+
+                            </div>
+                        </div>
+                </div>
+                <!-- /#main -->
+            </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</div>
+<!--Modal5-->
+
+<!--Modal6-->
+<div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                                    <div id="replace-content">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /#main -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+<!--Modal6-->
+</div>
+
+</div>
+
+<script src="js/jquery.min.js?v=1"></script>
+<script src="js/bootstrap.min.js?v=1"></script>
+<script src="js/bootstrap-switch.js?v=1"></script>
+<script src="js/base.js?v=1"></script>
+<script src="js/tabs.js?v=1"></script>
+<script src="js/CollapsibleLists.compressed.js?v=1"></script>
+
+<script src="js/jstree.min.js?v=1"></script>
+
+<script src="js/bootstrap-table.min.js?v=1"></script>
+<script src="js/plushooks.js?v=1"></script>
+<script src="js/bootstrap-editable.min.js?v=1"></script>
+<script src="js/bootstrap-table-editable.min.js?v=1"></script>
+
+<script src="js/menu.js?v=1"></script>
+<script>
+
+$('#jstree-classes').on("changed.jstree", function(e, data) {
+
+        if (data.selected.length) {
+
+            if (!data.instance.is_parent(data.selected[0])) {
+                document.getElementById('method').value = data.instance.get_node(data.selected[0]).text;
+                document.getElementById('className').value = data.instance.get_parent(data.selected[0]);
+            }
+
+        }
+    }).jstree({
+        'core': {
+            'data': {
+                "url": "./struct",
+                "dataType": "json"
+            }
+        }
+    });
+
+</script>
+</body>
+
+</html>

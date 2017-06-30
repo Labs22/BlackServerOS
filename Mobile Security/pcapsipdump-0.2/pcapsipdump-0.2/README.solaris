@@ -1,0 +1,14 @@
+To compile pcapsipdump under solaris10, you need:
+- gcc3
+- libpcap
+
+both can be installed from blastwave (http://www.blastwave.org/howto.html) like this:
+# pkgadd -d http://www.blastwave.org/pkg_get.pkg
+# vi /opt/csw/etc/pkg-get.conf (optional)
+# /opt/csw/bin/pkg-get -i wget
+# /opt/csw/bin/pkg-get -i gcc3g++
+# /opt/csw/bin/pkg-get -i libpcap
+
+When pre-requirements are met, just untar source and issue:
+# make CC=/opt/csw/gcc3/bin/gcc LDFLAGS='-lnsl -lsocket'
+# make install

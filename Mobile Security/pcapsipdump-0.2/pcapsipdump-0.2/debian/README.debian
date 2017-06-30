@@ -1,0 +1,4 @@
+For Debian/Ubuntu installation:
+ apt-get install libpcap0.7 libpcap-dev build-essential 
+ make all
+ make install-debian

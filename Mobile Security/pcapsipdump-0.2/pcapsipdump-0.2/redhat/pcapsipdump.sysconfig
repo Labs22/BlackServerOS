@@ -1,0 +1,10 @@
+# Config file for pcapsipdump
+
+# The Ethernet NIC that we want to listen to
+DEVICE=eth0
+
+# Place to write captired files
+SPOOLDIR=/var/spool/pcapsipdump
+
+# The number of days to retain data files for
+RETENTION=4

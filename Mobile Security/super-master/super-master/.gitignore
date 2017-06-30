@@ -1,0 +1,10 @@
+downloads/*
+dist/*
+results/*
+target
+rpmbuild/*
+!rpmbuild/super.spec
+*.bk
+*.apk
+.DS_Store
+*.zip

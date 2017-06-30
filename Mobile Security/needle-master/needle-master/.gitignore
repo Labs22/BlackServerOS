@@ -1,0 +1,5 @@
+*.pyc
+.idea
+.DS_Store
+*.localconf
+_private/
