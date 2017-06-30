@@ -1,0 +1,30 @@
+dev tun
+cipher {{ openvpn_cipher }}
+auth {{ openvpn_auth_digest }}
+resolv-retry infinite
+nobind
+persist-key
+persist-tun
+remote-cert-tls server
+verify-x509-name {{ openvpn_server_common_name.stdout }} name
+tls-version-min 1.2
+comp-lzo
+key-direction 1
+verb 3
+route {{ streisand_ipv4_address }} 255.255.255.255 net_gateway
+
+<ca>
+{{ openvpn_ca_contents.stdout }}
+</ca>
+
+<cert>
+{{ item[1].stdout }}
+</cert>
+
+<key>
+{{ item[2].stdout }}
+</key>
+
+<tls-auth>
+{{ openvpn_hmac_firewall_contents.stdout }}
+</tls-auth>

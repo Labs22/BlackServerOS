@@ -1,0 +1,87 @@
+{
+  "ssh_scan_version": "0.0.7",
+  "hostname": "",
+  "ip": "192.168.1.1",
+  "port": 22,
+  "server_banner": "SSH-2.0-OpenSSH_7.1p2 Debian-1",
+  "ssh_version": 2.0,
+  "os": "debian",
+  "os_cpe": "o:debian:debian",
+  "ssh_lib": "openssh",
+  "ssh_lib_cpe": "a:openssh:openssh",
+  "key_algorithms": [
+    "curve25519-sha256@libssh.org",
+    "ecdh-sha2-nistp256",
+    "ecdh-sha2-nistp384",
+    "ecdh-sha2-nistp521",
+    "diffie-hellman-group-exchange-sha256",
+    "diffie-hellman-group14-sha1"
+  ],
+  "server_host_key_algorithms": [
+    "ssh-rsa",
+    "ecdsa-sha2-nistp256",
+    "ssh-ed25519"
+  ],
+  "encryption_algorithms_client_to_server": [
+    "chacha20-poly1305@openssh.com",
+    "aes128-ctr",
+    "aes192-ctr",
+    "aes256-ctr",
+    "aes128-gcm@openssh.com",
+    "aes256-gcm@openssh.com"
+  ],
+  "encryption_algorithms_server_to_client": [
+    "chacha20-poly1305@openssh.com",
+    "aes128-ctr",
+    "aes192-ctr",
+    "aes256-ctr",
+    "aes128-gcm@openssh.com",
+    "aes256-gcm@openssh.com"
+  ],
+  "mac_algorithms_client_to_server": [
+    "umac-64-etm@openssh.com",
+    "umac-128-etm@openssh.com",
+    "hmac-sha2-256-etm@openssh.com",
+    "hmac-sha2-512-etm@openssh.com",
+    "hmac-sha1-etm@openssh.com",
+    "umac-64@openssh.com",
+    "umac-128@openssh.com",
+    "hmac-sha2-256",
+    "hmac-sha2-512",
+    "hmac-sha1"
+  ],
+  "mac_algorithms_server_to_client": [
+    "umac-64-etm@openssh.com",
+    "umac-128-etm@openssh.com",
+    "hmac-sha2-256-etm@openssh.com",
+    "hmac-sha2-512-etm@openssh.com",
+    "hmac-sha1-etm@openssh.com",
+    "umac-64@openssh.com",
+    "umac-128@openssh.com",
+    "hmac-sha2-256",
+    "hmac-sha2-512",
+    "hmac-sha1"
+  ],
+  "compression_algorithms_client_to_server": [
+    "none",
+    "zlib@openssh.com"
+  ],
+  "compression_algorithms_server_to_client": [
+    "none",
+    "zlib@openssh.com"
+  ],
+  "languages_client_to_server": [
+
+  ],
+  "languages_server_to_client": [
+
+  ],
+  "compliance": {
+    "policy": "Mozilla Modern",
+    "compliant": false,
+    "recommendations": [
+      "Remove these Key Exchange Algos: diffie-hellman-group14-sha1",
+      "Remove these MAC Algos: umac-64-etm@openssh.com, hmac-sha1-etm@openssh.com, umac-64@openssh.com, hmac-sha1"
+    ]
+  }
+}

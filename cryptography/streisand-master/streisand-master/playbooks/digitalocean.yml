@@ -1,0 +1,65 @@
+---
+- name: Provision the DigitalOcean Server
+# =======================================
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+
+  vars:
+    regions:
+      "1":  "ams2"
+      "2":  "ams3"
+      "3":  "blr1"
+      "4":  "fra1"
+      "5":  "lon1"
+      "6":  "nyc1"
+      "7":  "nyc2"
+      "8":  "nyc3"
+      "9":  "sfo1"
+      "10": "sfo2"
+      "11": "sgp1"
+      "12": "tor1"
+
+  vars_prompt:
+    - name: "do_region"
+      prompt: >
+        What region should the server be located in?
+          1.  Amsterdam        (Datacenter 2)
+          2.  Amsterdam        (Datacenter 3)
+          3.  Bangalore
+          4.  Frankfurt
+          5.  London
+          6.  New York         (Datacenter 1)
+          7.  New York         (Datacenter 2)
+          8.  New York         (Datacenter 3)
+          9.  San Francisco    (Datacenter 1)
+          10. San Francisco    (Datacenter 2)
+          11. Singapore
+          12. Toronto
+        Please choose the number of your region. Press enter for default (#2) region.
+      default: "2"
+      private: no
+
+    - name: "do_server_name"
+      prompt: "\nWhat should the server be named? Press enter for default (streisand).\n"
+      default: "streisand"
+      private: no
+
+    - name: "do_access_token_entry"
+      prompt: "\n\nNew API access tokens can be generated in the DigitalOcean control panel.\nhttps://cloud.digitalocean.com/settings/applications\n  * When generating a new token, please note that the Write Scope is necessary\n    in order to create Droplets.\n\nIf this field is left blank, the environment variable DO_API_KEY\nwill be used.\n\nWhat is your DigitalOcean Access Token?\n"
+      private: no
+
+    - name: "do_ssh_name"
+      prompt: "\n\nThe following information can be found on your DigitalOcean control panel.\nhttps://cloud.digitalocean.com/settings/security\n\nWhat is the name of the DigitalOcean SSH key that you would like to use?\n  * If you have never uploaded an SSH key to DigitalOcean then the default\n    value will work!\n  * This key should match your .ssh/id_rsa.pub file.\n\  * DigitalOcean requires SSH keys to be unique. You cannot upload multiple\n    keys that have the same value under different names.\n\n    If you see an error that says 'SSH Key failed to be created' once the setup\n    process starts, then this is the problem. You can retry the setup process\n    using the name of the existing SSH key from the DigitalOcean control panel\n    that matches the contents of your RSA public key.\n"
+      default: "streisand"
+      private: no
+
+    - name: "confirmation"
+      prompt: "\nStreisand will now set up your server. This process usually takes around ten minutes. Press Enter to begin setup...\n"
+
+  roles:
+    - genesis-digitalocean
+
+
+- include: cloud-status.yml
+- include: streisand.yml

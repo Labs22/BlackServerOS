@@ -1,0 +1,30 @@
+- include: python.yml
+
+- name: Configure the Server and install required software
+# ========================================================
+  hosts: streisand-host
+
+  remote_user: "root"
+  become: true
+
+  roles:
+    - common
+    # OpenConnect must be set up before L2TP/IPsec in order to avoid
+    # compilation issues.
+    - openconnect
+    - l2tp-ipsec
+    - openvpn
+    - stunnel
+    - shadowsocks
+    - ssh
+    - tinyproxy
+    # tor-bridge is skipped in our full Ansible run on Travis CI due to
+    # connectivity issues.
+    - role: tor-bridge
+      when: not streisand_ci
+    - sslh
+    - monit
+    - ufw
+    - wireguard
+    - streisand-mirror
+    - streisand-gateway

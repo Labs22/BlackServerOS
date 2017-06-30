@@ -1,0 +1,184 @@
+OpenVPN
+-------
+
+If OpenVPN connections are being blocked in your country, please refer to the [OpenVPN (stunnel)](/openvpn/stunnel.html) instructions instead which will help you wrap your OpenVPN traffic in an encrypted tunnel so it looks like standard TLS traffic.
+
+#### A note on client files ####
+For security reasons, OpenVPN clients typically have their own unique certificate and private key. The server you will be connecting to has been configured to allow clients to share the same certificate and private key, but you may still wish to give your phone and laptop different keys, for example.
+
+---
+* Platforms
+  * [Windows](#windows)
+  * [OS X](#osx)
+  * [Linux](#linux)
+  * [Linux (Ubuntu)](#linux-ubuntu)
+  * [Android](#android)
+  * [iOS](#ios)
+
+<a name="windows"></a>
+### Windows ###
+1. Download and run the OpenVPN [Windows Installer](/mirror/#openvpn).
+1. Click *Next* and accept the license agreement by selecting *I Agree*.
+1. Click *Next* on the *Choose Components* screen. Leave all of the default options checked.
+1. Make note of the Destination Folder. This is where you will place the `{{ openvpn_direct_profile_filename }}` client configuration profile after installation. Click *Install*.
+1. A Windows Security notice will appear and ask *Would you like to install this device software?*. Click *Install*.
+1. Click *Next* on the *Installation Complete* screen.
+1. Uncheck *Show Readme* and click *Finish*.
+1. Right-click on the OpenVPN GUI desktop icon and choose *Properties*.
+1. Go to the *Compatibility* tab and click the *Run this program as an administrator* checkbox in the *Privilege Level* section.
+1. Double-click the OpenVPN GUI desktop icon to launch the application.
+1. Download one of these unified OpenVPN profiles:
+{% for client in openvpn_clients %}
+   * [{{ client }}](/openvpn/{{ client }}/{{ openvpn_direct_profile_filename }})
+{% endfor %}
+   * *[Alternate profiles](#sslh-profiles) are available if you are on a network that only allows access to ports `80` and `443`.*
+   * *[UDP profiles](#udp-profiles) available.*
+   * *[Combined profiles](#combined-profiles) are now available.*
+1. Open the *config* directory that is located in the Destination Folder. For most users, this will either be in *C:\Program Files\OpenVPN\config* or *C:\Program Files (x86)\OpenVPN\config*. You will see a single README file in this directory.
+1. Drag and drop the downloaded `{{ openvpn_direct_profile_filename }}` file to this location alongside the README.
+1. Right-click on the OpenVPN icon in your taskbar and choose *Connect*.
+1. You will see a log scroll by as the connection is established, followed by a taskbar notification indicating your assigned IP.
+1. Success! You can verify that your traffic is being routed properly by [looking up your IP address on Google](https://encrypted.google.com/search?hl=en&q=ip%20address). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
+
+<a name="osx"></a>
+### OS X ###
+1. Download and open [Tunnelblick](/mirror/#openvpn).
+1. Type your password to allow the installation process to complete, and click *OK*.
+1. Click *Launch* after the installation is finished.
+1. Click *I have configuration files*.
+1. Download one of these unified OpenVPN profiles:
+{% for client in openvpn_clients %}
+   * [{{ client }}](/openvpn/{{ client }}/{{ openvpn_direct_profile_filename }})
+{% endfor %}
+   * *[Alternate profiles](#sslh-profiles) are available if you are on a network that only allows access to ports `80` and `443`.*
+   * *[UDP profiles](#udp-profiles) available.*
+   * *[Combined profiles](#combined-profiles) are now available.*
+1. Double-click the OpenVPN profile.
+1. You will be asked to choose whether the profile should be available for all users or only the current user. After making your selection, you will be asked to enter your password.
+1. Look for the Tunnelblick icon in your menu bar. Click on it, and choose *Connect*.
+1. Success! You can verify that your traffic is being routed properly by [looking up your IP address on Google](https://encrypted.google.com/search?hl=en&q=ip%20address). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
+
+<a name="linux"></a>
+### Linux ###
+1. Install OpenVPN:
+
+   `sudo apt-get install openvpn` OR `sudo yum install openvpn` OR `esoteric-package-manager hipster openvpn`
+
+   * If installing OpenVPN via your package manager is not an option, you can also download and compile the [OpenVPN source code](/mirror/#openvpn).
+1. Download one of these unified OpenVPN profiles:
+{% for client in openvpn_clients %}
+   * [{{ client }}](/openvpn/{{ client }}/{{ openvpn_direct_profile_filename }})
+{% endfor %}
+   * *[Alternate profiles](#sslh-profiles) are available if you are on a network that only allows access to ports `80` and `443`.*
+   * *[UDP profiles](#udp-profiles) available.*
+   * *[Combined profiles](#combined-profiles) are now available.*
+1. Copy the downloaded `{{ openvpn_direct_profile_filename }}` file to the location of your choice. */etc/openvpn/* is a decent option.
+1. On some distributions, the pushed DHCP DNS option from the OpenVPN server will be ignored. This means that your DNS queries will still be routed through your ISP's servers which makes them vulnerable to what is known as a DNS leak.
+   * You can test whether or not your DNS is leaking [here](https://dnsleaktest.com/).
+   * You can ensure that the correct DNS servers are used by adding the following lines to the top of the `{{ openvpn_stunnel_profile_filename }}` file:
+     * `script-security 2`
+     * `up /etc/openvpn/update-resolv-conf`
+     * `down /etc/openvpn/update-resolv-conf`
+1. Execute OpenVPN, and pass it the .ovpn profile as an option.
+
+   `sudo openvpn {{ openvpn_direct_profile_filename }}`
+1. Success! You can verify that your traffic is being routed properly by [looking up your IP address on Google](https://encrypted.google.com/search?hl=en&q=ip%20address). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
+
+<a name="linux-ubuntu"></a>
+### Linux (Ubuntu) ###
+It's preferable to configure Ubuntu using the OpenVPN plugin for NetworkManager. This gives you a nice little interface for connecting, and it properly handles the necessary DNS changes when you connect/disconnect. Unfortunately, the plugin does not support .ovpn profiles, so the list of steps is a little more involved.
+
+1. First, download all of the .crt and .key files from one of these directories:
+{% for client in openvpn_clients %}
+   * [{{ client }}](/openvpn/{{ client }})
+{% endfor %}
+1. Install the OpenVPN plugin for NetworkManager.
+
+   `sudo apt-get install network-manager-openvpn-gnome`
+1. Open your *System Settings*.
+1. Click the *Network* icon.
+1. Click the *+* button in the lower-left of the window.
+1. Select *VPN* from the Interface drop-down and click *Create*.
+1. Select *OpenVPN* and click *Create*.
+1. Enter `{{ streisand_server_name }}` for the *Connection name*.
+1. Enter `{{ openvpn_server }}` for the *Gateway*.
+1. Make sure *Certificates (TLS)* is selected for the *Type*.
+1. Select `client.crt` from the client-files directory of your choice for the *User Certificate*.
+1. Select `ca.crt` from the same client-files directory for the *CA Certificate*.
+1. Select `client.key` from the same client-files directory for the *Private Key*.
+1. Click the *Advanced* button.
+1. Go to the *General* tab.
+   * Check *Use custom gateway port* and enter `{{ openvpn_port }}` as its value.
+     * Port `443` is available as an alternative if you are on a network that only allows access to the two standard HTTP ports.
+     * You can also use port `{{ openvpn_port_udp }}` for a UDP connection.
+     * A combined profile which cycles through UDP port `{{ openvpn_port_udp }}`, TCP port `{{ openvpn_port }}` and `{{ openvpn_port_sslh }}` is also available.
+   * Check *Use LZO data compression*.
+   * Check *Use a TCP connection* unless you have chosen to use the UDP port or the combined profile.
+1. Go to the *Security* tab.
+   * Select `{{ openvpn_cipher }}` as the *Cipher*.
+   * Select `{{ openvpn_auth_digest }}` as the *HMAC Authentication*.
+1. Go to the *TLS Authentication* tab.
+   * Under *Server Certificate Check* choose `verify name exactly` and enter `{{ openvpn_server_common_name.stdout }}` as its value.
+   * Check *Verify peer (server) certificate usage signature*.
+   * Check *Use additional TLS authentication*.
+     * Select the `ta.key` from the client-files directory for the *Key File*.
+     * Select `1` as the *Key Direction*.
+   * Click *OK*.
+1. Click *Save...*
+1. Select the VPN in the left-hand menu, and flip the switch to *ON*. You can also enable/disable the VPN by clicking on the WiFi/Network icon in the menu bar, scrolling to *VPN Connections*, and clicking on its name.
+1. Success! You can verify that your traffic is being routed properly by [looking up your IP address on Google](https://encrypted.google.com/search?hl=en&q=ip%20address). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
+
+<a name="android"></a>
+### Android ###
+1. Install [OpenVPN for Android](https://play.google.com/store/apps/details?id=de.blinkt.openvpn).
+1. Download one of these unified OpenVPN profiles:
+{% for client in openvpn_clients %}
+   * [{{ client }}](/openvpn/{{ client }}/{{ openvpn_direct_profile_filename }})
+{% endfor %}
+   * *[Alternate profiles](#sslh-profiles) are available if you are on a network that only allows access to ports `80` and `443`.*
+   * *[UDP profiles](#udp-profiles) available.*
+   * *[Combined profiles](#combined-profiles) are now available.*
+1. Copy the `{{ openvpn_direct_profile_filename }}` file to your phone.
+1. Launch OpenVPN for Android.
+1. Tap the folder icon in the lower-right of the screen.
+1. Select the `{{ openvpn_direct_profile_filename }}` profile that you copied to your phone.
+1. Tap the save icon (floppy disk) in the lower-right of the screen after the import is complete.
+1. Tap the profile.
+1. Accept the Android VPN connection warning.
+1. Success! You can verify that your traffic is being routed properly by [looking up your IP address on Google](https://encrypted.google.com/search?hl=en&q=ip%20address). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
+
+<a name="ios"></a>
+### iOS ###
+1. Download [OpenVPN Connect](https://itunes.apple.com/us/app/openvpn-connect/id590379981) and launch it.
+1. Download one of these unified OpenVPN profiles:
+{% for client in openvpn_clients %}
+   * [{{ client }}](/openvpn/{{ client }}/{{ openvpn_direct_profile_filename }})
+{% endfor %}
+   * *[Alternate profiles](#sslh-profiles) are available if you are on a network that only allows access to ports `80` and `443`.*
+   * *[UDP profiles](#udp-profiles) available.*
+   * *[Combined profiles](#combined-profiles) are now available.*
+1. Open iTunes on your computer and connect your phone.
+1. Select your phone, click on the *Apps* tab, and find OpenVPN under the *File Sharing* section.
+1. Drag and drop the downloaded `{{ openvpn_direct_profile_filename }}` file into the file sharing window.
+1. OpenVPN on your phone will say that *1 new OpenVPN profile is available for import*.
+1. Tap the green *+* button to import the profile.
+1. Tap the slider to connect to the OpenVPN server.
+1. Success! You can verify that your traffic is being routed properly by [looking up your IP address on Google](https://encrypted.google.com/search?hl=en&q=ip%20address). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
+
+<a name="sslh-profiles"></a>
+### Alternate unified profiles for access via port 443 ###
+{% for client in openvpn_clients %}
+* [{{ client }}](/openvpn/{{ client }}/{{ openvpn_sslh_profile_filename }})
+{% endfor %}
+
+<a name="udp-profiles"></a>
+### Alternate unified profiles for access via UDP port {{ openvpn_port_udp }} ###
+{% for client in openvpn_clients %}
+* [{{ client }}](/openvpn/{{ client }}/{{ openvpn_direct_udp_profile_filename }})
+{% endfor %}
+
+<a name="combined-profiles"></a>
+### Alternate profile that will cycle through UDP port {{ openvpn_port_udp }}, TCP port {{ openvpn_port }}, and TCP port {{ openvpn_port_sslh }} ###
+{% for client in openvpn_clients %}
+* [{{ client }}](/openvpn/{{ client }}/{{ openvpn_combined_profile_filename }})
+{% endfor %}

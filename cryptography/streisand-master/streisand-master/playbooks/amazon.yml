@@ -1,0 +1,113 @@
+---
+- name: Provision the EC2 Server
+# ==============================
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+
+  vars:
+    regions:
+      "1": "ap-south-1"
+      "2": "ap-northeast-2"
+      "3": "ap-southeast-1"
+      "4": "ap-southeast-2"
+      "5": "ap-northeast-1"
+      "6": "ca-central-1"
+      "7": "eu-central-1"
+      "8": "eu-west-1"
+      "9": "eu-west-2"
+      "10": "sa-east-1"
+      "11": "us-east-1"
+      "12": "us-east-2"
+      "13": "us-west-1"
+      "14": "us-west-2"
+
+  # These variable files are included so the ec2-security-group role
+  # knows which ports to open
+  vars_files:
+    - roles/l2tp-ipsec/defaults/main.yml
+    - roles/openconnect/defaults/main.yml
+    - roles/openvpn/defaults/main.yml
+    - roles/shadowsocks/defaults/main.yml
+    - roles/ssh/defaults/main.yml
+    - roles/streisand-gateway/defaults/main.yml
+    - roles/stunnel/defaults/main.yml
+    - roles/tor-bridge/defaults/main.yml
+    - roles/wireguard/defaults/main.yml
+
+  vars_prompt:
+    - name: "aws_region_var"
+      prompt: |
+        In what region should the server be located?
+          1. Asia Pacific   (Mumbai)
+          2. Asia Pacific   (Seoul)
+          3. Asia Pacific   (Singapore)
+          4. Asia Pacific   (Sydney)
+          5. Asia Pacific   (Tokyo)
+          6. Canada         (Central)
+          7. EU             (Frankfurt)
+          8. EU             (Ireland)
+          9. EU             (London)
+          10. South America (Sao Paulo)
+          11. US East       (Northern Virginia)
+          12. US East       (Ohio)
+          13. US West       (Northern California)
+          14. US West       (Oregon)
+        Please choose the number of your region. Press enter for default (#3) region.
+      default: "3"
+      private: no
+
+    - name: "aws_vpc_id_var"
+      prompt: |
+
+        In which VPC would you like to create the server and security group
+        (e.g. vpc-89d740ee)?
+
+        Press enter to use the default VPC.
+      private: no
+
+    - name: "aws_vpc_subnet_id_var"
+      prompt: |
+
+        From which subnet should the server receive an address (e.g. subnet-78d9a232)?
+
+        Press enter to use the default subnet.
+      private: no
+
+    - name: "aws_instance_name"
+      prompt: "\nWhat should the server be named? Press enter for default (streisand).\n"
+      default: "streisand"
+      private: no
+
+    - name: "aws_access_key"
+      prompt: "\n\nThe following information can be found in the IAM Management Console.\nhttps://console.aws.amazon.com/iam/home?#security_credential\n\nWhat is your AWS Access Key ID?\n"
+      private: no
+
+    - name: "aws_secret_key"
+      prompt: "\nWhat is your AWS Secret Access Key?\n"
+      private: no
+
+    - name: "confirmation"
+      prompt: "\nStreisand will now set up your server. This process usually takes around ten minutes. Press Enter to begin setup...\n"
+
+  pre_tasks:
+    - name: Set the AWS Region fact
+      set_fact:
+        aws_region: "{{ regions[aws_region_var] }}"
+
+    - name: Set the AWS VPC ID fact
+      set_fact:
+        aws_vpc_id: "{{ aws_vpc_id_var }}"
+      when: aws_vpc_id_var != ""
+
+    - name: Set the AWS VPC Subnet ID fact
+      set_fact:
+        aws_vpc_subnet_id: "{{ aws_vpc_subnet_id_var }}"
+      when: aws_vpc_subnet_id_var != ""
+
+  roles:
+    - genesis-amazon
+
+
+- include: cloud-status.yml
+- include: streisand.yml

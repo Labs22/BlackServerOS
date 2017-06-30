@@ -1,0 +1,27 @@
+sudo: false
+
+language: c
+
+os:
+  - linux
+  - osx
+
+compiler:
+  - gcc
+  - clang
+
+env:
+  - CONFIGURE_OPTIONS='--with-threads=pthread'
+  - CONFIGURE_OPTIONS='--with-threads=fork'
+  - CONFIGURE_OPTIONS='--with-threads=ucontext'
+  - CONFIGURE_OPTIONS='--disable-ipv6 --disable-fips --disable-systemd --disable-libwrap'
+
+addons:
+  apt:
+    packages:
+    - libssl-dev
+    - libwrap0-dev
+
+before_script: autoreconf -fvi && touch src/dhparam.c
+
+script: ./configure $CONFIGURE_OPTIONS && make && make test

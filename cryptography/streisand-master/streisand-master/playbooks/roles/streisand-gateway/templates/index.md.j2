@@ -1,0 +1,35 @@
+- - -
+{% for key, value in streisand_languages.iteritems() %}
+  [{{ value.language_name }}](index{{ value.file_suffix }}.html)&nbsp;
+{% endfor %}
+- - -
+
+Welcome to the **{{ streisand_server_name }}** [Streisand](https://github.com/jlund/streisand) Gateway server. You are only moments away from an uncensored connection to the Internet.
+
+Connection Instructions
+-----------------------
+---
+
+There are multiple ways to bypass censorship, and Streisand provides several choices and different protocols in the event that any of them are restricted.
+
+* [L2TP/IPsec](/l2tp-ipsec/)
+* [OpenConnect / Cisco AnyConnect](/openconnect/)
+* [OpenVPN (direct)](/openvpn/)
+* [OpenVPN (stunnel)](/openvpn/stunnel.html)
+* [Shadowsocks](/shadowsocks/)
+* [SSH](/ssh/)
+* [Tor](/tor/)
+* [WireGuard](/wireguard/)
+
+Client Mirrors
+--------------
+---
+
+You can download the necessary client software directly from Streisand in case the official websites are blocked. These versions could be slightly out of date (depending on when this server was set up) but they can be easily updated once you have connected to the open Internet.
+
+* [OpenConnect](/mirror/#openconnect)
+* [OpenVPN](/mirror/#openvpn)
+* [Shadowsocks](/mirror/#shadowsocks)
+* [SSH](/mirror/#ssh)
+* [stunnel](/mirror/#stunnel)
+* [Tor Browser Bundle](/mirror/#tor)

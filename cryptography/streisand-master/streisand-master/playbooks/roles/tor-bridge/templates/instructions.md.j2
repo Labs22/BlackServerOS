@@ -1,0 +1,72 @@
+Tor Bridge
+----------
+
+---
+* Platforms
+  * [Desktops](#desktops)
+  * [Android](#android)
+  * [iOS](#ios)
+
+<a name="desktops"></a>
+### Desktops ###
+1. Download the [Tor Browser Bundle](/mirror/#tor) for your platform of choice. The Obfsproxy obfs4 pluggable transport that it includes will let you use the Tor network even if your ISP is actively performing Deep Packet Inspection in an attempt to block all Tor traffic.
+1. Launch the Tor Browser Bundle.
+1. Click the *Configure* button underneath the text that says *I need to configure bridge, firewall, or proxy settings*.
+1. Answer *Yes* to *Does your Internet Service Provider (ISP) block or otherwise censor connections to the Tor Network?*
+1. Choose the *Enter custom bridges* option, and paste the following information into the text box:
+
+         {{ tor_obfs4_bridge_line }}
+1. Answer the Local Proxy Configuration question. In most cases the answer will be *No*.
+1. Click *Connect*.
+
+You are ready to go! Tor has connected to the *{{ tor_bridge_nickname.stdout }}* bridge server, and your encrypted Tor traffic is completely obscured by obfsproxy so it doesn't look like Tor traffic at all!
+
+<a name="android"></a>
+### Android ###
+1. Download [Orbot](https://play.google.com/store/apps/details?id=org.torproject.android) and launch it.
+1. Tap the *Menu* button.
+1. Tap *QR Codes*.
+1. Tap *Scan BridgeQR*.
+1. Scan the following QR code. This will automatically configure Orbot to connect to this server using the obfs4 pluggable transport:
+
+   ![Tor obfs4 QR code](/tor/tor-obfs4-qr-code.png)
+1. You must restart Orbot in order for the changes to take effect. Tap the *Menu* button, select *Exit*, and launch Orbot again.
+1. Long press on the power button to activate Orbot.
+
+Great! Orbot has connected to the *{{ tor_bridge_nickname.stdout }}* bridge server!
+
+You are now ready to configure Twitter and Firefox to route their traffic through Orbot.
+
+#### Configuring Twitter for Android to use Orbot ####
+1. Open Twitter.
+1. Tap the three dots in the upper-right of the screen to open the menu.
+1. Choose *Settings*.
+1. Tap *General*.
+1. Tap *Proxy*.
+1. Check the *Enable HTTP Proxy* checkbox.
+1. Tap *Proxy Host* and enter `127.0.0.1`.
+1. Tap *Proxy Port* and enter `8118`.
+
+#### Configuring Firefox for Android to use Orbot ####
+1. Open Firefox.
+1. Type `about:config` into the address bar and tap the *Go* button on your keyboard.
+1. Type `proxy` into the search box.
+1. Set the value of *network.proxy.socks* to `127.0.0.1`.
+1. Set the value of *network.proxy.socks_port* to `9050`.
+1. Set the value of *network.proxy.socks\_remote\_dns* to `true`.
+1. Set the value of *network.proxy.type* to `1`.
+
+<a name="ios"></a>
+### iOS ###
+1. Download [Onion Browser](https://itunes.apple.com/us/app/onion-browser/id519296448?mt=8) and launch it.
+1. Tap the menu button on the bottom of the screen and choose *Browser Settings*.
+1. Scroll to the bottom and tap *Configure Bridges*
+1. Tap *Enter Custom Bridges*.
+1. Tap the camera icon in the lower-right corner. You may need to enable camera access for Onion Browser in your iOS Settings.
+1. Scan the following QR code. This will automatically configure Onion Browser to connect to this server using the obfs4 pluggable transport:
+
+   ![Tor obfs4 QR code](/tor/tor-obfs4-qr-code.png)
+1. Tap *OK* when the confirmation is displayed.
+1. Tap *Save*.
+1. Tap *Restart app*.
+1. Relaunch the application. If you successfully connect, the *{{ tor_bridge_nickname.stdout }}* bridge is working correctly, and your connection is obscured by the obfs4 pluggable transport so it doesn't look like Tor traffic at all!

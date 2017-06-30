@@ -1,0 +1,98 @@
+---
+- name: Add the Tor APT key
+  apt_key:
+    id: 886DDD89
+    data: "{{ item }}"
+  with_file: tor-signing.key
+
+- name: Add the Tor repository
+  apt_repository:
+    repo: 'deb https://deb.torproject.org/torproject.org {{ ansible_lsb.codename }} main'
+
+- name: Install the package to keep the Tor signing key current
+  apt:
+    name: deb.torproject.org-keyring
+
+- name: Install obfs4 and Tor
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - obfs4proxy
+    - tor
+
+- name: Generate a random Nickname for the bridge
+  shell: grep -v -P "[\x80-\xFF]" /usr/share/dict/american-english-huge | sed -e "s/'//" | shuf -n 2 | xargs | sed -e 's/ //' | cut -c 1-16 > {{ tor_bridge_nickname_file }}
+  args:
+    creates: "{{ tor_bridge_nickname_file }}"
+
+- name: Register the bridge's random Nickname
+  command: cat {{ tor_bridge_nickname_file }}
+  register: tor_bridge_nickname
+
+- name: Generate the bridge config file
+  template:
+    src: torrc.j2
+    dest: /etc/tor/torrc
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Copy the fixed AppArmor abstraction into place
+  copy:
+    src: tor-apparmor-abstraction
+    dest: /etc/apparmor.d/abstractions/tor
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Restart AppArmor so the abstraction takes effect
+  service:
+    name: apparmor
+    state: restarted
+
+- name: Restart Tor so the server fingerprint will be available in the state file, and the hidden service for the Gateway will start running
+  service:
+    name: tor
+    state: restarted
+
+- name: Wait until obfs4proxy information has shown up in its state file
+  wait_for:
+    path: /var/lib/tor/pt_state/obfs4_state.json
+    search_regex: "node-id"
+
+- name: Wait until the hidden service is online
+  wait_for:
+    path: "{{ tor_hidden_service_directory }}/hostname"
+
+- name: Register the Tor Hidden Service hostname
+  command: cat {{ tor_hidden_service_directory }}/hostname
+  register: tor_hidden_service_hostname
+
+- name: Discover the server fingerprint
+  command: awk '{ print $2 }' /var/lib/tor/fingerprint
+  register: tor_fingerprint
+
+- name: Discover the obfs4 certificate details
+  shell: cat /var/lib/tor/pt_state/obfs4_bridgeline.txt | grep 'Bridge obfs4' | sed -e 's/^.*cert=\(.*\) .*$/\1/'
+  register: tor_obfs4_certificate
+
+- name: Create the Tor Gateway directory
+  file:
+    path: "{{ tor_gateway_location }}"
+    owner: www-data
+    group: www-data
+    mode: 0750
+    state: directory
+
+- name: Generate the Tor obfs4 QR code
+  shell: echo -n '{{ tor_obfs4_bridge_line }}' | qrencode -s 6 -o {{ tor_obfs4_qr_code }}
+
+- name: Generate the Markdown Tor instructions
+  template:
+    src: instructions{{ item.value.file_suffix }}.md.j2
+    dest: "{{ tor_gateway_location }}/index{{ item.value.file_suffix}}.md"
+  with_dict: "{{ streisand_languages }}"
+
+- name: Convert the Markdown Tor instructions into HTML and surround them with the header and footer template
+  shell: markdown {{ tor_gateway_location }}/index{{ item.value.file_suffix}}.md | cat {{ streisand_i18n_header_template }} - {{ streisand_footer_template }} > {{ tor_gateway_location }}/index{{ item.value.file_suffix}}.html
+  with_dict: "{{ streisand_languages }}"

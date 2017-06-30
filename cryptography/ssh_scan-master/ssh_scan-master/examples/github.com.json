@@ -1,0 +1,110 @@
+[
+  {
+    "ssh_scan_version": "0.0.21",
+    "ip": "192.30.253.112",
+    "port": 22,
+    "server_banner": "SSH-2.0-libssh-0.7.0",
+    "ssh_version": 2.0,
+    "os": "unknown",
+    "os_cpe": "o:unknown",
+    "ssh_lib": "libssh",
+    "ssh_lib_cpe": "a:libssh:libssh",
+    "cookie": "3027e8e34a03febab31da1ad74d4533b",
+    "key_algorithms": [
+      "curve25519-sha256@libssh.org",
+      "ecdh-sha2-nistp256",
+      "diffie-hellman-group14-sha1",
+      "diffie-hellman-group1-sha1"
+    ],
+    "server_host_key_algorithms": [
+      "ssh-dss",
+      "ssh-rsa"
+    ],
+    "encryption_algorithms_client_to_server": [
+      "chacha20-poly1305@openssh.com",
+      "aes256-ctr",
+      "aes192-ctr",
+      "aes128-ctr",
+      "aes256-cbc",
+      "aes192-cbc",
+      "aes128-cbc",
+      "blowfish-cbc"
+    ],
+    "encryption_algorithms_server_to_client": [
+      "chacha20-poly1305@openssh.com",
+      "aes256-ctr",
+      "aes192-ctr",
+      "aes128-ctr",
+      "aes256-cbc",
+      "aes192-cbc",
+      "aes128-cbc",
+      "blowfish-cbc"
+    ],
+    "mac_algorithms_client_to_server": [
+      "hmac-sha1",
+      "hmac-sha2-256",
+      "hmac-sha2-512"
+    ],
+    "mac_algorithms_server_to_client": [
+      "hmac-sha1",
+      "hmac-sha2-256",
+      "hmac-sha2-512"
+    ],
+    "compression_algorithms_client_to_server": [
+      "none",
+      "zlib",
+      "zlib@openssh.com"
+    ],
+    "compression_algorithms_server_to_client": [
+      "none",
+      "zlib",
+      "zlib@openssh.com"
+    ],
+    "languages_client_to_server": [
+
+    ],
+    "languages_server_to_client": [
+
+    ],
+    "hostname": "github.com",
+    "auth_methods": [
+      "publickey"
+    ],
+    "fingerprints": {
+      "dsa": {
+        "known_bad": "false",
+        "md5": "ad:1c:08:a4:40:e3:6f:9c:f5:66:26:5d:4b:33:5d:8c",
+        "sha1": "74:91:97:3e:5f:8b:39:d5:32:7c:d4:e0:8b:c8:1b:05:f7:71:0b:49",
+        "sha256": "6e:bf:48:8c:5b:29:9b:5b:f1:47:78:80:df:91:56:13:ee:15:4f:2c:f5:85:85:4b:20:4d:ad:d7:f0:9e:c9:64"
+      },
+      "rsa": {
+        "known_bad": "false",
+        "md5": "16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48",
+        "sha1": "bf:6b:68:25:d2:97:7c:51:1a:47:5b:be:fb:88:aa:d5:4a:92:ac:73",
+        "sha256": "9d:38:5b:83:a9:17:52:92:56:1a:5e:c4:d4:81:8e:0a:ca:51:a2:64:f1:74:20:11:2e:f8:8a:c3:a1:39:49:8f"
+      }
+    },
+    "start_time": "2017-05-26 00:57:04 -0400",
+    "end_time": "2017-05-26 00:57:05 -0400",
+    "scan_duration_seconds": 1.286953,
+    "duplicate_host_key_ips": [
+
+    ],
+    "compliance": {
+      "policy": "Mozilla Modern",
+      "compliant": false,
+      "recommendations": [
+        "Add these key exchange algorithms: ecdh-sha2-nistp521,ecdh-sha2-nistp384,diffie-hellman-group-exchange-sha256",
+        "Add these MAC algorithms: hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,umac-128@openssh.com",
+        "Add these encryption ciphers: aes256-gcm@openssh.com,aes128-gcm@openssh.com",
+        "Remove these key exchange algorithms: diffie-hellman-group14-sha1, diffie-hellman-group1-sha1",
+        "Remove these MAC algorithms: hmac-sha1",
+        "Remove these encryption ciphers: aes256-cbc, aes192-cbc, aes128-cbc, blowfish-cbc"
+      ],
+      "references": [
+        "https://wiki.mozilla.org/Security/Guidelines/OpenSSH"
+      ],
+      "grade": "F"
+    }
+  }
+]

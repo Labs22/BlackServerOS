@@ -1,0 +1,4 @@
+client
+remote {{ openvpn_server }} {{ openvpn_port_sslh }}
+proto tcp
+{% include "client-common.j2" %}

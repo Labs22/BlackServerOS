@@ -1,0 +1,23 @@
+---
+openvpn_days_valid: "1825"
+openvpn_request_subject: "/C={{ openvpn_key_country }}/ST={{ openvpn_key_province }}/L={{ openvpn_key_city }}/O={{ openvpn_key_org }}/OU={{ openvpn_key_ou }}"
+openvpn_path: "/etc/openvpn"
+openvpn_ca: "{{ openvpn_path }}/ca"
+openvpn_hmac_firewall: "{{ openvpn_path }}/ta.key"
+openvpn_server: "{{ streisand_ipv4_address }}"
+openvpn_server_common_name_file: "{{ openvpn_path }}/openvpn_server_common_name"
+
+openvpn_direct_profile_filename: "{{ openvpn_server }}-direct.ovpn"
+openvpn_direct_udp_profile_filename: "{{ openvpn_server }}-direct-udp.ovpn"
+openvpn_sslh_profile_filename: "{{ openvpn_server }}-sslh.ovpn"
+openvpn_stunnel_profile_filename: "{{ openvpn_server }}-stunnel.ovpn"
+openvpn_combined_profile_filename: "{{ openvpn_server }}-combined.ovpn"
+
+openvpn_firewall_rules:
+  - iptables -A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
+  - iptables -A FORWARD -s 10.8.0.0/24 -j ACCEPT
+  - iptables -A FORWARD -s 10.9.0.0/24 -j ACCEPT
+  - iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o {{ ansible_default_ipv4.interface }} -j MASQUERADE
+  - iptables -t nat -A POSTROUTING -s 10.9.0.0/24 -o {{ ansible_default_ipv4.interface }} -j MASQUERADE
+
+openvpn_gateway_location: "{{ streisand_gateway_location }}/openvpn"

@@ -1,0 +1,16 @@
+---
+name: Mozilla Intermediate
+ssh_version: 2.0
+auth_methods:
+- publickey
+kex:
+- diffie-hellman-group-exchange-sha256
+encryption:
+- aes256-ctr
+- aes192-ctr
+- aes128-ctr
+macs:
+- hmac-sha2-512
+- hmac-sha2-256
+references:
+- https://wiki.mozilla.org/Security/Guidelines/OpenSSH
