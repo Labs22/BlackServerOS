@@ -1,7 +1,7 @@
 awesome-slugify==1.6.5
 arrow==0.10.0
 djangorestframework==3.6.2
-Django==1.11
+Django==1.11.29
 django-formtools==2.0
 django-js-reverse==0.7.3
 django-redis==4.7.0
