@@ -18,7 +18,7 @@ idna==2.1
 incremental==16.10.1
 ipaddress==1.0.17
 itsdangerous==0.24
-Jinja2==2.8
+Jinja2==2.11.3
 klein==15.3.1
 Logbook==1.0.0
 MarkupSafe==0.23
