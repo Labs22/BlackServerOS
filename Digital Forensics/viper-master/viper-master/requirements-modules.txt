@@ -10,7 +10,7 @@ future==0.16.0
 idna==2.5
 ipaddress==1.0.18
 itypes==1.1.0
-Jinja2==2.9.6
+Jinja2==2.11.3
 jsonschema==2.6.0
 MarkupSafe==1.0
 mccabe==0.6.1
