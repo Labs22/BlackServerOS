@@ -4,7 +4,7 @@ sklearn
 # Modules available through PyPy
 backport-ipaddress==0.1
 pyasn==1.5.0b7
-Jinja2==2.8
+Jinja2==2.11.3
 MarkupSafe==0.23
 requests==2.11.1
 ipaddr==2.1.11
