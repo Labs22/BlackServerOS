@@ -42,7 +42,7 @@ pytest==3.0.5
 pytest-cov==2.4.0
 pytest-logbook==1.2.0
 python-dateutil==2.6.0
-PyYAML==3.12
+PyYAML==5.4
 requests[security]==2.12.3
 requests-ntlm==1.0.0
 requests-oauthlib==0.7.0
