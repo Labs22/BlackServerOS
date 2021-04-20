@@ -31,7 +31,7 @@ oauth2client==3.0.0
 oauthlib==2.0.1
 ordereddict==1.1
 pbr==1.10.0
-py==1.4.31
+py==1.10.0
 pyasn1==0.1.9
 pyasn1-modules==0.0.8
 pycparser==2.17
