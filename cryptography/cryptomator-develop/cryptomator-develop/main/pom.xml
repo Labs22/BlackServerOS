@@ -29,7 +29,7 @@
 		<cryptomator.webdav.version>0.6.1</cryptomator.webdav.version>
 		<cryptomator.jni.version>1.0.2</cryptomator.jni.version>
 		
-		<commons-io.version>2.5</commons-io.version>
+		<commons-io.version>2.7</commons-io.version>
 		<commons-lang3.version>3.6</commons-lang3.version>
 		<httpclient.version>4.5.3</httpclient.version>
 		
