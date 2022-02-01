@@ -51,7 +51,7 @@ rsa==3.4.2
 service-identity==16.0.0
 six==1.10.0
 stevedore==1.19.1
-treq==15.1.0
+treq==22.1.0
 Twisted==16.6.0
 txretry==1.0.1
 git+https://github.com/wrapp/txwebretry.git@df5014019cf3a5d501bc755b9ce46509c1b31351#egg=txwebretry
