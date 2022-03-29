@@ -5,7 +5,7 @@ pyyaml
 rsa
 netaddr
 ecdsa==0.13
-paramiko==2.0.2
+paramiko==2.10.1
 tinyec
 psutil
 netifaces
