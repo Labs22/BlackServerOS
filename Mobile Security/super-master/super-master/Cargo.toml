@@ -33,7 +33,7 @@ serde = "^0.9"
 serde_json = "^0.9"
 chrono = { version = "^0.3", features = ["serde"] }
 toml = "^0.3"
-regex = "^0.2"
+regex = "^1.5"
 lazy_static = "^0.2"
 rustc-serialize = "^0.3"
 open = "^1.2"
