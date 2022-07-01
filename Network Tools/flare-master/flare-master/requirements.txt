@@ -11,7 +11,7 @@ ipaddr==2.1.11
 tldextract==2.0.1
 python-geoip
 python-geoip-geolite2
-openpyxl==2.3.5
+openpyxl==2.4.2
 elasticsearch
 ConfigParser
 pandas
